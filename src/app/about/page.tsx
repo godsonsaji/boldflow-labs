@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
     Target,
@@ -11,25 +9,19 @@ import {
     Rocket,
     Shield,
 } from "lucide-react";
+import { FadeUp, SlideLeft } from "@/components/AnimationWrappers";
 
-const fadeUp = {
-    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
-    visible: (i: number) => ({
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" as const },
-    }),
-};
-
-const slideLeft = {
-    hidden: { opacity: 0, x: -50, filter: "blur(6px)" },
-    visible: (i: number) => ({
-        opacity: 1,
-        x: 0,
-        filter: "blur(0px)",
-        transition: { delay: i * 0.12, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
-    }),
+export const metadata: Metadata = {
+    title: "About Us",
+    description:
+        "BoldFlow Labs is a team of AI engineers, data scientists, and strategists building intelligent automation solutions. Founded in 2022, 150+ projects delivered, 98% satisfaction rate.",
+    alternates: { canonical: "/about" },
+    openGraph: {
+        title: "About Us — BoldFlow Labs",
+        description:
+            "Meet the team behind BoldFlow Labs. AI engineers, data scientists, and strategists on a mission to democratize AI automation.",
+        url: "/about",
+    },
 };
 
 const values = [
@@ -112,16 +104,35 @@ const timeline = [
 export default function AboutPage() {
     return (
         <>
-            {/* Hero — Editorial, clean */}
-            <section className="relative pt-32 pb-24 overflow-hidden">
+            {/* JSON-LD About Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "AboutPage",
+                        mainEntity: {
+                            "@type": "Organization",
+                            name: "BoldFlow Labs",
+                            description:
+                                "AI automation agency building intelligent solutions for modern businesses.",
+                            foundingDate: "2022",
+                            numberOfEmployees: { "@type": "QuantitativeValue", value: 40 },
+                            member: team.map((m) => ({
+                                "@type": "Person",
+                                name: m.name,
+                                jobTitle: m.role,
+                                description: m.bio,
+                            })),
+                        },
+                    }),
+                }}
+            />
+
+            {/* Hero */}
+            <section className="relative pt-32 pb-24 overflow-hidden" aria-label="About BoldFlow Labs">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-                    <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={slideLeft}
-                        custom={0}
-                        className="max-w-3xl"
-                    >
+                    <SlideLeft custom={0} viewport={false} className="max-w-3xl">
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
                             About Us
                         </p>
@@ -135,21 +146,15 @@ export default function AboutPage() {
                             to every business. We don&apos;t just build AI — we build AI that
                             delivers measurable results.
                         </p>
-                    </motion.div>
+                    </SlideLeft>
                 </div>
             </section>
 
             {/* Mission */}
-            <section className="section-padding relative" style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.03) 0%, transparent 100%)" }}>
+            <section className="section-padding relative" style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.03) 0%, transparent 100%)" }} aria-label="Our mission">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variants={fadeUp}
-                            custom={0}
-                        >
+                        <FadeUp custom={0}>
                             <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
                                 Our Mission
                             </p>
@@ -167,64 +172,42 @@ export default function AboutPage() {
                                 business acumen. We don&apos;t chase trends — we build
                                 solutions that solve real problems and generate real ROI.
                             </p>
-                        </motion.div>
+                        </FadeUp>
 
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variants={fadeUp}
-                            custom={1}
-                            className="relative"
-                        >
+                        <FadeUp custom={1}>
                             <div className="grid grid-cols-2 gap-4">
                                 {[
                                     { number: "150+", label: "Projects Delivered" },
                                     { number: "98%", label: "Satisfaction Rate" },
                                     { number: "40+", label: "Team Members" },
                                     { number: "$50M+", label: "Client Revenue Generated" },
-                                ].map((stat, i) => (
+                                ].map((stat) => (
                                     <div key={stat.label} className="glass rounded-xl p-6 text-center">
                                         <p className="text-2xl font-bold gradient-text mb-1">{stat.number}</p>
                                         <p className="text-gray-600 text-xs uppercase tracking-wider">{stat.label}</p>
                                     </div>
                                 ))}
                             </div>
-                        </motion.div>
+                        </FadeUp>
                     </div>
                 </div>
             </section>
 
             {/* Values */}
-            <section className="section-padding">
+            <section className="section-padding" aria-label="Our core values">
                 <div className="max-w-7xl mx-auto">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        custom={0}
-                        className="mb-14"
-                    >
+                    <FadeUp custom={0} className="mb-14">
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
                             Our Values
                         </p>
                         <h2 className="text-4xl md:text-5xl font-bold text-white">
                             What Drives <span className="gradient-text">Us</span>
                         </h2>
-                    </motion.div>
+                    </FadeUp>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                         {values.map((value, i) => (
-                            <motion.div
-                                key={value.title}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: "-30px" }}
-                                variants={fadeUp}
-                                custom={i}
-                                className="group glass glass-hover rounded-xl p-7 transition-all duration-300"
-                            >
+                            <FadeUp key={value.title} custom={i} className="group glass glass-hover rounded-xl p-7 transition-all duration-300">
                                 <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.06] border border-[#00a2ff]/10 flex items-center justify-center mb-4 group-hover:bg-[#0066ff]/10 group-hover:border-[#00a2ff]/20 transition-all duration-300">
                                     <value.icon className="w-5 h-5 text-[#00a2ff] icon-hover-spin" />
                                 </div>
@@ -234,42 +217,27 @@ export default function AboutPage() {
                                 <p className="text-gray-600 text-sm leading-relaxed">
                                     {value.description}
                                 </p>
-                            </motion.div>
+                            </FadeUp>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Team — Hover-flip Cards */}
-            <section className="section-padding relative" style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.03) 0%, transparent 100%)" }}>
+            {/* Team */}
+            <section className="section-padding relative" style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.03) 0%, transparent 100%)" }} aria-label="Our leadership team">
                 <div className="max-w-7xl mx-auto relative z-10">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        custom={0}
-                        className="mb-14"
-                    >
+                    <FadeUp custom={0} className="mb-14">
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
                             Our Team
                         </p>
                         <h2 className="text-4xl md:text-5xl font-bold text-white">
                             Meet the <span className="gradient-text">Minds</span>
                         </h2>
-                    </motion.div>
+                    </FadeUp>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                         {team.map((member, i) => (
-                            <motion.div
-                                key={member.name}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true }}
-                                variants={fadeUp}
-                                custom={i}
-                                className="group relative [perspective:1000px]"
-                            >
+                            <FadeUp key={member.name} custom={i} className="group relative [perspective:1000px]">
                                 <div className="relative transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] min-h-[280px]">
                                     {/* Front */}
                                     <div className="absolute inset-0 glass rounded-xl p-7 flex flex-col items-center justify-center [backface-visibility:hidden]">
@@ -292,46 +260,30 @@ export default function AboutPage() {
                                         </p>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </FadeUp>
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* Timeline */}
-            <section className="section-padding">
+            <section className="section-padding" aria-label="Company timeline">
                 <div className="max-w-3xl mx-auto">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        custom={0}
-                        className="mb-14"
-                    >
+                    <FadeUp custom={0} className="mb-14">
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
                             Our Journey
                         </p>
                         <h2 className="text-4xl md:text-5xl font-bold text-white">
                             The <span className="gradient-text">Timeline</span>
                         </h2>
-                    </motion.div>
+                    </FadeUp>
 
                     <div className="relative">
-                        {/* Vertical line */}
-                        <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#0066ff]/40 via-[#00a2ff]/20 to-transparent" />
+                        <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#0066ff]/40 via-[#00a2ff]/20 to-transparent" aria-hidden="true" />
 
                         <div className="space-y-10">
                             {timeline.map((item, i) => (
-                                <motion.div
-                                    key={item.year}
-                                    initial="hidden"
-                                    whileInView="visible"
-                                    viewport={{ once: true }}
-                                    variants={fadeUp}
-                                    custom={i}
-                                    className="flex items-start gap-6 relative"
-                                >
+                                <FadeUp key={item.year} custom={i} className="flex items-start gap-6 relative">
                                     <div className="shrink-0 w-12 h-12 rounded-full bg-[#0066ff]/10 border border-[#00a2ff]/20 flex items-center justify-center relative z-10">
                                         <span className="text-xs font-bold text-[#00a2ff]">{item.year}</span>
                                     </div>
@@ -339,7 +291,7 @@ export default function AboutPage() {
                                         <h3 className="text-lg font-semibold text-white mb-1">{item.title}</h3>
                                         <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
                                     </div>
-                                </motion.div>
+                                </FadeUp>
                             ))}
                         </div>
                     </div>
@@ -347,15 +299,9 @@ export default function AboutPage() {
             </section>
 
             {/* CTA */}
-            <section className="section-padding">
+            <section className="section-padding" aria-label="Work with us">
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        custom={0}
-                    >
+                    <FadeUp custom={0}>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                             Want to Work with{" "}
                             <span className="shimmer-text">Us?</span>
@@ -371,7 +317,7 @@ export default function AboutPage() {
                             Let&apos;s Talk
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
-                    </motion.div>
+                    </FadeUp>
                 </div>
             </section>
         </>

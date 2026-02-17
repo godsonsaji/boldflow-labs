@@ -1,30 +1,30 @@
-"use client";
-
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
     Bot,
     Workflow,
     BarChart3,
-    Sparkles,
     Brain,
     Database,
     MessageSquare,
     Cog,
+    Sparkles,
     ArrowRight,
-    CheckCircle2,
-    ChevronDown,
 } from "lucide-react";
+import { FadeUp } from "@/components/AnimationWrappers";
+import ServiceCard from "@/components/ServiceCard";
 
-const fadeUp = {
-    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
-    visible: (i: number) => ({
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" as const },
-    }),
+export const metadata: Metadata = {
+    title: "AI Automation Services",
+    description:
+        "From AI chatbots and workflow automation to predictive analytics and custom AI models — BoldFlow Labs offers a full spectrum of AI services to transform your business.",
+    alternates: { canonical: "/services" },
+    openGraph: {
+        title: "AI Automation Services — BoldFlow Labs",
+        description:
+            "Explore our full spectrum of AI and automation services: chatbots, workflow automation, analytics, custom AI models, and more.",
+        url: "/services",
+    },
 };
 
 const services = [
@@ -102,7 +102,7 @@ const services = [
     },
 ];
 
-const process = [
+const processSteps = [
     {
         step: "01",
         icon: MessageSquare,
@@ -133,139 +133,95 @@ const process = [
     },
 ];
 
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-        <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={fadeUp}
-            custom={index}
-            className="group relative border-b border-white/[0.04] last:border-b-0"
-        >
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-start gap-6 py-8 md:py-10 text-left hover:bg-white/[0.01] transition-colors duration-300 px-2"
-            >
-                <div className="shrink-0 flex items-center gap-4">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/30 font-bold tabular-nums w-6">
-                        {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="w-12 h-12 rounded-xl bg-[#0066ff]/[0.06] border border-[#00a2ff]/10 flex items-center justify-center group-hover:bg-[#0066ff]/10 group-hover:border-[#00a2ff]/20 transition-all duration-300">
-                        <service.icon className="w-5 h-5 text-[#00a2ff]" />
-                    </div>
-                </div>
-                <div className="flex-1 min-w-0">
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1 group-hover:text-[#00a2ff] transition-colors duration-300">
-                        {service.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm line-clamp-1 md:line-clamp-none max-w-2xl">
-                        {service.description}
-                    </p>
-                </div>
-                <ChevronDown
-                    className={`w-5 h-5 text-gray-600 shrink-0 mt-2 transition-transform duration-300 ${isOpen ? "rotate-180 text-[#00a2ff]" : ""
-                        }`}
-                />
-            </button>
-
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" as const }}
-                        className="overflow-hidden"
-                    >
-                        <div className="pl-24 pb-8 pr-8">
-                            <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-2xl">
-                                {service.description}
-                            </p>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                {service.features.map((feature) => (
-                                    <div
-                                        key={feature}
-                                        className="flex items-center gap-2.5 text-sm text-gray-500"
-                                    >
-                                        <CheckCircle2 className="w-3.5 h-3.5 text-[#00a2ff]/60 shrink-0" />
-                                        {feature}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </motion.div>
-    );
-}
-
 export default function ServicesPage() {
     return (
         <>
-            {/* Hero — Left-aligned with watermark */}
-            <section className="relative pt-32 pb-20 overflow-hidden">
-                <div className="orb orb-blue w-[500px] h-[500px] -top-40 -right-40 opacity-20" />
-                <div className="watermark-number top-16 -right-10">AI</div>
+            {/* JSON-LD Service Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Service",
+                        provider: {
+                            "@type": "Organization",
+                            name: "BoldFlow Labs",
+                        },
+                        name: "AI Automation Services",
+                        description:
+                            "Full spectrum of AI and automation services including chatbots, workflow automation, predictive analytics, and custom AI models.",
+                        serviceType: "AI Automation",
+                        areaServed: "Worldwide",
+                        hasOfferCatalog: {
+                            "@type": "OfferCatalog",
+                            name: "AI Services",
+                            itemListElement: services.map((service, i) => ({
+                                "@type": "Offer",
+                                itemOffered: {
+                                    "@type": "Service",
+                                    name: service.title,
+                                    description: service.description,
+                                },
+                                position: i + 1,
+                            })),
+                        },
+                    }),
+                }}
+            />
+
+            {/* Hero */}
+            <section className="relative pt-32 pb-20 overflow-hidden" aria-label="Services overview">
+                <div className="orb orb-blue w-[500px] h-[500px] -top-40 -right-40 opacity-20" aria-hidden="true" />
+                <div className="watermark-number top-16 -right-10" aria-hidden="true">AI</div>
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                     <div className="max-w-2xl">
-                        <motion.p
-                            initial="hidden"
-                            animate="visible"
-                            variants={fadeUp}
-                            custom={0}
-                            className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium"
-                        >
-                            Our Services
-                        </motion.p>
-                        <motion.h1
-                            initial="hidden"
-                            animate="visible"
-                            variants={fadeUp}
-                            custom={1}
-                            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
-                        >
-                            AI Solutions That{" "}
-                            <span className="shimmer-text">Drive Growth</span>
-                        </motion.h1>
-                        <motion.p
-                            initial="hidden"
-                            animate="visible"
-                            variants={fadeUp}
-                            custom={2}
-                            className="text-base text-gray-500 max-w-lg"
-                        >
-                            From strategy to deployment, we offer a full spectrum of AI and
-                            automation services to transform every aspect of your business.
-                        </motion.p>
+                        <FadeUp custom={0} viewport={false}>
+                            <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
+                                Our Services
+                            </p>
+                        </FadeUp>
+                        <FadeUp custom={1} viewport={false}>
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+                                AI Solutions That{" "}
+                                <span className="shimmer-text">Drive Growth</span>
+                            </h1>
+                        </FadeUp>
+                        <FadeUp custom={2} viewport={false}>
+                            <p className="text-base text-gray-500 max-w-lg">
+                                From strategy to deployment, we offer a full spectrum of AI and
+                                automation services to transform every aspect of your business.
+                            </p>
+                        </FadeUp>
                     </div>
                 </div>
             </section>
 
             {/* Services — Accordion List */}
-            <section className="section-padding pt-0">
+            <section className="section-padding pt-0" aria-label="Detailed service offerings">
                 <div className="max-w-5xl mx-auto">
                     {services.map((service, i) => (
-                        <ServiceCard key={service.title} service={service} index={i} />
+                        <FadeUp key={service.title} custom={i}>
+                            <ServiceCard
+                                index={i}
+                                icon={<service.icon className="w-5 h-5 text-[#00a2ff]" />}
+                                title={service.title}
+                                description={service.description}
+                                features={service.features}
+                            />
+                        </FadeUp>
                     ))}
                 </div>
             </section>
 
             {/* Process — Horizontal Timeline */}
-            <section className="section-padding relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.03) 0%, transparent 100%)" }}>
+            <section
+                className="section-padding relative overflow-hidden"
+                aria-label="Our delivery process"
+                style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.03) 0%, transparent 100%)" }}
+            >
                 <div className="max-w-7xl mx-auto relative z-10">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        custom={0}
-                        className="text-center mb-16"
-                    >
+                    <FadeUp custom={0} className="text-center mb-16">
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
                             Our Process
                         </p>
@@ -276,25 +232,16 @@ export default function ServicesPage() {
                             A proven methodology that turns complex AI initiatives into
                             delivered, measurable business value.
                         </p>
-                    </motion.div>
+                    </FadeUp>
 
                     {/* Desktop timeline */}
                     <div className="hidden md:block">
-                        {/* Connecting line */}
                         <div className="relative mx-auto max-w-4xl mb-4">
-                            <div className="absolute top-5 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#0066ff]/30 via-[#00a2ff]/30 to-[#00d4ff]/30" />
+                            <div className="absolute top-5 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#0066ff]/30 via-[#00a2ff]/30 to-[#00d4ff]/30" aria-hidden="true" />
                         </div>
                         <div className="grid grid-cols-4 gap-6 max-w-4xl mx-auto">
-                            {process.map((step, i) => (
-                                <motion.div
-                                    key={step.step}
-                                    initial="hidden"
-                                    whileInView="visible"
-                                    viewport={{ once: true }}
-                                    variants={fadeUp}
-                                    custom={i}
-                                    className="text-center"
-                                >
+                            {processSteps.map((step, i) => (
+                                <FadeUp key={step.step} custom={i} className="text-center">
                                     <div className="w-10 h-10 rounded-full bg-[#0066ff]/10 border border-[#00a2ff]/20 flex items-center justify-center mx-auto mb-4 relative">
                                         <span className="text-xs font-bold text-[#00a2ff]">{step.step}</span>
                                     </div>
@@ -304,23 +251,15 @@ export default function ServicesPage() {
                                     <p className="text-gray-600 text-xs leading-relaxed">
                                         {step.description}
                                     </p>
-                                </motion.div>
+                                </FadeUp>
                             ))}
                         </div>
                     </div>
 
                     {/* Mobile stacked */}
                     <div className="md:hidden space-y-6">
-                        {process.map((step, i) => (
-                            <motion.div
-                                key={step.step}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true }}
-                                variants={fadeUp}
-                                custom={i}
-                                className="flex items-start gap-4"
-                            >
+                        {processSteps.map((step, i) => (
+                            <FadeUp key={step.step} custom={i} className="flex items-start gap-4">
                                 <div className="w-10 h-10 rounded-full bg-[#0066ff]/10 border border-[#00a2ff]/20 flex items-center justify-center shrink-0">
                                     <span className="text-xs font-bold text-[#00a2ff]">{step.step}</span>
                                 </div>
@@ -332,22 +271,16 @@ export default function ServicesPage() {
                                         {step.description}
                                     </p>
                                 </div>
-                            </motion.div>
+                            </FadeUp>
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* CTA */}
-            <section className="section-padding">
+            <section className="section-padding" aria-label="Get started with a free assessment">
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        custom={0}
-                    >
+                    <FadeUp custom={0}>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                             Not Sure Where to Start?
                         </h2>
@@ -362,7 +295,7 @@ export default function ServicesPage() {
                             Get Your Free Assessment
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
-                    </motion.div>
+                    </FadeUp>
                 </div>
             </section>
         </>

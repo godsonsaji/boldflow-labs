@@ -33,9 +33,10 @@ export default function Navbar() {
 
     return (
         <nav
+            aria-label="Main navigation"
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-                    ? "bg-black/60 backdrop-blur-xl shadow-[0_1px_0_rgba(0,162,255,0.06)]"
-                    : "bg-transparent"
+                ? "bg-black/60 backdrop-blur-xl shadow-[0_1px_0_rgba(0,162,255,0.06)]"
+                : "bg-transparent"
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,8 +59,8 @@ export default function Navbar() {
                                 key={link.href}
                                 href={link.href}
                                 className={`relative px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-all duration-300 ${pathname === link.href
-                                        ? "text-white bg-[#0066ff]/15 shadow-[0_0_12px_rgba(0,102,255,0.15)]"
-                                        : "text-gray-500 hover:text-gray-200"
+                                    ? "text-white bg-[#0066ff]/15 shadow-[0_0_12px_rgba(0,102,255,0.15)]"
+                                    : "text-gray-500 hover:text-gray-200"
                                     }`}
                             >
                                 {link.label}
@@ -107,8 +108,8 @@ export default function Navbar() {
                                     <Link
                                         href={link.href}
                                         className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${pathname === link.href
-                                                ? "text-white bg-[#0066ff]/10"
-                                                : "text-gray-500 hover:text-white hover:bg-white/[0.03]"
+                                            ? "text-white bg-[#0066ff]/10"
+                                            : "text-gray-500 hover:text-white hover:bg-white/[0.03]"
                                             }`}
                                     >
                                         {link.label}

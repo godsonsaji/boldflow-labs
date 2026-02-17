@@ -1,330 +1,269 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import type { Metadata } from "next";
 import Link from "next/link";
-import {
-    Star,
-    ArrowRight,
-    TrendingUp,
-    DollarSign,
-    Clock,
-    Users,
-    Quote,
-} from "lucide-react";
+import { Star, ArrowRight, Quote } from "lucide-react";
+import { FadeUp, AnimatedCounter } from "@/components/AnimationWrappers";
 
-const fadeUp = {
-    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
-    visible: (i: number) => ({
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" as const },
-    }),
+export const metadata: Metadata = {
+    title: "Testimonials & Results",
+    description:
+        "See what our clients say about BoldFlow Labs. 98% client satisfaction, 150+ projects delivered, and an average 3.5x ROI — backed by real testimonials.",
+    alternates: { canonical: "/testimonials" },
+    openGraph: {
+        title: "Testimonials & Results — BoldFlow Labs",
+        description:
+            "Real client testimonials and measurable business results from our AI automation projects.",
+        url: "/testimonials",
+    },
+};
+
+const highlightedTestimonial = {
+    name: "Sarah Chen",
+    role: "CEO",
+    company: "DataPulse Analytics",
+    content:
+        "BoldFlow Labs didn't just build us an AI solution — they transformed how we think about our entire business. The automation pipeline they designed reduced our operational costs by 40% and freed our team to focus on innovation. Within 6 months, we saw a 3.2x return on our investment. They're not vendors, they're true partners.",
+    rating: 5,
+    metric: { value: "3.2x", label: "ROI in 6 months" },
 };
 
 const testimonials = [
     {
+        name: "Michael Torres",
+        role: "VP of Operations",
+        company: "TechForge Inc.",
+        content:
+            "The AI chatbot BoldFlow built handles 80% of our support tickets autonomously. Our CSAT score went from 3.8 to 4.7 in three months.",
+        rating: 5,
+    },
+    {
+        name: "Emily Watson",
+        role: "Head of Data",
+        company: "NovaStar Health",
+        content:
+            "Their data pipeline processes 10M+ records daily with 99.99% uptime. The predictive analytics dashboard is now our most critical decision-making tool.",
+        rating: 5,
+    },
+    {
         name: "David Park",
-        role: "CTO, TechForge Inc.",
+        role: "COO",
+        company: "Synthetix.io",
         content:
-            "BoldFlow Labs transformed our customer service operations. Their AI chatbot handles 80% of inquiries autonomously, and the quality of responses is remarkable.",
+            "We evaluated five AI agencies. BoldFlow was the only one that understood both the technical requirements AND the business context. Exceptional work.",
         rating: 5,
-        metric: "+240% Efficiency",
-        featured: true,
     },
     {
-        name: "Sarah Chen",
-        role: "VP Operations, DataPulse",
+        name: "Lisa Mueller",
+        role: "Director of Marketing",
+        company: "CloudBase",
         content:
-            "The workflow automation solution reduced our manual data processing time by 35 hours per week. The ROI was visible within the first month.",
+            "The content generation pipeline saves us 30+ hours per week. The quality is indistinguishable from our best human writers. Game-changing.",
         rating: 5,
-        metric: "35h/wk Saved",
-        featured: false,
     },
     {
-        name: "Marcus Johnson",
-        role: "CEO, NovaStar Retail",
+        name: "James Kim",
+        role: "CTO",
+        company: "FinSpeed Capital",
         content:
-            "Their predictive analytics platform gave us a competitive edge. We can now forecast demand with 94% accuracy, reducing waste and maximizing revenue.",
+            "Their fraud detection model caught $2.1M in fraudulent transactions in the first quarter alone. The ROI was immediate and undeniable.",
         rating: 5,
-        metric: "94% Accuracy",
-        featured: false,
     },
     {
-        name: "Emily Rodriguez",
-        role: "Director, Synthetix Health",
+        name: "Rachel Adams",
+        role: "Product Manager",
+        company: "Quantum AI Labs",
         content:
-            "Working with BoldFlow was seamless from start to finish. They understood our complex requirements and delivered an AI solution that exceeded expectations.",
+            "Working with BoldFlow feels like having an elite AI team embedded in your company. Communication is crisp, delivery is on time, and quality is outstanding.",
         rating: 5,
-        metric: "3.5x ROI",
-        featured: false,
-    },
-    {
-        name: "James Williams",
-        role: "Head of Sales, CloudBase",
-        content:
-            "Our lead qualification process is now fully automated. The AI identifies high-value prospects with incredible precision, boosting our conversion rate by 67%.",
-        rating: 5,
-        metric: "+67% Conversion",
-        featured: false,
-    },
-    {
-        name: "Lisa Thompson",
-        role: "COO, Quantum Finance",
-        content:
-            "The custom AI model BoldFlow built for fraud detection saves us millions annually. Their team's expertise in financial AI is unmatched.",
-        rating: 5,
-        metric: "$2.5M Saved/yr",
-        featured: false,
     },
 ];
 
-const results = [
-    { value: 40, suffix: "%", label: "Average Cost Reduction", icon: DollarSign, barWidth: 85 },
-    { value: 98, suffix: "%", label: "Client Satisfaction Rate", icon: Users, barWidth: 98 },
-    { value: 3.5, suffix: "x", label: "Average Return on Investment", icon: TrendingUp, barWidth: 75 },
-    { value: 2, suffix: "wk", label: "Average Time to Deployment", icon: Clock, barWidth: 60 },
+const resultStats = [
+    { value: 150, suffix: "+", label: "Projects Delivered" },
+    { value: 98, suffix: "%", label: "Client Satisfaction" },
+    { value: 40, suffix: "%", label: "Avg Cost Reduction" },
+    { value: 3.5, suffix: "x", label: "Average ROI" },
 ];
-
-function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
-    const motionVal = useMotionValue(0);
-    const springVal = useSpring(motionVal, { duration: 2000, bounce: 0 });
-    const displayRef = useRef<HTMLSpanElement>(null);
-
-    useEffect(() => {
-        if (isInView) motionVal.set(value);
-    }, [isInView, motionVal, value]);
-
-    useEffect(() => {
-        const unsub = springVal.on("change", (v) => {
-            if (displayRef.current) {
-                const formatted = value % 1 !== 0 ? v.toFixed(1) : Math.floor(v).toString();
-                displayRef.current.textContent = formatted + suffix;
-            }
-        });
-        return unsub;
-    }, [springVal, suffix, value]);
-
-    return (
-        <span ref={ref}>
-            <span ref={displayRef}>0{suffix}</span>
-        </span>
-    );
-}
 
 export default function TestimonialsPage() {
-    const featured = testimonials.find((t) => t.featured);
-    const rest = testimonials.filter((t) => !t.featured);
-
     return (
         <>
-            {/* Hero */}
-            <section className="relative pt-32 pb-20 overflow-hidden">
-                <div className="orb orb-cyan w-[500px] h-[500px] -top-40 -right-40 opacity-20" />
+            {/* JSON-LD Review Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        name: "BoldFlow Labs",
+                        aggregateRating: {
+                            "@type": "AggregateRating",
+                            ratingValue: "4.9",
+                            reviewCount: String(testimonials.length + 1),
+                            bestRating: "5",
+                            worstRating: "1",
+                        },
+                        review: [highlightedTestimonial, ...testimonials].map((t) => ({
+                            "@type": "Review",
+                            author: { "@type": "Person", name: t.name },
+                            reviewRating: {
+                                "@type": "Rating",
+                                ratingValue: String(t.rating),
+                                bestRating: "5",
+                            },
+                            reviewBody: t.content,
+                        })),
+                    }),
+                }}
+            />
 
+            {/* Hero */}
+            <section className="relative pt-32 pb-16 overflow-hidden" aria-label="Testimonials overview">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
-                    <motion.p
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeUp}
-                        custom={0}
-                        className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium"
-                    >
-                        Testimonials
-                    </motion.p>
-                    <motion.h1
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeUp}
-                        custom={1}
-                        className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
-                    >
-                        Loved by{" "}
-                        <span className="shimmer-text">Industry Leaders</span>
-                    </motion.h1>
-                    <motion.p
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeUp}
-                        custom={2}
-                        className="text-base text-gray-500 max-w-xl mx-auto"
-                    >
-                        Don&apos;t just take our word for it — hear from the companies
-                        that have transformed their operations with BoldFlow Labs.
-                    </motion.p>
+                    <FadeUp custom={0} viewport={false}>
+                        <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
+                            Testimonials
+                        </p>
+                    </FadeUp>
+                    <FadeUp custom={1} viewport={false}>
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+                            Client <span className="shimmer-text">Stories</span>
+                        </h1>
+                    </FadeUp>
+                    <FadeUp custom={2} viewport={false}>
+                        <p className="text-base text-gray-500 max-w-xl mx-auto">
+                            Don&apos;t just take our word for it. Hear from the leaders who&apos;ve
+                            transformed their businesses with BoldFlow Labs.
+                        </p>
+                    </FadeUp>
                 </div>
             </section>
 
-            {/* Featured Testimonial — Spotlight */}
-            {featured && (
-                <section className="section-padding pt-0">
-                    <div className="max-w-4xl mx-auto">
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variants={fadeUp}
-                            custom={0}
-                            className="relative p-10 md:p-14 rounded-2xl border border-[#00a2ff]/15 bg-gradient-to-br from-[#0066ff]/[0.04] to-transparent"
-                        >
-                            <Quote className="w-10 h-10 text-[#0066ff]/15 mb-6" />
-                            <p className="text-xl md:text-2xl text-white leading-relaxed font-medium mb-8">
-                                &ldquo;{featured.content}&rdquo;
-                            </p>
-                            <div className="flex items-center justify-between flex-wrap gap-4">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00d4ff] flex items-center justify-center text-white font-bold text-sm">
-                                        {featured.name.split(" ").map((n) => n[0]).join("")}
-                                    </div>
-                                    <div>
-                                        <p className="text-white font-semibold text-sm">{featured.name}</p>
-                                        <p className="text-gray-600 text-xs">{featured.role}</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="flex gap-0.5">
-                                        {Array.from({ length: featured.rating }).map((_, j) => (
-                                            <Star key={j} className="w-4 h-4 text-[#00a2ff] fill-[#00a2ff]" />
-                                        ))}
-                                    </div>
-                                    <span className="text-xs font-bold text-[#00d4ff] bg-[#0066ff]/10 px-3 py-1 rounded-full">
-                                        {featured.metric}
-                                    </span>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
-                </section>
-            )}
+            {/* Highlighted Testimonial */}
+            <section className="section-padding pt-4" aria-label="Featured testimonial">
+                <div className="max-w-4xl mx-auto">
+                    <FadeUp custom={0}>
+                        <article className="glass rounded-2xl p-8 md:p-12 relative overflow-hidden">
+                            <Quote className="absolute top-8 right-8 w-16 h-16 text-[#0066ff]/[0.06]" aria-hidden="true" />
 
-            {/* Testimonials Grid — Masonry-style */}
-            <section className="section-padding pt-0">
-                <div className="max-w-7xl mx-auto">
-                    <div className="columns-1 md:columns-2 lg:columns-3 gap-5 space-y-5">
-                        {rest.map((testimonial, i) => (
-                            <motion.div
-                                key={testimonial.name}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: "-30px" }}
-                                variants={fadeUp}
-                                custom={i % 3}
-                                className="break-inside-avoid glass glass-hover rounded-xl p-7 transition-all duration-300"
-                            >
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0066ff]/30 to-[#00d4ff]/20 flex items-center justify-center text-white font-bold text-xs">
-                                        {testimonial.name.split(" ").map((n) => n[0]).join("")}
-                                    </div>
-                                    <div>
-                                        <p className="text-white font-medium text-sm">{testimonial.name}</p>
-                                        <p className="text-gray-600 text-xs">{testimonial.role}</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-0.5 mb-3">
-                                    {Array.from({ length: testimonial.rating }).map((_, j) => (
-                                        <Star key={j} className="w-3 h-3 text-[#00a2ff] fill-[#00a2ff]" />
+                            <div className="relative z-10">
+                                {/* Stars */}
+                                <div className="flex items-center gap-1 mb-6" aria-label={`${highlightedTestimonial.rating} out of 5 stars`}>
+                                    {Array.from({ length: highlightedTestimonial.rating }).map((_, i) => (
+                                        <Star key={i} className="w-4 h-4 text-[#00a2ff] fill-[#00a2ff]" />
                                     ))}
                                 </div>
 
-                                <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                                    &ldquo;{testimonial.content}&rdquo;
-                                </p>
+                                <blockquote className="text-base md:text-lg text-gray-300 leading-relaxed mb-8 italic">
+                                    &ldquo;{highlightedTestimonial.content}&rdquo;
+                                </blockquote>
 
-                                <span className="inline-block text-[10px] font-bold text-[#00d4ff] bg-[#0066ff]/10 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                                    {testimonial.metric}
-                                </span>
-                            </motion.div>
-                        ))}
+                                <div className="flex items-center justify-between flex-wrap gap-4">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00d4ff] flex items-center justify-center text-white font-bold text-sm">
+                                            SC
+                                        </div>
+                                        <div>
+                                            <cite className="not-italic text-white font-semibold text-sm block">
+                                                {highlightedTestimonial.name}
+                                            </cite>
+                                            <p className="text-gray-600 text-xs">
+                                                {highlightedTestimonial.role}, {highlightedTestimonial.company}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="glass rounded-lg px-4 py-2 text-center">
+                                        <p className="text-lg font-bold gradient-text">{highlightedTestimonial.metric.value}</p>
+                                        <p className="text-[10px] text-gray-600 uppercase tracking-wider">{highlightedTestimonial.metric.label}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </FadeUp>
+                </div>
+            </section>
+
+            {/* Stats Band */}
+            <section className="relative overflow-hidden" aria-label="Key performance metrics">
+                <div className="relative py-16 px-4 sm:px-6" style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.04) 0%, rgba(0,212,255,0.02) 100%)" }}>
+                    <div className="max-w-6xl mx-auto relative z-10">
+                        <div className="flex flex-wrap justify-center divide-x divide-white/[0.06]">
+                            {resultStats.map((stat, i) => (
+                                <FadeUp key={stat.label} custom={i} className="text-center px-8 md:px-14 py-4">
+                                    <p className="text-3xl md:text-5xl font-bold gradient-text mb-1.5">
+                                        <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                                    </p>
+                                    <p className="text-gray-600 text-xs uppercase tracking-widest">{stat.label}</p>
+                                </FadeUp>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Results — Dashboard Panel */}
-            <section className="section-padding relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.03) 0%, transparent 100%)" }}>
-                <div className="max-w-4xl mx-auto relative z-10">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        custom={0}
-                        className="mb-12"
-                    >
-                        <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
-                            Key Results
-                        </p>
+            {/* Testimonial Grid */}
+            <section className="section-padding" aria-label="All client testimonials">
+                <div className="max-w-7xl mx-auto">
+                    <FadeUp custom={0} className="mb-14">
                         <h2 className="text-4xl md:text-5xl font-bold text-white">
-                            Proven <span className="gradient-text">Impact</span>
+                            More <span className="gradient-text">Voices</span>
                         </h2>
-                    </motion.div>
+                    </FadeUp>
 
-                    <div className="space-y-6">
-                        {results.map((result, i) => (
-                            <motion.div
-                                key={result.label}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true }}
-                                variants={fadeUp}
-                                custom={i}
-                                className="glass rounded-xl p-6 flex items-center gap-6"
-                            >
-                                <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.06] border border-[#00a2ff]/10 flex items-center justify-center shrink-0">
-                                    <result.icon className="w-5 h-5 text-[#00a2ff]" />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex items-baseline justify-between mb-2">
-                                        <span className="text-white text-sm font-medium">{result.label}</span>
-                                        <span className="text-2xl font-bold gradient-text">
-                                            <AnimatedCounter value={result.value} suffix={result.suffix} />
-                                        </span>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                        {testimonials.map((testimonial, i) => (
+                            <FadeUp key={testimonial.name} custom={i}>
+                                <article className="glass glass-hover rounded-xl p-7 h-full flex flex-col transition-all duration-300">
+                                    <div className="flex items-center gap-1 mb-4" aria-label={`${testimonial.rating} out of 5 stars`}>
+                                        {Array.from({ length: testimonial.rating }).map((_, j) => (
+                                            <Star key={j} className="w-3 h-3 text-[#00a2ff] fill-[#00a2ff]" />
+                                        ))}
                                     </div>
-                                    <div className="w-full h-1 rounded-full bg-white/[0.04]">
-                                        <motion.div
-                                            initial={{ width: "0%" }}
-                                            whileInView={{ width: `${result.barWidth}%` }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: i * 0.15 }}
-                                            className="metric-bar"
-                                        />
+
+                                    <blockquote className="text-gray-400 text-sm leading-relaxed mb-5 flex-1 italic">
+                                        &ldquo;{testimonial.content}&rdquo;
+                                    </blockquote>
+
+                                    <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/[0.04]">
+                                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0066ff]/30 to-[#00d4ff]/30 flex items-center justify-center text-white text-[10px] font-bold">
+                                            {testimonial.name.split(" ").map((n) => n[0]).join("")}
+                                        </div>
+                                        <div>
+                                            <cite className="not-italic text-white text-xs font-medium block">
+                                                {testimonial.name}
+                                            </cite>
+                                            <p className="text-gray-700 text-[10px]">
+                                                {testimonial.role}, {testimonial.company}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </motion.div>
+                                </article>
+                            </FadeUp>
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* CTA */}
-            <section className="section-padding">
+            <section className="section-padding" aria-label="Become our next success story">
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        custom={0}
-                    >
+                    <FadeUp custom={0}>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                            Ready to Join Our{" "}
-                            <span className="shimmer-text">Success Stories?</span>
+                            Become Our Next{" "}
+                            <span className="shimmer-text">Success Story</span>
                         </h2>
                         <p className="text-gray-500 text-base mb-10 max-w-xl mx-auto">
-                            See what AI automation can do for your business. Start with a
-                            free strategy call.
+                            Join the 150+ companies transforming their business with AI. Your
+                            success story starts with a conversation.
                         </p>
                         <Link
                             href="/contact"
                             className="group inline-flex items-center gap-2 px-10 py-4 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-base hover:shadow-2xl hover:shadow-[#0066ff]/30 transition-all duration-300 hover:scale-[1.03] btn-magnetic"
                         >
-                            Start Your Journey
+                            Let&apos;s Talk
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
-                    </motion.div>
+                    </FadeUp>
                 </div>
             </section>
         </>

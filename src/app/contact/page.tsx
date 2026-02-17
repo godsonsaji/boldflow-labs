@@ -1,46 +1,19 @@
-"use client";
+import type { Metadata } from "next";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { FadeUp, SlideLeft, SlideRight } from "@/components/AnimationWrappers";
+import ContactForm from "@/components/ContactForm";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import {
-    Mail,
-    Phone,
-    MapPin,
-    ArrowRight,
-    Clock,
-    Send,
-    CheckCircle2,
-} from "lucide-react";
-
-const fadeUp = {
-    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
-    visible: (i: number) => ({
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" as const },
-    }),
-};
-
-const slideLeft = {
-    hidden: { opacity: 0, x: -50, filter: "blur(6px)" },
-    visible: (i: number) => ({
-        opacity: 1,
-        x: 0,
-        filter: "blur(0px)",
-        transition: { delay: i * 0.12, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
-    }),
-};
-
-const slideRight = {
-    hidden: { opacity: 0, x: 50, filter: "blur(6px)" },
-    visible: (i: number) => ({
-        opacity: 1,
-        x: 0,
-        filter: "blur(0px)",
-        transition: { delay: i * 0.12, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
-    }),
+export const metadata: Metadata = {
+    title: "Contact Us",
+    description:
+        "Get in touch with BoldFlow Labs. Schedule a free 30-minute AI strategy call, discuss your automation needs, or request a custom quotation.",
+    alternates: { canonical: "/contact" },
+    openGraph: {
+        title: "Contact Us — BoldFlow Labs",
+        description:
+            "Ready to transform your business with AI? Schedule a free strategy call with our AI experts.",
+        url: "/contact",
+    },
 };
 
 const contactInfo = [
@@ -71,60 +44,63 @@ const contactInfo = [
 ];
 
 export default function ContactPage() {
-    const [submitted, setSubmitted] = useState(false);
-
     return (
         <>
+            {/* JSON-LD Contact Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "ContactPage",
+                        mainEntity: {
+                            "@type": "LocalBusiness",
+                            name: "BoldFlow Labs",
+                            email: "hello@boldflowlabs.com",
+                            telephone: "+1-555-123-4567",
+                            address: {
+                                "@type": "PostalAddress",
+                                addressLocality: "San Francisco",
+                                addressRegion: "CA",
+                                addressCountry: "US",
+                            },
+                            openingHours: "Mo-Fr 09:00-18:00",
+                        },
+                    }),
+                }}
+            />
+
             {/* Hero */}
-            <section className="relative pt-32 pb-16 overflow-hidden">
+            <section className="relative pt-32 pb-16 overflow-hidden" aria-label="Contact us">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
-                    <motion.p
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeUp}
-                        custom={0}
-                        className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium"
-                    >
-                        Contact
-                    </motion.p>
-                    <motion.h1
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeUp}
-                        custom={1}
-                        className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
-                    >
-                        Let&apos;s Start{" "}
-                        <span className="shimmer-text">Building</span>
-                    </motion.h1>
-                    <motion.p
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeUp}
-                        custom={2}
-                        className="text-base text-gray-500 max-w-xl mx-auto"
-                    >
-                        Ready to transform your business with AI? Get in touch and
-                        we&apos;ll schedule a free 30-minute strategy call.
-                    </motion.p>
+                    <FadeUp custom={0} viewport={false}>
+                        <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
+                            Contact
+                        </p>
+                    </FadeUp>
+                    <FadeUp custom={1} viewport={false}>
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+                            Let&apos;s Start{" "}
+                            <span className="shimmer-text">Building</span>
+                        </h1>
+                    </FadeUp>
+                    <FadeUp custom={2} viewport={false}>
+                        <p className="text-base text-gray-500 max-w-xl mx-auto">
+                            Ready to transform your business with AI? Get in touch and
+                            we&apos;ll schedule a free 30-minute strategy call.
+                        </p>
+                    </FadeUp>
                 </div>
             </section>
 
             {/* Split Layout: Info + Form */}
-            <section className="section-padding pt-0">
+            <section className="section-padding pt-0" aria-label="Contact information and form">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20">
                         {/* Left — Contact Info Panel */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variants={slideLeft}
-                            custom={0}
-                            className="lg:col-span-2"
-                        >
+                        <SlideLeft custom={0} className="lg:col-span-2">
                             <div className="relative rounded-2xl p-8 md:p-10 overflow-hidden h-full" style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.06) 0%, rgba(0,212,255,0.02) 50%, rgba(0,0,0,0.9) 100%)" }}>
-                                <div className="orb orb-blue w-[300px] h-[300px] -bottom-40 -left-40 opacity-40" />
+                                <div className="orb orb-blue w-[300px] h-[300px] -bottom-40 -left-40 opacity-40" aria-hidden="true" />
 
                                 <div className="relative z-10">
                                     <h2 className="text-2xl font-bold text-white mb-2">
@@ -134,7 +110,7 @@ export default function ContactPage() {
                                         We&apos;d love to hear about your project
                                     </p>
 
-                                    <div className="space-y-7">
+                                    <address className="space-y-7 not-italic">
                                         {contactInfo.map((info) => (
                                             <div key={info.title} className="flex items-start gap-4">
                                                 <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.08] border border-[#00a2ff]/10 flex items-center justify-center shrink-0">
@@ -146,10 +122,10 @@ export default function ContactPage() {
                                                 </div>
                                             </div>
                                         ))}
-                                    </div>
+                                    </address>
 
                                     {/* Separator */}
-                                    <div className="h-px bg-gradient-to-r from-[#0066ff]/15 to-transparent my-8" />
+                                    <div className="h-px bg-gradient-to-r from-[#0066ff]/15 to-transparent my-8" aria-hidden="true" />
 
                                     <div className="glass rounded-xl p-5">
                                         <p className="text-white text-sm font-medium mb-1">
@@ -162,122 +138,12 @@ export default function ContactPage() {
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>
+                        </SlideLeft>
 
                         {/* Right — Form */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variants={slideRight}
-                            custom={0}
-                            className="lg:col-span-3"
-                        >
-                            {submitted ? (
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.95 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="flex flex-col items-center justify-center h-full text-center py-20"
-                                >
-                                    <div className="w-16 h-16 rounded-full bg-[#0066ff]/10 border border-[#00a2ff]/20 flex items-center justify-center mb-6 animate-glow-pulse">
-                                        <CheckCircle2 className="w-8 h-8 text-[#00a2ff]" />
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-white mb-3">
-                                        Message Sent!
-                                    </h3>
-                                    <p className="text-gray-500 text-sm max-w-sm mb-8">
-                                        Thank you for reaching out. We&apos;ll get back to you
-                                        within 24 hours with next steps.
-                                    </p>
-                                    <button
-                                        onClick={() => setSubmitted(false)}
-                                        className="text-sm text-[#00a2ff] hover:text-white transition-colors"
-                                    >
-                                        Send another message
-                                    </button>
-                                </motion.div>
-                            ) : (
-                                <form
-                                    onSubmit={(e) => {
-                                        e.preventDefault();
-                                        setSubmitted(true);
-                                    }}
-                                    className="space-y-8"
-                                >
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                                        <div>
-                                            <label className="text-[10px] uppercase tracking-[0.2em] text-gray-600 font-semibold mb-1 block">
-                                                Name
-                                            </label>
-                                            <input
-                                                type="text"
-                                                className="input-minimal"
-                                                placeholder="John Doe"
-                                                required
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="text-[10px] uppercase tracking-[0.2em] text-gray-600 font-semibold mb-1 block">
-                                                Email
-                                            </label>
-                                            <input
-                                                type="email"
-                                                className="input-minimal"
-                                                placeholder="john@company.com"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label className="text-[10px] uppercase tracking-[0.2em] text-gray-600 font-semibold mb-1 block">
-                                            Company
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="input-minimal"
-                                            placeholder="Your company name"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="text-[10px] uppercase tracking-[0.2em] text-gray-600 font-semibold mb-1 block">
-                                            Budget Range
-                                        </label>
-                                        <select
-                                            className="input-minimal appearance-none cursor-pointer"
-                                            required
-                                        >
-                                            <option value="" className="bg-black">Select a range</option>
-                                            <option value="2k-5k" className="bg-black">$2,000 - $5,000</option>
-                                            <option value="5k-10k" className="bg-black">$5,000 - $10,000</option>
-                                            <option value="10k-25k" className="bg-black">$10,000 - $25,000</option>
-                                            <option value="25k+" className="bg-black">$25,000+</option>
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <label className="text-[10px] uppercase tracking-[0.2em] text-gray-600 font-semibold mb-1 block">
-                                            Tell Us About Your Project
-                                        </label>
-                                        <textarea
-                                            rows={5}
-                                            className="input-minimal resize-none"
-                                            placeholder="Describe your automation needs, current challenges, and goals..."
-                                            required
-                                        />
-                                    </div>
-
-                                    <button
-                                        type="submit"
-                                        className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-base hover:shadow-2xl hover:shadow-[#0066ff]/30 transition-all duration-300 hover:scale-[1.02] btn-magnetic"
-                                    >
-                                        Send Message
-                                        <Send className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                    </button>
-                                </form>
-                            )}
-                        </motion.div>
+                        <SlideRight custom={0} className="lg:col-span-3">
+                            <ContactForm />
+                        </SlideRight>
                     </div>
                 </div>
             </section>

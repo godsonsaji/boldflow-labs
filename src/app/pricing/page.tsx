@@ -1,24 +1,20 @@
-"use client";
-
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import type { Metadata } from "next";
 import Link from "next/link";
-import {
-    Check,
-    ArrowRight,
-    Minus,
-    Plus,
-    Sparkles,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { FadeUp } from "@/components/AnimationWrappers";
+import { PricingCards, FAQAccordion } from "@/components/PricingInteractive";
 
-const fadeUp = {
-    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
-    visible: (i: number) => ({
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" as const },
-    }),
+export const metadata: Metadata = {
+    title: "Pricing",
+    description:
+        "Simple, transparent pricing for BoldFlow Labs AI automation services. Starter, Growth, and Enterprise plans to fit every business size and budget.",
+    alternates: { canonical: "/pricing" },
+    openGraph: {
+        title: "Pricing — BoldFlow Labs",
+        description:
+            "Choose the right AI automation plan for your business. All plans include onboarding, optimization, and our core AI platform.",
+        url: "/pricing",
+    },
 };
 
 const plans = [
@@ -103,245 +99,79 @@ const faqs = [
 ];
 
 export default function PricingPage() {
-    const [isYearly, setIsYearly] = useState(false);
-    const [openFAQ, setOpenFAQ] = useState<number | null>(null);
-
     return (
         <>
+            {/* JSON-LD FAQPage Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        mainEntity: faqs.map((faq) => ({
+                            "@type": "Question",
+                            name: faq.q,
+                            acceptedAnswer: {
+                                "@type": "Answer",
+                                text: faq.a,
+                            },
+                        })),
+                    }),
+                }}
+            />
+
             {/* Hero */}
-            <section className="relative pt-32 pb-20 overflow-hidden">
-                <div className="orb orb-blue w-[500px] h-[500px] -top-40 -left-40 opacity-20" />
+            <section className="relative pt-32 pb-20 overflow-hidden" aria-label="Pricing overview">
+                <div className="orb orb-blue w-[500px] h-[500px] -top-40 -left-40 opacity-20" aria-hidden="true" />
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
-                    <motion.p
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeUp}
-                        custom={0}
-                        className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium"
-                    >
-                        Pricing
-                    </motion.p>
-                    <motion.h1
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeUp}
-                        custom={1}
-                        className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
-                    >
-                        Simple, Transparent{" "}
-                        <span className="shimmer-text">Pricing</span>
-                    </motion.h1>
-                    <motion.p
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeUp}
-                        custom={2}
-                        className="text-base text-gray-500 max-w-xl mx-auto mb-10"
-                    >
-                        Choose the plan that fits your needs. All plans include our core
-                        AI platform, professional onboarding, and ongoing optimization.
-                    </motion.p>
-
-                    {/* Toggle */}
-                    <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeUp}
-                        custom={3}
-                        className="inline-flex items-center gap-1 rounded-full p-1 border border-white/[0.06]"
-                    >
-                        <button
-                            onClick={() => setIsYearly(false)}
-                            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${!isYearly
-                                    ? "bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white shadow-lg shadow-[#0066ff]/20"
-                                    : "text-gray-500 hover:text-white"
-                                }`}
-                        >
-                            Monthly
-                        </button>
-                        <button
-                            onClick={() => setIsYearly(true)}
-                            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isYearly
-                                    ? "bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white shadow-lg shadow-[#0066ff]/20"
-                                    : "text-gray-500 hover:text-white"
-                                }`}
-                        >
-                            Yearly <span className="text-xs opacity-70">Save 20%</span>
-                        </button>
-                    </motion.div>
+                    <FadeUp custom={0} viewport={false}>
+                        <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
+                            Pricing
+                        </p>
+                    </FadeUp>
+                    <FadeUp custom={1} viewport={false}>
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+                            Simple, Transparent{" "}
+                            <span className="shimmer-text">Pricing</span>
+                        </h1>
+                    </FadeUp>
+                    <FadeUp custom={2} viewport={false}>
+                        <p className="text-base text-gray-500 max-w-xl mx-auto mb-10">
+                            Choose the plan that fits your needs. All plans include our core
+                            AI platform, professional onboarding, and ongoing optimization.
+                        </p>
+                    </FadeUp>
                 </div>
             </section>
 
             {/* Pricing Cards */}
-            <section className="section-padding pt-0">
+            <section className="section-padding pt-0" aria-label="Pricing plans">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        {plans.map((plan, i) => (
-                            <motion.div
-                                key={plan.name}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true }}
-                                variants={fadeUp}
-                                custom={i}
-                                className={`relative rounded-2xl overflow-hidden transition-all duration-300 ${plan.popular
-                                        ? "bg-gradient-to-b from-[#0066ff]/[0.08] to-transparent border border-[#00a2ff]/20 shadow-[0_0_60px_rgba(0,102,255,0.08)] lg:scale-105 lg:-my-4"
-                                        : "border border-white/[0.05] hover:border-white/[0.08]"
-                                    }`}
-                            >
-                                {plan.popular && (
-                                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00a2ff] to-transparent" />
-                                )}
-                                <div className="p-8">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <h3 className="text-xl font-bold text-white">
-                                            {plan.name}
-                                        </h3>
-                                        {plan.popular && (
-                                            <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.15em] font-semibold text-[#00a2ff] bg-[#0066ff]/10 px-2 py-0.5 rounded-full">
-                                                <Sparkles className="w-3 h-3" />
-                                                Popular
-                                            </span>
-                                        )}
-                                    </div>
-                                    <p className="text-gray-600 text-sm mb-6">
-                                        {plan.description}
-                                    </p>
-
-                                    <div className="mb-8">
-                                        {plan.monthly ? (
-                                            <>
-                                                <AnimatePresence mode="wait">
-                                                    <motion.span
-                                                        key={isYearly ? "yearly" : "monthly"}
-                                                        initial={{ opacity: 0, y: 10 }}
-                                                        animate={{ opacity: 1, y: 0 }}
-                                                        exit={{ opacity: 0, y: -10 }}
-                                                        className="text-5xl font-bold text-white"
-                                                    >
-                                                        $
-                                                        {isYearly
-                                                            ? plan.yearly?.toLocaleString()
-                                                            : plan.monthly.toLocaleString()}
-                                                    </motion.span>
-                                                </AnimatePresence>
-                                                <span className="text-gray-600 text-sm"> /month</span>
-                                            </>
-                                        ) : (
-                                            <span className="text-4xl font-bold text-white">
-                                                Custom
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    <Link
-                                        href="/contact"
-                                        className={`block text-center py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:scale-[1.02] mb-8 ${plan.popular
-                                                ? "bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white hover:shadow-lg hover:shadow-[#0066ff]/25 btn-magnetic"
-                                                : "btn-outline text-white"
-                                            }`}
-                                    >
-                                        {plan.monthly ? "Get Started" : "Contact Sales"}
-                                    </Link>
-
-                                    <ul className="space-y-3">
-                                        {plan.features.map((feature) => (
-                                            <li
-                                                key={feature}
-                                                className="flex items-start gap-2.5 text-sm text-gray-500"
-                                            >
-                                                <Check className="w-4 h-4 text-[#00a2ff]/60 mt-0.5 shrink-0" />
-                                                {feature}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                    <PricingCards plans={plans} />
                 </div>
             </section>
 
             {/* FAQ */}
-            <section className="section-padding relative">
+            <section className="section-padding relative" aria-label="Frequently asked questions">
                 <div className="max-w-3xl mx-auto relative z-10">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        custom={0}
-                        className="mb-12"
-                    >
+                    <FadeUp custom={0} className="mb-12">
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
                             FAQ
                         </p>
                         <h2 className="text-4xl md:text-5xl font-bold text-white">
                             Common <span className="gradient-text">Questions</span>
                         </h2>
-                    </motion.div>
+                    </FadeUp>
 
-                    <div className="space-y-0">
-                        {faqs.map((faq, i) => (
-                            <motion.div
-                                key={i}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true }}
-                                variants={fadeUp}
-                                custom={i}
-                                className="border-b border-white/[0.04] last:border-b-0"
-                            >
-                                <button
-                                    onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
-                                    className="w-full flex items-center gap-4 py-6 text-left hover:bg-white/[0.01] transition-colors"
-                                >
-                                    <span className="text-[10px] font-bold text-[#0066ff]/30 tracking-wider tabular-nums w-6">
-                                        {String(i + 1).padStart(2, "0")}
-                                    </span>
-                                    <span className="flex-1 text-white font-medium text-sm">
-                                        {faq.q}
-                                    </span>
-                                    <span className="shrink-0 w-6 h-6 rounded-full border border-white/[0.08] flex items-center justify-center">
-                                        {openFAQ === i ? (
-                                            <Minus className="w-3 h-3 text-[#00a2ff]" />
-                                        ) : (
-                                            <Plus className="w-3 h-3 text-gray-600" />
-                                        )}
-                                    </span>
-                                </button>
-                                <AnimatePresence>
-                                    {openFAQ === i && (
-                                        <motion.div
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: "auto", opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0.3, ease: "easeInOut" as const }}
-                                            className="overflow-hidden"
-                                        >
-                                            <p className="pl-10 pb-6 text-gray-500 text-sm leading-relaxed">
-                                                {faq.a}
-                                            </p>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </motion.div>
-                        ))}
-                    </div>
+                    <FAQAccordion faqs={faqs} />
                 </div>
             </section>
 
             {/* CTA */}
-            <section className="section-padding">
+            <section className="section-padding" aria-label="Not sure which plan fits?">
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        custom={0}
-                    >
+                    <FadeUp custom={0}>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                             Not Sure Which Plan{" "}
                             <span className="shimmer-text">Fits?</span>
@@ -357,7 +187,7 @@ export default function PricingPage() {
                             Talk to an Expert
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
-                    </motion.div>
+                    </FadeUp>
                 </div>
             </section>
         </>

@@ -7,10 +7,17 @@ import Footer from "@/components/Footer";
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space",
+  display: "swap",
 });
 
+const BASE_URL = "https://boldflowlabs.com";
+
 export const metadata: Metadata = {
-  title: "BoldFlow Labs — AI Automation Agency",
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "BoldFlow Labs — AI Automation Agency",
+    template: "%s | BoldFlow Labs",
+  },
   description:
     "We build intelligent AI automation solutions that transform your business operations. From workflow automation to custom AI agents, we deliver measurable results.",
   keywords: [
@@ -20,7 +27,48 @@ export const metadata: Metadata = {
     "AI agency",
     "workflow automation",
     "AI agents",
+    "machine learning",
+    "AI chatbots",
+    "predictive analytics",
+    "custom AI solutions",
   ],
+  authors: [{ name: "BoldFlow Labs", url: BASE_URL }],
+  creator: "BoldFlow Labs",
+  publisher: "BoldFlow Labs",
+  formatDetection: {
+    email: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: BASE_URL,
+    siteName: "BoldFlow Labs",
+    title: "BoldFlow Labs — AI Automation Agency",
+    description:
+      "We build intelligent AI automation solutions that transform your business operations. From workflow automation to custom AI agents, we deliver measurable results.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BoldFlow Labs — AI Automation Agency",
+    description:
+      "We build intelligent AI automation solutions that transform your business operations.",
+    creator: "@boldflowlabs",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: BASE_URL,
+  },
 };
 
 export default function RootLayout({
@@ -30,6 +78,41 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "BoldFlow Labs",
+              url: BASE_URL,
+              logo: `${BASE_URL}/logo.png`,
+              description:
+                "BoldFlow Labs is an AI automation agency that builds intelligent automation solutions for modern businesses.",
+              foundingDate: "2022",
+              numberOfEmployees: {
+                "@type": "QuantitativeValue",
+                value: 40,
+              },
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "San Francisco",
+                addressRegion: "CA",
+                addressCountry: "US",
+              },
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+1-555-123-4567",
+                contactType: "sales",
+                email: "hello@boldflowlabs.com",
+                availableLanguage: "English",
+              },
+              sameAs: [],
+            }),
+          }}
+        />
+      </head>
       <body className={`${spaceGrotesk.variable} font-sans antialiased`}>
         <Navbar />
         <main className="min-h-screen">{children}</main>
