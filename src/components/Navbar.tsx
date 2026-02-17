@@ -43,10 +43,46 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-14 lg:h-16">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-1.5 group">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00a2ff] opacity-75" />
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0066ff]" />
-                        </span>
+                        <motion.span
+                            className="relative flex items-center justify-center h-5 w-5"
+                            animate={{
+                                filter: [
+                                    "drop-shadow(0 0 2px #00a2ff) drop-shadow(0 0 6px #0066ff)",
+                                    "drop-shadow(0 0 6px #00a2ff) drop-shadow(0 0 14px #0066ff)",
+                                    "drop-shadow(0 0 1px #00a2ff) drop-shadow(0 0 3px #0066ff)",
+                                    "drop-shadow(0 0 8px #00a2ff) drop-shadow(0 0 18px #0066ff)",
+                                    "drop-shadow(0 0 2px #00a2ff) drop-shadow(0 0 6px #0066ff)",
+                                ],
+                                scale: [1, 1.1, 0.95, 1.15, 1],
+                            }}
+                            transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                            }}
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                className="w-4 h-4"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"
+                                    fill="url(#lightning-gradient)"
+                                    stroke="#00a2ff"
+                                    strokeWidth="1"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <defs>
+                                    <linearGradient id="lightning-gradient" x1="4" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse">
+                                        <stop stopColor="#00a2ff" />
+                                        <stop offset="1" stopColor="#0066ff" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </motion.span>
                         <span className="text-lg font-bold text-white tracking-tight">
                             Bold<span className="gradient-text">Flow</span>
                         </span>
