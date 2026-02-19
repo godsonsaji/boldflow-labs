@@ -1,18 +1,18 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, Clock, Phone, LocateIcon } from "lucide-react";
 
 const footerLinks = {
     Company: [
         { href: "/about", label: "About Us" },
         { href: "/case-studies", label: "Case Studies" },
-        { href: "/testimonials", label: "Testimonials" },
+        { href: "/testimonials", label: "What to Expect" },
         { href: "/contact", label: "Contact" },
     ],
     Services: [
         { href: "/services", label: "AI Chatbots" },
         { href: "/services", label: "Workflow Automation" },
-        { href: "/services", label: "Custom AI Agents" },
-        { href: "/services", label: "Data Analytics" },
+        { href: "/services", label: "Predictive Analytics" },
+        { href: "/services", label: "Custom AI Solutions" },
     ],
     Resources: [
         { href: "/pricing", label: "Pricing" },
@@ -33,30 +33,31 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 py-14">
                     {/* Brand Column */}
                     <div className="lg:col-span-2">
-                        <Link href="/" className="flex items-center gap-1.5 mb-5">
-                            <span className="relative flex h-2 w-2">
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0066ff]" />
-                            </span>
-                            <span className="text-lg font-bold text-white tracking-tight">
+                        <Link href="/" className="flex items-center gap-1.5 group">
+                            <span className="text-2xl font-bold text-white tracking-tight">
                                 Bold<span className="gradient-text">Flow</span>
                             </span>
                         </Link>
-                        <p className="text-gray-600 text-sm leading-relaxed mb-6 max-w-xs">
-                            Intelligent AI automation solutions that transform business
-                            operations and drive measurable growth.
+                        <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
+                            A specialist AI automation agency designing intelligent workflow
+                            systems that eliminate operational friction and drive measurable
+                            business growth.
                         </p>
-                        <div className="space-y-2.5 text-sm text-gray-600">
-                            <a href="mailto:hello@boldflowlabs.com" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200">
+                        <div className="space-y-2.5 text-sm text-gray-400">
+                            <a href="mailto:boldflowlabs@gmail.com" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200">
                                 <Mail className="w-3.5 h-3.5 text-[#0066ff]/60" />
-                                hello@boldflowlabs.com
+                                boldflowlabs@gmail.com
                             </a>
-                            <a href="tel:+15551234567" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200">
+                            <a href="tel:+91-944717816" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200">
                                 <Phone className="w-3.5 h-3.5 text-[#0066ff]/60" />
-                                +1 (555) 123-4567
-                            </a>
+                                +91-9447178166</a>
                             <div className="flex items-center gap-2.5">
-                                <MapPin className="w-3.5 h-3.5 text-[#0066ff]/60" />
-                                San Francisco, CA
+                                <LocateIcon className="w-3.5 h-3.5 text-[#0066ff]/60" />
+                                Pathanamthitta, Kerala, India
+                            </div>
+                            <div className="flex items-center gap-2.5">
+                                <Clock className="w-3.5 h-3.5 text-[#0066ff]/60" />
+                                Response within 1 business day
                             </div>
                         </div>
                     </div>
@@ -72,7 +73,7 @@ export default function Footer() {
                                     <li key={i}>
                                         <Link
                                             href={link.href}
-                                            className="text-gray-600 text-sm hover:text-[#00a2ff] transition-colors duration-200 inline-block"
+                                            className="text-gray-400 text-sm hover:text-[#00a2ff] transition-colors duration-200 inline-block"
                                         >
                                             {link.label}
                                         </Link>
@@ -84,7 +85,7 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="py-5 border-t border-white/[0.04] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-700">
+                <div className="py-5 border-t border-white/[0.04] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-400">
                     <p>© 2026 BoldFlow Labs. All rights reserved.</p>
                     <div className="flex items-center gap-6">
                         <Link href="#" className="hover:text-[#00a2ff] transition-colors duration-200">

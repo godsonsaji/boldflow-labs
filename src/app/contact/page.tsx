@@ -1,45 +1,45 @@
 import type { Metadata } from "next";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, Clock, ArrowRight, Phone } from "lucide-react";
 import { FadeUp, SlideLeft, SlideRight } from "@/components/AnimationWrappers";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-    title: "Contact Us",
+    title: "Contact BoldFlow Labs | Book a Free AI Automation Strategy Call",
     description:
-        "Get in touch with BoldFlow Labs. Schedule a free 30-minute AI strategy call, discuss your automation needs, or request a custom quotation.",
+        "Get in touch with BoldFlow Labs. Book a free, no-obligation strategy call to explore how AI automation can reduce costs, increase efficiency, and accelerate your business growth.",
     alternates: { canonical: "/contact" },
     openGraph: {
-        title: "Contact Us — BoldFlow Labs",
+        title: "Contact BoldFlow Labs | Book a Free AI Automation Strategy Call",
         description:
-            "Ready to transform your business with AI? Schedule a free strategy call with our AI experts.",
+            "Book a free, no-obligation strategy call to explore how AI automation can reduce costs, increase efficiency, and accelerate your business growth.",
         url: "/contact",
     },
 };
 
-const contactInfo = [
+const steps = [
     {
-        icon: Mail,
-        title: "Email Us",
-        value: "hello@boldflowlabs.com",
-        description: "We respond within 24 hours",
+        step: "01",
+        title: "We Schedule a Discovery Call",
+        description:
+            "Within one business day of your inquiry, we\u2019ll confirm a 30-minute video call at a time that works for you.",
     },
     {
-        icon: Phone,
-        title: "Call Us",
-        value: "+1 (555) 123-4567",
-        description: "Mon-Fri, 9am-6pm PST",
+        step: "02",
+        title: "We Listen Before We Recommend",
+        description:
+            "We spend the first part of every call understanding your business, your current processes, and the challenges you\u2019re facing. We ask good questions before we say anything.",
     },
     {
-        icon: MapPin,
-        title: "Visit Us",
-        value: "San Francisco, CA",
-        description: "By appointment only",
+        step: "03",
+        title: "We Share What We See",
+        description:
+            "Based on what you share, we\u2019ll give you our honest assessment of the automation opportunities available to you \u2014 and what a realistic implementation path looks like.",
     },
     {
-        icon: Clock,
-        title: "Response Time",
-        value: "< 24 Hours",
-        description: "Average response time",
+        step: "04",
+        title: "You Decide the Next Step",
+        description:
+            "There\u2019s no hard close. If there\u2019s a natural fit, we\u2019ll outline a proposed engagement. If not, you\u2019ll leave with useful perspective regardless.",
     },
 ];
 
@@ -54,17 +54,9 @@ export default function ContactPage() {
                         "@context": "https://schema.org",
                         "@type": "ContactPage",
                         mainEntity: {
-                            "@type": "LocalBusiness",
+                            "@type": "Organization",
                             name: "BoldFlow Labs",
                             email: "hello@boldflowlabs.com",
-                            telephone: "+1-555-123-4567",
-                            address: {
-                                "@type": "PostalAddress",
-                                addressLocality: "San Francisco",
-                                addressRegion: "CA",
-                                addressCountry: "US",
-                            },
-                            openingHours: "Mo-Fr 09:00-18:00",
                         },
                     }),
                 }}
@@ -79,15 +71,25 @@ export default function ContactPage() {
                         </p>
                     </FadeUp>
                     <FadeUp custom={1} viewport={false}>
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-                            Let&apos;s Start{" "}
-                            <span className="shimmer-text">Building</span>
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]">
+                            Let&apos;s Talk About What Automation{" "}
+                            <span className="shimmer-text">Can Do for Your Business</span>
                         </h1>
                     </FadeUp>
                     <FadeUp custom={2} viewport={false}>
-                        <p className="text-base text-gray-500 max-w-xl mx-auto">
-                            Ready to transform your business with AI? Get in touch and
-                            we&apos;ll schedule a free 30-minute strategy call.
+                        <p className="text-base text-gray-300 max-w-2xl mx-auto mb-2">
+                            Whether you have a specific project in mind or just want to
+                            explore what&apos;s possible, we&apos;re here for a real
+                            conversation — not a sales pitch.
+                        </p>
+                        <p className="text-sm text-gray-300 max-w-2xl mx-auto">
+                            Book a free 30-minute strategy session with our team. We&apos;ll
+                            review your current workflows, identify your top automation
+                            opportunities, and give you an honest, grounded view of what AI
+                            automation could achieve in your specific context.
+                        </p>
+                        <p className="text-sm text-gray-400 font-medium mt-4">
+                            No pressure. No obligation. Just clarity.
                         </p>
                     </FadeUp>
                 </div>
@@ -97,45 +99,73 @@ export default function ContactPage() {
             <section className="section-padding pt-0" aria-label="Contact information and form">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20">
-                        {/* Left — Contact Info Panel */}
+                        {/* Left — Contact Info + Process */}
                         <SlideLeft custom={0} className="lg:col-span-2">
-                            <div className="relative rounded-2xl p-8 md:p-10 overflow-hidden h-full" style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.06) 0%, rgba(0,212,255,0.02) 50%, rgba(0,0,0,0.9) 100%)" }}>
+                            <div
+                                className="relative rounded-2xl p-8 md:p-10 overflow-hidden h-full"
+                                style={{
+                                    background:
+                                        "linear-gradient(135deg, rgba(0,102,255,0.06) 0%, rgba(0,212,255,0.02) 50%, rgba(0,0,0,0.9) 100%)",
+                                }}
+                            >
                                 <div className="orb orb-blue w-[300px] h-[300px] -bottom-40 -left-40 opacity-40" aria-hidden="true" />
 
                                 <div className="relative z-10">
                                     <h2 className="text-2xl font-bold text-white mb-2">
-                                        Get in Touch
+                                        What Happens After You Reach Out
                                     </h2>
-                                    <p className="text-gray-500 text-sm mb-10">
-                                        We&apos;d love to hear about your project
+                                    <p className="text-gray-300 text-sm mb-8">
+                                        Here&apos;s exactly what to expect.
                                     </p>
 
-                                    <address className="space-y-7 not-italic">
-                                        {contactInfo.map((info) => (
-                                            <div key={info.title} className="flex items-start gap-4">
-                                                <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.08] border border-[#00a2ff]/10 flex items-center justify-center shrink-0">
-                                                    <info.icon className="w-4 h-4 text-[#00a2ff]" />
+                                    {/* Process Steps */}
+                                    <div className="space-y-6 mb-8">
+                                        {steps.map((s) => (
+                                            <div key={s.step} className="flex items-start gap-4">
+                                                <div className="w-8 h-8 rounded-full bg-[#0066ff]/10 border border-[#00a2ff]/20 flex items-center justify-center shrink-0">
+                                                    <span className="text-[10px] font-bold text-[#00a2ff]">{s.step}</span>
                                                 </div>
                                                 <div>
-                                                    <p className="text-white text-sm font-medium">{info.value}</p>
-                                                    <p className="text-gray-600 text-xs mt-0.5">{info.description}</p>
+                                                    <h3 className="text-white text-sm font-semibold mb-1">{s.title}</h3>
+                                                    <p className="text-gray-400 text-xs leading-relaxed">{s.description}</p>
                                                 </div>
                                             </div>
                                         ))}
-                                    </address>
+                                    </div>
 
                                     {/* Separator */}
-                                    <div className="h-px bg-gradient-to-r from-[#0066ff]/15 to-transparent my-8" aria-hidden="true" />
+                                    <div className="h-px bg-gradient-to-r from-[#0066ff]/15 to-transparent my-6" aria-hidden="true" />
 
-                                    <div className="glass rounded-xl p-5">
-                                        <p className="text-white text-sm font-medium mb-1">
-                                            Free Strategy Call
-                                        </p>
-                                        <p className="text-gray-600 text-xs leading-relaxed">
-                                            Book a 30-minute call to discuss your AI automation needs
-                                            and get expert recommendations — no strings attached.
-                                        </p>
-                                    </div>
+                                    {/* Contact Details */}
+                                    <address className="not-italic space-y-4">
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.08] border border-[#00a2ff]/10 flex items-center justify-center shrink-0">
+                                                <Mail className="w-4 h-4 text-[#00a2ff]" />
+                                            </div>
+                                            <div>
+                                                <p className="text-white text-sm font-medium">boldflowlabs@gmail.com</p>
+                                                <p className="text-gray-400 text-xs mt-0.5">Primary contact</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.08] border border-[#00a2ff]/10 flex items-center justify-center shrink-0">
+                                                <Phone className="w-4 h-4 text-[#00a2ff]" />
+                                            </div>
+                                            <div>
+                                                <p className="text-white text-sm font-medium">+91-9447178166</p>
+                                                <p className="text-gray-400 text-xs mt-0.5">Primary contact</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.08] border border-[#00a2ff]/10 flex items-center justify-center shrink-0">
+                                                <Clock className="w-4 h-4 text-[#00a2ff]" />
+                                            </div>
+                                            <div>
+                                                <p className="text-white text-sm font-medium">Within 1 business day</p>
+                                                <p className="text-gray-400 text-xs mt-0.5">Response time</p>
+                                            </div>
+                                        </div>
+                                    </address>
                                 </div>
                             </div>
                         </SlideLeft>

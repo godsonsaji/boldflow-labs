@@ -89,21 +89,9 @@ export default function RootLayout({
               url: BASE_URL,
               logo: `${BASE_URL}/logo.png`,
               description:
-                "BoldFlow Labs is an AI automation agency that builds intelligent automation solutions for modern businesses.",
-              foundingDate: "2022",
-              numberOfEmployees: {
-                "@type": "QuantitativeValue",
-                value: 40,
-              },
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "San Francisco",
-                addressRegion: "CA",
-                addressCountry: "US",
-              },
+                "BoldFlow Labs is a specialist AI automation agency designing intelligent workflow systems that eliminate operational friction and drive measurable business growth.",
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+1-555-123-4567",
                 contactType: "sales",
                 email: "hello@boldflowlabs.com",
                 availableLanguage: "English",

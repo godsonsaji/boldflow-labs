@@ -1,221 +1,237 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-    Target,
     Users,
     Lightbulb,
+    Eye,
+    Shield,
     Heart,
     ArrowRight,
+    Code2,
+    Brain,
     Rocket,
-    Shield,
 } from "lucide-react";
-import { FadeUp, SlideLeft } from "@/components/AnimationWrappers";
+import { FadeUp, SlideLeft, SlideRight } from "@/components/AnimationWrappers";
 
 export const metadata: Metadata = {
-    title: "About Us",
+    title: "About BoldFlow Labs | AI Automation Agency Built on Clarity & Technical Depth",
     description:
-        "BoldFlow Labs is a team of AI engineers, data scientists, and strategists building intelligent automation solutions. Founded in 2022, 150+ projects delivered, 98% satisfaction rate.",
+        "Meet the team behind BoldFlow Labs. We're a specialist AI automation agency with deep roots in AI engineering, cloud architecture, and intelligent systems design — built to deliver automation that works.",
     alternates: { canonical: "/about" },
     openGraph: {
-        title: "About Us — BoldFlow Labs",
+        title: "About BoldFlow Labs | AI Automation Agency Built on Clarity & Technical Depth",
         description:
-            "Meet the team behind BoldFlow Labs. AI engineers, data scientists, and strategists on a mission to democratize AI automation.",
+            "Meet the team behind BoldFlow Labs. We're a specialist AI automation agency with deep roots in AI engineering, cloud architecture, and intelligent systems design.",
         url: "/about",
     },
 };
 
-const values = [
+const philosophy = [
     {
-        icon: Target,
-        title: "Results-Obsessed",
+        icon: Eye,
+        title: "Total Transparency",
         description:
-            "We measure our success by your outcomes. Every solution is built to deliver measurable, meaningful business impact.",
-    },
-    {
-        icon: Users,
-        title: "Client-First",
-        description:
-            "Your goals drive everything we do. We build deep partnerships, not transactional vendor relationships.",
-    },
-    {
-        icon: Lightbulb,
-        title: "Innovation-Led",
-        description:
-            "We stay at the cutting edge of AI research and apply the latest breakthroughs to solve real business problems.",
-    },
-    {
-        icon: Heart,
-        title: "Transparent & Honest",
-        description:
-            "No black boxes. We explain how our AI works, set realistic expectations, and deliver on our promises.",
-    },
-    {
-        icon: Rocket,
-        title: "Agile Delivery",
-        description:
-            "Fast iteration with continuous feedback loops. We ship early, test often, and optimize relentlessly.",
+            "We don't hide behind dashboards or vague status updates. You'll see exactly what we're building, why, and what it costs — at every stage.",
     },
     {
         icon: Shield,
-        title: "Trust & Security",
+        title: "Engineering Integrity",
         description:
-            "Enterprise-grade security from day one. SOC 2 compliance, data encryption, and privacy-first design.",
+            "We won't recommend a tool or build a solution just because it's trendy. If a simpler approach works better, we'll say so — even if it means a smaller engagement for us.",
+    },
+    {
+        icon: Lightbulb,
+        title: "Outcome-First Thinking",
+        description:
+            "Every automation we design starts with a clear business objective: reduce costs, increase throughput, improve accuracy, or free up time. If an automation doesn't move a needle, it doesn't get built.",
+    },
+    {
+        icon: Heart,
+        title: "Built for Partnership",
+        description:
+            "We intentionally keep our client roster small so we can go deep. That means faster response times, more senior attention, and a team that genuinely understands your business — not just your ticket.",
     },
 ];
 
-const team = [
+const capabilities = [
     {
-        name: "Alex Chen",
-        role: "CEO & Co-Founder",
-        bio: "Former ML lead at Google. Stanford PhD in AI. 15+ years building intelligent systems at scale.",
-        initials: "AC",
-        gradient: "from-[#0066ff] to-[#00d4ff]",
+        icon: Brain,
+        title: "AI & Machine Learning Engineering",
+        items: [
+            "Large language model (LLM) integration & prompt engineering",
+            "Custom model training and fine-tuning on proprietary datasets",
+            "Agentic AI systems & autonomous workflow orchestration",
+            "NLP pipelines, text classification, and sentiment analysis",
+        ],
     },
+
     {
-        name: "Sarah Kim",
-        role: "CTO & Co-Founder",
-        bio: "Ex-Amazon principal engineer. Expert in distributed systems and cloud-native AI infrastructure.",
-        initials: "SK",
-        gradient: "from-[#00a2ff] to-[#00d4ff]",
-    },
-    {
-        name: "Marcus Reed",
-        role: "Head of AI",
-        bio: "Published researcher in NLP and reinforcement learning. Led AI teams at DeepMind and OpenAI.",
-        initials: "MR",
-        gradient: "from-[#0066ff] to-[#00a2ff]",
-    },
-    {
-        name: "Priya Sharma",
-        role: "Head of Engineering",
-        bio: "Full-stack engineering leader with 12+ years at startups and enterprises. Passionate about clean architecture.",
-        initials: "PS",
-        gradient: "from-[#00d4ff] to-[#60a5fa]",
+        icon: Rocket,
+        title: "Automation & Analytics",
+        items: [
+            "End-to-end workflow automation for operations, sales, and support",
+            "Predictive analytics & real-time dashboard development",
+            "CRM, ERP, and third-party tool integration (Salesforce, HubSpot, Zendesk)",
+            "Performance monitoring, continuous optimization, and reporting",
+        ],
     },
 ];
 
-const timeline = [
-    { year: "2022", title: "Founded", description: "BoldFlow Labs launched with a mission to democratize AI automation for businesses of all sizes." },
-    { year: "2023", title: "First 50 Clients", description: "Reached 50 active clients across fintech, healthcare, and e-commerce verticals." },
-    { year: "2024", title: "Series A Funding", description: "Secured $12M in Series A funding to scale our platform and expand the team to 40+." },
-    { year: "2025", title: "150+ Projects", description: "Surpassed 150 delivered projects with a 98% client satisfaction rate." },
+const teamMembers = [
+    {
+        name: "Godson Saji",
+        role: "Founder & Lead AI Engineer",
+        bio: "Full-stack AI engineer with hands-on experience across LLM integration, workflow automation, and cloud architecture. Built BoldFlow Labs to deliver the kind of thoughtful, high-impact automation work that large agencies overlook.",
+        initials: "GS",
+    },
 ];
 
 export default function AboutPage() {
     return (
         <>
-            {/* JSON-LD About Schema */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "AboutPage",
-                        mainEntity: {
-                            "@type": "Organization",
-                            name: "BoldFlow Labs",
-                            description:
-                                "AI automation agency building intelligent solutions for modern businesses.",
-                            foundingDate: "2022",
-                            numberOfEmployees: { "@type": "QuantitativeValue", value: 40 },
-                            member: team.map((m) => ({
-                                "@type": "Person",
-                                name: m.name,
-                                jobTitle: m.role,
-                                description: m.bio,
-                            })),
-                        },
-                    }),
-                }}
-            />
-
             {/* Hero */}
-            <section className="relative pt-32 pb-24 overflow-hidden" aria-label="About BoldFlow Labs">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-                    <SlideLeft custom={0} viewport={false} className="max-w-3xl">
-                        <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
-                            About Us
-                        </p>
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.05]">
-                            We Build AI That{" "}
-                            <span className="shimmer-text">Actually Works</span>
-                        </h1>
-                        <p className="text-base md:text-lg text-gray-500 leading-relaxed max-w-2xl">
-                            BoldFlow Labs is a team of AI engineers, data scientists, and
-                            strategists on a mission to make intelligent automation accessible
-                            to every business. We don&apos;t just build AI — we build AI that
-                            delivers measurable results.
-                        </p>
-                    </SlideLeft>
-                </div>
-            </section>
+            <section className="relative pt-32 pb-20 overflow-hidden" aria-label="About BoldFlow Labs">
+                <div className="orb orb-blue w-[500px] h-[500px] -top-40 -right-40 opacity-20" aria-hidden="true" />
 
-            {/* Mission */}
-            <section className="section-padding relative" style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.03) 0%, transparent 100%)" }} aria-label="Our mission">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <FadeUp custom={0}>
-                            <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
-                                Our Mission
-                            </p>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                                Democratizing AI for{" "}
-                                <span className="gradient-text">Every Business</span>
-                            </h2>
-                            <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                                We believe AI shouldn&apos;t be a luxury reserved for tech
-                                giants. Every business, regardless of size, deserves access to
-                                intelligent automation that can transform their operations.
-                            </p>
-                            <p className="text-gray-500 text-sm leading-relaxed">
-                                Our approach combines cutting-edge AI research with practical
-                                business acumen. We don&apos;t chase trends — we build
-                                solutions that solve real problems and generate real ROI.
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+                    <div className="max-w-3xl">
+                        <FadeUp custom={0} viewport={false}>
+                            <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
+                                About Us
                             </p>
                         </FadeUp>
-
-                        <FadeUp custom={1}>
-                            <div className="grid grid-cols-2 gap-4">
-                                {[
-                                    { number: "150+", label: "Projects Delivered" },
-                                    { number: "98%", label: "Satisfaction Rate" },
-                                    { number: "40+", label: "Team Members" },
-                                    { number: "$50M+", label: "Client Revenue Generated" },
-                                ].map((stat) => (
-                                    <div key={stat.label} className="glass rounded-xl p-6 text-center">
-                                        <p className="text-2xl font-bold gradient-text mb-1">{stat.number}</p>
-                                        <p className="text-gray-600 text-xs uppercase tracking-wider">{stat.label}</p>
-                                    </div>
-                                ))}
-                            </div>
+                        <FadeUp custom={1} viewport={false}>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]">
+                                A Small Team With a{" "}
+                                <span className="shimmer-text">Deep Focus</span>{" "}
+                                on AI Automation That Works
+                            </h1>
+                        </FadeUp>
+                        <FadeUp custom={2} viewport={false}>
+                            <p className="text-base text-gray-300 max-w-xl">
+                                BoldFlow Labs isn&apos;t a massive consultancy. We&apos;re a
+                                specialist AI automation team — lean by design, technical by
+                                nature, and deeply committed to delivering systems that genuinely
+                                solve problems.
+                            </p>
                         </FadeUp>
                     </div>
                 </div>
             </section>
 
-            {/* Values */}
-            <section className="section-padding" aria-label="Our core values">
+            {/* Our Story */}
+            <section className="section-padding pt-0" aria-label="Our story">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                        <SlideLeft custom={0}>
+                            <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
+                                Our Story
+                            </p>
+                            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                                Why We Built{" "}
+                                <span className="gradient-text">BoldFlow Labs</span>
+                            </h2>
+                            <div className="space-y-4 text-gray-400 text-sm leading-relaxed">
+                                <p>
+                                    BoldFlow Labs was born from a frustration with how AI automation
+                                    is typically sold and delivered.
+                                </p>
+                                <p>
+                                    Too many agencies sell automation as magic: a dashboard full of
+                                    promises and a product that underdelivers. We saw businesses
+                                    investing in &quot;AI solutions&quot; that were little more than
+                                    off-the-shelf integrations wrapped in consulting fees — with
+                                    minimal customization and no ongoing accountability.
+                                </p>
+                                <p>
+                                    We started BoldFlow Labs to do it properly. That means: deep
+                                    technical architecture, genuine customization, full
+                                    transparency, and systems that are designed to run and improve —
+                                    not just to be demonstrated.
+                                </p>
+                                <p>
+                                    We&apos;re early-stage, and we&apos;re honest about that. But our
+                                    engineering depth isn&apos;t. Our team brings experience across
+                                    AI/ML engineering, cloud architecture, and automation design —
+                                    and we bring all of that to every client engagement without the
+                                    overhead of a bloated org chart.
+                                </p>
+                            </div>
+                        </SlideLeft>
+
+                        <SlideRight custom={0}>
+                            <div className="glass rounded-xl p-8 lg:mt-24">
+                                <h3 className="text-white text-lg font-bold mb-6 flex items-center gap-2">
+                                    <Users className="w-5 h-5 text-[#00a2ff]" />
+                                    What Defines Us
+                                </h3>
+                                <div className="space-y-6">
+                                    {[
+                                        {
+                                            label: "Technical Depth",
+                                            desc: "We write production code. We deploy production systems. We aren't slide-deck consultants.",
+                                        },
+                                        {
+                                            label: "Intentional Scale",
+                                            desc: "Small team by choice — so every client gets senior-level attention, fast communication, and real continuity.",
+                                        },
+                                        {
+                                            label: "Full Accountability",
+                                            desc: "We define KPIs upfront and share responsibility for outcomes — not just billable hours.",
+                                        },
+                                        {
+                                            label: "Radical Honesty",
+                                            desc: "If your use case doesn't need AI, we'll tell you. If a vendor tool solves it better, we'll recommend it.",
+                                        },
+                                    ].map((item) => (
+                                        <div key={item.label}>
+                                            <p className="text-white text-sm font-semibold mb-1">
+                                                {item.label}
+                                            </p>
+                                            <p className="text-gray-400 text-xs leading-relaxed">
+                                                {item.desc}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </SlideRight>
+                    </div>
+                </div>
+            </section>
+
+            {/* Philosophy Cards */}
+            <section
+                className="section-padding relative"
+                style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.04) 0%, transparent 100%)" }}
+                aria-label="Our philosophy"
+            >
                 <div className="max-w-7xl mx-auto">
                     <FadeUp custom={0} className="mb-14">
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
-                            Our Values
+                            Our Philosophy
                         </p>
                         <h2 className="text-4xl md:text-5xl font-bold text-white">
-                            What Drives <span className="gradient-text">Us</span>
+                            How We Think About{" "}
+                            <span className="gradient-text">Automation</span>
                         </h2>
                     </FadeUp>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {values.map((value, i) => (
-                            <FadeUp key={value.title} custom={i} className="group glass glass-hover rounded-xl p-7 transition-all duration-300">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        {philosophy.map((item, i) => (
+                            <FadeUp
+                                key={item.title}
+                                custom={i}
+                                className="group glass glass-hover rounded-xl p-7 transition-all duration-300"
+                            >
                                 <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.06] border border-[#00a2ff]/10 flex items-center justify-center mb-4 group-hover:bg-[#0066ff]/10 group-hover:border-[#00a2ff]/20 transition-all duration-300">
-                                    <value.icon className="w-5 h-5 text-[#00a2ff] icon-hover-spin" />
+                                    <item.icon className="w-5 h-5 text-[#00a2ff] icon-hover-spin" />
                                 </div>
                                 <h3 className="text-base font-semibold text-white mb-2">
-                                    {value.title}
+                                    {item.title}
                                 </h3>
-                                <p className="text-gray-600 text-sm leading-relaxed">
-                                    {value.description}
+                                <p className="text-gray-400 text-sm leading-relaxed">
+                                    {item.description}
                                 </p>
                             </FadeUp>
                         ))}
@@ -223,42 +239,37 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* Team */}
-            <section className="section-padding relative" style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.03) 0%, transparent 100%)" }} aria-label="Our leadership team">
-                <div className="max-w-7xl mx-auto relative z-10">
+            {/* What We Bring to the Table */}
+            <section className="section-padding" aria-label="Our capabilities and expertise">
+                <div className="max-w-7xl mx-auto">
                     <FadeUp custom={0} className="mb-14">
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
-                            Our Team
+                            Our Expertise
                         </p>
                         <h2 className="text-4xl md:text-5xl font-bold text-white">
-                            Meet the <span className="gradient-text">Minds</span>
+                            What We Bring to{" "}
+                            <span className="gradient-text">the Table</span>
                         </h2>
                     </FadeUp>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                        {team.map((member, i) => (
-                            <FadeUp key={member.name} custom={i} className="group relative [perspective:1000px]">
-                                <div className="relative transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] min-h-[280px]">
-                                    {/* Front */}
-                                    <div className="absolute inset-0 glass rounded-xl p-7 flex flex-col items-center justify-center [backface-visibility:hidden]">
-                                        <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${member.gradient} flex items-center justify-center text-white font-bold text-lg mb-4`}>
-                                            {member.initials}
-                                        </div>
-                                        <h3 className="text-base font-semibold text-white mb-1">
-                                            {member.name}
-                                        </h3>
-                                        <p className="text-gray-600 text-xs">{member.role}</p>
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        {capabilities.map((cap, i) => (
+                            <FadeUp key={cap.title} custom={i}>
+                                <div className="glass rounded-xl p-7 h-full">
+                                    <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.06] border border-[#00a2ff]/10 flex items-center justify-center mb-4">
+                                        <cap.icon className="w-5 h-5 text-[#00a2ff]" />
                                     </div>
-
-                                    {/* Back */}
-                                    <div className="absolute inset-0 glass rounded-xl p-7 flex flex-col items-center justify-center [backface-visibility:hidden] [transform:rotateY(180deg)] border border-[#00a2ff]/15">
-                                        <h3 className="text-base font-semibold text-white mb-3">
-                                            {member.name}
-                                        </h3>
-                                        <p className="text-gray-500 text-sm text-center leading-relaxed">
-                                            {member.bio}
-                                        </p>
-                                    </div>
+                                    <h3 className="text-base font-semibold text-white mb-4">
+                                        {cap.title}
+                                    </h3>
+                                    <ul className="space-y-2.5">
+                                        {cap.items.map((item) => (
+                                            <li key={item} className="flex items-start gap-2 text-sm text-gray-300">
+                                                <span className="w-1 h-1 rounded-full bg-[#00a2ff]/40 mt-2 shrink-0" />
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             </FadeUp>
                         ))}
@@ -266,55 +277,74 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* Timeline */}
-            <section className="section-padding" aria-label="Company timeline">
-                <div className="max-w-3xl mx-auto">
+            {/* Team Section */}
+            <section
+                className="section-padding relative"
+                style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.04) 0%, transparent 100%)" }}
+                aria-label="Our team"
+            >
+                <div className="max-w-7xl mx-auto">
                     <FadeUp custom={0} className="mb-14">
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
-                            Our Journey
+                            The Team
                         </p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">
-                            The <span className="gradient-text">Timeline</span>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                            Meet the People Behind{" "}
+                            <span className="gradient-text">BoldFlow Labs</span>
                         </h2>
+                        <p className="text-gray-300 max-w-xl text-base">
+                            We&apos;re a lean, senior-level team that works directly with every
+                            client. No hand-offs to junior staff, no layers of project management
+                            overhead.
+                        </p>
                     </FadeUp>
 
-                    <div className="relative">
-                        <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#0066ff]/40 via-[#00a2ff]/20 to-transparent" aria-hidden="true" />
-
-                        <div className="space-y-10">
-                            {timeline.map((item, i) => (
-                                <FadeUp key={item.year} custom={i} className="flex items-start gap-6 relative">
-                                    <div className="shrink-0 w-12 h-12 rounded-full bg-[#0066ff]/10 border border-[#00a2ff]/20 flex items-center justify-center relative z-10">
-                                        <span className="text-xs font-bold text-[#00a2ff]">{item.year}</span>
-                                    </div>
-                                    <div className="pt-2">
-                                        <h3 className="text-lg font-semibold text-white mb-1">{item.title}</h3>
-                                        <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
-                                    </div>
-                                </FadeUp>
-                            ))}
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl">
+                        {teamMembers.map((member, i) => (
+                            <FadeUp
+                                key={member.name}
+                                custom={i}
+                                className="group glass glass-hover rounded-xl p-7 transition-all duration-300"
+                            >
+                                {/* Avatar */}
+                                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#0066ff]/20 to-[#00a2ff]/10 border border-[#00a2ff]/15 flex items-center justify-center mb-5 group-hover:from-[#0066ff]/30 group-hover:to-[#00a2ff]/20 transition-all duration-300">
+                                    <span className="text-lg font-bold text-[#00a2ff]">
+                                        {member.initials}
+                                    </span>
+                                </div>
+                                <h3 className="text-lg font-semibold text-white mb-1">
+                                    {member.name}
+                                </h3>
+                                <p className="text-[#00a2ff]/70 text-sm font-medium mb-3">
+                                    {member.role}
+                                </p>
+                                <p className="text-gray-300 text-sm leading-relaxed">
+                                    {member.bio}
+                                </p>
+                            </FadeUp>
+                        ))}
                     </div>
                 </div>
             </section>
 
             {/* CTA */}
-            <section className="section-padding" aria-label="Work with us">
+            <section className="section-padding" aria-label="Get in touch">
                 <div className="max-w-4xl mx-auto text-center">
                     <FadeUp custom={0}>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                            Want to Work with{" "}
-                            <span className="shimmer-text">Us?</span>
+                            Want to Build Something{" "}
+                            <span className="shimmer-text">That Matters?</span>
                         </h2>
-                        <p className="text-gray-500 text-base mb-10 max-w-xl mx-auto">
-                            We&apos;re always looking for the next challenge. Tell us about
-                            your vision and let&apos;s build something incredible together.
+                        <p className="text-gray-300 text-base mb-10 max-w-xl mx-auto">
+                            We&apos;re selective about the projects we take on — because we
+                            go deep on every one. If you&apos;re looking for a hands-on, expert-led AI
+                            automation partner, we&apos;d love to hear from you.
                         </p>
                         <Link
                             href="/contact"
                             className="group inline-flex items-center gap-2 px-10 py-4 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-base hover:shadow-2xl hover:shadow-[#0066ff]/30 transition-all duration-300 hover:scale-[1.03] btn-magnetic"
                         >
-                            Let&apos;s Talk
+                            Start a Conversation
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </FadeUp>

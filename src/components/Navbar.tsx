@@ -11,7 +11,7 @@ const navLinks = [
     { href: "/services", label: "Services" },
     { href: "/case-studies", label: "Case Studies" },
     { href: "/about", label: "About" },
-    { href: "/testimonials", label: "Testimonials" },
+    { href: "/testimonials", label: "What to Expect" },
     { href: "/pricing", label: "Pricing" },
     { href: "/contact", label: "Contact" },
 ];
@@ -43,47 +43,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-14 lg:h-16">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-1.5 group">
-                        <motion.span
-                            className="relative flex items-center justify-center h-5 w-5"
-                            animate={{
-                                filter: [
-                                    "drop-shadow(0 0 2px #00a2ff) drop-shadow(0 0 6px #0066ff)",
-                                    "drop-shadow(0 0 6px #00a2ff) drop-shadow(0 0 14px #0066ff)",
-                                    "drop-shadow(0 0 1px #00a2ff) drop-shadow(0 0 3px #0066ff)",
-                                    "drop-shadow(0 0 8px #00a2ff) drop-shadow(0 0 18px #0066ff)",
-                                    "drop-shadow(0 0 2px #00a2ff) drop-shadow(0 0 6px #0066ff)",
-                                ],
-                                scale: [1, 1.1, 0.95, 1.15, 1],
-                            }}
-                            transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
-                        >
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                className="w-4 h-4"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"
-                                    fill="url(#lightning-gradient)"
-                                    stroke="#00a2ff"
-                                    strokeWidth="1"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <defs>
-                                    <linearGradient id="lightning-gradient" x1="4" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse">
-                                        <stop stopColor="#00a2ff" />
-                                        <stop offset="1" stopColor="#0066ff" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </motion.span>
-                        <span className="text-lg font-bold text-white tracking-tight">
+                        <span className="text-2xl font-bold text-white tracking-tight">
                             Bold<span className="gradient-text">Flow</span>
                         </span>
                     </Link>
@@ -96,7 +56,7 @@ export default function Navbar() {
                                 href={link.href}
                                 className={`relative px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-all duration-300 ${pathname === link.href
                                     ? "text-white bg-[#0066ff]/15 shadow-[0_0_12px_rgba(0,102,255,0.15)]"
-                                    : "text-gray-500 hover:text-gray-200"
+                                    : "text-gray-300 hover:text-gray-200"
                                     }`}
                             >
                                 {link.label}
@@ -145,7 +105,7 @@ export default function Navbar() {
                                         href={link.href}
                                         className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${pathname === link.href
                                             ? "text-white bg-[#0066ff]/10"
-                                            : "text-gray-500 hover:text-white hover:bg-white/[0.03]"
+                                            : "text-gray-300 hover:text-white hover:bg-white/[0.03]"
                                             }`}
                                     >
                                         {link.label}

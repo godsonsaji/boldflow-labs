@@ -4,10 +4,6 @@ import {
     Bot,
     Workflow,
     BarChart3,
-    Brain,
-    Database,
-    MessageSquare,
-    Cog,
     Sparkles,
     ArrowRight,
 } from "lucide-react";
@@ -15,14 +11,14 @@ import { FadeUp } from "@/components/AnimationWrappers";
 import ServiceCard from "@/components/ServiceCard";
 
 export const metadata: Metadata = {
-    title: "AI Automation Services",
+    title: "AI Automation Services | BoldFlow Labs — Chatbots, Workflow & Custom AI",
     description:
-        "From AI chatbots and workflow automation to predictive analytics and custom AI models — BoldFlow Labs offers a full spectrum of AI services to transform your business.",
+        "From conversational AI and intelligent chatbots to full-scale workflow automation and predictive analytics — BoldFlow Labs delivers AI solutions built for real business impact.",
     alternates: { canonical: "/services" },
     openGraph: {
-        title: "AI Automation Services — BoldFlow Labs",
+        title: "AI Automation Services | BoldFlow Labs — Chatbots, Workflow & Custom AI",
         description:
-            "Explore our full spectrum of AI and automation services: chatbots, workflow automation, analytics, custom AI models, and more.",
+            "From conversational AI and intelligent chatbots to full-scale workflow automation and predictive analytics — BoldFlow Labs delivers AI solutions built for real business impact.",
         url: "/services",
     },
 };
@@ -30,106 +26,63 @@ export const metadata: Metadata = {
 const services = [
     {
         icon: Bot,
-        title: "AI Chatbots & Virtual Assistants",
+        title: "AI Chatbots & Conversational Agents",
+        subtitle: "Intelligent Conversations, at Scale — 24/7",
         description:
-            "Deploy intelligent conversational AI agents across your customer touchpoints. Our chatbots handle complex queries, qualify leads, and provide 24/7 support with human-like understanding.",
+            "Today\u2019s customers don\u2019t wait. They expect immediate, accurate, and helpful responses \u2014 whether it\u2019s 2pm on a Tuesday or 2am on a Sunday. Our AI chatbot and conversational agent solutions are built to meet that expectation without expanding your headcount. We design multi-channel conversational systems that go beyond scripted FAQ responses. Our agents understand context, manage complex dialogue flows, escalate intelligently to human agents when needed, and continuously improve based on interaction data.",
         features: [
-            "Multi-channel deployment (web, SMS, WhatsApp)",
-            "Natural language understanding & context retention",
-            "Seamless human handoff protocols",
-            "Custom knowledge base integration",
+            "Customer support automation and ticket deflection",
+            "Lead qualification and pipeline acceleration",
+            "Internal knowledge bases and employee self-service tools",
+            "E-commerce guidance and purchase-flow support",
         ],
+        technologies:
+            "LLM-powered dialogue systems | CRM and help desk integrations | Retrieval-Augmented Generation (RAG) | Multi-channel deployment (web, WhatsApp, Slack, email)",
     },
     {
         icon: Workflow,
-        title: "Workflow Automation",
+        title: "Intelligent Workflow Automation",
+        subtitle: "Remove the Bottlenecks. Reclaim the Hours.",
         description:
-            "Eliminate repetitive tasks and streamline complex business processes with intelligent automation pipelines that connect all your tools and systems.",
+            "Manual workflows are expensive \u2014 not just in time, but in errors, delays, and lost opportunity. We audit your existing processes, identify the highest-impact points of automation, and build smart, connected pipelines that eliminate friction and scale with your growth. We work across the full spectrum of business workflow automation: from simple task triggers and data routing to complex, multi-system orchestration involving conditional logic, approvals, and exception handling.",
         features: [
-            "End-to-end process automation",
-            "Integration with 500+ business tools",
-            "Custom trigger & action workflows",
-            "Error handling & automatic retries",
+            "CRM, ERP, and data platform integrations",
+            "Automated reporting and compliance workflows",
+            "Lead routing, nurturing, and sales process automation",
+            "Invoice processing, HR onboarding, and operational data flows",
         ],
+        technologies:
+            "n8n | Make (Integromat) | Zapier | Custom API integrations | Python automation pipelines | Robotic Process Automation (RPA)",
     },
     {
         icon: BarChart3,
-        title: "Predictive Analytics & BI",
+        title: "Predictive Analytics & AI-Powered Insights",
+        subtitle: "Stop Guessing. Start Knowing.",
         description:
-            "Transform raw data into strategic decisions. Our AI analytics platforms provide real-time insights, trend forecasting, and automated reporting dashboards.",
+            "Your business generates more data every day than any human team can meaningfully process. We build the AI-powered analytics infrastructure to turn that data into decisions \u2014 surfaced through intuitive dashboards, automated reports, and forecasting models that give you a genuine operational edge.",
         features: [
-            "Real-time data visualization dashboards",
-            "ML-powered trend forecasting",
-            "Anomaly detection & alerting",
-            "Custom KPI tracking & reporting",
+            "Revenue and demand forecasting",
+            "Churn prediction and customer retention modelling",
+            "Operational performance dashboards and KPI tracking",
+            "Inventory optimization and supply chain intelligence",
         ],
+        technologies:
+            "Python ML pipelines (scikit-learn, XGBoost) | Tableau, Metabase, and custom dashboards | SQL and data warehouse integrations | Real-time data streaming",
     },
     {
-        icon: Brain,
-        title: "Custom AI Model Development",
-        description:
-            "Purpose-built AI models trained on your proprietary data, designed to solve your unique business challenges and deliver competitive advantage.",
-        features: [
-            "Fine-tuned LLMs for your domain",
-            "Computer vision solutions",
-            "NLP & text classification",
-            "Recommendation engines",
-        ],
-    },
-    {
-        icon: Database,
-        title: "Data Pipeline Engineering",
-        description:
-            "Build robust, scalable data infrastructure that feeds your AI systems. From ETL pipelines to real-time streaming architecture, we handle the plumbing.",
-        features: [
-            "ETL/ELT pipeline design",
-            "Real-time data streaming",
-            "Data warehouse optimization",
-            "Cloud-native architecture",
-        ],
-    },
-    {
-        icon: MessageSquare,
-        title: "AI-Powered Content Generation",
-        description:
-            "Automate content creation at scale. From marketing copy to product descriptions, our AI systems generate high-quality, brand-aligned content.",
-        features: [
-            "Blog & article generation",
-            "Product description automation",
-            "Social media content at scale",
-            "Brand voice customization",
-        ],
-    },
-];
-
-const processSteps = [
-    {
-        step: "01",
-        icon: MessageSquare,
-        title: "Discovery & Strategy",
-        description:
-            "We dive deep into your operations to identify high-impact automation opportunities and build a custom roadmap.",
-    },
-    {
-        step: "02",
-        icon: Cog,
-        title: "Design & Prototype",
-        description:
-            "Our team designs the solution architecture and builds a working prototype for your review and feedback.",
-    },
-    {
-        step: "03",
         icon: Sparkles,
-        title: "Build & Integrate",
+        title: "Custom AI Solutions",
+        subtitle: "When Off-the-Shelf Isn\u2019t Enough",
         description:
-            "We develop, test, and integrate the solution into your existing tech stack with minimal disruption.",
-    },
-    {
-        step: "04",
-        icon: BarChart3,
-        title: "Launch & Optimize",
-        description:
-            "Go live with full monitoring, then continuously optimize performance based on real-world data.",
+            "Some competitive advantages can\u2019t be bought from a SaaS provider. They have to be built. Our custom AI development service is designed for businesses with unique, complex challenges that require proprietary intelligence \u2014 models trained on your data, fine-tuned for your domain, and owned entirely by you.",
+        features: [
+            "Industry-specific document processing and classification",
+            "Custom recommendation and personalization engines",
+            "Proprietary language models fine-tuned on internal knowledge",
+            "Computer vision and image analysis applications",
+        ],
+        technologies:
+            "Fine-tuned LLMs (GPT, Claude, Llama) | Custom ML model development | Vector databases (Pinecone, Weaviate) | LangChain and LlamaIndex frameworks",
     },
 ];
 
@@ -149,7 +102,7 @@ export default function ServicesPage() {
                         },
                         name: "AI Automation Services",
                         description:
-                            "Full spectrum of AI and automation services including chatbots, workflow automation, predictive analytics, and custom AI models.",
+                            "Enterprise AI automation services including chatbots, workflow automation, predictive analytics, and custom AI solutions.",
                         serviceType: "AI Automation",
                         areaServed: "Worldwide",
                         hasOfferCatalog: {
@@ -175,22 +128,24 @@ export default function ServicesPage() {
                 <div className="watermark-number top-16 -right-10" aria-hidden="true">AI</div>
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-                    <div className="max-w-2xl">
+                    <div className="max-w-3xl">
                         <FadeUp custom={0} viewport={false}>
                             <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
                                 Our Services
                             </p>
                         </FadeUp>
                         <FadeUp custom={1} viewport={false}>
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-                                AI Solutions That{" "}
-                                <span className="shimmer-text">Drive Growth</span>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]">
+                                AI Automation Services Designed to{" "}
+                                <span className="shimmer-text">Transform How Your Business Operates</span>
                             </h1>
                         </FadeUp>
                         <FadeUp custom={2} viewport={false}>
-                            <p className="text-base text-gray-500 max-w-lg">
-                                From strategy to deployment, we offer a full spectrum of AI and
-                                automation services to transform every aspect of your business.
+                            <p className="text-base text-gray-300 max-w-2xl">
+                                Every service we offer is built around one question: what would
+                                happen to your business if this problem was completely solved? We
+                                start with outcomes, then architect the most precise, intelligent
+                                path to get there.
                             </p>
                         </FadeUp>
                     </div>
@@ -206,74 +161,13 @@ export default function ServicesPage() {
                                 index={i}
                                 icon={<service.icon className="w-5 h-5 text-[#00a2ff]" />}
                                 title={service.title}
+                                subtitle={service.subtitle}
                                 description={service.description}
                                 features={service.features}
+                                technologies={service.technologies}
                             />
                         </FadeUp>
                     ))}
-                </div>
-            </section>
-
-            {/* Process — Horizontal Timeline */}
-            <section
-                className="section-padding relative overflow-hidden"
-                aria-label="Our delivery process"
-                style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.03) 0%, transparent 100%)" }}
-            >
-                <div className="max-w-7xl mx-auto relative z-10">
-                    <FadeUp custom={0} className="text-center mb-16">
-                        <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
-                            Our Process
-                        </p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                            From Idea to <span className="gradient-text">Impact</span>
-                        </h2>
-                        <p className="text-gray-500 max-w-xl mx-auto text-sm">
-                            A proven methodology that turns complex AI initiatives into
-                            delivered, measurable business value.
-                        </p>
-                    </FadeUp>
-
-                    {/* Desktop timeline */}
-                    <div className="hidden md:block">
-                        <div className="relative mx-auto max-w-4xl mb-4">
-                            <div className="absolute top-5 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#0066ff]/30 via-[#00a2ff]/30 to-[#00d4ff]/30" aria-hidden="true" />
-                        </div>
-                        <div className="grid grid-cols-4 gap-6 max-w-4xl mx-auto">
-                            {processSteps.map((step, i) => (
-                                <FadeUp key={step.step} custom={i} className="text-center">
-                                    <div className="w-10 h-10 rounded-full bg-[#0066ff]/10 border border-[#00a2ff]/20 flex items-center justify-center mx-auto mb-4 relative">
-                                        <span className="text-xs font-bold text-[#00a2ff]">{step.step}</span>
-                                    </div>
-                                    <h3 className="text-base font-semibold text-white mb-2">
-                                        {step.title}
-                                    </h3>
-                                    <p className="text-gray-600 text-xs leading-relaxed">
-                                        {step.description}
-                                    </p>
-                                </FadeUp>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Mobile stacked */}
-                    <div className="md:hidden space-y-6">
-                        {processSteps.map((step, i) => (
-                            <FadeUp key={step.step} custom={i} className="flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-full bg-[#0066ff]/10 border border-[#00a2ff]/20 flex items-center justify-center shrink-0">
-                                    <span className="text-xs font-bold text-[#00a2ff]">{step.step}</span>
-                                </div>
-                                <div>
-                                    <h3 className="text-base font-semibold text-white mb-1">
-                                        {step.title}
-                                    </h3>
-                                    <p className="text-gray-600 text-xs leading-relaxed">
-                                        {step.description}
-                                    </p>
-                                </div>
-                            </FadeUp>
-                        ))}
-                    </div>
                 </div>
             </section>
 
@@ -282,11 +176,13 @@ export default function ServicesPage() {
                 <div className="max-w-4xl mx-auto text-center">
                     <FadeUp custom={0}>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                            Not Sure Where to Start?
+                            Not Sure Where to{" "}
+                            <span className="shimmer-text">Start?</span>
                         </h2>
-                        <p className="text-gray-500 text-base mb-10 max-w-xl mx-auto">
-                            Our team will assess your current operations and recommend the
-                            highest-impact automation opportunities — completely free.
+                        <p className="text-gray-300 text-base mb-10 max-w-xl mx-auto">
+                            Book a free strategy call with our AI automation team. We&apos;ll
+                            review your current workflows, identify your highest-impact
+                            opportunities, and give you an honest picture of what&apos;s possible.
                         </p>
                         <Link
                             href="/contact"
