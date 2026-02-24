@@ -132,7 +132,7 @@ export default function ContactForm() {
                     <option value="chatbots" className="bg-black">AI Chatbots &amp; Conversational Agents</option>
                     <option value="workflow" className="bg-black">Intelligent Workflow Automation</option>
                     <option value="analytics" className="bg-black">Predictive Analytics &amp; AI-Powered Insights</option>
-                    <option value="custom" className="bg-black">Custom AI Solutions</option>
+                    <option value="custom" className="bg-black">Custom AI Solutions &amp; Model Development</option>
                     <option value="unsure" className="bg-black">Not Sure — Need Guidance</option>
                 </select>
             </div>

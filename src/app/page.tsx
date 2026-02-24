@@ -27,12 +27,12 @@ import {
 export const metadata: Metadata = {
   title: "BoldFlow Labs | AI Automation Agency — Workflow Automation & Intelligent Systems",
   description:
-    "BoldFlow Labs is a specialist AI automation agency designing intelligent workflow systems that eliminate operational friction and drive measurable business growth. Book a free strategy call today.",
+    "BoldFlow Labs designs and deploys custom AI automation systems — from intelligent chatbots and workflow pipelines to predictive analytics and bespoke AI models.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "BoldFlow Labs | AI Automation Agency — Workflow Automation & Intelligent Systems",
     description:
-      "BoldFlow Labs is a specialist AI automation agency designing intelligent workflow systems that eliminate operational friction and drive measurable business growth.",
+      "BoldFlow Labs designs and deploys custom AI automation systems engineered specifically around how your business operates.",
     url: "/",
   },
 };
@@ -42,12 +42,12 @@ const features = [
     icon: Bot,
     title: "AI Chatbots & Conversational Agents",
     description:
-      "Your customers expect instant, accurate, and consistent support — around the clock. We design and deploy AI-powered conversational agents that go beyond simple FAQ bots. Our systems handle complex multi-turn conversations, qualify inbound leads, triage support tickets, and integrate seamlessly with your CRM, help desk, or internal tools.",
+      "Deploy AI-powered agents that handle multi-turn conversations, qualify leads, resolve support queries, and integrate directly with your CRM — 24/7, without additional headcount.",
     benefits: [
-      "24/7 customer engagement without additional headcount",
-      "Faster lead qualification and handoff to your sales team",
+      "24/7 customer engagement without scaling your support team",
+      "Faster lead qualification and seamless handoff to sales",
       "Reduced support volume and lower cost per interaction",
-      "Consistent brand voice across every conversation",
+      "Consistent brand voice across every customer touchpoint",
     ],
     label: "01",
   },
@@ -55,7 +55,7 @@ const features = [
     icon: Workflow,
     title: "Intelligent Workflow Automation",
     description:
-      "Manual, repetitive processes are the silent killers of growth. We map your existing workflows, identify the highest-impact automation opportunities, and build intelligent pipelines that connect your tools, route data accurately, and scale with your team — not against it.",
+      "We map your existing processes, identify high-impact automation opportunities, and build smart pipelines that eliminate manual errors, reduce delays, and scale alongside your team.",
     benefits: [
       "Automated data flows between your CRM, ERP, and operational tools",
       "Elimination of manual entry errors and processing delays",
@@ -68,7 +68,7 @@ const features = [
     icon: BarChart3,
     title: "Predictive Analytics & AI-Powered Insights",
     description:
-      "Data without context is noise. We build analytics pipelines and forecasting models that turn your raw operational data into clear, actionable intelligence — surfaced through dashboards your team will actually use.",
+      "Turn raw operational data into clear intelligence. We build forecasting models and real-time dashboards that help you anticipate demand, spot risks early, and make confident decisions faster.",
     benefits: [
       "Real-time operational dashboards tailored to your KPIs",
       "Demand forecasting models to reduce waste and improve planning",
@@ -79,9 +79,9 @@ const features = [
   },
   {
     icon: Sparkles,
-    title: "Custom AI Solutions & Bespoke Model Development",
+    title: "Custom AI Solutions & Model Development",
     description:
-      "Some challenges require more than a platform integration — they require custom intelligence. We develop purpose-built AI models trained on your proprietary data to solve the specific, nuanced problems that generic tools simply can't address.",
+      "When off-the-shelf tools fall short, we build proprietary AI models trained on your data — giving you competitive differentiation and full ownership of your intelligence layer.",
     benefits: [
       "AI solutions designed specifically for your industry and use case",
       "Competitive differentiation through proprietary intelligence",
@@ -95,33 +95,33 @@ const features = [
 const whyChooseUs = [
   {
     icon: Shield,
-    title: "Security You Can Trust",
-    desc: "We architect every solution with enterprise-grade security standards from day one — not as an afterthought. Our infrastructure approach follows SOC 2 principles, with end-to-end encryption, strict access controls, and data handling protocols that protect your most sensitive information at every layer of the stack.",
+    title: "Security-First Architecture",
+    desc: "Enterprise-grade encryption, access controls, and data handling protocols from day one — not as an afterthought.",
   },
   {
     icon: Clock,
     title: "Fast Time to Value",
-    desc: "We operate on tight, milestone-driven sprints designed to get you to production quickly. Our agile methodology means you're not waiting months to see results — you're reviewing working systems in weeks. Speed matters, and we build our process around yours.",
+    desc: "Milestone-driven sprints that deliver working systems in weeks, not months. We build for speed and durability.",
   },
   {
     icon: TrendingUp,
-    title: "Outcomes, Not Just Outputs",
-    desc: "We don't measure success by the number of automations deployed. We measure it by the impact on your operations. Every engagement includes clearly defined KPIs, performance tracking, and a shared accountability for results — because a solution that doesn't move the needle isn't a solution.",
+    title: "Outcome-Focused Delivery",
+    desc: "Clearly defined KPIs and shared accountability for results. We measure success by the impact on your operations.",
   },
   {
     icon: Users,
-    title: "A Dedicated Team, Not a Ticket Queue",
-    desc: "From kickoff to go-live and beyond, you'll work with a dedicated Automation Engineer — not a rotating cast of support reps. Direct access, clear communication, and full continuity across every phase of your project.",
+    title: "Dedicated Automation Engineer",
+    desc: "One point of contact across every phase of your project. Direct access, clear communication, and no ticket queues.",
   },
   {
     icon: Zap,
-    title: "Cutting-Edge Technology Stack",
-    desc: "We work with the most capable and battle-tested tools in the modern AI landscape — large language models (LLMs), agentic frameworks, vector databases, and ML infrastructure — selected deliberately to ensure your solutions are built on durable, scalable foundations.",
+    title: "Modern AI Stack",
+    desc: "LLMs, agentic frameworks, vector databases, and ML infrastructure selected for durability, scale, and performance.",
   },
   {
     icon: CheckCircle2,
-    title: "Ongoing Partnership, Not One-Time Delivery",
-    desc: "Deployment is the beginning, not the end. Every engagement includes ongoing monitoring, performance optimization, and proactive maintenance. We stay engaged because AI systems that go unmanaged degrade in value — and we're not in the business of building things that fade.",
+    title: "Ongoing Optimization",
+    desc: "Post-launch monitoring and continuous improvement cycles, because deployed AI needs to evolve alongside your business.",
   },
 ];
 
@@ -138,7 +138,7 @@ export default function HomePage() {
             name: "BoldFlow Labs",
             url: "https://boldflowlabs.com",
             description:
-              "BoldFlow Labs is a specialist AI automation agency designing intelligent workflow systems that eliminate operational friction and drive measurable business growth.",
+              "BroadFlow Labs designs and deploys custom AI automation systems that eliminate operational bottlenecks and drive growth.",
             potentialAction: {
               "@type": "SearchAction",
               target: "https://boldflowlabs.com/?q={search_term_string}",
@@ -173,24 +173,32 @@ export default function HomePage() {
             <div>
               <SlideLeft custom={1} viewport={false}>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight mb-6">
-                  <span className="text-white">Turn Manual Processes Into</span>
+                  <span className="text-white">Intelligent AI</span>
                   <br />
-                  <span className="shimmer-text">Intelligent, AI-Powered Systems</span>
+                  <span className="shimmer-text">Automation Systems,</span>
                   <br />
                   <span className="text-white">Built for Growth</span>
                 </h1>
               </SlideLeft>
 
               <SlideLeft custom={2} viewport={false}>
-                <p className="text-base md:text-lg text-gray-400 max-w-lg mb-4 leading-relaxed">
-                  BoldFlow Labs designs and deploys custom AI automation systems that eliminate operational bottlenecks, accelerate workflows, and give your team the space to focus on what actually moves the needle.
+                <p className="text-base md:text-xl text-gray-300 max-w-lg mb-6 leading-relaxed font-medium">
+                  Built to Eliminate Friction and Unlock Growth
                 </p>
               </SlideLeft>
 
               <SlideLeft custom={2.5} viewport={false}>
-                <p className="text-sm text-gray-300 max-w-lg mb-10 leading-relaxed">
-                  We are an AI automation agency built on a simple belief: the businesses that win in the next decade won&apos;t just use technology — they&apos;ll orchestrate it. From intelligent chatbots and agentic AI systems to full-scale workflow automation and predictive analytics, we architect solutions that are precise, scalable, and purpose-built for your operations.
-                </p>
+                <div className="space-y-4 text-gray-400 max-w-lg mb-10 leading-relaxed text-sm">
+                  <p>
+                    Most businesses aren&apos;t losing to competitors — they&apos;re losing to inefficiency. Manual workflows, disconnected tools, and reactive decision-making quietly drain time, money, and momentum every single day.
+                  </p>
+                  <p className="text-white/90">
+                    BoldFlow Labs exists to change that.
+                  </p>
+                  <p>
+                    We design and deploy custom AI automation systems engineered specifically around how your business operates, not how a template assumes it does.
+                  </p>
+                </div>
               </SlideLeft>
 
               <SlideLeft custom={3} viewport={false} className="flex flex-col sm:flex-row items-start gap-4">
@@ -258,11 +266,11 @@ export default function HomePage() {
               What We Do
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 max-w-lg">
-              End-to-End AI Automation Services,{" "}
-              <span className="gradient-text">Engineered for Real Business Impact</span>
+              End-to-End AI Automation Services for{" "}
+              <span className="gradient-text">Modern Businesses</span>
             </h2>
             <p className="text-gray-300 max-w-xl text-base">
-              We don&apos;t offer off-the-shelf tools or generic templates. Every solution we build begins with a deep understanding of your operations, goals, and constraints — then we architect the most intelligent, efficient path forward.
+              Every solution we build starts with one question: where is friction costing you the most? From there, we architect intelligent, scalable systems that connect your tools, automate your processes, and surface insights your team can actually act on.
             </p>
           </FadeUp>
 
@@ -315,10 +323,10 @@ export default function HomePage() {
               Why BoldFlow Labs
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-white">
-              Built Different, <span className="gradient-text">Built Better</span>  — Here&apos;s What Sets Us Apart
+              A Different Kind of <span className="gradient-text">AI Automation Partner</span>
             </h2>
-            <p className="text-gray-300 text-lg md:text-lg">
-              Choosing an AI automation partner is a consequential decision. We know that. Here&apos;s the commitment we make to every client we work with, from the very first conversation.
+            <p className="text-gray-300 text-lg md:text-lg mt-4">
+              We don&apos;t just deploy tools — we take accountability for outcomes.
             </p>
           </FadeUp>
 
@@ -363,11 +371,11 @@ export default function HomePage() {
               How We Work
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-5 max-w-2xl mx-auto">
-              A Proven Framework for AI Automation{" "}
-              <span className="gradient-text">That Sticks</span>
+              A Four-Phase Framework That{" "}
+              <span className="gradient-text">Eliminates Guesswork</span>
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto text-base leading-relaxed">
-              AI automation fails when it&apos;s deployed without context. Our four-phase methodology ensures every solution we build is grounded in your actual operations — not a generic template applied to your problem.
+              AI automation fails when it&apos;s deployed without context. Our structured methodology ensures every solution we build is grounded in your actual operations — not a generic template applied to your problem.
             </p>
           </FadeUp>
 
@@ -382,13 +390,13 @@ export default function HomePage() {
                 {/* Left content */}
                 <div className="lg:w-1/2 lg:text-right lg:pr-12 order-2 lg:order-1 pl-16 lg:pl-0">
                   <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
-                    Week 1–2
+                    Phase 1  ·  Week 1–2
                   </span>
                   <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">
-                    Phase 1 — Discovery &amp; Diagnostic
+                    Discovery & Diagnostic
                   </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    We begin every engagement with a structured operational audit. We map your current workflows, identify automation opportunities, quantify potential impact, and document the technical requirements needed to build with precision. You leave this phase with a clear roadmap — whether or not you proceed with us.
+                    We audit your current workflows, map automation opportunities, quantify potential impact, and document technical requirements — delivering a clear roadmap whether or not you move forward with us.
                   </p>
                 </div>
                 {/* Center node */}
@@ -412,13 +420,13 @@ export default function HomePage() {
                 {/* Right content */}
                 <div className="lg:w-1/2 lg:pl-12 order-2 lg:order-3 pl-16 lg:pl-12">
                   <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
-                    Week 2–3
+                    Phase 2  ·  Week 2–3
                   </span>
                   <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">
-                    Phase 2 — Architecture &amp; Design
+                    Architecture & Design
                   </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    Our engineers design the full system architecture before writing a single line of code. This includes data flow diagrams, integration schemas, security protocols, and a modular design that allows for future expansion. You review and approve everything before we build.
+                    Full system design — data flows, integration schemas, security protocols, and modular architecture — reviewed and approved by you before a single line of code is written.
                   </p>
                 </div>
               </div>
@@ -430,13 +438,13 @@ export default function HomePage() {
                 {/* Left content */}
                 <div className="lg:w-1/2 lg:text-right lg:pr-12 order-2 lg:order-1 pl-16 lg:pl-0">
                   <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
-                    Week 3–6
+                    Phase 3  ·  Week 3–6
                   </span>
                   <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">
-                    Phase 3 — Build, Test &amp; Iterate
+                    Build, Test & Iterate
                   </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    We develop in tight, reviewable sprints. You see progress early and often — not just at the finish line. Each sprint ends with a working deliverable, a testing round, and a feedback loop that keeps the solution aligned with your evolving needs.
+                    Tight development sprints with working deliverables at each stage. You see progress early and often — not just at the finish line. Every sprint ends with a review and feedback loop.
                   </p>
                 </div>
                 {/* Center node */}
@@ -460,13 +468,13 @@ export default function HomePage() {
                 {/* Right content */}
                 <div className="lg:w-1/2 lg:pl-12 order-2 lg:order-3 pl-16 lg:pl-12">
                   <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
-                    Ongoing
+                    Phase 4  ·  Ongoing
                   </span>
                   <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">
-                    Phase 4 — Deploy, Monitor &amp; Optimize
+                    Deploy, Monitor & Optimize
                   </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    Go-live is a milestone, not a finish line. We manage the deployment, monitor system performance in real time, and run continuous optimization cycles to ensure your automation delivers compounding value over time.
+                    Go-live is a milestone, not a finish line. We manage deployment, monitor performance in real time, and run continuous optimization cycles to ensure your automation delivers compounding ROI over time.
                   </p>
                 </div>
               </div>
@@ -486,26 +494,26 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center relative z-10 py-28 px-4">
           <FadeUp custom={0}>
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Ready to Automate the Work{" "}
-              <span className="shimmer-text">That&apos;s Slowing You Down?</span>
+              Ready to Automate What&apos;s{" "}
+              <span className="shimmer-text">Slowing You Down?</span>
             </h2>
             <p className="text-gray-300 text-base md:text-lg mb-8 max-w-xl mx-auto">
-              Book a free 30-minute strategy call with our AI automation team. We&apos;ll review your current workflows, identify your highest-impact automation opportunities, and give you a clear, honest picture of what&apos;s possible — with no obligation and no sales pressure.
+              Book a free 30-minute strategy session. We&apos;ll review your current workflows, pinpoint your highest-impact automation opportunities, and give you an honest, actionable picture of what&apos;s possible — no obligation, no pressure.
             </p>
 
             {/* Supporting points */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10 text-sm text-gray-400">
               <div className="flex items-center gap-2">
                 <CalendarCheck className="w-4 h-4 text-[#00a2ff]/60" />
-                Free, no-obligation diagnostic
+                Free, no-obligation workflow diagnostic
               </div>
               <div className="flex items-center gap-2">
                 <Target className="w-4 h-4 text-[#00a2ff]/60" />
-                Actionable clarity, regardless
+                Actionable clarity you keep, regardless of next steps
               </div>
               <div className="flex items-center gap-2">
                 <UserCheck className="w-4 h-4 text-[#00a2ff]/60" />
-                Limited spots per quarter
+                Limited spots available each quarter
               </div>
             </div>
 

@@ -43,36 +43,45 @@ const philosophy = [
         icon: Lightbulb,
         title: "Outcome-First Thinking",
         description:
-            "Every automation we design starts with a clear business objective: reduce costs, increase throughput, improve accuracy, or free up time. If an automation doesn't move a needle, it doesn't get built.",
+            "Every automation we design starts with a clear business objective: reduce costs, increase throughput, improve accuracy, or free up time. If it doesn't move a needle, it doesn't get built.",
     },
     {
         icon: Heart,
         title: "Built for Partnership",
         description:
-            "We intentionally keep our client roster small so we can go deep. That means faster response times, more senior attention, and a team that genuinely understands your business — not just your ticket.",
+            "We intentionally keep our client roster small so we can go deep. That means faster response times, more senior attention, and a team that genuinely understands your business operations.",
     },
 ];
 
 const capabilities = [
     {
         icon: Brain,
-        title: "AI & Machine Learning Engineering",
+        title: "AI & Model Engineering",
         items: [
-            "Large language model (LLM) integration & prompt engineering",
-            "Custom model training and fine-tuning on proprietary datasets",
-            "Agentic AI systems & autonomous workflow orchestration",
-            "NLP pipelines, text classification, and sentiment analysis",
+            "Large Language Model (LLM) fine-tuning",
+            "Retrieval-Augmented Generation (RAG)",
+            "Proprietary AI model development",
+            "Agentic AI & autonomous orchestration",
         ],
     },
-
     {
         icon: Rocket,
-        title: "Automation & Analytics",
+        title: "Automation & Systems",
         items: [
-            "End-to-end workflow automation for operations, sales, and support",
-            "Predictive analytics & real-time dashboard development",
-            "CRM, ERP, and third-party tool integration (Salesforce, HubSpot, Zendesk)",
-            "Performance monitoring, continuous optimization, and reporting",
+            "End-to-end workflow automation (n8n/Make)",
+            "Custom API & webhook integrations",
+            "Scalable cloud automation architecture",
+            "Legacy system bridge & modernization",
+        ],
+    },
+    {
+        icon: Code2,
+        title: "Data Intelligence",
+        items: [
+            "Predictive analytics & forecasting",
+            "Real-time operational dashboards",
+            "Data infrastructure engineering",
+            "Automated KPI tracking & reporting",
         ],
     },
 ];
@@ -134,27 +143,25 @@ export default function AboutPage() {
                             <div className="space-y-4 text-gray-400 text-sm leading-relaxed">
                                 <p>
                                     BoldFlow Labs was born from a frustration with how AI automation
-                                    is typically sold and delivered.
+                                    is typically delivered.
                                 </p>
                                 <p>
                                     Too many agencies sell automation as magic: a dashboard full of
                                     promises and a product that underdelivers. We saw businesses
                                     investing in &quot;AI solutions&quot; that were little more than
                                     off-the-shelf integrations wrapped in consulting fees — with
-                                    minimal customization and no ongoing accountability.
+                                    no customization and no ongoing accountability.
                                 </p>
                                 <p>
-                                    We started BoldFlow Labs to do it properly. That means: deep
-                                    technical architecture, genuine customization, full
-                                    transparency, and systems that are designed to run and improve —
-                                    not just to be demonstrated.
+                                    We started BoldFlow Labs to do it properly. That means engineering
+                                    depth, genuine customization, and systems designed to evolve —
+                                    not just to be demonstrated once.
                                 </p>
                                 <p>
-                                    We&apos;re early-stage, and we&apos;re honest about that. But our
-                                    engineering depth isn&apos;t. Our team brings experience across
-                                    AI/ML engineering, cloud architecture, and automation design —
-                                    and we bring all of that to every client engagement without the
-                                    overhead of a bloated org chart.
+                                    We&apos;re an early-stage agency, and we&apos;re honest about that.
+                                    But our engineering capability isn&apos;t. We bring hands-on experience in
+                                    LLM architecture, cloud engineering, and data science to every project
+                                    without the overhead of a bloated organization.
                                 </p>
                             </div>
                         </SlideLeft>
@@ -169,19 +176,19 @@ export default function AboutPage() {
                                     {[
                                         {
                                             label: "Technical Depth",
-                                            desc: "We write production code. We deploy production systems. We aren't slide-deck consultants.",
+                                            desc: "We write production code and deploy systems meant to scale. We aren't slide-deck consultants.",
                                         },
                                         {
                                             label: "Intentional Scale",
-                                            desc: "Small team by choice — so every client gets senior-level attention, fast communication, and real continuity.",
+                                            desc: "Small team by choice — so every client gets senior-level attention and direct communication with engineers.",
                                         },
                                         {
-                                            label: "Full Accountability",
-                                            desc: "We define KPIs upfront and share responsibility for outcomes — not just billable hours.",
+                                            label: "Outcome Focus",
+                                            desc: "We define KPIs upfront and take responsibility for results — not just billable hours.",
                                         },
                                         {
-                                            label: "Radical Honesty",
-                                            desc: "If your use case doesn't need AI, we'll tell you. If a vendor tool solves it better, we'll recommend it.",
+                                            label: "Engineering Honesty",
+                                            desc: "If your use case doesn't need AI or a simple script works better, we'll tell you. No over-engineering.",
                                         },
                                     ].map((item) => (
                                         <div key={item.label}>

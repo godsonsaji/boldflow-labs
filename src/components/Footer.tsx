@@ -9,10 +9,10 @@ const footerLinks = {
         { href: "/contact", label: "Contact" },
     ],
     Services: [
-        { href: "/services", label: "AI Chatbots" },
+        { href: "/services", label: "AI Chatbots & Agents" },
         { href: "/services", label: "Workflow Automation" },
-        { href: "/services", label: "Predictive Analytics" },
-        { href: "/services", label: "Custom AI Solutions" },
+        { href: "/services", label: "Analytics & Insights" },
+        { href: "/services", label: "Custom AI Models" },
     ],
     Resources: [
         { href: "/pricing", label: "Pricing" },
@@ -48,7 +48,7 @@ export default function Footer() {
                                 <Mail className="w-3.5 h-3.5 text-[#0066ff]/60" />
                                 boldflowlabs@gmail.com
                             </a>
-                            <a href="tel:+91-944717816" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200">
+                            <a href="tel:+91-9447178166" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200">
                                 <Phone className="w-3.5 h-3.5 text-[#0066ff]/60" />
                                 +91-9447178166</a>
                             <div className="flex items-center gap-2.5">

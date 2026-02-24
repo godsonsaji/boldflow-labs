@@ -13,12 +13,12 @@ import ServiceCard from "@/components/ServiceCard";
 export const metadata: Metadata = {
     title: "AI Automation Services | BoldFlow Labs — Chatbots, Workflow & Custom AI",
     description:
-        "From conversational AI and intelligent chatbots to full-scale workflow automation and predictive analytics — BoldFlow Labs delivers AI solutions built for real business impact.",
+        "End-to-End AI Automation Services for Modern Businesses. From intelligent chatbots to predictive analytics and custom model development.",
     alternates: { canonical: "/services" },
     openGraph: {
         title: "AI Automation Services | BoldFlow Labs — Chatbots, Workflow & Custom AI",
         description:
-            "From conversational AI and intelligent chatbots to full-scale workflow automation and predictive analytics — BoldFlow Labs delivers AI solutions built for real business impact.",
+            "Architecting intelligent, scalable systems that connect your tools, automate your processes, and surface actionable insights.",
         url: "/services",
     },
 };
@@ -27,62 +27,62 @@ const services = [
     {
         icon: Bot,
         title: "AI Chatbots & Conversational Agents",
-        subtitle: "Intelligent Conversations, at Scale — 24/7",
+        subtitle: "24/7 Engagement Without Additional Headcount",
         description:
-            "Today\u2019s customers don\u2019t wait. They expect immediate, accurate, and helpful responses \u2014 whether it\u2019s 2pm on a Tuesday or 2am on a Sunday. Our AI chatbot and conversational agent solutions are built to meet that expectation without expanding your headcount. We design multi-channel conversational systems that go beyond scripted FAQ responses. Our agents understand context, manage complex dialogue flows, escalate intelligently to human agents when needed, and continuously improve based on interaction data.",
+            "Deploy AI-powered agents that handle multi-turn conversations, qualify leads, resolve support queries, and integrate directly with your CRM. Our agents are engineered to maintain a consistent brand voice across every touchpoint while reducing support volume and cost per interaction.",
         features: [
-            "Customer support automation and ticket deflection",
-            "Lead qualification and pipeline acceleration",
-            "Internal knowledge bases and employee self-service tools",
-            "E-commerce guidance and purchase-flow support",
+            "24/7 customer engagement and support resolution",
+            "Faster lead qualification and seamless sales handoff",
+            "Direct integration with CRM and internal tools",
+            "Consistent brand voice across all conversational channels",
         ],
         technologies:
-            "LLM-powered dialogue systems | CRM and help desk integrations | Retrieval-Augmented Generation (RAG) | Multi-channel deployment (web, WhatsApp, Slack, email)",
+            "LLM-powered dialogue systems | CRM & Help Desk integrations | Retrieval-Augmented Generation (RAG) | Multi-channel deployment",
     },
     {
         icon: Workflow,
         title: "Intelligent Workflow Automation",
-        subtitle: "Remove the Bottlenecks. Reclaim the Hours.",
+        subtitle: "Eliminate Manual Errors and Processing Delays",
         description:
-            "Manual workflows are expensive \u2014 not just in time, but in errors, delays, and lost opportunity. We audit your existing processes, identify the highest-impact points of automation, and build smart, connected pipelines that eliminate friction and scale with your growth. We work across the full spectrum of business workflow automation: from simple task triggers and data routing to complex, multi-system orchestration involving conditional logic, approvals, and exception handling.",
+            "We map your existing processes, identify high-impact automation opportunities, and build smart pipelines that eliminate manual errors, reduce delays, and scale alongside your team. We focus on creating automated data flows between your CRM, ERP, and operational tools.",
         features: [
-            "CRM, ERP, and data platform integrations",
-            "Automated reporting and compliance workflows",
-            "Lead routing, nurturing, and sales process automation",
-            "Invoice processing, HR onboarding, and operational data flows",
+            "Automated data flows between business-critical tools",
+            "Elimination of manual entry errors and processing delays",
+            "Scalable systems that adapt as your business evolves",
+            "Strategic focus reclamation for your internal team",
         ],
         technologies:
-            "n8n | Make (Integromat) | Zapier | Custom API integrations | Python automation pipelines | Robotic Process Automation (RPA)",
+            "n8n | Make (Integromat) | Zapier | Custom Python Automation | API Orchestration",
     },
     {
         icon: BarChart3,
         title: "Predictive Analytics & AI-Powered Insights",
-        subtitle: "Stop Guessing. Start Knowing.",
+        subtitle: "Anticipate Demand and Spot Risks Early",
         description:
-            "Your business generates more data every day than any human team can meaningfully process. We build the AI-powered analytics infrastructure to turn that data into decisions \u2014 surfaced through intuitive dashboards, automated reports, and forecasting models that give you a genuine operational edge.",
+            "Turn raw operational data into clear intelligence. We build forecasting models and real-time dashboards that help you anticipate demand, spot risks early, and make confident decisions faster. Our data infrastructure is built to grow with your reporting needs.",
         features: [
-            "Revenue and demand forecasting",
-            "Churn prediction and customer retention modelling",
-            "Operational performance dashboards and KPI tracking",
-            "Inventory optimization and supply chain intelligence",
+            "Real-time operational dashboards tailored to your KPIs",
+            "Demand forecasting models for improved planning",
+            "Pattern recognition to surface opportunities and flag risks",
+            "Scalable data infrastructure for advanced reporting",
         ],
         technologies:
-            "Python ML pipelines (scikit-learn, XGBoost) | Tableau, Metabase, and custom dashboards | SQL and data warehouse integrations | Real-time data streaming",
+            "Python ML pipelines | Dynamic real-time dashboards | Forecasting models | Data infrastructure engineering",
     },
     {
         icon: Sparkles,
-        title: "Custom AI Solutions",
-        subtitle: "When Off-the-Shelf Isn\u2019t Enough",
+        title: "Custom AI Solutions & Model Development",
+        subtitle: "Competitive Differentiation Through Proprietary Intelligence",
         description:
-            "Some competitive advantages can\u2019t be bought from a SaaS provider. They have to be built. Our custom AI development service is designed for businesses with unique, complex challenges that require proprietary intelligence \u2014 models trained on your data, fine-tuned for your domain, and owned entirely by you.",
+            "When off-the-shelf tools fall short, we build proprietary AI models trained on your data — giving you competitive differentiation and full ownership of your intelligence layer. We ensure ongoing refinement and performance optimization post-deployment.",
         features: [
-            "Industry-specific document processing and classification",
-            "Custom recommendation and personalization engines",
-            "Proprietary language models fine-tuned on internal knowledge",
-            "Computer vision and image analysis applications",
+            "AI solutions designed specifically for your industry use case",
+            "Proprietary models for unique competitive differentiation",
+            "Full ownership of models, data, and system outputs",
+            "Continuous post-deployment refinement and optimization",
         ],
         technologies:
-            "Fine-tuned LLMs (GPT, Claude, Llama) | Custom ML model development | Vector databases (Pinecone, Weaviate) | LangChain and LlamaIndex frameworks",
+            "Custom ML model development | Fine-tuned LLMs | Proprietary data handling | Agentic AI frameworks",
     },
 ];
 
@@ -131,21 +131,18 @@ export default function ServicesPage() {
                     <div className="max-w-3xl">
                         <FadeUp custom={0} viewport={false}>
                             <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
-                                Our Services
+                                What We Do
                             </p>
                         </FadeUp>
                         <FadeUp custom={1} viewport={false}>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]">
-                                AI Automation Services Designed to{" "}
-                                <span className="shimmer-text">Transform How Your Business Operates</span>
+                                End-to-End AI Automation Services for{" "}
+                                <span className="shimmer-text">Modern Businesses</span>
                             </h1>
                         </FadeUp>
                         <FadeUp custom={2} viewport={false}>
                             <p className="text-base text-gray-300 max-w-2xl">
-                                Every service we offer is built around one question: what would
-                                happen to your business if this problem was completely solved? We
-                                start with outcomes, then architect the most precise, intelligent
-                                path to get there.
+                                Every solution we build starts with one question: where is friction costing you the most? From there, we architect intelligent, scalable systems that connect your tools, automate your processes, and surface insights your team can actually act on.
                             </p>
                         </FadeUp>
                     </div>
@@ -176,19 +173,17 @@ export default function ServicesPage() {
                 <div className="max-w-4xl mx-auto text-center">
                     <FadeUp custom={0}>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                            Not Sure Where to{" "}
-                            <span className="shimmer-text">Start?</span>
+                            Ready to Automate What&apos;s{" "}
+                            <span className="shimmer-text">Slowing You Down?</span>
                         </h2>
                         <p className="text-gray-300 text-base mb-10 max-w-xl mx-auto">
-                            Book a free strategy call with our AI automation team. We&apos;ll
-                            review your current workflows, identify your highest-impact
-                            opportunities, and give you an honest picture of what&apos;s possible.
+                            Book a free 30-minute strategy session. We&quot;ll review your current workflows, pinpoint your highest-impact automation opportunities, and give you an honest, actionable picture of what&quot;s possible — no obligation, no pressure.
                         </p>
                         <Link
                             href="/contact"
                             className="group inline-flex items-center gap-2 px-10 py-4 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-base hover:shadow-2xl hover:shadow-[#0066ff]/30 transition-all duration-300 hover:scale-[1.03] btn-magnetic"
                         >
-                            Get Your Free Assessment
+                            Schedule Your Free Strategy Call
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </FadeUp>
