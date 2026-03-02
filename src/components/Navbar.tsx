@@ -9,6 +9,7 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
+    { href: "/blog", label: "Blog" },
     { href: "/case-studies", label: "Case Studies" },
     { href: "/about", label: "About" },
     { href: "/testimonials", label: "What to Expect" },
@@ -30,6 +31,11 @@ export default function Navbar() {
     useEffect(() => {
         setIsOpen(false);
     }, [pathname]);
+
+    // Hide Navbar on admin routes to prevent double navbars
+    if (pathname?.startsWith("/admin")) {
+        return null;
+    }
 
     return (
         <nav
