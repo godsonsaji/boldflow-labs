@@ -49,6 +49,14 @@ export const metadata: Metadata = {
     title: "BoldFlow Labs — AI Automation Agency",
     description:
       "We build intelligent AI automation solutions that transform your business operations. From workflow automation to custom AI agents, we deliver measurable results.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "BoldFlow Labs — AI Automation Agency",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -124,7 +132,12 @@ export default function RootLayout({
                 email: "hello@boldflowlabs.com",
                 availableLanguage: "English",
               },
-              sameAs: [],
+              sameAs: [
+                "https://linkedin.com/company/boldflowlabs",
+                "https://x.com/boldflowlabs",
+                "https://facebook.com/boldflowlabs",
+                "https://instagram.com/boldflowlabs"
+              ],
             }),
           }}
         />

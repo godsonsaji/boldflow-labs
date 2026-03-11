@@ -21,14 +21,14 @@ export default function ServiceCard({ index, icon, title, subtitle, description,
         <div className="group relative border-b border-white/[0.04] last:border-b-0">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-start gap-6 py-8 md:py-10 text-left hover:bg-white/[0.01] transition-colors duration-300 px-2"
+                className="w-full h-full flex items-start gap-4 md:gap-6 py-6 md:py-10 text-left hover:bg-white/[0.01] transition-colors duration-300 px-0 md:px-2"
                 aria-expanded={isOpen}
             >
-                <div className="shrink-0 flex items-center gap-4">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/30 font-bold tabular-nums w-6">
+                <div className="shrink-0 flex items-center gap-3 md:gap-4">
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/30 font-bold tabular-nums w-5 md:w-6">
                         {String(index + 1).padStart(2, "0")}
                     </span>
-                    <div className="w-12 h-12 rounded-xl bg-[#0066ff]/[0.06] border border-[#00a2ff]/10 flex items-center justify-center group-hover:bg-[#0066ff]/10 group-hover:border-[#00a2ff]/20 transition-all duration-300">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#0066ff]/[0.06] border border-[#00a2ff]/10 flex items-center justify-center group-hover:bg-[#0066ff]/10 group-hover:border-[#00a2ff]/20 transition-all duration-300">
                         {icon}
                     </div>
                 </div>
@@ -49,7 +49,7 @@ export default function ServiceCard({ index, icon, title, subtitle, description,
             </button>
 
             <CollapsibleContent isOpen={isOpen}>
-                <div className="pl-24 pb-8 pr-8">
+                <div className="pl-12 md:pl-24 pb-8 pr-4 md:pr-8">
                     <p className="text-gray-300 text-sm leading-relaxed mb-6 max-w-2xl">
                         {description}
                     </p>

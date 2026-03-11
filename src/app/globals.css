@@ -634,7 +634,7 @@ body {
 
 .watermark-number {
   position: absolute;
-  font-size: 12rem;
+  font-size: 6rem;
   font-weight: 900;
   line-height: 1;
   background: linear-gradient(180deg, rgba(0, 102, 255, 0.06) 0%, transparent 80%);
@@ -644,6 +644,12 @@ body {
   pointer-events: none;
   user-select: none;
   z-index: 0;
+}
+
+@media (min-width: 768px) {
+  .watermark-number {
+    font-size: 12rem;
+  }
 }
 
 /* ── Metric Bar ──────────────────────────────── */

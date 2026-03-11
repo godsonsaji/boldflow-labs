@@ -135,7 +135,7 @@ export default function ServicesPage() {
                             </p>
                         </FadeUp>
                         <FadeUp custom={1} viewport={false}>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]">
+                            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-[1.1]">
                                 End-to-End AI Automation Services for{" "}
                                 <span className="shimmer-text">Modern Businesses</span>
                             </h1>

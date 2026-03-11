@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Clock, Phone, LocateIcon } from "lucide-react";
+import { Mail, Clock, Phone, LocateIcon, Linkedin, Twitter, Facebook, Instagram } from "lucide-react";
 
 const footerLinks = {
     Company: [
@@ -60,6 +60,22 @@ export default function Footer() {
                                 Response within 1 business day
                             </div>
                         </div>
+
+                        {/* Social Links */}
+                        <div className="mt-8 flex items-center gap-4">
+                            <a href="https://linkedin.com/company/boldflowlabs" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-gray-400 hover:text-[#00a2ff] hover:border-[#00a2ff]/30 hover:bg-[#00a2ff]/5 transition-all duration-300 group/social" aria-label="LinkedIn">
+                                <Linkedin className="w-4 h-4 transition-transform group-hover/social:scale-110" />
+                            </a>
+                            <a href="https://x.com/boldflowlabs" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-gray-400 hover:text-[#00a2ff] hover:border-[#00a2ff]/30 hover:bg-[#00a2ff]/5 transition-all duration-300 group/social" aria-label="X (Twitter)">
+                                <Twitter className="w-4 h-4 transition-transform group-hover/social:scale-110" />
+                            </a>
+                            <a href="https://facebook.com/boldflowlabs" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-gray-400 hover:text-[#00a2ff] hover:border-[#00a2ff]/30 hover:bg-[#00a2ff]/5 transition-all duration-300 group/social" aria-label="Facebook">
+                                <Facebook className="w-4 h-4 transition-transform group-hover/social:scale-110" />
+                            </a>
+                            <a href="https://instagram.com/boldflowlabs" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-gray-400 hover:text-[#00a2ff] hover:border-[#00a2ff]/30 hover:bg-[#00a2ff]/5 transition-all duration-300 group/social" aria-label="Instagram">
+                                <Instagram className="w-4 h-4 transition-transform group-hover/social:scale-110" />
+                            </a>
+                        </div>
                     </div>
 
                     {/* Link Columns */}
@@ -85,9 +101,9 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="py-5 border-t border-white/[0.04] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-400">
-                    <p>© 2026 BoldFlow Labs. All rights reserved.</p>
-                    <div className="flex items-center gap-6">
+                <div className="py-8 border-t border-white/[0.04] flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-gray-400">
+                    <p className="text-center md:text-left order-2 md:order-1">© 2026 BoldFlow Labs. All rights reserved.</p>
+                    <div className="flex items-center gap-8 order-1 md:order-2">
                         <Link href="#" className="hover:text-[#00a2ff] transition-colors duration-200">
                             Privacy Policy
                         </Link>

@@ -71,7 +71,7 @@ export default function ContactPage() {
                         </p>
                     </FadeUp>
                     <FadeUp custom={1} viewport={false}>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]">
+                        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-[1.1]">
                             Let&apos;s Talk About What Automation{" "}
                             <span className="shimmer-text">Can Do for Your Business</span>
                         </h1>

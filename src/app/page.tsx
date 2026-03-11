@@ -172,11 +172,11 @@ export default function HomePage() {
             {/* Left — Text */}
             <div>
               <SlideLeft custom={1} viewport={false}>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight mb-6">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight mb-6">
                   <span className="text-white">Intelligent AI</span>
-                  <br />
+                  <br className="hidden sm:block" />
                   <span className="shimmer-text">Automation Systems,</span>
-                  <br />
+                  <br className="hidden sm:block" />
                   <span className="text-white">Built for Growth</span>
                 </h1>
               </SlideLeft>
@@ -382,7 +382,7 @@ export default function HomePage() {
           {/* Phase Timeline */}
           <div className="relative">
             {/* Connecting vertical line */}
-            <div className="absolute left-[23px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-[#0066ff]/30 via-[#00d4ff]/20 to-transparent" aria-hidden="true" />
+            <div className="absolute left-[24px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-[#0066ff]/30 via-[#00d4ff]/20 to-transparent" aria-hidden="true" />
 
             {/* Phase 1 */}
             <SlideLeft custom={0} className="relative mb-16 lg:mb-20">

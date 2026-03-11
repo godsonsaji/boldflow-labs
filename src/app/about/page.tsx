@@ -110,7 +110,7 @@ export default function AboutPage() {
                             </p>
                         </FadeUp>
                         <FadeUp custom={1} viewport={false}>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]">
+                            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-[1.1]">
                                 A Small Team With a{" "}
                                 <span className="shimmer-text">Deep Focus</span>{" "}
                                 on AI Automation That Works
@@ -136,7 +136,7 @@ export default function AboutPage() {
                             <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
                                 Our Story
                             </p>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                                 Why We Built{" "}
                                 <span className="gradient-text">BoldFlow Labs</span>
                             </h2>
@@ -218,7 +218,7 @@ export default function AboutPage() {
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
                             Our Philosophy
                         </p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white">
                             How We Think About{" "}
                             <span className="gradient-text">Automation</span>
                         </h2>
@@ -253,7 +253,7 @@ export default function AboutPage() {
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
                             Our Expertise
                         </p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white">
                             What We Bring to{" "}
                             <span className="gradient-text">the Table</span>
                         </h2>
@@ -295,7 +295,7 @@ export default function AboutPage() {
                         <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
                             The Team
                         </p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
                             Meet the People Behind{" "}
                             <span className="gradient-text">BoldFlow Labs</span>
                         </h2>
@@ -338,7 +338,7 @@ export default function AboutPage() {
             <section className="section-padding" aria-label="Get in touch">
                 <div className="max-w-4xl mx-auto text-center">
                     <FadeUp custom={0}>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                             Want to Build Something{" "}
                             <span className="shimmer-text">That Matters?</span>
                         </h2>
