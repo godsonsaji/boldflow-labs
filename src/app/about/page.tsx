@@ -311,7 +311,7 @@ export default function AboutPage() {
                             <FadeUp
                                 key={member.name}
                                 custom={i}
-                                className="group glass glass-hover rounded-xl p-7 transition-all duration-300"
+                                className="group glass glass-hover rounded-xl p-7 transition-all duration-300 flex flex-col items-center text-center sm:items-start sm:text-left"
                             >
                                 {/* Avatar */}
                                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#0066ff]/20 to-[#00a2ff]/10 border border-[#00a2ff]/15 flex items-center justify-center mb-5 group-hover:from-[#0066ff]/30 group-hover:to-[#00a2ff]/20 transition-all duration-300">

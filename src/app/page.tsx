@@ -201,17 +201,17 @@ export default function HomePage() {
                 </div>
               </SlideLeft>
 
-              <SlideLeft custom={3} viewport={false} className="flex flex-col sm:flex-row items-start gap-4">
+              <SlideLeft custom={3} viewport={false} className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-sm hover:shadow-2xl hover:shadow-[#0066ff]/30 transition-all duration-300 hover:scale-[1.03] btn-magnetic"
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-sm hover:shadow-2xl hover:shadow-[#0066ff]/30 transition-all duration-300 hover:scale-[1.03] btn-magnetic w-full sm:w-auto"
                 >
                   Book Your Free Strategy Call
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href="/services"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-gray-400 text-sm font-semibold btn-outline transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-gray-400 text-sm font-semibold btn-outline transition-all duration-300 w-full sm:w-auto text-center"
                 >
                   Explore Our Services
                 </Link>
@@ -330,32 +330,29 @@ export default function HomePage() {
             </p>
           </FadeUp>
 
-          <div className="space-y-0">
-            {whyChooseUs.map((item, i) => {
-              const Wrapper = i % 2 === 0 ? SlideLeft : SlideRight;
-              return (
-                <Wrapper key={item.title} custom={0} className="step-line">
-                  <div
-                    className={`flex items-start gap-6 py-8 ${i % 2 === 0 ? "" : "lg:flex-row-reverse lg:text-right"}`}
-                  >
-                    <div className="shrink-0 w-10 h-10 rounded-xl bg-[#0066ff]/10 border border-[#00a2ff]/15 flex items-center justify-center">
-                      <item.icon className="w-5 h-5 text-[#00a2ff]" />
-                    </div>
-                    <div className="max-w-lg">
-                      <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold" aria-hidden="true">
-                        0{i + 1}
-                      </span>
-                      <h3 className="text-lg font-semibold text-white mt-1 mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-300 text-sm leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whyChooseUs.map((item, i) => (
+              <FadeUp
+                key={item.title}
+                custom={i}
+                className="group glass glass-hover rounded-2xl p-8 transition-all duration-300 card-interactive"
+              >
+                <div className="relative z-10">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0066ff]/15 to-[#00d4ff]/10 flex items-center justify-center mb-5 group-hover:from-[#0066ff]/25 group-hover:to-[#00d4ff]/20 transition-colors">
+                    <item.icon className="w-5 h-5 text-[#00a2ff] icon-hover-spin" />
                   </div>
-                </Wrapper>
-              );
-            })}
+                  <span className="text-[10px] font-bold text-[#0066ff]/30 tracking-wider mb-2 block">
+                    0{i + 1}
+                  </span>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </FadeUp>
+            ))}
           </div>
         </div>
       </section>
@@ -385,11 +382,21 @@ export default function HomePage() {
             <div className="absolute left-[24px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-[#0066ff]/30 via-[#00d4ff]/20 to-transparent" aria-hidden="true" />
 
             {/* Phase 1 */}
-            <SlideLeft custom={0} className="relative mb-16 lg:mb-20">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-12">
+            <SlideLeft custom={0} className="relative mb-20 lg:mb-24">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-12">
+                {/* Number for mobile (Inline) */}
+                <div className="lg:hidden flex items-center gap-4 mb-2">
+                  <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20">
+                    <span className="text-white font-bold text-xs">01</span>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff] font-bold">
+                    Phase 1  ·  Week 1–2
+                  </span>
+                </div>
+
                 {/* Left content */}
-                <div className="lg:w-1/2 lg:text-right lg:pr-12 order-2 lg:order-1 pl-16 lg:pl-0">
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
+                <div className="lg:w-1/2 lg:text-right lg:pr-12 order-2 lg:order-1 lg:pl-0">
+                  <span className="hidden lg:block text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
                     Phase 1  ·  Week 1–2
                   </span>
                   <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">
@@ -399,8 +406,8 @@ export default function HomePage() {
                     We audit your current workflows, map automation opportunities, quantify potential impact, and document technical requirements — delivering a clear roadmap whether or not you move forward with us.
                   </p>
                 </div>
-                {/* Center node */}
-                <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-1 lg:order-2">
+                {/* Center node (Desktop only) */}
+                <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-2">
                   <span className="text-white font-bold text-sm">01</span>
                 </div>
                 {/* Right spacer */}
@@ -409,17 +416,27 @@ export default function HomePage() {
             </SlideLeft>
 
             {/* Phase 2 */}
-            <SlideRight custom={0} className="relative mb-16 lg:mb-20">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-12">
+            <SlideRight custom={0} className="relative mb-20 lg:mb-24">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-12">
+                {/* Number for mobile (Inline) */}
+                <div className="lg:hidden flex items-center gap-4 mb-2">
+                  <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20">
+                    <span className="text-white font-bold text-xs">02</span>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff] font-bold">
+                    Phase 2  ·  Week 2–3
+                  </span>
+                </div>
+
                 {/* Left spacer */}
                 <div className="lg:w-1/2 order-1 hidden lg:block" />
-                {/* Center node */}
-                <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-1 lg:order-2">
+                {/* Center node (Desktop only) */}
+                <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-2">
                   <span className="text-white font-bold text-sm">02</span>
                 </div>
                 {/* Right content */}
-                <div className="lg:w-1/2 lg:pl-12 order-2 lg:order-3 pl-16 lg:pl-12">
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
+                <div className="lg:w-1/2 lg:pl-12 order-2 lg:order-3 lg:pl-12">
+                  <span className="hidden lg:block text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
                     Phase 2  ·  Week 2–3
                   </span>
                   <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">
@@ -433,11 +450,21 @@ export default function HomePage() {
             </SlideRight>
 
             {/* Phase 3 */}
-            <SlideLeft custom={0} className="relative mb-16 lg:mb-20">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-12">
+            <SlideLeft custom={0} className="relative mb-20 lg:mb-24">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-12">
+                {/* Number for mobile (Inline) */}
+                <div className="lg:hidden flex items-center gap-4 mb-2">
+                  <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20">
+                    <span className="text-white font-bold text-xs">03</span>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff] font-bold">
+                    Phase 3  ·  Week 3–6
+                  </span>
+                </div>
+
                 {/* Left content */}
-                <div className="lg:w-1/2 lg:text-right lg:pr-12 order-2 lg:order-1 pl-16 lg:pl-0">
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
+                <div className="lg:w-1/2 lg:text-right lg:pr-12 order-2 lg:order-1 lg:pl-0">
+                  <span className="hidden lg:block text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
                     Phase 3  ·  Week 3–6
                   </span>
                   <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">
@@ -447,8 +474,8 @@ export default function HomePage() {
                     Tight development sprints with working deliverables at each stage. You see progress early and often — not just at the finish line. Every sprint ends with a review and feedback loop.
                   </p>
                 </div>
-                {/* Center node */}
-                <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-1 lg:order-2">
+                {/* Center node (Desktop only) */}
+                <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-2">
                   <span className="text-white font-bold text-sm">03</span>
                 </div>
                 {/* Right spacer */}
@@ -458,16 +485,26 @@ export default function HomePage() {
 
             {/* Phase 4 */}
             <SlideRight custom={0} className="relative">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-12">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-12">
+                {/* Number for mobile (Inline) */}
+                <div className="lg:hidden flex items-center gap-4 mb-2">
+                  <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20">
+                    <span className="text-white font-bold text-xs">04</span>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff] font-bold">
+                    Phase 4  ·  Ongoing
+                  </span>
+                </div>
+
                 {/* Left spacer */}
                 <div className="lg:w-1/2 order-1 hidden lg:block" />
-                {/* Center node */}
-                <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-1 lg:order-2">
+                {/* Center node (Desktop only) */}
+                <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-2">
                   <span className="text-white font-bold text-sm">04</span>
                 </div>
                 {/* Right content */}
-                <div className="lg:w-1/2 lg:pl-12 order-2 lg:order-3 pl-16 lg:pl-12">
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
+                <div className="lg:w-1/2 lg:pl-12 order-2 lg:order-3 lg:pl-12">
+                  <span className="hidden lg:block text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
                     Phase 4  ·  Ongoing
                   </span>
                   <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">

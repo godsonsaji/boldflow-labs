@@ -46,7 +46,7 @@ export default function Navbar() {
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-14 lg:h-16">
+                <div className="flex items-center justify-between h-14 xl:h-16">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-1.5 group">
                         <span className="text-2xl font-bold text-white tracking-tight">
@@ -55,7 +55,7 @@ export default function Navbar() {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <div className="hidden lg:flex items-center gap-0.5">
+                    <div className="hidden xl:flex items-center gap-0.5">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
@@ -74,13 +74,13 @@ export default function Navbar() {
                     <div className="flex items-center gap-3">
                         <Link
                             href="/contact"
-                            className="hidden lg:inline-flex items-center gap-2 px-5 py-2 rounded-full text-[13px] font-semibold text-white btn-outline transition-all duration-300"
+                            className="hidden xl:inline-flex items-center gap-2 px-5 py-2 rounded-full text-[13px] font-semibold text-white btn-outline transition-all duration-300"
                         >
                             Get Started
                         </Link>
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="lg:hidden p-2 text-gray-400 hover:text-white transition-colors"
+                            className="xl:hidden p-2 text-gray-400 hover:text-white transition-colors"
                             aria-label="Toggle menu"
                         >
                             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -97,7 +97,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" as const }}
-                        className="lg:hidden bg-black/80 backdrop-blur-xl border-t border-white/[0.04] overflow-hidden"
+                        className="xl:hidden bg-black/80 backdrop-blur-xl border-t border-white/[0.04] overflow-hidden"
                     >
                         <div className="px-4 py-4 space-y-1">
                             {navLinks.map((link, i) => (

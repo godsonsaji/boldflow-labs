@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import { AuthProvider } from "@/context/AuthContext";
 
 const spaceGrotesk = Space_Grotesk({
@@ -154,6 +155,7 @@ export default function RootLayout({
         </noscript>
         <AuthProvider>
           <Navbar />
+          <ScrollToTop />
           <main className="min-h-screen">{children}</main>
           <Footer />
         </AuthProvider>

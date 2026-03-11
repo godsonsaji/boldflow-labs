@@ -30,9 +30,9 @@ export default function Footer() {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Links Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 py-14">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 py-14">
                     {/* Brand Column */}
-                    <div className="lg:col-span-2">
+                    <div className="sm:col-span-2 lg:col-span-2">
                         <Link href="/" className="flex items-center gap-1.5 group">
                             <span className="text-2xl font-bold text-white tracking-tight">
                                 Bold<span className="gradient-text">Flow</span>
@@ -44,11 +44,11 @@ export default function Footer() {
                             business growth.
                         </p>
                         <div className="space-y-2.5 text-sm text-gray-400">
-                            <a href="mailto:boldflowlabs@gmail.com" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200">
+                            <a href="mailto:boldflowlabs@gmail.com" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200 break-all py-2">
                                 <Mail className="w-3.5 h-3.5 text-[#0066ff]/60" />
                                 boldflowlabs@gmail.com
                             </a>
-                            <a href="tel:+91-9447178166" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200">
+                            <a href="tel:+91-9447178166" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200 py-3 min-h-[44px]">
                                 <Phone className="w-3.5 h-3.5 text-[#0066ff]/60" />
                                 +91-9447178166</a>
                             <div className="flex items-center gap-2.5">

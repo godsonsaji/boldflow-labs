@@ -88,7 +88,7 @@ export default function ContactForm() {
                     <input
                         id="contact-name"
                         type="text"
-                        className="input-minimal"
+                        className="input-minimal text-base"
                         placeholder="John Doe"
                         required
                     />
@@ -100,7 +100,7 @@ export default function ContactForm() {
                     <input
                         id="contact-email"
                         type="email"
-                        className="input-minimal"
+                        className="input-minimal text-base"
                         placeholder="john@company.com"
                         required
                     />
@@ -114,7 +114,7 @@ export default function ContactForm() {
                 <input
                     id="contact-company"
                     type="text"
-                    className="input-minimal"
+                    className="input-minimal text-base"
                     placeholder="Your company name"
                 />
             </div>
@@ -125,7 +125,7 @@ export default function ContactForm() {
                 </label>
                 <select
                     id="contact-service"
-                    className="input-minimal appearance-none cursor-pointer"
+                    className="input-minimal text-base appearance-none cursor-pointer"
                     required
                 >
                     <option value="" className="bg-black">Select a service</option>
@@ -144,7 +144,7 @@ export default function ContactForm() {
                 <textarea
                     id="contact-message"
                     rows={5}
-                    className="input-minimal resize-none"
+                    className="input-minimal text-base resize-none"
                     placeholder="Describe your automation needs, current challenges, and goals..."
                     required
                 />

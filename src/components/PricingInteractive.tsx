@@ -35,8 +35,8 @@ export function PricingCards({ plans }: { plans: PricingPlan[] }) {
                                 {plan.name}
                             </h3>
                             {plan.popular && (
-                                <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.15em] font-semibold text-[#00a2ff] bg-[#0066ff]/10 px-2 py-0.5 rounded-full">
-                                    <Sparkles className="w-3 h-3" />
+                                <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] uppercase tracking-[0.1px] sm:tracking-[0.15em] font-semibold text-[#00a2ff] bg-[#0066ff]/10 px-2 py-0.5 rounded-full whitespace-nowrap">
+                                    <Sparkles className="w-2.5 h-2.5" />
                                     Popular
                                 </span>
                             )}
@@ -49,7 +49,7 @@ export function PricingCards({ plans }: { plans: PricingPlan[] }) {
                             {plan.startingPrice ? (
                                 <>
                                     <span className="text-[13px] text-gray-400 block mb-1">Starting from</span>
-                                    <span className="text-5xl font-bold text-white">
+                                    <span className="text-4xl sm:text-5xl font-bold text-white">
                                         {plan.startingPrice}
                                     </span>
                                 </>
