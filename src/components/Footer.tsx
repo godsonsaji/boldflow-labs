@@ -9,10 +9,12 @@ const footerLinks = {
         { href: "/contact", label: "Contact" },
     ],
     Services: [
-        { href: "/services", label: "AI Chatbots & Agents" },
-        { href: "/services", label: "Workflow Automation" },
-        { href: "/services", label: "Analytics & Insights" },
-        { href: "/services", label: "Custom AI Models" },
+        { href: "/services", label: "Lead & CRM Automation" },
+        { href: "/services", label: "AI Chatbots & Support" },
+        { href: "/services", label: "Appointment Booking" },
+        { href: "/services", label: "Social & Content" },
+        { href: "/services", label: "Reporting Dashboards" },
+        { href: "/services", label: "Custom AI & Voice" },
     ],
     Resources: [
         { href: "/pricing", label: "Pricing" },

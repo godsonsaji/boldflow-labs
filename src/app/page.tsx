@@ -15,6 +15,8 @@ import {
   CalendarCheck,
   Target,
   UserCheck,
+  Calendar,
+  Share2,
 } from "lucide-react";
 import {
   FadeUp,
@@ -39,56 +41,82 @@ export const metadata: Metadata = {
 
 const features = [
   {
-    icon: Bot,
-    title: "AI Chatbots & Conversational Agents",
+    icon: Users,
+    title: "AI-Powered Lead Follow-Up & CRM Automation",
     description:
-      "Deploy AI-powered agents that handle multi-turn conversations, qualify leads, resolve support queries, and integrate directly with your CRM — 24/7, without additional headcount.",
+      "Most businesses lose potential revenue not because their product is wrong — but because follow-up is slow, inconsistent, or forgotten entirely. Manual lead management is one of the highest-cost inefficiencies in modern sales operations.",
     benefits: [
-      "24/7 customer engagement without scaling your support team",
-      "Faster lead qualification and seamless handoff to sales",
-      "Reduced support volume and lower cost per interaction",
-      "Consistent brand voice across every customer touchpoint",
+      "Instant, automated responses to new leads",
+      "Smart follow-up sequences that adapt to behaviour",
+      "Automatic CRM data entry and pipeline updates",
+      "Lead scoring logic that prioritises high-value opportunities",
     ],
     label: "01",
   },
   {
-    icon: Workflow,
-    title: "Intelligent Workflow Automation",
+    icon: Bot,
+    title: "AI Chatbot & Customer Support Automation",
     description:
-      "We map your existing processes, identify high-impact automation opportunities, and build smart pipelines that eliminate manual errors, reduce delays, and scale alongside your team.",
+      "Your customers don't work business hours. We design and deploy AI-powered chatbots and conversational agents that handle real customer interactions — resolving queries, capturing leads, and qualifying prospects.",
     benefits: [
-      "Automated data flows between your CRM, ERP, and operational tools",
-      "Elimination of manual entry errors and processing delays",
-      "Scalable systems that adapt as your business evolves",
-      "More time for your team to focus on high-value, strategic work",
+      "Intelligent chatbot deployment across multiple platforms",
+      "Automated handling of FAQs and support requests",
+      "Lead capture and qualification embedded in conversations",
+      "Seamless human handoff logic for complex issues",
     ],
     label: "02",
   },
   {
-    icon: BarChart3,
-    title: "Predictive Analytics & AI-Powered Insights",
+    icon: Calendar,
+    title: "Automated Appointment Booking & Reminder Systems",
     description:
-      "Turn raw operational data into clear intelligence. We build forecasting models and real-time dashboards that help you anticipate demand, spot risks early, and make confident decisions faster.",
+      "We build end-to-end automated scheduling systems that let prospects and clients book appointments instantly — and keep them engaged with smart, multi-channel reminders that dramatically reduce cancellations and no-shows.",
     benefits: [
-      "Real-time operational dashboards tailored to your KPIs",
-      "Demand forecasting models to reduce waste and improve planning",
-      "Pattern recognition to surface opportunities and flag risks early",
-      "Data infrastructure built to grow with your reporting needs",
+      "Automated booking flows integrated with your calendar",
+      "Multi-channel confirmation and reminder sequences",
+      "Pre-appointment intake forms to collect information",
+      "Automated rescheduling and cancellation handling",
     ],
     label: "03",
   },
   {
-    icon: Sparkles,
-    title: "Custom AI Solutions & Model Development",
+    icon: Share2,
+    title: "Social Media & Content Automation",
     description:
-      "When off-the-shelf tools fall short, we build proprietary AI models trained on your data — giving you competitive differentiation and full ownership of your intelligence layer.",
+      "We design content automation systems that keep your brand active across platforms, repurpose existing content intelligently, and schedule posts for maximum reach — all without daily manual effort.",
     benefits: [
-      "AI solutions designed specifically for your industry and use case",
-      "Competitive differentiation through proprietary intelligence",
-      "Full ownership of your models, data, and outputs",
-      "Ongoing refinement and performance optimization post-deployment",
+      "Automated content scheduling and cross-platform publishing",
+      "AI-assisted content drafting and repurposing pipelines",
+      "Content calendar automation pulling from your assets",
+      "Performance-based scheduling for optimal engagement windows",
     ],
     label: "04",
+  },
+  {
+    icon: BarChart3,
+    title: "Automated Reporting & Business Dashboards",
+    description:
+      "We build automated reporting systems and real-time operational dashboards that surface the metrics that matter — the moment they change, keeping your team informed and your decisions grounded in reality.",
+    benefits: [
+      "Automated data aggregation from multiple systems",
+      "Custom real-time dashboards tailored to your KPIs",
+      "Scheduled automated reports delivered to stakeholders",
+      "Elimination of manual spreadsheet updates and inconsistencies",
+    ],
+    label: "05",
+  },
+  {
+    icon: Workflow,
+    title: "Custom AI Workflows & AI Voice Agents",
+    description:
+      "For challenges too complex for generic templates, we build fully custom AI workflows and intelligent voice agents engineered from the ground up around your exact operations, data, and objectives.",
+    benefits: [
+      "Custom AI voice agents for inbound and outbound calls",
+      "Proprietary multi-step AI workflows for complex processes",
+      "Agentic AI systems capable of reasoning and deciding",
+      "Full ownership of your automation logic and models",
+    ],
+    label: "06",
   },
 ];
 

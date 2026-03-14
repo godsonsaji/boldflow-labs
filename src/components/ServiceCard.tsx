@@ -55,7 +55,7 @@ export default function ServiceCard({ index, icon, title, subtitle, description,
                     </p>
 
                     <p className="text-[10px] uppercase tracking-[0.2em] text-[#00a2ff]/50 font-semibold mb-3">
-                        Ideal for
+                        What this means for your business
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
                         {features.map((feature) => (
