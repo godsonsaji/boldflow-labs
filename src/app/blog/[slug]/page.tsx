@@ -7,10 +7,11 @@ import { db } from "@/firebase/config";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ChevronLeft, Calendar, Clock, Tag } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 
 export default function BlogPostPage() {
     const { slug } = useParams();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [post, setPost] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
@@ -20,6 +21,7 @@ export default function BlogPostPage() {
                 const q = query(
                     collection(db, "blogs"),
                     where("slug", "==", slug),
+                    where("status", "==", "published"),
                     limit(1)
                 );
                 const querySnapshot = await getDocs(q);
@@ -38,19 +40,23 @@ export default function BlogPostPage() {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-screen bg-black">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#0066ff]"></div>
+            <div className="flex flex-col justify-center items-center min-h-screen bg-[#050505]">
+                <span className="text-[#0066ff] font-mono text-[14px] animate-pulse">█</span>
+                <p className="text-label font-mono text-[#525252] uppercase tracking-widest mt-4">FETCHING_PAYLOAD...</p>
             </div>
         );
     }
 
     if (!post) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-screen bg-black px-4 text-center">
-                <h1 className="text-4xl font-bold text-white mb-6">Article Not Found</h1>
-                <p className="text-gray-400 mb-8 max-w-md">The blog post you're looking for might have been moved or deleted.</p>
-                <Link href="/blog" className="px-6 py-3 bg-[#0066ff] hover:bg-[#0052cc] text-white font-bold rounded-lg transition-colors">
-                    Back to Blog
+            <div className="flex flex-col items-center justify-center min-h-screen bg-[#050505] px-6 text-center">
+                <div className="target-hex target-hex-left-top" />
+                <div className="target-hex target-hex-right-bottom" />
+                <span className="text-[#333] font-mono text-[64px] mb-8 block leading-none">[ 404 ]</span>
+                <h1 className="text-h2 font-medium text-[#F5F5F5] uppercase mb-6 mt-4">RECORD NOT FOUND</h1>
+                <p className="text-[#A3A3A3] mb-12 max-w-md">The requested telemetry log could not be located in the current database architecture.</p>
+                <Link href="/blog" className="px-8 py-4 btn-ghost font-mono text-[13px] tracking-wider uppercase">
+                    [ RETURN_TO_LOGS ]
                 </Link>
             </div>
         );
@@ -59,103 +65,118 @@ export default function BlogPostPage() {
     const date = post.createdAt?.toDate ? post.createdAt.toDate() : new Date();
 
     return (
-        <article className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-black min-h-screen">
-            <div className="max-w-4xl mx-auto">
+        <article className="pt-32 pb-32 px-6 bg-[#050505] min-h-screen relative overflow-hidden">
+            {/* Grid Array Background */}
+            <div className="absolute inset-0 grid-overlay pointer-events-none z-0" />
+
+            <div className="max-w-[800px] mx-auto relative z-10">
                 {/* Back Link */}
-                <Link href="/blog" className="inline-flex items-center text-gray-400 hover:text-[#0066ff] mb-12 transition-colors">
-                    <ChevronLeft className="w-5 h-5 mr-1" />
-                    Back to all articles
+                <Link href="/blog" className="inline-flex items-center text-label font-mono text-[#525252] hover:text-[#0066ff] mb-16 transition-colors">
+                    <ChevronLeft className="w-4 h-4 mr-1 relative -top-px" />
+                    [ RETRIEVE_LOGS ]
                 </Link>
 
                 {/* Header */}
-                <header className="mb-12">
+                <header className="mb-16">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-label text-[#0066ff] mb-6 uppercase"
+                    >
+                        {"//"} ARCHITECTURE LOG
+                    </motion.div>
+
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight"
+                        className="text-h2 md:text-[64px] font-medium text-[#F5F5F5] uppercase leading-[0.9] mb-12 tracking-tighter"
                     >
                         {post.title}
                     </motion.h1>
 
-                    <div className="flex flex-wrap items-center gap-y-4 gap-x-6 text-sm text-gray-400">
+                    <div className="flex flex-wrap items-center gap-y-4 gap-x-6 text-caption text-[#A3A3A3] font-mono border-y border-[#1A1A1A] py-6">
                         {post.authorName && (
-                            <div className="flex items-center gap-3 pr-6 border-r border-white/10">
-                                <div className="w-8 h-8 rounded-full overflow-hidden border border-[#0066ff]/30">
+                            <div className="flex items-center gap-3 pr-6 border-r border-[#1A1A1A]">
+                                <div className="w-6 h-6 border border-[#333] bg-[#111] overflow-hidden">
                                     <img
-                                        src={post.authorImage || "https://ui-avatars.com/api/?name=" + post.authorName + "&background=0066ff&color=fff"}
+                                        src={post.authorImage || "https://ui-avatars.com/api/?name=" + post.authorName + "&background=111&color=fff"}
                                         alt={post.authorName}
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-cover grayscale"
                                     />
                                 </div>
-                                <span className="text-white font-medium">{post.authorName}</span>
+                                <span className="uppercase tracking-wider">{post.authorName}</span>
                             </div>
                         )}
-                        <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-[#0066ff]" />
-                            {format(date, "MMMM dd, yyyy")}
+                        <div className="flex items-center gap-2 uppercase tracking-widest text-[#71717A]">
+                            {format(date, "MMM dd, yyyy")}
                         </div>
-                        <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-[#0066ff]" />
-                            {post.readTime || "5 min read"}
+                        <div className="flex items-center gap-2 uppercase tracking-widest text-[#71717A] border-l border-[#1A1A1A] pl-6">
+                            {post.readTime || "5M_READ"}
                         </div>
-                        {post.tags && post.tags.length > 0 && (
-                            <div className="hidden sm:flex items-center gap-2">
-                                <Tag className="w-4 h-4 text-[#0066ff]" />
-                                <div className="flex gap-2">
-                                    {post.tags.map((tag: string) => (
-                                        <span key={tag} className="text-[#0066ff] font-medium">#{tag}</span>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
                     </div>
                 </header>
 
                 {/* Featured Image */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="aspect-[16/9] md:aspect-[21/9] w-full relative rounded-2xl md:rounded-3xl overflow-hidden mb-12 md:mb-16 border border-white/[0.05]"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="aspect-[21/9] w-full relative bg-[#0A0A0A] border border-[#1A1A1A] mb-16 overflow-hidden"
                 >
+                    <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.2)_50%)] bg-[length:100%_4px] pointer-events-none z-10" />
                     <img
                         src={post.coverImage || "/placeholder-blog.jpg"}
                         alt={post.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover grayscale opacity-80"
                     />
+                    <div className="target-hex target-hex-left-top z-20" />
+                    <div className="target-hex target-hex-right-bottom z-20" />
                 </motion.div>
 
                 {/* Content */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="prose prose-invert prose-blue w-full max-w-none 
-            prose-headings:text-white prose-p:text-gray-300 prose-p:text-base md:prose-p:text-lg prose-p:leading-relaxed
-            prose-strong:text-white prose-a:text-[#0066ff] prose-blockquote:border-l-[#0066ff]
-            prose-blockquote:bg-[#0066ff]/5 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg
-            prose-img:rounded-2xl prose-pre:bg-[#0a0a0d] prose-pre:border prose-pre:border-white/5"
+                    transition={{ delay: 0.2 }}
+                    className="prose prose-invert max-w-none 
+                        prose-p:text-[#A3A3A3] prose-p:text-lg prose-p:leading-relaxed prose-p:font-light
+                        prose-headings:text-[#F5F5F5] prose-headings:uppercase prose-headings:tracking-tight prose-headings:font-medium
+                        prose-h2:text-[32px] prose-h2:mt-16 prose-h2:mb-8
+                        prose-h3:text-[24px] prose-h3:mt-12 prose-h3:mb-6
+                        prose-strong:text-[#F5F5F5] prose-strong:font-medium
+                        prose-a:text-[#0066ff] prose-a:no-underline hover:prose-a:underline
+                        prose-blockquote:border-l-2 prose-blockquote:border-[#0066ff] prose-blockquote:bg-[#0A0A0A] prose-blockquote:px-8 prose-blockquote:py-4 prose-blockquote:not-italic prose-blockquote:text-[#F5F5F5] 
+                        prose-img:border prose-img:border-[#1A1A1A] prose-img:grayscale
+                        prose-code:text-[#0066ff] prose-code:bg-[#0A0A0A] prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-[13px]
+                        prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-[#1A1A1A] prose-pre:rounded-none
+                        prose-ul:text-[#A3A3A3] prose-li:marker:text-[#0066ff]"
                     dangerouslySetInnerHTML={{ __html: post.content }}
                 />
 
-                {/* Footer actions */}
-                <div className="mt-20 pt-12 border-t border-white/[0.05] flex flex-wrap items-center justify-between gap-6">
-                    <div className="flex items-center gap-4">
-                        <span className="text-white font-medium">Share this article:</span>
-                        <div className="flex gap-3">
-                            {/* Share icons would go here */}
-                            <button className="p-2 rounded-full bg-white/[0.03] hover:bg-[#0066ff]/20 text-gray-400 hover:text-white transition-all">
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
-                            </button>
-                            <button className="p-2 rounded-full bg-white/[0.03] hover:bg-[#0066ff]/20 text-gray-400 hover:text-white transition-all">
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" /></svg>
-                            </button>
+                {/* Footer / Tags & CTA */}
+                <div className="mt-32 pt-16 border-t border-[#1A1A1A]">
+                    {post.tags && post.tags.length > 0 && (
+                        <div className="flex flex-wrap items-center gap-3 mb-16">
+                            <span className="text-label text-[#525252] font-mono mr-4">{"//"} INDEX_TAGS</span>
+                            {post.tags.map((tag: string) => (
+                                <span key={tag} className="font-mono text-[11px] text-[#A3A3A3] border border-[#333333] bg-[#0A0A0A] px-3 py-1.5 uppercase tracking-wider hover:border-[#0066ff] hover:text-[#F5F5F5] transition-colors cursor-pointer">
+                                    {tag}
+                                </span>
+                            ))}
                         </div>
-                    </div>
+                    )}
 
-                    <Link href="/contact" className="px-8 py-3 bg-[#0066ff] hover:bg-[#0052cc] text-white font-bold rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(0,102,255,0.3)] hover:scale-105">
-                        Discuss Your AI Project
-                    </Link>
+                    <div className="bg-[#0A0A0A] border border-[#1A1A1A] p-12 text-center relative group">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,102,255,0.05),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                        <div className="target-hex target-hex-left-top" />
+                        <div className="target-hex target-hex-right-bottom" />
+                        
+                        <h3 className="text-[24px] font-medium text-[#F5F5F5] uppercase mb-6">Want to deploy systems like this?</h3>
+                        <p className="text-[#A3A3A3] mb-10 max-w-md mx-auto">We architect bespoke AI automation pipelines that eliminate manual work completely. Request an infrastructure diagnostic.</p>
+                        <Link href="/contact" className="px-10 py-5 btn-primary font-medium text-sm text-center tracking-wide inline-block">
+                            INITIALIZE TRANSMISSION
+                        </Link>
+                    </div>
                 </div>
             </div>
         </article>

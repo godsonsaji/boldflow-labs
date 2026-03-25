@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Bot } from "lucide-react";
 
 const navLinks = [
     { href: "/", label: "Home" },
@@ -21,12 +21,15 @@ export default function Navbar() {
     const pathname = usePathname();
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20);
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 80);
+        };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     useEffect(() => {
+        // eslint-disable-next-line
         setIsOpen(false);
     }, [pathname]);
 
@@ -36,56 +39,62 @@ export default function Navbar() {
         <>
             <nav
                 aria-label="Main navigation"
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || isOpen
-                ? "bg-[#050505]/95 backdrop-blur-md border-b border-[#1A1A1A]"
-                : "bg-transparent border-b border-transparent"
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+                    scrolled || isOpen
+                        ? "bg-[#0A0A0A]/85 backdrop-blur-[16px] border-[#333333]"
+                        : "bg-transparent border-transparent"
                 }`}
-        >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16 sm:h-20">
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center gap-1.5 group">
-                        <span style={{ fontFamily: "var(--font-space), 'Space Grotesk', sans-serif" }} className="text-2xl font-bold text-white tracking-tight">
-                            Bold<span className="gradient-text">Flow</span>
-                        </span>
-                    </Link>
-
-                    {/* Desktop Nav */}
-                    <div className="hidden lg:flex items-center gap-8">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className={`text-[13px] font-medium transition-colors duration-200 ${pathname === link.href
-                                    ? "text-white"
-                                    : "text-[#71717A] hover:text-white"
-                                    }`}
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
-                    </div>
-
-                    {/* CTA + Mobile Toggle */}
-                    <div className="flex items-center gap-4">
-                        <Link
-                            href="/contact"
-                            className="hidden lg:inline-flex items-center gap-2 px-6 py-2.5 bg-white text-black text-[13px] font-medium rounded-[2px] hover:bg-gray-200 transition-colors"
-                        >
-                            Deploy System
-                            <ArrowRight className="w-3.5 h-3.5" />
+            >
+                <div className="max-w-[1280px] mx-auto px-6">
+                    <div className="flex items-center justify-between h-20">
+                        {/* Logo */}
+                        <Link href="/" className="flex items-center group z-50 relative">
+                            <span style={{ fontFamily: "var(--font-space), 'Space Grotesk', sans-serif" }} className="text-2xl font-bold text-white tracking-tight">
+                                Bold<span className="text-[#0066ff]">Flow</span>
+                            </span>
                         </Link>
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="lg:hidden p-2 text-[#71717A] hover:text-white transition-colors focus:outline-none"
-                            aria-label="Toggle menu"
-                        >
-                            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                        </button>
+
+                        {/* Desktop Nav */}
+                        <div className="hidden lg:flex items-center justify-center flex-1 gap-8">
+                            {navLinks.map((link) => {
+                                const isActive = pathname === link.href;
+                                return (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        className={`group relative text-[14px] font-mono transition-colors duration-150 ${
+                                            isActive ? "text-[#F5F5F5]" : "text-[#A3A3A3] hover:text-[#F5F5F5]"
+                                        }`}
+                                    >
+                                        <span className={`opacity-0 group-hover:opacity-100 transition-opacity duration-150 ${isActive ? "opacity-100 text-[#0066ff]" : "text-[#525252]"}`}>[ </span>
+                                        {link.label}
+                                        <span className={`opacity-0 group-hover:opacity-100 transition-opacity duration-150 ${isActive ? "opacity-100 text-[#0066ff]" : "text-[#525252]"}`}> ]</span>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+
+                        {/* CTA + Mobile Toggle */}
+                        <div className="flex items-center justify-end shrink-0 gap-4">
+                            <Link
+                                href="/contact"
+                                className="hidden lg:inline-flex px-6 py-2.5 text-[14px] font-medium btn-primary"
+                            >
+                                Deploy System
+                            </Link>
+
+                            <button
+                                onClick={() => setIsOpen(!isOpen)}
+                                className="lg:hidden p-2 text-[#A3A3A3] hover:text-[#F5F5F5] transition-colors focus:outline-none"
+                                aria-label="Toggle menu"
+                            >
+                                <span className="font-mono text-[12px] uppercase tracking-widest text-label">
+                                    {isOpen ? "[ CLOSE ]" : "[ MENU ]"}
+                                </span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
             </nav>
 
             {/* Mobile Menu Overlay */}
@@ -95,43 +104,47 @@ export default function Navbar() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="fixed inset-0 top-[64px] sm:top-[80px] z-40 bg-[#050505]/98 backdrop-blur-xl lg:hidden flex flex-col justify-start overflow-y-auto"
+                        transition={{ duration: 0.15 }}
+                        className="fixed inset-0 top-[80px] z-40 bg-[#050505] lg:hidden flex flex-col justify-start overflow-y-auto"
                     >
-                        <div className="px-6 py-12 flex flex-col gap-8">
-                            {navLinks.map((link, i) => (
-                                <motion.div
-                                    key={link.href}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.4, delay: i * 0.05 + 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                >
-                                    <Link
-                                        href={link.href}
-                                        onClick={() => setIsOpen(false)}
-                                        className={`text-2xl font-medium block transition-colors ${pathname === link.href
-                                            ? "text-white"
-                                            : "text-[#71717A] hover:text-white"
-                                            }`}
+                        <div className="px-6 py-12 flex flex-col gap-6">
+                            {navLinks.map((link, i) => {
+                                const isActive = pathname === link.href;
+                                return (
+                                    <motion.div
+                                        key={link.href}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.2, delay: i * 0.05 }}
                                     >
-                                        {link.label}
-                                    </Link>
-                                </motion.div>
-                            ))}
+                                        <Link
+                                            href={link.href}
+                                            onClick={() => setIsOpen(false)}
+                                            className={`text-[32px] font-medium flex items-center transition-colors ${
+                                                isActive ? "text-[#F5F5F5]" : "text-[#A3A3A3] hover:text-[#F5F5F5]"
+                                            }`}
+                                        >
+                                            {link.label}
+                                            {isActive && (
+                                                <span className="ml-4 text-[#0066ff] animate-cursor-blink">█</span>
+                                            )}
+                                        </Link>
+                                    </motion.div>
+                                );
+                            })}
                             
                             <motion.div 
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: navLinks.length * 0.05 + 0.2, ease: [0.16, 1, 0.3, 1] }}
+                                transition={{ duration: 0.2, delay: navLinks.length * 0.05 }}
                                 className="pt-8 mt-4 border-t border-[#1A1A1A]"
                             >
                                 <Link
                                     href="/contact"
                                     onClick={() => setIsOpen(false)}
-                                    className="inline-flex items-center justify-between w-full px-6 py-4 bg-white text-black text-sm font-medium rounded-[2px]"
+                                    className="flex items-center justify-center w-full px-6 py-4 text-sm font-medium btn-primary"
                                 >
                                     Deploy System
-                                    <ArrowRight className="w-4 h-4" />
                                 </Link>
                             </motion.div>
                         </div>

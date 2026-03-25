@@ -1,162 +1,301 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Code2 } from 'lucide-react';
-import { FadeUp } from '@/components/AnimationWrappers';
-import { PricingCards, FAQAccordion } from '@/components/PricingInteractive';
+"use client";
 
-export const metadata: Metadata = {
-  title: 'AI Architecture Pricing | BoldFlow Labs',
-  description: 'Transparent AI system deployment pricing. One-time build fee + predictable maintenance. No hidden costs.',
-};
+import type { Metadata } from "next";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
-export const plans = [
+const tiers = [
     {
-        name: "Starter Architecture",
-        tagline: "Initial Velocity",
-        bestFor: "Solopreneurs & local businesses validating automation.",
-        oneTimeSetup: "$997",
-        monthlyMaintenance: "$497 / month",
-        setupIncludes: [
-            "1 Core Automation (Lead Follow-up, Support Bot, or Booking)",
-            "Up to 3 API integrations",
-            "Basic system logging",
-            "1-week sprint delivery"
+        name: "Starter Plan",
+        tag: "First Wins",
+        setup: "$497–$997",
+        retainer: "$297–$497",
+        bestFor: "Solopreneurs, local businesses, first-time automation buyers",
+        features: [
+            "1 Core Automation (lead follow-up, chatbot, or booking)",
+            "Up to 3 integrations",
+            "Basic reporting",
+            "1-week build timeline",
+            "WhatsApp & email support",
+            "1 revision round"
         ],
-        atAGlance: "1 Core System · 3 Integrations · 1-Week Sprint",
-        ctaButton: "Initialize Starter",
-        popular: false
+        ctaText: "BOOK YOUR DISCOVERY CALL",
+        style: "starter"
     },
     {
-        name: "Growth Architecture",
-        tagline: "Intelligent Scale",
-        bestFor: "Growing SMBs & agencies requiring deeper integrated systems.",
-        badge: "Recommended Architecture",
-        popular: true,
-        oneTimeSetup: "$2,500",
-        monthlyMaintenance: "$997 / month",
-        setupIncludes: [
-            "3 Interconnected Systems (e.g. Bot + CRM + Routing)",
-            "Full CRM data pipeline setup",
-            "Monthly performance & telemetry dashboard",
-            "Priority Slack Connect channel",
-            "3-week sprint delivery"
+        name: "Growth Plan",
+        tag: "Scaling Smart",
+        isPopular: true,
+        setup: "$1,500–$2,500",
+        retainer: "$797–$1,200",
+        bestFor: "Growing SMBs, marketing agencies, coaches with teams",
+        features: [
+            "3 Core Automations (Unified system)",
+            "Full CRM integration",
+            "Monthly performance dashboard",
+            "Content scheduling automation",
+            "2–3 week build timeline",
+            "Weekly check-in calls",
+            "Priority WhatsApp support",
+            "2 revision rounds + full documentation"
         ],
-        atAGlance: "3 Core Systems · CRM Pipeline · Telemetry · 3-Week Sprint",
-        ctaButton: "Initialize Growth"
+        ctaText: "BOOK YOUR DISCOVERY CALL",
+        style: "growth"
     },
     {
-        name: "Enterprise Ecosystem",
-        tagline: "Full-Stack Autonomy",
-        bestFor: "Established operations needing complete end-to-end operational automation.",
-        oneTimeSetup: "$6,000+",
-        monthlyMaintenance: "$2,500+ / month",
-        isEnterprise: true,
-        setupIncludes: [
-            "Bespoke multi-agent workflows handling complex reasoning tasks",
-            "Deploy all 6 core system endpoints simultaneously",
-            "Real-time centralized BI dashboard",
-            "Custom LLM routing and fine-tuning if required",
-            "Quarterly full-system audits and optimizations",
-            "4-6 week sprint delivery with dedicated architect"
+        name: "Authority Plan",
+        tag: "Full-Stack Automation",
+        setup: "$3,500–$6,000+",
+        retainer: "$1,500–$2,500",
+        bestFor: "Established businesses, multi-location operations, agencies seeking white-label",
+        features: [
+            "All 5 core services as unified ecosystem",
+            "Custom AI chatbot with advanced flows",
+            "End-to-end customer journey automation",
+            "Real-time BI dashboard & CRM pipeline",
+            "Social & content automation",
+            "4–6 week build timeline",
+            "Dedicated Slack channel & Bi-weekly calls",
+            "Quarterly automation audit"
         ],
-        atAGlance: "Unlimited Systems · Custom Agents · BI Dashboard · Dedicated Architect",
-        ctaButton: "Request Enterprise Specs"
+        ctaText: "CONTACT TO SCOPE BUILD",
+        style: "authority"
     }
 ];
 
-export const faqs = [
-    {
-        q: "Why is there a setup fee and a separate monthly retainer?",
-        a: "The setup fee covers the full cost of building your automation systems — the discovery, architecture, integrations, testing, and deployment. The monthly retainer covers what happens after: monitoring, maintenance, performance reviews, and ongoing optimisation. Separating the two keeps things honest — you're not paying a bloated monthly fee that hides the real cost of the build."
-    },
-    {
-        q: "Do I have to commit to the monthly retainer?",
-        a: "The monthly retainer is optional, but strongly recommended. Without it, your systems will continue to run, but you won't have proactive monitoring, performance reporting, or priority access to make adjustments as your business evolves."
-    },
-    {
-        q: "What's the difference between Starter and Growth Architecture?",
-        a: "The Starter Architecture is built around a single, focused automation — one clear win, deployed quickly. Growth bundles three interconnected automations (e.g. chatbot, lead follow-up, and appointment booking) into a unified system with full CRM data sync."
-    },
-    {
-        q: "Can I upgrade my plan after getting started?",
-        a: "Yes. Many clients start on Starter to validate value, then upgrade. We structure upgrades so that the work already done isn't wasted — your initial systems operate as nodes within the new expanded architecture."
-    },
-    {
-        q: "How long does the deployment take?",
-        a: "Build windows are outlined in each plan: 1 week for Starter, 3 weeks for Growth, and 4-6 weeks for Enterprise. These timelines are strictly enforced and assume timely access to your platforms and feedback."
-    }
+const faqs = [
+    { q: "Why a setup fee + separate monthly retainer?", a: "Building custom automation requires intense upfront engineering to map logic, sequence APIs, and design schemas. The retainer covers the server costs, autonomous API limits, ongoing telemetry monitoring, and direct engineer access to prevent your systems from decaying." },
+    { q: "Do I have to commit to the monthly retainer?", a: "No. The retainer is strictly month-to-month. If you have an internal technical team capable of monitoring API endpoints and webhook structures, we will hand over the documentation after launch." },
+    { q: "What is the difference between Starter and Growth?", a: "Starter solves a single, isolated bottleneck (like an AI chatbot). Growth deploys an intertwined architecture that links multiple endpoints together (e.g., chatbot qualifies lead -> routes to CRM -> triggers SMS sequence -> schedules consultation autonomously)." },
+    { q: "Can I upgrade after getting started?", a: "Absolutely. We view automation iteratively. You can deploy a Starter module immediately and sequence additional modular capabilities via the Growth plan once ROI is validated." },
+    { q: "How long does setup take?", a: "Depending on pipeline complexity, deployment ranges from 7 days (Starter) to 6+ weeks (Authority). We rely on rigid sprint schedules to prevent scope creep." },
+    { q: "Do you work with clients outside India?", a: "Yes. Our systems process natively across global boundaries. We coordinate sync calls across major time zones effortlessly." }
 ];
 
 export default function PricingPage() {
+    const [openFaq, setOpenFaq] = useState<number | null>(0);
+
     return (
         <>
-            <section className="relative pt-32 pb-20 overflow-hidden border-b border-[#1A1A1A]">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] opacity-[0.03] pointer-events-none mix-blend-screen z-0">
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_100%)]" />
-                </div>
-
-                <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-                    <FadeUp custom={0} viewport={false}>
-                        <p className="text-[10px] uppercase tracking-[0.2em] font-mono text-[#00a2ff] mb-4">
-                            {"//"} System Deployment Models
-                        </p>
-                    </FadeUp>
-                    <FadeUp custom={1} viewport={false}>
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-medium text-white mb-6 tracking-tighter">
-                            Predictable Pricing.<br/> 
-                            <span className="text-[#A1A1AA] italic font-serif">Infinite Scale.</span>
-                        </h1>
-                    </FadeUp>
-                    <FadeUp custom={2} viewport={false}>
-                        <p className="text-base text-[#71717A] max-w-2xl mx-auto mb-8 leading-relaxed font-light">
-                            Every BoldFlow Labs engagement follows a strict engineering model: a one-time build fee to architect your systems, and a straightforward monthly maintenance retainer to ensure runtime stability and optimization.
-                        </p>
-                        <div className="inline-flex px-4 py-2 bg-[#111] border border-[#1A1A1A] rounded-[2px]">
-                            <p className="text-[11px] font-mono text-[#00a2ff]">
-                                INITIAL BUILD FROM $997 · RUNTIME FROM $497/MO 
-                            </p>
-                        </div>
-                    </FadeUp>
-                </div>
-            </section>
-
-            <section className="py-20 border-b border-[#1A1A1A] bg-[#030303]">
-                <div className="max-w-7xl mx-auto px-6">
-                    <PricingCards plans={plans} />
-                </div>
-            </section>
-
-            <section className="py-32 border-b border-[#1A1A1A] bg-[#050505]">
-                <div className="max-w-3xl mx-auto px-6">
-                    <FadeUp className="mb-16">
-                        <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#71717A] mb-4">
-                            {"//"} Knowledge Base
-                        </p>
-                        <h2 className="text-3xl font-medium tracking-tight text-white">
-                            System FAQ
-                        </h2>
-                    </FadeUp>
-                    <FadeUp custom={2}>
-                        <FAQAccordion faqs={faqs} />
-                    </FadeUp>
-                </div>
-            </section>
-
-            <section className="py-40 relative overflow-hidden bg-[#0A0A0A] text-center border-t border-[#1A1A1A]">
-                <div className="max-w-3xl mx-auto px-6 relative z-10">
-                    <Code2 className="w-8 h-8 text-[#00a2ff] mx-auto mb-6" />
-                    <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
-                        Define Your Parameters
-                    </h2>
-                    <p className="text-[#A1A1AA] mb-10 text-lg font-light">
-                        Book a 20-minute diagnostic. Tell us where your workflow breaks down, and we&apos;ll draft the architecture that eliminates it.
-                    </p>
-                    <Link
-                        href="/contact"
-                        className="inline-flex px-8 py-4 bg-white text-black font-medium text-sm hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] transition-shadow duration-300 rounded-[2px]"
+            {/* ── HERO ─────────────────────────────────── */}
+            <section className="relative pt-40 pb-32 border-b border-[#1A1A1A] overflow-hidden">
+                <div className="noise-overlay" />
+                <div className="grid-overlay pointer-events-none absolute inset-0 z-0" />
+                
+                <div className="max-w-[1280px] w-full mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-label text-[#0066ff] mb-6 uppercase"
                     >
-                        Schedule Diagnostic
-                    </Link>
+                        {"//"} PRICING MODELS
+                    </motion.div>
+                    
+                    <motion.h1 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="text-h1 md:text-hero text-[#F5F5F5] uppercase leading-tight mb-8 max-w-5xl"
+                    >
+                        Transparent AI Automation Pricing — Built Around Your Stage of Growth.
+                    </motion.h1>
+
+                    <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-body-lg text-[#F5F5F5] font-medium mb-4"
+                    >
+                        One-time setup. Predictable monthly retainer. Zero surprises.
+                    </motion.p>
+                    
+                    <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="text-body text-[#A3A3A3] max-w-2xl font-light mb-12"
+                    >
+                        Setup fee covers complete schema design, build, and active deployment. Optional monthly retainers ensure continuous endpoint monitoring, system optimization, and direct architectural support. No lock-in.
+                    </motion.p>
+
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.4 }}
+                        className="inline-flex flex-col md:flex-row items-center gap-4 bg-[#0A0A0A] border border-[#1A1A1A] px-6 py-4 font-mono text-[13px] text-[#A3A3A3]"
+                    >
+                        <span>Setup from <span className="text-[#F5F5F5]">$497</span></span>
+                        <span className="hidden md:inline text-[#333]">|</span>
+                        <span>Monthly from <span className="text-[#F5F5F5]">$297/mo</span></span>
+                        <span className="hidden md:inline text-[#333]">|</span>
+                        <span><span className="text-[#0066ff]">{"//"}</span> Dedicated Support</span>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* ── TIERS ────────────────────────────────── */}
+            <section className="py-24 bg-[#050505] border-b border-[#1A1A1A]">
+                <div className="max-w-[1280px] mx-auto px-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        {tiers.map((tier, i) => (
+                            <motion.div
+                                key={tier.name}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-10%" }}
+                                transition={{ delay: i * 0.1 }}
+                                className={`flex flex-col h-full relative p-8 ${
+                                    tier.style === 'starter' ? 'bg-[#0A0A0A] border z-10 border-[#1A1A1A]' :
+                                    tier.style === 'growth' ? 'bg-[#111111] border z-20 border-[rgba(0,102,255,0.15)] shadow-[0_0_80px_rgba(0,102,255,0.05)] transform lg:-translate-y-4' :
+                                    'bg-[#050505] border z-0 border-[#333333] opacity-80 hover:opacity-100 transition-opacity duration-300'
+                                }`}
+                            >
+                                {tier.style === 'growth' && (
+                                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#0066ff]" />
+                                )}
+
+                                <div className="mb-8">
+                                    <div className="flex justify-between items-start mb-4">
+                                        <h3 className="text-h3 text-[#F5F5F5] uppercase">{tier.name}</h3>
+                                        {tier.isPopular && (
+                                            <span className="mono-tag text-[#0066ff] border border-[rgba(0,102,255,0.2)] bg-[rgba(0,102,255,0.05)] px-2 py-1">MOST_POPULAR</span>
+                                        )}
+                                    </div>
+                                    <span className="text-label text-[#A3A3A3] block mb-8">{"//"} {tier.tag}</span>
+
+                                    <div className="space-y-2 mb-8 border-b border-[#1A1A1A] pb-8">
+                                        <div className="flex justify-between items-end">
+                                            <span className="text-caption text-[#71717A] uppercase tracking-wider">Deploy Base:</span>
+                                            <span className="text-h3 text-[#F5F5F5] font-mono leading-none">{tier.setup}</span>
+                                        </div>
+                                        <div className="flex justify-between items-end">
+                                            <span className="text-caption text-[#71717A] uppercase tracking-wider">Telemetry Retainer:</span>
+                                            <span className="text-[20px] text-[#A3A3A3] font-mono">{tier.retainer}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-8">
+                                        <span className="text-caption text-[#F5F5F5] mb-2 block font-medium uppercase">Optimal Fit:</span>
+                                        <p className="text-sm text-[#71717A] leading-relaxed">{tier.bestFor}</p>
+                                    </div>
+                                </div>
+
+                                <ul className="space-y-4 mb-12 flex-1">
+                                    {tier.features.map(feat => (
+                                        <li key={feat} className="flex gap-3 text-sm text-[#A3A3A3] items-start">
+                                            <span className="text-[#0066ff] font-mono mt-0.5">{">"}</span>
+                                            <span>{feat}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <Link 
+                                    href="/contact" 
+                                    className={`w-full py-4 text-center text-[13px] font-medium transition-all duration-150 ${
+                                        tier.style === 'growth' 
+                                            ? 'btn-primary' 
+                                            : 'btn-ghost'
+                                    }`}
+                                >
+                                    {tier.ctaText}
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── PRICING MODEL BREAKDOWN ───────────────── */}
+            <section className="py-24 bg-[#050505] border-b border-[#1A1A1A]">
+                <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                     <div>
+                         <div className="text-label text-[#0066ff] mb-4">{"//"} 01</div>
+                         <h4 className="text-[20px] font-medium text-[#F5F5F5] uppercase mb-3">One-Time Setup</h4>
+                         <p className="text-sm text-[#A3A3A3] leading-relaxed">Comprehensive architecture mapping, robust script building, rigorous testing, and live deployment configurations.</p>
+                     </div>
+                     <div>
+                         <div className="text-label text-[#0066ff] mb-4">{"//"} 02</div>
+                         <h4 className="text-[20px] font-medium text-[#F5F5F5] uppercase mb-3">Monthly Retainer</h4>
+                         <p className="text-sm text-[#A3A3A3] leading-relaxed">Server payload coverage, daily endpoint monitoring, automated reporting suites, and direct line access to our engineering team.</p>
+                     </div>
+                     <div>
+                         <div className="text-label text-[#0066ff] mb-4">{"//"} 03</div>
+                         <h4 className="text-[20px] font-medium text-[#F5F5F5] uppercase mb-3">Growth & Optimisation</h4>
+                         <p className="text-sm text-[#A3A3A3] leading-relaxed">Dedicated bi-weekly strategy sessions, rigorous quarterly logic audits, and continuous iterative improvement loops.</p>
+                     </div>
+                </div>
+            </section>
+
+            {/* ── FAQ ─────────────────────────────────── */}
+            <section className="py-32 bg-[#0A0A0A] border-b border-[#1A1A1A]">
+                <div className="max-w-[800px] mx-auto px-6">
+                    <h2 className="text-h2 font-medium text-[#F5F5F5] uppercase mb-16 text-center">Frequently Asked Queries.</h2>
+                    
+                    <div className="flex flex-col relative border-t border-[#1A1A1A]">
+                        {faqs.map((faq, i) => (
+                            <div key={i} className="border-b border-[#1A1A1A] overflow-hidden group">
+                                <button 
+                                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                                    className="w-full text-left py-6 flex justify-between items-center transition-colors focus:outline-none"
+                                >
+                                    <span className={`text-[16px] md:text-body-lg font-medium pr-8 transition-colors duration-150 ${openFaq === i ? 'text-[#F5F5F5]' : 'text-[#A3A3A3]'}`}>
+                                        {faq.q}
+                                    </span>
+                                    <span className={`font-mono text-label shrink-0 transition-colors duration-150 ${openFaq === i ? 'text-[#0066ff]' : 'text-[#525252]'}`}>
+                                        {openFaq === i ? "[ - ]" : "[ + ]"}
+                                    </span>
+                                </button>
+                                
+                                <AnimatePresence initial={false}>
+                                    {openFaq === i && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0, ease: "linear" }}
+                                            className="overflow-hidden"
+                                        >
+                                            <p className="text-[#A3A3A3] text-sm leading-relaxed pb-8 max-w-2xl">
+                                                {faq.a}
+                                            </p>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── PAGE CTA ─────────────────────────────── */}
+            <section className="py-32 lg:py-48 flex justify-center px-6 bg-[#050505]">
+                <div className="w-full max-w-[800px] border border-[#1A1A1A] bg-[#0A0A0A] relative p-16 md:p-24 text-center group active:scale-[0.99] transition-transform duration-150">
+                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 p-[1px] z-20">
+                        <div className="w-full h-full animate-sweep-border opacity-50" />
+                    </div>
+
+                    <div className="grid-overlay pointer-events-none absolute inset-0 z-0" />
+                    <div className="absolute inset-0 radial-glow z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    <div className="target-hex target-hex-left-top" />
+                    <div className="target-hex target-hex-right-bottom" />
+                    
+                    <div className="relative z-10 flex flex-col items-center">
+                        <h2 className="text-[32px] md:text-h2 font-medium text-[#F5F5F5] uppercase mb-12 leading-tight">
+                            SECURE YOUR INFRASTRUCTURE EVALUATION.
+                        </h2>
+                        
+                        <div className="flex flex-col gap-4 text-left mb-12 border-l border-[#0066ff] pl-6 max-w-sm mx-auto">
+                            <span className="text-caption text-[#A3A3A3]"><span className="text-[#525252] font-mono mr-2">{"//"}</span> No obligation</span>
+                            <span className="text-caption text-[#A3A3A3]"><span className="text-[#525252] font-mono mr-2">{"//"}</span> Straight answers</span>
+                            <span className="text-caption text-[#A3A3A3]"><span className="text-[#525252] font-mono mr-2">{"//"}</span> Limited spots per month</span>
+                        </div>
+
+                        <Link href="/contact" className="px-10 py-5 btn-primary font-medium text-sm text-center tracking-wide w-full sm:w-auto min-w-[240px]">
+                            BOOK YOUR FREE DISCOVERY CALL
+                        </Link>
+                    </div>
                 </div>
             </section>
         </>

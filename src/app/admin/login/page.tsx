@@ -32,7 +32,7 @@ export default function AdminLoginPage() {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             router.push("/admin");
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Login error:", err);
             setError("Invalid email or password. Please try again.");
         } finally {

@@ -11,6 +11,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 
 export default function AdminDashboard() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [posts, setPosts] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
@@ -84,7 +85,7 @@ export default function AdminDashboard() {
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10">
                         <div>
                             <h1 className="text-3xl font-bold mb-2">Blog Posts</h1>
-                            <p className="text-gray-400">Manage your agency's content and insights</p>
+                            <p className="text-gray-400">Manage your agency&apos;s content and insights</p>
                         </div>
                         <Link
                             href="/admin/editor"

@@ -1,68 +1,46 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import {
-  ArrowRight,
-  Database,
-  Network,
-  Cpu,
-  Bot,
-  BarChart3,
-  Layers,
-  Activity,
-  Shield,
-  Clock,
-  Code2
-} from 'lucide-react';
-import { FadeUp, SlideLeft } from '@/components/AnimationWrappers';
-import { SystemPulse } from '@/components/SystemPulse';
+"use client";
 
-export const metadata: Metadata = {
-  title: 'BoldFlow Labs | Intelligent Automation Systems',
-  description: 'We architect bespoke AI workflows that eliminate friction, capture revenue, and scale infinitely.',
-};
+import Link from 'next/link';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { SystemPulse } from '@/components/SystemPulse';
 
 const services = [
   {
-    icon: Database,
+    label: '01',
     title: 'AI-Powered Lead Follow-Up',
     description: 'Instant, automated responses and smart follow-up sequences. No more leaked revenue from slow responses.',
-    tags: ['Sub-minute SLAs', 'Dynamic Scoring', 'CRM Sync'],
-    label: '01',
+    tags: ['<1M_SLA', 'DYNAMIC_SCORING', 'CRM_SYNC'],
   },
   {
-    icon: Bot,
+    label: '02',
     title: 'AI Support & Conversational Agents',
     description: 'Resolve customer queries 24/7. Capture leads and qualify prospects seamlessly without human intervention.',
-    tags: ['Multi-platform', 'LLM Routing', 'Human Handoff'],
-    label: '02',
+    tags: ['MULTI_PLATFORM', 'LLM_ROUTING', 'HUMAN_HANDOFF'],
   },
   {
-    icon: Network,
+    label: '03',
     title: 'Automated Scheduling Systems',
     description: 'End-to-end booking flows with multi-channel reminders that drastically reduce cancellations and no-shows.',
-    tags: ['2-Way Sync', 'Smart Reminders', 'Automated Triage'],
-    label: '03',
+    tags: ['2_WAY_SYNC', 'SMART_REMINDERS', 'AUTO_TRIAGE'],
   },
   {
-    icon: Layers,
+    label: '04',
     title: 'Social & Content Pipelines',
     description: 'Intelligent content distribution systems that draft, schedule, and repurpose assets across your entire stack.',
-    tags: ['Cross-platform', 'GenAI Drafting', 'Auto-publishing'],
-    label: '04',
+    tags: ['CROSS_PLATFORM', 'GENAI_DRAFTING', 'AUTO_PUBLISH'],
   },
   {
-    icon: BarChart3,
+    label: '05',
     title: 'Automated BI Dashboards',
     description: 'Real-time operational reporting. Surface the metrics that matter and eliminate manual spreadsheet management.',
-    tags: ['Data Aggregation', 'Custom KPIs', 'Real-time Sync'],
-    label: '05',
+    tags: ['DATA_AGGREG', 'CUSTOM_KPI', 'REAL_TIME_SYNC'],
   },
   {
-    icon: Cpu,
+    label: '06',
     title: 'Custom Agentic Workflows',
     description: 'Bespoke AI architectures designed specifically for complex, multi-step operations unique to your business.',
-    tags: ['Multi-agent logic', 'API Integration', 'Full IP Rights'],
-    label: '06',
+    tags: ['MULTI_AGENT', 'API_INTEGRATION', 'FULL_IP_RIGHTS'],
   },
 ];
 
@@ -75,7 +53,7 @@ const processPhases = [
   {
     id: '02',
     title: 'Architecture Approval',
-    desc: 'Review data flows, security protocols, and integration schemas prior to engineering.',
+    desc: 'Review data flows, security protocols, and integration schemas prior to engineering execution.',
   },
   {
     id: '03',
@@ -89,218 +67,335 @@ const processPhases = [
   },
 ];
 
+const differentiators = [
+  {
+    id: '01',
+    title: 'Security-First Architecture',
+    desc: 'Enterprise-grade encryption, strict role-based access controls, and absolute compliance handling protocols designed immediately from day zero. We deploy infrastructure that guarantees total data sovereignty.',
+    payload: [
+      "REQUEST: SEC_AUDIT_HANDSHAKE",
+      "[ OK ] ENCRYPTION: AES-256",
+      "[ OK ] IAM_ROLE: RESTRICTED",
+      "> PII_MASKING: ENABLED",
+      "SYS: VAULT_SEAL_INTACT."
+    ]
+  },
+  {
+    id: '02',
+    title: 'Weeks, Not Months',
+    desc: 'Finite milestone-driven agile sprints designed purely to deliver compounding value and functional operational systems to your immediate team fast. Zero theoretical bloat.',
+    payload: [
+      "CALCULATING DEPLOY_VECTOR...",
+      "TARGET_VELOCITY: EXCEEDED",
+      "> SPRINT_01: COMPLETE",
+      "> PIPELINE_BUILD: 14 DAYS",
+      "[ OK ] SYSTEM_ONLINE."
+    ]
+  },
+  {
+    id: '03',
+    title: 'Telemetry & Optimization',
+    desc: 'Deep runtime observability, algorithmic logging architectures, and continuous runtime monitoring to ensure your autonomous pipelines process flawlessly and improve radically over time.',
+    payload: [
+      "PINGING LIVE_NODES...",
+      "> LATENCY: 8ms",
+      "> THROUGHPUT: MAX_CAPACITY",
+      "[ WARNING ] THROTTLE_PREVENTED",
+      "SYS: AUTO_SCALED INSTANCES."
+    ]
+  },
+  {
+    id: '04',
+    title: 'Dedicated Engineers',
+    desc: 'You communicate natively and exclusively with the direct lead system architects deploying your product. We completely eliminate the operational friction of middle-tier account managers.',
+    payload: [
+      "ESTABLISHING COMMS_LINK...",
+      "ROUTING TO -> CHIEF_ARCHITECT",
+      "[ OK ] DIRECT_STREAM_ESTABLISHED",
+      "> NO_RELAYS",
+      "> RAW_ACCESS_GRANTED."
+    ]
+  }
+];
+
 export default function HomePage() {
+  const processRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: processRef,
+    offset: ["start center", "end center"]
+  });
+
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  // Manifesto Scroll Tracking for Terminal
+  const [activeReason, setActiveReason] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+        const sections = document.querySelectorAll('.reason-section');
+        let currentActive = 0;
+        sections.forEach((sec, idx) => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top <= window.innerHeight * 0.5) currentActive = idx;
+        });
+        setActiveReason(currentActive);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
-      {/* ── Hero Section ──────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden border-b border-[#1A1A1A]">
-        <div className="absolute inset-0 bg-[#050505] noise-overlay z-0" />
+      {/* ── SECTION 2: HERO ──────────────────────────── */}
+      <section className="relative min-h-screen flex items-center border-b border-[#1A1A1A] overflow-hidden pt-20">
+        <div className="noise-overlay" />
+        <div className="absolute inset-0 radial-glow opacity-30 z-0" />
         
-        {/* Kinetic Tech Background equivalent */}
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.15] pointer-events-none mix-blend-screen z-0">
-           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,87,34,0.15),transparent_60%)] animate-pulse-glow" />
-           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_100%)]" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-32 pb-20">
-          <div className="max-w-4xl">
-            <SlideLeft custom={1} viewport={false}>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
-                <div className="w-2 h-2 rounded-full bg-[#00d4ff] animate-pulse" />
-                <span className="text-[10px] font-mono text-gray-300 tracking-widest uppercase">Systems Operational</span>
-              </div>
-            </SlideLeft>
-
-            <SlideLeft custom={2} viewport={false}>
-              <h1 className="text-6xl sm:text-7xl md:text-[6rem] font-medium tracking-tighter leading-[0.9] mb-8 text-white">
-                Intelligent Automation.<br />
-                <span className="text-[#A1A1AA] italic font-serif">Built for Scale.</span>
-              </h1>
-            </SlideLeft>
-
-            <SlideLeft custom={3} viewport={false}>
-              <p className="text-lg md:text-xl text-[#71717A] max-w-2xl mb-12 leading-relaxed font-light">
-                Stop doing manually what intelligent systems can do better. We architect bespoke AI workflows that eliminate friction, capture revenue, and scale infinitely.
-              </p>
-            </SlideLeft>
-
-            <SlideLeft custom={4} viewport={false} className="flex flex-col sm:flex-row items-center gap-4">
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto px-8 py-4 bg-[#EDEDED] text-[#050505] font-medium text-sm hover:bg-white hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all duration-300 text-center rounded-[2px]"
-              >
-                Initialize Strategy Call
-              </Link>
-              <Link
-                href="/services"
-                className="group w-full sm:w-auto px-8 py-4 border border-[#1A1A1A] text-[#EDEDED] font-medium text-sm hover:border-[#333] hover:bg-white/5 transition-all duration-300 flex items-center justify-center gap-2 rounded-[2px]"
-              >
-                Explore the Architecture
-                <ArrowRight className="w-4 h-4 text-[#71717A] group-hover:text-white transition-colors" />
-              </Link>
-            </SlideLeft>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Core Services Peek ────────────────────── */}
-      <section className="py-32 border-b border-[#1A1A1A] relative" aria-label="System Architectures">
-        <div className="max-w-7xl mx-auto px-6">
-          <FadeUp custom={0} className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div className="max-w-2xl">
-              <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#71717A] mb-4">
-                {"//"} System Capabilities
-              </p>
-              <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white">
-                End-to-End Autonomous Systems
-              </h2>
-            </div>
-            <Link href="/services" className="text-sm font-mono text-[#00a2ff] hover:text-[#00d4ff] transition-colors flex items-center gap-2">
-              [ View All Systems ] <ArrowRight className="w-4 h-4" />
-            </Link>
-          </FadeUp>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#1A1A1A] border border-[#1A1A1A]">
-            {services.map((service, i) => (
-              <FadeUp
-                key={service.label}
-                custom={i}
-                className="group relative bg-[#050505] p-8 hover:bg-[#0A0A0A] transition-colors duration-300 h-full flex flex-col justify-between overflow-hidden"
-              >
-                {/* Accent glow on hover */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF5722] opacity-0 group-hover:opacity-[0.03] blur-3xl transition-opacity duration-500 rounded-full pointer-events-none" />
-
-                <div>
-                  <div className="flex justify-between items-start mb-12">
-                    <service.icon className="w-5 h-5 text-[#71717A] group-hover:text-white transition-colors" />
-                    <span className="text-xs font-mono text-[#333]">{service.label}</span>
-                  </div>
-                  <h3 className="text-lg font-medium text-white mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-[#71717A] leading-relaxed mb-8">
-                    {service.description}
-                  </p>
-                </div>
+        <div className="max-w-[1280px] w-full mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
+            {/* Left Col - Typography */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.1, delay: 0.1 }}
+                    className="flex items-center gap-2 mb-8 bg-[#0066ff]/5 border border-[rgba(0,102,255,0.2)] px-3 py-1.5 w-max"
+                >
+                    <span className="w-1.5 h-1.5 bg-[#0066ff] rounded-full animate-pulse-dot" />
+                    <span className="text-label text-[#0066ff]">SYSTEMS OPERATIONAL</span>
+                </motion.div>
                 
-                <div className="flex flex-wrap gap-2">
-                  {service.tags.map(tag => (
-                    <span key={tag} className="text-[10px] uppercase font-mono bg-white/5 text-[#A1A1AA] px-2 py-1 border border-white/5 rounded-[2px]">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
+                <h1 className="text-hero text-[#F5F5F5] mb-8 uppercase" style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    <motion.div
+                        initial={{ y: "100%" }}
+                        animate={{ y: 0 }}
+                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                    >
+                        Deterministic<br />
+                        Automation.<br />
+                        Finite<br />
+                        Execution.
+                    </motion.div>
+                </h1>
 
-      {/* ── Why Us (The Manifesto) ────────────────── */}
-      <section className="py-32 border-b border-[#1A1A1A]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            <div className="lg:col-span-4">
-              <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#71717A] mb-4">
-                {"//"} Engineering Integrity
-              </p>
-              <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-6">
-                Built on rigorous technical standards.
-              </h2>
-              <p className="text-sm text-[#71717A] leading-relaxed">
-                We refuse to deploy fragile boilerplate. Every workflow, model, and integration we architect is built with enterprise security, infinite scalability, and immediate ROI in mind.
-              </p>
+                <motion.p 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 0.45 }}
+                    className="text-body-lg text-[#A3A3A3] max-w-xl mb-12"
+                >
+                    Stop paying humans to act like algorithms. We engineer bespoke AI pipelines that eliminate operational friction, execute with zero latency, and scale unconditionally.
+                </motion.p>
+
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 0.6 }}
+                    className="flex flex-col sm:flex-row items-center gap-4"
+                >
+                    <Link href="/contact" className="w-full sm:w-auto px-8 py-4 btn-primary font-medium text-sm text-center">
+                        INITIALIZE DIAGNOSTIC
+                    </Link>
+                    <Link href="/services" className="w-full sm:w-auto px-8 py-4 btn-ghost font-mono text-[13px] text-center tracking-wider">
+                        [ RUN ARCHITECTURE DOCS ]
+                    </Link>
+                </motion.div>
             </div>
-            
-            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
-              <FadeUp custom={1} className="flex gap-4">
-                <Shield className="w-5 h-5 text-[#FF5722] shrink-0" />
-                <div>
-                  <h4 className="text-sm font-medium text-white mb-2">Security-First Architecture</h4>
-                  <p className="text-xs text-[#71717A] leading-relaxed">Enterprise-grade encryption, role-based access controls, and strict PII data handling protocols from day one.</p>
-                </div>
-              </FadeUp>
-              <FadeUp custom={2} className="flex gap-4">
-                <Clock className="w-5 h-5 text-[#FF5722] shrink-0" />
-                <div>
-                  <h4 className="text-sm font-medium text-white mb-2">Weeks, Not Months</h4>
-                  <p className="text-xs text-[#71717A] leading-relaxed">Milestone-driven agile sprints designed to deliver compounding value and working systems to your team fast.</p>
-                </div>
-              </FadeUp>
-              <FadeUp custom={3} className="flex gap-4">
-                <Activity className="w-5 h-5 text-[#FF5722] shrink-0" />
-                <div>
-                  <h4 className="text-sm font-medium text-white mb-2">Telemetry & Optimization</h4>
-                  <p className="text-xs text-[#71717A] leading-relaxed">Advanced logging and runtime monitoring to ensure systems process flawlessly and improve autonomously over time.</p>
-                </div>
-              </FadeUp>
-              <FadeUp custom={4} className="flex gap-4">
-                <Code2 className="w-5 h-5 text-[#FF5722] shrink-0" />
-                <div>
-                  <h4 className="text-sm font-medium text-white mb-2">Dedicated Engineers</h4>
-                  <p className="text-xs text-[#71717A] leading-relaxed">You communicate directly with the lead system architects building your product. No middle-men account managers.</p>
-                </div>
-              </FadeUp>
-            </div>
-          </div>
-          
-          <div className="mt-16 sm:mt-24 max-w-4xl mx-auto">
-             <FadeUp custom={5}>
+
+            {/* Right Col - Visual Anchor */}
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.1, delay: 0.8 }}
+                className="lg:col-span-5 h-[500px] lg:h-auto animate-crt relative"
+            >
                 <SystemPulse />
-             </FadeUp>
-          </div>
+                <div className="target-hex target-hex-left-top" />
+                <div className="target-hex target-hex-right-bottom" />
+            </motion.div>
         </div>
       </section>
 
-      {/* ── 4-Phase Architecture Process ──────────── */}
-      <section className="py-32 border-b border-[#1A1A1A] relative" aria-label="Deployment Process">
-        <div className="max-w-7xl mx-auto px-6">
-          <FadeUp custom={0} className="mb-20 text-center">
-             <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#71717A] mb-4">
-                {"//"} Deployment Vector
-             </p>
-             <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6">
-                The Engineering Lifecycle.
-             </h2>
-          </FadeUp>
-
-          <div className="relative max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
-              {processPhases.map((phase, i) => (
-                <FadeUp key={phase.id} custom={i} className="relative group">
-                  <div className="h-0.5 w-full bg-[#1A1A1A] mb-6 relative overflow-hidden">
-                    {/* Glowing progress line on hover */}
-                    <div className="absolute inset-y-0 left-0 w-0 bg-[#00a2ff] group-hover:w-full transition-all duration-700 ease-out" />
-                  </div>
-                  <span className="text-xs font-mono text-[#71717A] group-hover:text-white transition-colors">Phase {phase.id}</span>
-                  <h4 className="text-lg font-medium text-white mt-3 mb-3">{phase.title}</h4>
-                  <p className="text-sm text-[#71717A] leading-relaxed">{phase.desc}</p>
-                </FadeUp>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Contextual CTA ────────────────────────── */}
-      <section className="py-32 relative overflow-hidden bg-[#050505] text-center">
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(0,102,255,0.08),transparent_70%)] pointer-events-none" />
-         
-         <div className="max-w-3xl mx-auto px-6 relative z-10">
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
-              Ready to execute?
-            </h2>
-            <p className="text-[#A1A1AA] mb-10 text-lg font-light">
-              Book a strategic diagnostic call to analyze your current stack, uncover immediate operational friction, and map a scalable automation architecture.
-            </p>
-            
-            <Link
-                href="/contact"
-                className="inline-flex px-10 py-4 bg-white text-black font-medium text-sm hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] transition-shadow duration-300 rounded-[2px]"
+      {/* ── SECTION 3: TRUST BAR ────────────────────── */}
+      <section className="h-[120px] border-b border-[#1A1A1A] w-full overflow-hidden flex items-center bg-[#050505] relative">
+          <div className="flex whitespace-nowrap overflow-hidden w-full font-mono text-label text-[#525252]">
+              <motion.div
+                  animate={{ x: [0, -1000] }}
+                  transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+                  className="flex items-center"
               >
-                Book Technical Diagnostic
-            </Link>
-         </div>
+                  {/* Repeated blocks for infinite marquee */}
+                  {[1,2,3].map(i => (
+                      <div key={i} className="flex items-center">
+                          <span className="mx-12">{"//"} UPTIME: 99.999%</span>
+                          <span className="text-[#1A1A1A]">[ + ]</span>
+                          <span className="mx-12">{"//"} AVG_LATENCY: 12ms</span>
+                          <span className="text-[#1A1A1A]">[ + ]</span>
+                          <span className="mx-12">{"//"} ACTIVE_NODES: 2,048</span>
+                          <span className="text-[#1A1A1A]">[ + ]</span>
+                          <span className="mx-12">{"//"} ZERO_DAY_REDUNDANCY: ONLINE</span>
+                          <span className="text-[#1A1A1A]">[ + ]</span>
+                      </div>
+                  ))}
+              </motion.div>
+          </div>
+      </section>
+
+      {/* ── SECTION 4: SERVICES ─────────────────────── */}
+      <section className="py-32 lg:py-48 border-b border-[#1A1A1A]">
+        <div className="max-w-[1280px] mx-auto px-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+                <div>
+                   <p className="text-label text-[#71717A] mb-4 uppercase">
+                       <span className="text-[#0066ff]">{"//"}</span> SYSTEM CAPABILITIES
+                   </p>
+                   <h2 className="text-h2 text-[#F5F5F5] uppercase">
+                       Engineer Workflow<br/>Pipelines.
+                   </h2>
+                </div>
+                <Link href="/services" className="font-mono text-[13px] text-[#A3A3A3] hover:text-[#0066ff] transition-colors relative group">
+                    [ EXECUTE : VIEW ALL SYSTEMS ]
+                    <span className="absolute left-0 bottom-[-4px] w-full h-[1px] bg-[#0066ff] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-150" />
+                </Link>
+            </div>
+
+            {/* Matrix Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[#1A1A1A]">
+                {services.map((svc, idx) => (
+                    <motion.div
+                        key={svc.label}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-10%" }}
+                        transition={{ duration: 0.15, delay: idx * 0.1, ease: "linear" }}
+                        className="service-card p-10 flex flex-col h-full"
+                    >
+                        <div className="text-label text-[#525252] mb-12">{"//"} {svc.label}</div>
+                        <h3 className="text-h3 text-[#F5F5F5] mb-4">{svc.title}</h3>
+                        <p className="text-body text-[#A3A3A3] mb-12 flex-1">{svc.description}</p>
+                        <div className="flex flex-wrap gap-2 mt-auto">
+                            {svc.tags.map(tag => (
+                                <span key={tag} className="mono-tag text-[#71717A] border border-[#1A1A1A] px-2 py-1 bg-[#050505]">{`[ ${tag} ]`}</span>
+                            ))}
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 5: WHY BOLDFLOW ─────────────────── */}
+      <section className="py-32 lg:py-48 border-b border-[#1A1A1A]">
+          <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
+              {/* Left Column - Sticky */}
+              <div className="lg:col-span-5 relative">
+                  <div className="sticky top-32">
+                      <p className="text-label text-[#71717A] mb-4 uppercase">
+                          <span className="text-[#0066ff]">{"//"}</span> ENGINEERING INTEGRITY
+                      </p>
+                      <h2 className="text-h2 text-[#F5F5F5] uppercase mb-12">
+                          Absolute<br />Technical<br />Credibility.
+                      </h2>
+                      <div className="h-[300px] w-full opacity-100">
+                          <SystemPulse customPayloads={differentiators[activeReason].payload} />
+                      </div>
+                  </div>
+              </div>
+
+              {/* Right Column - Scrolling */}
+              <div className="lg:col-span-7 flex flex-col pt-[50vh] pb-[20vh] space-y-32">
+                  {differentiators.map((diff, i) => (
+                      <div key={diff.id} className="reason-section border-t border-[#1A1A1A] pt-8 relative">
+                          <div className="target-hex target-hex-left-top" />
+                          <div className="text-label text-[#0066ff] mb-6 block">
+                              [ REASON_{diff.id} ]
+                          </div>
+                          <h3 className="text-[32px] font-medium text-[#F5F5F5] uppercase leading-tight mb-6">{diff.title}</h3>
+                          <p className="text-body-lg text-[#A3A3A3] max-w-xl">{diff.desc}</p>
+                      </div>
+                  ))}
+              </div>
+          </div>
+      </section>
+
+      {/* ── SECTION 6: PROCESS ──────────────────────── */}
+      <section ref={processRef} className="py-32 lg:py-48 border-b border-[#1A1A1A]">
+          <div className="max-w-[1280px] mx-auto px-6">
+              <p className="text-label text-[#71717A] mb-4 uppercase">
+                  <span className="text-[#0066ff]">{"//"}</span> DEPLOYMENT VECTOR
+              </p>
+              <h2 className="text-h2 text-[#F5F5F5] uppercase mb-24">
+                  The Engineering<br/>Lifecycle.
+              </h2>
+
+              <div className="relative pl-0 md:pl-12 max-w-4xl">
+                  {/* Vertical Rail */}
+                  <div className="absolute left-[15px] top-[10px] bottom-[10px] w-[1px] bg-[#1A1A1A] hidden md:block">
+                      <motion.div 
+                          className="w-full bg-[#0066ff] transform origin-top"
+                          style={{ scaleY: lineHeight }}
+                      />
+                  </div>
+
+                  <div className="flex flex-col gap-20 relative">
+                     {processPhases.map((phase, i) => (
+                         <div key={phase.id} className="relative group md:pl-16 flex flex-col">
+                             {/* Rail Node Indicator */}
+                             <div className="hidden md:flex absolute left-[-2px] top-[10px] w-[9px] h-[9px] bg-[#050505] border border-[#525252] rounded-full z-10 items-center justify-center transition-colors duration-[0ms] group-hover:border-[#0066ff] group-hover:bg-[#0066ff]">
+                             </div>
+
+                             <div className="text-label text-[#525252] mb-4 transition-colors duration-[0ms] group-hover:text-[#0066ff]">
+                                 PHASE_{phase.id}
+                             </div>
+                             
+                             <div className="bg-transparent group-hover:bg-[#0A0A0A] p-0 md:group-hover:px-8 md:group-hover:py-6 transition-all duration-[0ms] border border-transparent group-hover:border-[#1A1A1A]">
+                                 <h3 className="text-[28px] md:text-[32px] font-medium text-[#A3A3A3] group-hover:text-[#F5F5F5] uppercase mb-4 transition-colors duration-[0ms]">
+                                     {phase.title}
+                                 </h3>
+                                 <p className="text-body text-[#71717A] max-w-2xl transition-colors duration-[0ms] group-hover:text-[#A3A3A3]">
+                                     {phase.desc}
+                                 </p>
+                             </div>
+                         </div>
+                     ))}
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      {/* ── SECTION 7: MID-PAGE CTA ─────────────────── */}
+      <section className="py-32 lg:py-48 flex justify-center px-6">
+          <div className="w-full max-w-[800px] border border-[#1A1A1A] bg-[#0A0A0A] relative p-16 md:p-24 text-center group active:scale-[0.99] transition-transform duration-150">
+              {/* Outer stroke animation on hover */}
+              <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 p-[1px] z-20">
+                  <div className="w-full h-full animate-sweep-border opacity-50" />
+              </div>
+
+              {/* Grid & Glow */}
+              <div className="grid-overlay pointer-events-none absolute inset-0 z-0" />
+              <div className="absolute inset-0 radial-glow z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="target-hex target-hex-left-top" />
+              <div className="target-hex target-hex-right-bottom" />
+              <div className="target-hex target-hex-right-top" />
+              <div className="target-hex target-hex-left-bottom" />
+
+              <div className="absolute top-6 right-8 text-label text-[#525252]">
+                  {"//"} ONDEMAND_CAPACITY: <span className="text-[#F5F5F5]">82% RESERVED</span>
+              </div>
+
+              <div className="relative z-10 flex flex-col items-center">
+                  <h2 className="text-[32px] md:text-h2 font-medium text-[#F5F5F5] uppercase mb-6 leading-tight">
+                      SYSTEMS AWAITING<br/>DEPLOYMENT.
+                  </h2>
+                  <p className="text-body-lg text-[#A3A3A3] mb-12 max-w-md mx-auto">
+                      Secure your infrastructure diagnostic. Zero theoreticals. Pure architectural clarity.
+                  </p>
+                  
+                  <Link href="/contact" className="px-10 py-5 btn-primary font-medium text-sm text-center tracking-wide w-full sm:w-auto min-w-[240px]">
+                      INITIALIZE DIAGNOSIS
+                  </Link>
+              </div>
+          </div>
       </section>
     </>
   );

@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import BlogCard from "@/components/BlogCard";
-import { FadeUp } from "@/components/AnimationWrappers";
-import { Terminal, Database } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function BlogPage() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [posts, setPosts] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -16,14 +16,15 @@ export default function BlogPage() {
             try {
                 const q = query(
                     collection(db, "blogs"),
-                    where("status", "in", ["published", "Published", "PUBLISHED"])
+                    where("status", "==", "published")
                 );
                 const querySnapshot = await getDocs(q);
                 const postsData = querySnapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 }));
-                // Manually sort since index might be missing
+                // Sort descending
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 setPosts(postsData.sort((a: any, b: any) => b.createdAt - a.createdAt));
             } catch (error) {
                 console.error("Error fetching blog posts:", error);
@@ -36,54 +37,73 @@ export default function BlogPage() {
     }, []);
 
     return (
-        <section className="pt-32 pb-24 px-6 min-h-screen bg-[#050505] relative overflow-hidden">
-            {/* Grid Array Background */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none z-0" />
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(0,102,255,0.08),transparent_60%)] pointer-events-none" />
+        <>
+            {/* ── HERO ─────────────────────────────────── */}
+            <section className="relative pt-40 pb-32 border-b border-[#1A1A1A] overflow-hidden">
+                <div className="noise-overlay" />
+                <div className="grid-overlay pointer-events-none absolute inset-0 z-0" />
+                
+                <div className="max-w-[1280px] w-full mx-auto px-6 relative z-10 flex flex-col justify-center">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-label text-[#0066ff] mb-6 uppercase"
+                    >
+                        {"//"} SYSTEM LOGS
+                    </motion.div>
+                    
+                    <motion.h1 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="text-h1 md:text-hero text-[#F5F5F5] uppercase leading-[0.9] mb-8 max-w-4xl tracking-tighter"
+                    >
+                        The Architecture<br/>Logbook.
+                    </motion.h1>
 
-            <div className="max-w-7xl mx-auto relative z-10">
-                {/* Header */}
-                <div className="text-center mb-24 max-w-3xl mx-auto">
-                    <FadeUp custom={0} viewport={false}>
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[2px] border border-[#1A1A1A] bg-[#0A0A0A] mb-8">
-                            <Terminal className="w-3.5 h-3.5 text-[#00a2ff]" />
-                            <span className="text-[10px] font-mono text-[#00a2ff] tracking-widest uppercase">System Telemetry & Logs</span>
-                        </div>
-                    </FadeUp>
-                    
-                    <FadeUp custom={1} viewport={false}>
-                        <h1 className="text-4xl md:text-6xl font-medium text-white mb-6 tracking-tight">
-                            The Architecture <span className="text-[#A1A1AA] italic font-serif tracking-normal">Logbook.</span>
-                        </h1>
-                    </FadeUp>
-                    
-                    <FadeUp custom={2} viewport={false}>
-                        <p className="text-[#71717A] text-lg font-light leading-relaxed">
-                            Engineering notes, architectural breakthroughs, and live system deployment strategies derived from our active infrastructure.
-                        </p>
-                    </FadeUp>
+                    <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-body-lg text-[#A3A3A3] max-w-2xl font-light"
+                    >
+                        Engineering notes, architectural breakthroughs, and live system deployment strategies derived from our active infrastructure.
+                    </motion.p>
                 </div>
+            </section>
 
-                {loading ? (
-                    <div className="flex flex-col justify-center items-center h-64 gap-4">
-                        <Database className="w-8 h-8 text-[#A1A1AA] animate-pulse" />
-                        <p className="text-[10px] font-mono text-[#71717A] uppercase tracking-widest">Querying Data Store...</p>
-                    </div>
-                ) : posts.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#1A1A1A] border border-[#1A1A1A] rounded-[2px] overflow-hidden">
-                        {posts.map((post, index) => (
-                            <FadeUp key={post.id} custom={index} className="bg-[#050505]">
-                                <BlogCard post={post} />
-                            </FadeUp>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="text-center py-32 border border-[#1A1A1A] bg-[#0A0A0A] rounded-[2px] shadow-[0_0_80px_rgba(255,87,34,0.02)]">
-                        <Terminal className="w-8 h-8 text-[#333] mx-auto mb-4" />
-                        <p className="text-[#A1A1AA] font-mono text-sm uppercase tracking-widest">Log array empty. No current telemetry available.</p>
-                    </div>
-                )}
-            </div>
-        </section>
+            {/* ── POSTS GRID ───────────────────────────── */}
+            <section className="py-24 bg-[#050505]">
+                <div className="max-w-[1280px] mx-auto px-6">
+                    {loading ? (
+                        <div className="flex flex-col justify-center items-center h-64 gap-4 border border-[#1A1A1A] bg-[#0A0A0A]">
+                            <span className="text-[#0066ff] font-mono text-[14px] animate-pulse">█</span>
+                            <p className="text-label font-mono text-[#525252] uppercase tracking-widest">QUERYING_DATA_STORE...</p>
+                        </div>
+                    ) : posts.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[#1A1A1A] border border-[#1A1A1A]">
+                            {posts.map((post, index) => (
+                                <motion.div 
+                                    key={post.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.05 }}
+                                    className="h-full"
+                                >
+                                    <BlogCard post={post} />
+                                </motion.div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-32 border border-[#1A1A1A] bg-[#0A0A0A] relative">
+                            <div className="target-hex target-hex-left-top" />
+                            <div className="target-hex target-hex-right-bottom" />
+                            <span className="text-[#333] font-mono text-2xl mb-4 block">[ _ ]</span>
+                            <p className="text-[#525252] font-mono text-label uppercase tracking-widest">LOG_ARRAY_EMPTY // NO_RECORDS_FOUND</p>
+                        </div>
+                    )}
+                </div>
+            </section>
+        </>
     );
 }

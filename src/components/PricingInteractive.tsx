@@ -38,12 +38,12 @@ export function PricingCards({ plans }: { plans: PricingPlan[] }) {
                     <div
                         key={plan.name}
                         className={`relative rounded-[2px] p-8 transition-all duration-300 flex flex-col ${plan.popular
-                            ? "bg-[#0A0A0A] border border-[#FF5722]/50 shadow-[0_0_80px_rgba(255,87,34,0.06)]"
+                            ? "bg-[#0A0A0A] border border-[#0066ff]/50 shadow-[0_0_80px_rgba(255,87,34,0.06)]"
                             : "bg-[#050505] border border-[#1A1A1A] hover:border-[#333]"
                             }`}
                     >
                         {plan.popular && (
-                            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#FF5722] to-transparent" />
+                            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#0066ff] to-transparent" />
                         )}
                         
                         <div className="flex flex-col h-full z-10">
@@ -57,7 +57,7 @@ export function PricingCards({ plans }: { plans: PricingPlan[] }) {
                                     </p>
                                 </div>
                                 {plan.badge && (
-                                    <span className="inline-flex items-center text-[9px] uppercase tracking-[0.1em] font-mono text-[#FF5722] bg-[#FF5722]/10 px-2 py-1 rounded-[2px] border border-[#FF5722]/20">
+                                    <span className="inline-flex items-center text-[9px] uppercase tracking-[0.1em] font-mono text-[#0066ff] bg-[#0066ff]/10 px-2 py-1 rounded-[2px] border border-[#0066ff]/20">
                                         {plan.badge}
                                     </span>
                                 )}
@@ -91,7 +91,7 @@ export function PricingCards({ plans }: { plans: PricingPlan[] }) {
                             <Link
                                 href="/contact"
                                 className={`w-full py-4 text-center font-mono text-xs uppercase tracking-widest transition-all duration-300 rounded-[2px] ${plan.popular
-                                    ? "bg-[#FF5722] text-white hover:bg-[#E64A19]"
+                                    ? "bg-[#0066ff] text-white hover:bg-[#E64A19]"
                                     : "bg-white/5 text-white border border-white/10 hover:bg-white/10"
                                     }`}
                             >
