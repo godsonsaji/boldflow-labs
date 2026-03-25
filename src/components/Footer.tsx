@@ -1,117 +1,110 @@
 import Link from "next/link";
-import { Mail, Clock, Phone, LocateIcon, Linkedin, Twitter, Facebook, Instagram } from "lucide-react";
+import { LocateIcon, Globe2, Activity } from "lucide-react";
 
 const footerLinks = {
-    Company: [
-        { href: "/about", label: "About Us" },
-        { href: "/case-studies", label: "Case Studies" },
-        { href: "/testimonials", label: "What to Expect" },
-        { href: "/contact", label: "Contact" },
+    Architecture: [
+        { href: "/about", label: "The Lead Engineer" },
+        { href: "/testimonials", label: "Engineering Manifesto" },
+        { href: "/contact", label: "Contact / Deploy" },
     ],
-    Services: [
-        { href: "/services", label: "Lead & CRM Automation" },
-        { href: "/services", label: "AI Chatbots & Support" },
-        { href: "/services", label: "Appointment Booking" },
-        { href: "/services", label: "Social & Content" },
-        { href: "/services", label: "Reporting Dashboards" },
-        { href: "/services", label: "Custom AI & Voice" },
-    ],
-    Resources: [
-        { href: "/pricing", label: "Pricing" },
-        { href: "/contact", label: "Book a Call" },
-        { href: "/case-studies", label: "Portfolio" },
-        { href: "/about", label: "Our Process" },
+    Deployments: [
+        { href: "/services", label: "System Capabilities" },
+        { href: "/pricing", label: "Architecture Models" },
+        { href: "/case-studies", label: "Founding Cohort" },
+        { href: "/blog", label: "Telemetry & Logs" },
     ],
 };
 
 export default function Footer() {
     return (
-        <footer aria-label="Footer" className="relative border-t border-white/[0.04] bg-black">
-            {/* Gradient line accent */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0066ff]/40 to-transparent" />
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Links Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 py-14">
-                    {/* Brand Column */}
-                    <div className="sm:col-span-2 lg:col-span-2">
-                        <Link href="/" className="flex items-center gap-1.5 group">
-                            <span className="text-2xl font-bold text-white tracking-tight">
+        <footer aria-label="Footer" className="bg-[#050505] border-t border-[#1A1A1A] pt-20 pb-12">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-20">
+                    
+                    {/* Brand Core */}
+                    <div className="md:col-span-5">
+                        <Link href="/" className="flex items-center gap-1.5 group mb-6">
+                            <span style={{ fontFamily: "var(--font-space), 'Space Grotesk', sans-serif" }} className="text-2xl font-bold text-white tracking-tight">
                                 Bold<span className="gradient-text">Flow</span>
                             </span>
                         </Link>
-                        <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
-                            A specialist AI automation agency designing intelligent workflow
-                            systems that eliminate operational friction and drive measurable
-                            business growth.
+                        <p className="text-sm text-[#71717A] font-light leading-relaxed max-w-sm mb-8">
+                            We architect bespoke AI workflows that eliminate operational friction and replace manual tasks with deterministic code.
                         </p>
-                        <div className="space-y-2.5 text-sm text-gray-400">
-                            <a href="mailto:boldflowlabs@gmail.com" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200 break-all py-2">
-                                <Mail className="w-3.5 h-3.5 text-[#0066ff]/60" />
-                                boldflowlabs@gmail.com
-                            </a>
-                            <a href="tel:+91-9447178166" className="flex items-center gap-2.5 hover:text-[#00a2ff] transition-colors duration-200 py-3 min-h-[44px]">
-                                <Phone className="w-3.5 h-3.5 text-[#0066ff]/60" />
-                                +91-9447178166</a>
-                            <div className="flex items-center gap-2.5">
-                                <LocateIcon className="w-3.5 h-3.5 text-[#0066ff]/60" />
-                                Pathanamthitta, Kerala, India
+                        
+                        <div className="flex flex-col gap-4 font-mono text-[11px] text-[#A1A1AA]">
+                            <div className="flex items-center gap-3">
+                                <span className="w-1.5 h-1.5 bg-[#00a2ff] rounded-full animate-pulse" />
+                                <span className="uppercase tracking-widest text-[#00a2ff]">Mainframe Online</span>
                             </div>
-                            <div className="flex items-center gap-2.5">
-                                <Clock className="w-3.5 h-3.5 text-[#0066ff]/60" />
-                                Response within 1 business day
+                            <div className="flex items-center gap-3">
+                                <LocateIcon className="w-3.5 h-3.5" />
+                                <span className="uppercase tracking-wider">Kerala, India [ Server Edge ]</span>
                             </div>
-                        </div>
-
-                        {/* Social Links */}
-                        <div className="mt-8 flex items-center gap-4">
-                            <a href="https://linkedin.com/company/boldflowlabs" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-gray-400 hover:text-[#00a2ff] hover:border-[#00a2ff]/30 hover:bg-[#00a2ff]/5 transition-all duration-300 group/social" aria-label="LinkedIn">
-                                <Linkedin className="w-4 h-4 transition-transform group-hover/social:scale-110" />
-                            </a>
-                            <a href="https://x.com/boldflowlabs" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-gray-400 hover:text-[#00a2ff] hover:border-[#00a2ff]/30 hover:bg-[#00a2ff]/5 transition-all duration-300 group/social" aria-label="X (Twitter)">
-                                <Twitter className="w-4 h-4 transition-transform group-hover/social:scale-110" />
-                            </a>
-                            <a href="https://facebook.com/boldflowlabs" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-gray-400 hover:text-[#00a2ff] hover:border-[#00a2ff]/30 hover:bg-[#00a2ff]/5 transition-all duration-300 group/social" aria-label="Facebook">
-                                <Facebook className="w-4 h-4 transition-transform group-hover/social:scale-110" />
-                            </a>
-                            <a href="https://instagram.com/boldflowlabs" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-gray-400 hover:text-[#00a2ff] hover:border-[#00a2ff]/30 hover:bg-[#00a2ff]/5 transition-all duration-300 group/social" aria-label="Instagram">
-                                <Instagram className="w-4 h-4 transition-transform group-hover/social:scale-110" />
-                            </a>
+                            <div className="flex items-center gap-3">
+                                <Globe2 className="w-3.5 h-3.5" />
+                                <span className="uppercase tracking-wider">Global Operations</span>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Link Columns */}
-                    {Object.entries(footerLinks).map(([title, links]) => (
-                        <div key={title}>
-                            <h3 className="text-white/80 font-semibold text-xs uppercase tracking-widest mb-4">
-                                {title}
+                    {/* Directory Links */}
+                    <div className="md:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+                        {Object.entries(footerLinks).map(([title, links]) => (
+                            <div key={title}>
+                                <h3 className="text-[10px] uppercase tracking-[0.2em] font-mono text-[#71717A] mb-6">
+                                    {"//"} {title}
+                                </h3>
+                                <ul className="space-y-4">
+                                    {links.map((link, i) => (
+                                        <li key={i}>
+                                            <Link
+                                                href={link.href}
+                                                className="text-sm text-[#A1A1AA] hover:text-white transition-colors duration-200"
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                        
+                        <div>
+                            <h3 className="text-[10px] uppercase tracking-[0.2em] font-mono text-[#71717A] mb-6">
+                                {"//"} Transmit
                             </h3>
-                            <ul className="space-y-2.5">
-                                {links.map((link, i) => (
-                                    <li key={i}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-gray-400 text-sm hover:text-[#00a2ff] transition-colors duration-200 inline-block"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
+                            <ul className="space-y-4">
+                                <li>
+                                    <a href="mailto:boldflowlabs@gmail.com" className="text-sm text-[#A1A1AA] hover:text-[#00a2ff] transition-colors duration-200 block break-all">
+                                        boldflowlabs@gmail.com
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="tel:+919447178166" className="text-sm text-[#A1A1AA] hover:text-white transition-colors duration-200">
+                                        +91-9447178166
+                                    </a>
+                                </li>
+                                <li className="pt-4">
+                                    <div className="flex items-center gap-4 text-[#71717A]">
+                                        <a href="https://linkedin.com/company/boldflowlabs" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LN</a>
+                                        <a href="https://x.com/boldflowlabs" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">X</a>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
-                    ))}
+                    </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="py-8 border-t border-white/[0.04] flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-gray-400">
-                    <p className="text-center md:text-left order-2 md:order-1">© 2026 BoldFlow Labs. All rights reserved.</p>
-                    <div className="flex items-center gap-8 order-1 md:order-2">
-                        <Link href="#" className="hover:text-[#00a2ff] transition-colors duration-200">
-                            Privacy Policy
-                        </Link>
-                        <Link href="#" className="hover:text-[#00a2ff] transition-colors duration-200">
-                            Terms of Service
-                        </Link>
+                {/* Technical Footprint */}
+                <div className="pt-8 border-t border-[#1A1A1A] flex flex-col md:flex-row items-center justify-between gap-6">
+                    <p className="text-[10px] font-mono uppercase tracking-widest text-[#71717A]">
+                        © {new Date().getFullYear()} BoldFlow Labs. v.1.0.0
+                    </p>
+                    <div className="flex items-center gap-6 text-[10px] font-mono uppercase tracking-widest text-[#71717A]">
+                        <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
+                        <Link href="#" className="hover:text-white transition-colors">Terms</Link>
+                        <Link href="#" className="hover:text-white transition-colors">Status</Link>
                     </div>
                 </div>
             </div>

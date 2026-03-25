@@ -1,203 +1,124 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-    ShieldCheck,
-    Lightbulb,
-    Eye,
-    HeartHandshake,
-    Sparkles,
-    ArrowRight,
-} from "lucide-react";
-import { FadeUp, SlideLeft, SlideRight } from "@/components/AnimationWrappers";
+import { Eye, ShieldCheck, Lightbulb, HeartHandshake, Sparkles, ArrowRight, Compass } from "lucide-react";
+import { FadeUp } from "@/components/AnimationWrappers";
 
 export const metadata: Metadata = {
-    title: "What to Expect — Working With BoldFlow Labs",
-    description:
-        "BoldFlow Labs is building its track record one client at a time. Learn what to expect from a founding partnership, our commitments, and how we earn your trust.",
-    alternates: { canonical: "/testimonials" },
-    openGraph: {
-        title: "What to Expect — BoldFlow Labs",
-        description:
-            "We\u2019re early-stage, and we\u2019re building this one client at a time. Here\u2019s what we promise to every engagement.",
-        url: "/testimonials",
-    },
+    title: "Engineering Manifesto | BoldFlow Labs",
+    description: "The core commitments and engineering principles that define every BoldFlow Labs deployment.",
 };
 
 const commitments = [
     {
+        id: "01",
         icon: Eye,
         title: "Total Transparency",
         description:
-            "You\u2019ll know what we\u2019re working on, why, and how it\u2019s progressing \u2014 at every stage. No black boxes, no buzzwords, and no surprises at go-live.",
+            "You’ll know what we’re building, why, and how it’s progressing at every node. No black boxes, no buzzwords, and absolute clarity on the underlying architecture.",
     },
     {
+        id: "02",
         icon: ShieldCheck,
         title: "Rigorous Delivery",
         description:
-            "Every solution goes through thorough testing, documentation, and handover training. We don\u2019t ship until it works, and we don\u2019t walk away until you\u2019re confident running it.",
+            "Every solution runs through unit testing, end-to-end simulation, and strict error logging. We don’t ship fragile boilerplate, and we don’t close the sprint until runtime is flawless.",
     },
     {
+        id: "03",
         icon: Lightbulb,
-        title: "Honest Counsel",
+        title: "Engineering Honesty",
         description:
-            "If something isn\u2019t the right fit, we\u2019ll tell you. If a simpler solution exists, we\u2019ll recommend it \u2014 even if it means a smaller engagement for us.",
+            "If a simpler, non-AI solution exists to solve your bottleneck, we’ll build it—even if it reduces our scope. We engineer for maximum ROI, not maximum complexity.",
     },
     {
+        id: "04",
         icon: HeartHandshake,
-        title: "Deep Engagement",
+        title: "Intentional Scale",
         description:
-            "By choice, we take on a limited number of clients. This means you get senior-level attention, fast communication, and a team that genuinely understands your business.",
+            "By design, we deploy a limited number of systems per quarter. You deal directly with the lead system architect, removing standard agency account-manager friction.",
     },
     {
+        id: "05",
         icon: Sparkles,
-        title: "Post-Launch Support",
+        title: "Post-Deploy Optimization",
         description:
-            "Every engagement includes a defined support window after deployment. We monitor, optimize, and make sure what we built continues to perform as your operations evolve.",
-    },
+            "Go-live is merely the initialization phase. We track telemetry, monitor API limits, and ensure your workflow evolves algorithmically as your business logic changes.",
+    }
 ];
 
 export default function TestimonialsPage() {
     return (
         <>
-            {/* Hero */}
-            <section className="relative pt-32 pb-20 overflow-hidden" aria-label="What to expect">
-                <div className="orb orb-blue w-[500px] h-[500px] -top-40 -right-40 opacity-20" aria-hidden="true" />
-
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
-                    <FadeUp custom={0} viewport={false}>
-                        <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
-                            What to Expect
-                        </p>
-                    </FadeUp>
-                    <FadeUp custom={1} viewport={false}>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]">
-                            What to Expect When You Work With{" "}
-                            <span className="shimmer-text">BoldFlow Labs</span>
-                        </h1>
-                    </FadeUp>
-                    <FadeUp custom={2} viewport={false}>
-                        <p className="text-base text-gray-300 max-w-2xl mx-auto">
-                            We&apos;re not going to pretend we have 500 case studies and a wall of
-                            testimonials. We&apos;re early-stage, and we&apos;re building this one
-                            client at a time. What we can share is exactly what you&apos;ll get when
-                            you work with us — and the commitments we make to every engagement.
-                        </p>
-                    </FadeUp>
+            <section className="relative pt-32 pb-20 overflow-hidden border-b border-[#1A1A1A]">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(255,87,34,0.05),transparent_60%)] pointer-events-none z-0" />
+                
+                <div className="max-w-7xl mx-auto px-6 relative z-10">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <FadeUp custom={0} viewport={false}>
+                            <p className="text-[10px] uppercase tracking-[0.2em] font-mono text-[#FF5722] mb-4">
+                                {"//"} Engineering Manifesto
+                            </p>
+                        </FadeUp>
+                        <FadeUp custom={1} viewport={false}>
+                            <h1 className="text-5xl md:text-7xl font-medium tracking-tighter text-white mb-6 leading-[0.9]">
+                                The Build <span className="text-[#A1A1AA] italic font-serif">Commitments.</span>
+                            </h1>
+                        </FadeUp>
+                        <FadeUp custom={2} viewport={false}>
+                            <p className="text-lg text-[#71717A] font-light leading-relaxed mb-8 max-w-2xl mx-auto">
+                                Trust is established through predictable, high-fidelity execution. We are replacing subjective promises with unbreakable engineering standards.
+                            </p>
+                        </FadeUp>
+                    </div>
                 </div>
             </section>
 
-            {/* Commitments */}
-            <section className="section-padding pt-0" aria-label="Our commitments to every client">
-                <div className="max-w-7xl mx-auto">
-                    <FadeUp custom={0} className="mb-14">
-                        <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
-                            Our Promise
-                        </p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">
-                            Our Commitments to{" "}
-                            <span className="gradient-text">Every Client</span>
-                        </h2>
-                    </FadeUp>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <section className="py-24 bg-[#030303] border-b border-[#1A1A1A]" aria-label="Our Commitments">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-[#1A1A1A] bg-[#0A0A0A]">
                         {commitments.map((item, i) => (
                             <FadeUp
                                 key={item.title}
                                 custom={i}
-                                className="group glass glass-hover rounded-xl p-7 transition-all duration-300"
+                                className="group p-8 md:p-12 border-b border-r border-[#1A1A1A] hover:bg-[#111] transition-colors duration-300 relative overflow-hidden"
                             >
-                                <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.06] border border-[#00a2ff]/10 flex items-center justify-center mb-4 group-hover:bg-[#0066ff]/10 group-hover:border-[#00a2ff]/20 transition-all duration-300">
-                                    <item.icon className="w-5 h-5 text-[#00a2ff] icon-hover-spin" />
-                                </div>
-                                <h3 className="text-base font-semibold text-white mb-2">
+                                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00a2ff] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                
+                                <span className="block text-[10px] font-mono text-[#333] mb-6 group-hover:text-[#00a2ff]/50 transition-colors">
+                                    [ RULE_{item.id} ]
+                                </span>
+                                <item.icon className="w-6 h-6 text-[#A1A1AA] group-hover:text-white transition-colors mb-4" />
+                                <h3 className="text-xl font-medium text-white mb-3">
                                     {item.title}
                                 </h3>
-                                <p className="text-gray-400 text-sm leading-relaxed">
+                                <p className="text-[#71717A] text-sm leading-relaxed font-light">
                                     {item.description}
                                 </p>
                             </FadeUp>
                         ))}
+                        {/* Empty block to complete the 3-column grid cleanly */}
+                        <div className="hidden lg:flex p-12 border-b border-[#1A1A1A] items-center justify-center opacity-20">
+                            <Compass className="w-12 h-12 text-[#333]" />
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Founding Client Cohort */}
-            <section
-                className="section-padding relative"
-                style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.04) 0%, transparent 100%)" }}
-                aria-label="Founding client programme"
-            >
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <SlideLeft custom={0}>
-                            <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
-                                Limited Availability
-                            </p>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                                How We&apos;ll Build Our{" "}
-                                <span className="gradient-text">Track Record</span>
-                            </h2>
-                            <div className="space-y-4">
-                                <p className="text-gray-400 text-sm leading-relaxed">
-                                    We&apos;re actively onboarding a founding client cohort — a small group
-                                    of businesses that will be the first to experience our full-service AI
-                                    automation delivery.
-                                </p>
-                                <p className="text-gray-400 text-sm leading-relaxed">
-                                    Founding clients receive the same deep-focus engagement and technical
-                                    rigour as every future client, but at an introductory investment level —
-                                    in exchange for their partnership in helping us refine our delivery and
-                                    build public case studies.
-                                </p>
-                            </div>
-                        </SlideLeft>
-
-                        <SlideRight custom={0}>
-                            <div className="glass rounded-xl p-8">
-                                <h3 className="text-white text-lg font-bold mb-4">
-                                    What Founding Clients Get
-                                </h3>
-                                <ul className="space-y-3">
-                                    {[
-                                        "Full-scope automation or AI build at founding-tier pricing",
-                                        "Direct senior-level attention on every engagement",
-                                        "Priority access to new capabilities as we expand",
-                                        "Co-creation of a public case study and results summary",
-                                        "Extended post-launch support and optimization window",
-                                    ].map((item) => (
-                                        <li key={item} className="flex items-start gap-2.5 text-sm text-gray-400">
-                                            <Sparkles className="w-4 h-4 text-[#00a2ff]/60 mt-0.5 shrink-0" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </SlideRight>
-                    </div>
-                </div>
-            </section>
-
-            {/* CTA */}
-            <section className="section-padding" aria-label="Apply for founding client engagement">
-                <div className="max-w-4xl mx-auto text-center">
-                    <FadeUp custom={0}>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                            Interested in Becoming a{" "}
-                            <span className="shimmer-text">Founding Client?</span>
-                        </h2>
-                        <p className="text-gray-300 text-base mb-10 max-w-xl mx-auto">
-                            We&apos;re accepting a limited number of founding engagements. If
-                            you&apos;re looking for a hands-on, expert-led AI automation partner,
-                            we&apos;d love to hear from you.
-                        </p>
-                        <Link
-                            href="/contact"
-                            className="group inline-flex items-center gap-2 px-10 py-4 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-base hover:shadow-2xl hover:shadow-[#0066ff]/30 transition-all duration-300 hover:scale-[1.03] btn-magnetic"
-                        >
-                            Apply for a Founding Client Engagement
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                    </FadeUp>
+            <section className="py-32 relative overflow-hidden bg-[#0A0A0A] text-center border-t border-[#1A1A1A]">
+                 <div className="max-w-3xl mx-auto px-6 relative z-10">
+                    <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
+                        Architect Your Expansion
+                    </h2>
+                    <p className="text-[#A1A1AA] mb-10 text-lg font-light">
+                        Experience execution without compromise. Schedule a technical teardown to map your current operational friction.
+                    </p>
+                    <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-2 px-10 py-4 bg-white text-black font-medium text-sm hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] transition-shadow duration-300 rounded-[2px]"
+                    >
+                        Schedule Diagnostic
+                        <ArrowRight className="w-4 h-4 text-black" />
+                    </Link>
                 </div>
             </section>
         </>

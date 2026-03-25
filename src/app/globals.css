@@ -1,25 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-space: var(--font-space), "Space Grotesk", sans-serif;
 
-  --color-dark-950: #000000;
-  --color-dark-900: #050508;
-  --color-dark-800: #F5F9FF;
-  --color-dark-700: #E6F0FF;
-  --color-dark-600: #C9D6F2;
-  --color-dark-500: #AAB8D9;
-  --color-dark-400: #8A94B2;
-
-
+  --color-dark-bg: #050505;
+  --color-dark-panel: #0A0A0A;
+  --color-dark-surface: #111111;
+  --color-dark-border: #1A1A1A;
+  
+  --color-brand-orange: #FF5722;
+  --color-brand-orange-light: #FF8A65;
   --color-brand-blue: #0066ff;
   --color-brand-electric: #00a2ff;
   --color-brand-cyan: #00d4ff;
-  --color-brand-ice: #60a5fa;
 
-  --color-glass-border: rgba(0, 162, 255, 0.10);
-  --color-glass-bg: rgba(255, 255, 255, 0.02);
-  --color-glass-bg-hover: rgba(0, 162, 255, 0.06);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-bg: rgba(10, 10, 10, 0.4);
+  --color-glass-bg-hover: rgba(255, 87, 34, 0.03);
+  
+  --color-text-primary: #EDEDED;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #71717A;
 }
 
 /* ── Base Styles ──────────────────────────────── */
@@ -30,15 +33,15 @@ html {
 }
 
 body {
-  background: var(--color-dark-950);
-  color: #cbd5e1;
+  background: var(--color-dark-bg);
+  color: var(--color-text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
   width: 100%;
 }
 
 ::selection {
-  background: rgba(0, 102, 255, 0.4);
+  background: rgba(255, 87, 34, 0.3);
   color: #fff;
 }
 

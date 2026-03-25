@@ -1,104 +1,118 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { FadeUp } from "@/components/AnimationWrappers";
+import { ArrowRight, Activity, Clock, IterationCcw } from "lucide-react";
+import { FadeUp, SlideLeft } from "@/components/AnimationWrappers";
 
 export const metadata: Metadata = {
-    title: "Case Studies — AI Automation Results | BoldFlow Labs",
-    description:
-        "BoldFlow Labs is building its portfolio. See our approach to AI automation, or apply to be a founding client and become one of our first published case studies.",
-    alternates: { canonical: "/case-studies" },
-    openGraph: {
-        title: "Case Studies — BoldFlow Labs",
-        description:
-            "Our case studies are coming soon. Apply to be a founding client and build with us.",
-        url: "/case-studies",
-    },
+    title: "The Founding Cohort | BoldFlow Labs",
+    description: "Architecting the future of automation. Join our exclusive founding cohort program to co-create published case studies.",
 };
+
+const metrics = [
+    {
+        icon: Clock,
+        title: "Time Recovery",
+        desc: "Quantifying hours reclaimed from manual data entry, scheduling algorithms, and repetitive tasks.",
+    },
+    {
+        icon: Activity,
+        title: "Lead Velocity",
+        desc: "Measuring the decrease in SLA response times and the increase in prospect conversion rates.",
+    },
+    {
+        icon: IterationCcw,
+        title: "Error Reduction",
+        desc: "Tracking the elimination of human error in data transfers, synchronization, and compliance workflows.",
+    }
+];
 
 export default function CaseStudiesPage() {
     return (
         <>
-            {/* Hero */}
-            <section className="relative pt-32 pb-20 overflow-hidden" aria-label="Case studies">
-                <div className="orb orb-blue w-[500px] h-[500px] -top-40 -right-40 opacity-20" aria-hidden="true" />
-
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
+            <section className="relative pt-32 pb-20 overflow-hidden border-b border-[#1A1A1A]">
+                <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_left,rgba(0,102,255,0.08),transparent_60%)] pointer-events-none z-0" />
+                <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
                     <FadeUp custom={0} viewport={false}>
-                        <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
-                            Case Studies
+                        <p className="text-[10px] uppercase font-mono tracking-[0.2em] text-[#00a2ff] mb-4">
+                            {"//"} Portfolio Status: INITIALIZING
                         </p>
                     </FadeUp>
                     <FadeUp custom={1} viewport={false}>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]">
-                            We&apos;re Building Our{" "}
-                            <span className="shimmer-text">Portfolio</span>
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-white mb-6 leading-[1.05]">
+                            Architecting The <span className="text-[#A1A1AA] italic font-serif">Future.</span>
                         </h1>
                     </FadeUp>
                     <FadeUp custom={2} viewport={false}>
-                        <p className="text-base text-gray-300 max-w-2xl mx-auto">
-                            We believe results should speak louder than marketing. Our published
-                            case studies are coming soon — co-created with our founding client
-                            cohort and based on real outcomes, not hypotheticals.
+                        <p className="text-lg text-[#71717A] max-w-2xl mx-auto font-light leading-relaxed mb-8">
+                            We don&apos;t rely on hypothetical marketing. True engineering speaks through data. We are currently architecting systems for our Founding Cohort to establish public, verifiable benchmarks.
                         </p>
                     </FadeUp>
                 </div>
             </section>
 
-            {/* Coming Soon Message */}
-            <section className="section-padding pt-0" aria-label="Case studies coming soon">
-                <div className="max-w-3xl mx-auto">
-                    <FadeUp custom={0}>
-                        <div className="glass rounded-2xl p-10 md:p-14 text-center">
-                            <div className="w-14 h-14 rounded-xl bg-[#0066ff]/[0.06] border border-[#00a2ff]/10 flex items-center justify-center mx-auto mb-6">
-                                <Sparkles className="w-7 h-7 text-[#00a2ff]" />
-                            </div>
-                            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                                Real Results, Coming Soon
+            <section className="py-24 border-b border-[#1A1A1A] bg-[#050505]">
+                <div className="max-w-5xl mx-auto px-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                        <SlideLeft custom={0}>
+                            <h2 className="text-3xl lg:text-4xl font-medium text-white mb-6">
+                                The Founding Cohort
                             </h2>
-                            <p className="text-gray-300 text-sm leading-relaxed mb-4 max-w-xl mx-auto">
-                                As a young agency, we&apos;re focused on delivering exceptional
-                                work for our first clients before packaging it for public
-                                consumption. Each case study we publish will include measurable
-                                outcomes, transparent methodology, and direct client input.
+                            <p className="text-[#A1A1AA] text-sm leading-relaxed mb-6 font-light">
+                                As an emerging architectural firm for AI automation, we are highly selective about our initial deployments. We are currently onboarding 3 founding partners for Q3.
                             </p>
-                            <p className="text-gray-400 text-sm leading-relaxed max-w-xl mx-auto">
-                                In the meantime, learn about our{" "}
-                                <Link href="/testimonials" className="text-[#00a2ff] hover:underline">
-                                    commitments and founding client programme
-                                </Link>
-                                , or{" "}
-                                <Link href="/services" className="text-[#00a2ff] hover:underline">
-                                    explore our services
-                                </Link>{" "}
-                                to see how we work.
+                            <p className="text-[#A1A1AA] text-sm leading-relaxed mb-8 font-light">
+                                Founding partners receive our complete technical dedication at introductory investment levels—in exchange for co-creating a rigorous, published tear-down of the engineering methodology and business outcomes.
                             </p>
-                        </div>
-                    </FadeUp>
+                            <div className="space-y-4">
+                                <p className="text-[10px] uppercase tracking-widest font-mono text-[#71717A]">Target Telemetry Metrics</p>
+                                <div className="grid gap-4">
+                                    {metrics.map((m, i) => (
+                                        <div key={i} className="flex gap-4 items-start bg-[#0A0A0A] border border-[#1A1A1A] p-4 rounded-[2px]">
+                                            <m.icon className="w-5 h-5 text-[#FF5722] mt-0.5 shrink-0" />
+                                            <div>
+                                                <h4 className="text-sm font-medium text-white mb-1">{m.title}</h4>
+                                                <p className="text-xs text-[#71717A] leading-relaxed">{m.desc}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </SlideLeft>
+                        
+                        <FadeUp custom={1} className="relative h-full hidden md:block">
+                            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] rounded-[2px] border border-[#1A1A1A] flex flex-col items-center justify-center p-8 text-center overlow-hidden">
+                                <div className="absolute inset-0 bg-[#050505]/50 backdrop-blur-[2px]" />
+                                <div className="relative z-10">
+                                    <div className="w-16 h-16 rounded-[2px] bg-[#111] border border-[#333] flex items-center justify-center mx-auto mb-6">
+                                        <Activity className="w-8 h-8 text-[#00a2ff]" />
+                                    </div>
+                                    <h3 className="text-xl font-mono text-white mb-2">Awaiting Data</h3>
+                                    <p className="text-xs text-[#71717A] max-w-sm">
+                                        System outputs will be published upon conclusion of the Q3 deployment sprints.
+                                    </p>
+                                </div>
+                            </div>
+                        </FadeUp>
+                    </div>
                 </div>
             </section>
 
-            {/* CTA */}
-            <section className="section-padding" aria-label="Become a founding client">
-                <div className="max-w-4xl mx-auto text-center">
-                    <FadeUp custom={0}>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                            Want to Be One of Our{" "}
-                            <span className="shimmer-text">First Case Studies?</span>
-                        </h2>
-                        <p className="text-gray-300 text-base mb-10 max-w-xl mx-auto">
-                            Join our founding client cohort and receive hands-on AI automation
-                            at introductory pricing — in exchange for co-creating a published
-                            case study of your results.
-                        </p>
-                        <Link
-                            href="/contact"
-                            className="group inline-flex items-center gap-2 px-10 py-4 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-base hover:shadow-2xl hover:shadow-[#0066ff]/30 transition-all duration-300 hover:scale-[1.03] btn-magnetic"
-                        >
-                            Apply for a Founding Client Engagement
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                    </FadeUp>
+            <section className="py-32 relative overflow-hidden bg-[#0A0A0A] text-center border-t border-[#1A1A1A]">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(0,102,255,0.05),transparent_70%)] pointer-events-none" />
+                <div className="max-w-3xl mx-auto px-6 relative z-10">
+                    <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
+                        Secure a Founding Deployment
+                    </h2>
+                    <p className="text-[#A1A1AA] mb-10 text-lg font-light">
+                        We are currently accepting structural diagnostics for our final Q3 cohort slots. 
+                    </p>
+                    <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-2 px-10 py-4 bg-white text-black font-medium text-sm hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] transition-shadow duration-300 rounded-[2px]"
+                    >
+                        Apply for Founding Cohort
+                        <ArrowRight className="w-4 h-4 text-black" />
+                    </Link>
                 </div>
             </section>
         </>

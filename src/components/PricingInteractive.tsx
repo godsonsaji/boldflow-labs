@@ -2,12 +2,10 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Check, Minus, Plus, Sparkles } from "lucide-react";
+import { ChevronRight, Shield, Terminal } from "lucide-react";
 import { useState } from "react";
 
-/* ── Engagement-Based Pricing Cards ─────────────────── */
-
-interface PricingPlan {
+export interface PricingPlan {
     name: string;
     tagline: string;
     bestFor: string;
@@ -18,110 +16,140 @@ interface PricingPlan {
     ctaButton: string;
     badge?: string;
     popular?: boolean;
+    isEnterprise?: boolean;
 }
 
 export function PricingCards({ plans }: { plans: PricingPlan[] }) {
+    const standardPlans = plans.filter(p => !p.isEnterprise);
+    const enterprisePlan = plans.find(p => p.isEnterprise);
+
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 relative">
-            {plans.map((plan) => (
-                <div
-                    key={plan.name}
-                    className={`relative rounded-2xl overflow-hidden transition-all duration-300 flex flex-col ${plan.popular
-                        ? "bg-gradient-to-b from-[#0066ff]/[0.08] to-transparent border-2 border-[#00a2ff]/40 shadow-[0_0_60px_rgba(0,102,255,0.08)] transform lg:-translate-y-2 lg:scale-[1.02]"
-                        : "border border-white/[0.05] hover:border-white/[0.08]"
-                        }`}
-                >
-                    {plan.popular && (
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00a2ff] to-transparent" />
-                    )}
-                    <div className="p-6 sm:p-8 flex flex-col h-full">
-                        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                            <h3 className="text-xl font-bold text-white">
-                                {plan.name}
-                            </h3>
-                            {plan.badge && (
-                                <span className="inline-flex items-center gap-1 text-[9px] uppercase tracking-[0.1em] font-semibold text-[#00a2ff] bg-[#0066ff]/10 px-2 py-0.5 rounded-full whitespace-nowrap border border-[#00a2ff]/20">
-                                    <Sparkles className="w-2.5 h-2.5" />
-                                    {plan.badge}
-                                </span>
-                            )}
-                        </div>
-                        <p className="text-sm font-semibold text-[#00a2ff] mb-2">
-                            {plan.tagline}
-                        </p>
-                        <div className="mb-6">
-                            <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-1">Best for:</p>
-                            <p className="text-sm text-gray-300 leading-relaxed">
-                                {plan.bestFor}
-                            </p>
-                        </div>
+        <div className="flex flex-col gap-8 relative">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-[10px] font-mono text-[#A1A1AA] tracking-[0.2em] mb-4">
+                <span>[ NO VENDOR LOCK-IN ]</span>
+                <span className="hidden sm:inline text-[#333]">—</span>
+                <span>[ MONTH-TO-MONTH RETAINER ]</span>
+                <span className="hidden sm:inline text-[#333]">—</span>
+                <span>[ FULL CODE/SYSTEM HANDOVER ]</span>
+            </div>
 
-                        <div className="space-y-4 mb-2">
-                            <div>
-                                <span className="text-[11px] text-gray-400 block uppercase tracking-wider mb-1">One-Time Setup</span>
-                                <span className="text-3xl font-bold text-white">
-                                    {plan.oneTimeSetup}
-                                </span>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {standardPlans.map((plan) => (
+                    <div
+                        key={plan.name}
+                        className={`relative rounded-[2px] p-8 transition-all duration-300 flex flex-col ${plan.popular
+                            ? "bg-[#0A0A0A] border border-[#FF5722]/50 shadow-[0_0_80px_rgba(255,87,34,0.06)]"
+                            : "bg-[#050505] border border-[#1A1A1A] hover:border-[#333]"
+                            }`}
+                    >
+                        {plan.popular && (
+                            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#FF5722] to-transparent" />
+                        )}
+                        
+                        <div className="flex flex-col h-full z-10">
+                            <div className="flex justify-between items-start mb-6">
+                                <div>
+                                    <h3 className="text-xl font-medium text-white mb-1">
+                                        {plan.name}
+                                    </h3>
+                                    <p className="text-xs font-mono text-[#71717A]">
+                                        {plan.tagline}
+                                    </p>
+                                </div>
+                                {plan.badge && (
+                                    <span className="inline-flex items-center text-[9px] uppercase tracking-[0.1em] font-mono text-[#FF5722] bg-[#FF5722]/10 px-2 py-1 rounded-[2px] border border-[#FF5722]/20">
+                                        {plan.badge}
+                                    </span>
+                                )}
                             </div>
-                            <div>
-                                <span className="text-[11px] text-gray-400 block uppercase tracking-wider mb-1">Monthly Retainer</span>
-                                <span className="text-xl font-bold text-white">
-                                    {plan.monthlyMaintenance}
-                                </span>
+
+                            <div className="space-y-4 mb-8">
+                                <div className="flex justify-between items-end border-b border-[#1A1A1A] pb-2">
+                                    <span className="text-[10px] text-[#A1A1AA] uppercase tracking-wider font-mono">Build Phase</span>
+                                    <span className="text-xl font-medium text-white">{plan.oneTimeSetup}</span>
+                                </div>
+                                <div className="flex justify-between items-end border-b border-[#1A1A1A] pb-2">
+                                    <span className="text-[10px] text-[#A1A1AA] uppercase tracking-wider font-mono">Runtime Maintenance</span>
+                                    <span className="text-xl font-medium text-white">{plan.monthlyMaintenance}</span>
+                                </div>
                             </div>
-                        </div>
-                        <p className="text-[10px] text-gray-500 mb-8 italic">Final pricing confirmed after your free discovery call.</p>
 
-                        <Link
-                            href="/contact"
-                            className={`block text-center py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:scale-[1.02] mb-8 ${plan.popular
-                                ? "bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white hover:shadow-lg hover:shadow-[#0066ff]/25 btn-magnetic"
-                                : "btn-outline text-white border border-white/20 hover:border-white/40"
-                                }`}
-                        >
-                            {plan.ctaButton}
-                        </Link>
-
-                        <div className="flex-1 space-y-6">
-                            <div>
-                                <p className="text-[10px] uppercase tracking-[0.2em] text-[#00a2ff]/70 font-bold mb-4">
-                                    Setup Includes
+                            <div className="flex-1 mb-8">
+                                <p className="text-[10px] uppercase font-mono tracking-widest text-[#71717A] mb-4">
+                                    {"//"} Deployment Specs
                                 </p>
-                                <ul className="space-y-2.5">
+                                <ul className="space-y-3">
                                     {plan.setupIncludes.map((feature, idx) => (
-                                        <li
-                                            key={idx}
-                                            className="flex items-start gap-2 text-xs text-gray-300"
-                                        >
-                                            <Check className="w-3.5 h-3.5 text-[#00a2ff]/80 mt-0.5 shrink-0" />
-                                            <span className="leading-relaxed">{feature}</span>
+                                        <li key={idx} className="flex items-start gap-3">
+                                            <ChevronRight className="w-3.5 h-3.5 text-[#00a2ff] shrink-0 mt-0.5" />
+                                            <span className="text-sm text-[#A1A1AA] leading-relaxed">{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
+
+                            <Link
+                                href="/contact"
+                                className={`w-full py-4 text-center font-mono text-xs uppercase tracking-widest transition-all duration-300 rounded-[2px] ${plan.popular
+                                    ? "bg-[#FF5722] text-white hover:bg-[#E64A19]"
+                                    : "bg-white/5 text-white border border-white/10 hover:bg-white/10"
+                                    }`}
+                            >
+                                {plan.ctaButton}
+                            </Link>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {enterprisePlan && (
+                <div className="mt-4 relative rounded-[2px] p-8 lg:p-12 bg-[#050505] border border-[#1A1A1A] overflow-hidden flex flex-col lg:flex-row gap-12 lg:items-center">
+                    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(0,102,255,0.05),transparent_60%)] pointer-events-none" />
+                    
+                    <div className="lg:w-1/3 z-10 border-b lg:border-b-0 lg:border-r border-[#1A1A1A] pb-8 lg:pb-0 lg:pr-12">
+                        <Terminal className="w-6 h-6 text-[#00a2ff] mb-4" />
+                        <h3 className="text-2xl font-medium text-white mb-2">{enterprisePlan.name}</h3>
+                        <p className="text-xs font-mono text-[#71717A] mb-6">{enterprisePlan.tagline}</p>
+                        
+                        <div className="space-y-4 mb-8">
+                            <div>
+                                <span className="text-[10px] text-[#A1A1AA] block uppercase tracking-wider font-mono mb-1">Architecture Build</span>
+                                <span className="text-lg font-medium text-white">{enterprisePlan.oneTimeSetup}</span>
+                            </div>
+                            <div>
+                                <span className="text-[10px] text-[#A1A1AA] block uppercase tracking-wider font-mono mb-1">Telemetry & Runtime</span>
+                                <span className="text-lg font-medium text-white">{enterprisePlan.monthlyMaintenance}</span>
+                            </div>
                         </div>
 
-                        <div className="mt-8 pt-6 border-t border-white/10">
-                            <p className="text-[10px] text-gray-400 flex items-center justify-between gap-3 italic">
-                                <span className="shrink-0">At a Glance:</span>
-                                <span className="text-gray-200 non-italic text-right">{plan.atAGlance}</span>
-                            </p>
+                        <Link
+                            href="/contact"
+                            className="inline-flex w-full py-4 text-center justify-center font-mono text-xs uppercase tracking-widest transition-all duration-300 rounded-[2px] bg-white text-black hover:bg-gray-200"
+                        >
+                            {enterprisePlan.ctaButton}
+                        </Link>
+                    </div>
+
+                    <div className="lg:w-2/3 z-10">
+                        <p className="text-[10px] uppercase font-mono tracking-widest text-[#71717A] mb-4">
+                            {"//"} Enterprise Capabilities
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                            {enterprisePlan.setupIncludes.map((feature, idx) => (
+                                <div key={idx} className="flex items-start gap-3">
+                                    <Shield className="w-3.5 h-3.5 text-[#00a2ff] shrink-0 mt-0.5" />
+                                    <span className="text-sm text-[#A1A1AA] leading-relaxed">{feature}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
-            ))}
-            
-            {/* Retainer disclaimer */}
-            <div className="col-span-1 lg:col-span-3 mt-4 text-center">
-                <p className="text-[11px] text-gray-500 italic">
-                    *Monthly retainer begins after system delivery and is billed month-to-month. Cancel anytime.
-                </p>
-            </div>
+            )}
         </div>
     );
 }
 
-/* ── FAQ Accordion ───────────────────────────────────── */
+/* ── FAQ Accordion (CLI Style) ───────────────────────────── */
 
 interface FAQ {
     q: string;
@@ -132,29 +160,22 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
     const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
     return (
-        <div className="space-y-0">
+        <div className="border border-[#1A1A1A] bg-[#050505] rounded-[2px] overflow-hidden">
             {faqs.map((faq, i) => (
                 <div
                     key={i}
-                    className="border-b border-white/[0.04] last:border-b-0"
+                    className="border-b border-[#1A1A1A] last:border-b-0"
                 >
                     <button
                         onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
-                        className="w-full flex items-center gap-4 py-6 text-left hover:bg-white/[0.01] transition-colors"
+                        className="w-full flex items-center gap-4 px-6 py-5 text-left hover:bg-white/[0.02] transition-colors"
                         aria-expanded={openFAQ === i}
                     >
-                        <span className="text-[10px] font-bold text-[#0066ff]/30 tracking-wider tabular-nums w-6">
-                            {String(i + 1).padStart(2, "0")}
+                        <span className="text-[10px] font-mono text-[#00a2ff] tabular-nums shrink-0">
+                            ~/faq_{String(i + 1).padStart(2, "0")} $
                         </span>
-                        <span className="flex-1 text-white font-medium text-sm">
+                        <span className="flex-1 text-white font-mono text-xs tracking-wide">
                             {faq.q}
-                        </span>
-                        <span className="shrink-0 w-6 h-6 rounded-full border border-white/[0.08] flex items-center justify-center">
-                            {openFAQ === i ? (
-                                <Minus className="w-3 h-3 text-[#00a2ff]" />
-                            ) : (
-                                <Plus className="w-3 h-3 text-gray-400" />
-                            )}
                         </span>
                     </button>
                     <AnimatePresence>
@@ -163,12 +184,13 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: "auto", opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.3, ease: "easeInOut" as const }}
-                                className="overflow-hidden"
+                                transition={{ duration: 0.2 }}
+                                className="overflow-hidden bg-[#0A0A0A]"
                             >
-                                <p className="pl-10 pb-6 text-gray-300 text-sm leading-relaxed">
+                                <div className="px-6 py-5 pl-24 border-t border-[#1A1A1A]/50 text-[#A1A1AA] text-sm leading-relaxed font-light">
+                                    <span className="text-[#333] mr-2 text-xs font-mono">{">"}</span>
                                     {faq.a}
-                                </p>
+                                </div>
                             </motion.div>
                         )}
                     </AnimatePresence>

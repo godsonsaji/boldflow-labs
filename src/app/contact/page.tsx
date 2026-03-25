@@ -1,179 +1,124 @@
 import type { Metadata } from "next";
-import { Mail, Clock, ArrowRight, Phone } from "lucide-react";
+import { Terminal, Activity, GitCommit } from "lucide-react";
 import { FadeUp, SlideLeft, SlideRight } from "@/components/AnimationWrappers";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-    title: "Contact BoldFlow Labs | Book a Free AI Automation Strategy Call",
-    description:
-        "Get in touch with BoldFlow Labs. Book a free, no-obligation strategy call to explore how AI automation can reduce costs, increase efficiency, and accelerate your business growth.",
-    alternates: { canonical: "/contact" },
-    openGraph: {
-        title: "Contact BoldFlow Labs | Book a Free AI Automation Strategy Call",
-        description:
-            "Book a free, no-obligation strategy call to explore how AI automation can reduce costs, increase efficiency, and accelerate your business growth.",
-        url: "/contact",
-    },
+    title: "Deploy | BoldFlow Labs",
+    description: "Book an architectural diagnostic call to begin system deployment.",
 };
 
-const steps = [
+const deploymentVectors = [
     {
         step: "01",
-        title: "We Schedule a Discovery Call",
-        description:
-            "Within one business day of your inquiry, we\u2019ll confirm a 30-minute video call at a time that works for you.",
+        title: "Diagnostic Initialization",
+        description: "We map your current data structures and operational limits. No hypotheticals—just engineering facts.",
     },
     {
         step: "02",
-        title: "We Listen Before We Recommend",
-        description:
-            "We spend the first part of every call understanding your business, your current processes, and the challenges you\u2019re facing. We ask good questions before we say anything.",
+        title: "System Architecture Proposal",
+        description: "We draft a strictly logical workflow diagram demonstrating where autonomous agents will replace manual execution.",
     },
     {
         step: "03",
-        title: "We Share What We See",
-        description:
-            "Based on what you share, we\u2019ll give you our honest assessment of the automation opportunities available to you \u2014 and what a realistic implementation path looks like.",
+        title: "Engineering & Integration",
+        description: "Direct API connections, local LLM deployment, and custom webhook orchestration mapped strictly to your stack.",
     },
     {
         step: "04",
-        title: "You Decide the Next Step",
-        description:
-            "There\u2019s no hard close. If there\u2019s a natural fit, we\u2019ll outline a proposed engagement. If not, you\u2019ll leave with useful perspective regardless.",
+        title: "Launch & Telemetry",
+        description: "Production go-live with real-time error monitoring and continuous system optimization.",
     },
 ];
 
 export default function ContactPage() {
     return (
         <>
-            {/* JSON-LD Contact Schema */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "ContactPage",
-                        mainEntity: {
-                            "@type": "Organization",
-                            name: "BoldFlow Labs",
-                            email: "hello@boldflowlabs.com",
-                        },
-                    }),
-                }}
-            />
-
             {/* Hero */}
-            <section className="relative pt-32 pb-16 overflow-hidden" aria-label="Contact us">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
+            <section className="relative pt-32 pb-20 overflow-hidden border-b border-[#1A1A1A]" aria-label="Deployment">
+                <div className="absolute inset-0 bg-[#050505] noise-overlay z-0" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(255,87,34,0.03),transparent_70%)] pointer-events-none z-0" />
+
+                <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
                     <FadeUp custom={0} viewport={false}>
-                        <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-4 font-medium">
-                            Contact
+                        <p className="text-[10px] uppercase font-mono tracking-[0.2em] text-[#FF5722] mb-4">
+                            {"//"} Initialize Setup
                         </p>
                     </FadeUp>
                     <FadeUp custom={1} viewport={false}>
-                        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-[1.1]">
-                            Let&apos;s Talk About What Automation{" "}
-                            <span className="shimmer-text">Can Do for Your Business</span>
+                        <h1 className="text-4xl sm:text-6xl md:text-7xl font-medium text-white mb-6 tracking-tighter leading-[0.9]">
+                            System Deployment.
                         </h1>
                     </FadeUp>
                     <FadeUp custom={2} viewport={false}>
-                        <p className="text-base text-gray-300 max-w-2xl mx-auto mb-2">
-                            Whether you have a specific project in mind or just want to
-                            explore what&apos;s possible, we&apos;re here for a real
-                            conversation — not a sales pitch.
+                        <p className="text-lg text-[#71717A] max-w-2xl mx-auto font-light leading-relaxed mb-4">
+                            We don't do hard sales or vague marketing pitches. You will speak directly to the lead architect responsible for writing your infrastructure code. 
                         </p>
-                        <p className="text-sm text-gray-300 max-w-2xl mx-auto">
-                            Book a free 30-minute strategy session with our team. We&apos;ll
-                            review your current workflows, identify your top automation
-                            opportunities, and give you an honest, grounded view of what AI
-                            automation could achieve in your specific context.
-                        </p>
-                        <p className="text-sm text-gray-400 font-medium mt-4">
-                            No pressure. No obligation. Just clarity.
+                        <p className="text-sm font-mono text-[#00a2ff] uppercase tracking-widest mt-8">
+                            [ Secure Comm Link Established ]
                         </p>
                     </FadeUp>
                 </div>
             </section>
 
-            {/* Split Layout: Info + Form */}
-            <section className="section-padding pt-0" aria-label="Contact information and form">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20">
-                        {/* Left — Contact Info + Process */}
-                        <SlideLeft custom={0} className="lg:col-span-2">
-                            <div
-                                className="relative rounded-2xl p-8 md:p-10 overflow-hidden h-full"
-                                style={{
-                                    background:
-                                        "linear-gradient(135deg, rgba(0,102,255,0.06) 0%, rgba(0,212,255,0.02) 50%, rgba(0,0,0,0.9) 100%)",
-                                }}
-                            >
-                                <div className="orb orb-blue w-[300px] h-[300px] -bottom-40 -left-40 opacity-40" aria-hidden="true" />
+            {/* Split Layout */}
+            <section className="py-24 bg-[#030303]">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+                        
+                        {/* Deployment Protocol */}
+                        <SlideLeft custom={0}>
+                            <div className="mb-12">
+                                <Terminal className="w-6 h-6 text-[#A1A1AA] mb-6" />
+                                <h2 className="text-2xl font-medium text-white mb-2">
+                                    The Deployment Protocol
+                                </h2>
+                                <p className="text-sm text-[#71717A] font-light">
+                                    Execution is strictly phased. Here is what happens when you initialize contact.
+                                </p>
+                            </div>
 
-                                <div className="relative z-10">
-                                    <h2 className="text-2xl font-bold text-white mb-2">
-                                        What Happens After You Reach Out
-                                    </h2>
-                                    <p className="text-gray-300 text-sm mb-8">
-                                        Here&apos;s exactly what to expect.
-                                    </p>
-
-                                    {/* Process Steps */}
-                                    <div className="space-y-6 mb-8">
-                                        {steps.map((s) => (
-                                            <div key={s.step} className="flex items-start gap-4">
-                                                <div className="w-8 h-8 rounded-full bg-[#0066ff]/10 border border-[#00a2ff]/20 flex items-center justify-center shrink-0">
-                                                    <span className="text-[10px] font-bold text-[#00a2ff]">{s.step}</span>
-                                                </div>
-                                                <div>
-                                                    <h3 className="text-white text-sm font-semibold mb-1">{s.title}</h3>
-                                                    <p className="text-gray-400 text-xs leading-relaxed">{s.description}</p>
-                                                </div>
-                                            </div>
-                                        ))}
+                            <div className="relative border-l border-[#1A1A1A] ml-3 space-y-12">
+                                {deploymentVectors.map((v) => (
+                                    <div key={v.step} className="relative pl-8">
+                                        <div className="absolute -left-[5px] top-1.5 w-[9px] h-[9px] rounded-full bg-[#111] border-[2px] border-[#00a2ff]" />
+                                        <div className="flex items-baseline gap-3 mb-2">
+                                            <span className="text-[10px] font-mono text-[#00a2ff] uppercase tracking-wider">{v.step}.</span>
+                                            <h3 className="text-base font-medium text-white">{v.title}</h3>
+                                        </div>
+                                        <p className="text-sm text-[#A1A1AA] leading-relaxed font-light">{v.description}</p>
                                     </div>
+                                ))}
+                            </div>
 
-                                    {/* Separator */}
-                                    <div className="h-px bg-gradient-to-r from-[#0066ff]/15 to-transparent my-6" aria-hidden="true" />
-
-                                    {/* Contact Details */}
-                                    <address className="not-italic space-y-4">
-                                        <div className="flex items-start gap-4">
-                                            <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.08] border border-[#00a2ff]/10 flex items-center justify-center shrink-0">
-                                                <Mail className="w-4 h-4 text-[#00a2ff]" />
-                                            </div>
-                                            <div>
-                                                <p className="text-white text-sm font-medium">boldflowlabs@gmail.com</p>
-                                                <p className="text-gray-400 text-xs mt-0.5">Primary contact</p>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-start gap-4">
-                                            <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.08] border border-[#00a2ff]/10 flex items-center justify-center shrink-0">
-                                                <Phone className="w-4 h-4 text-[#00a2ff]" />
-                                            </div>
-                                            <div>
-                                                <p className="text-white text-sm font-medium">+91-9447178166</p>
-                                                <p className="text-gray-400 text-xs mt-0.5">Primary contact</p>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-start gap-4">
-                                            <div className="w-10 h-10 rounded-lg bg-[#0066ff]/[0.08] border border-[#00a2ff]/10 flex items-center justify-center shrink-0">
-                                                <Clock className="w-4 h-4 text-[#00a2ff]" />
-                                            </div>
-                                            <div>
-                                                <p className="text-white text-sm font-medium">Within 1 business day</p>
-                                                <p className="text-gray-400 text-xs mt-0.5">Response time</p>
-                                            </div>
-                                        </div>
-                                    </address>
+                            <div className="mt-16 p-6 border border-[#1A1A1A] bg-[#0A0A0A] rounded-[2px]">
+                                <div className="flex items-center gap-3 mb-4 text-[#A1A1AA]">
+                                    <Activity className="w-4 h-4 text-[#FF5722]" />
+                                    <span className="text-[10px] uppercase font-mono tracking-widest">Active Mainframe</span>
+                                </div>
+                                <div className="space-y-2 text-sm text-[#71717A]">
+                                    <p><strong className="font-medium text-white">Email:</strong> boldflowlabs@gmail.com</p>
+                                    <p><strong className="font-medium text-white">Ping:</strong> +91-9447178166</p>
+                                    <p><strong className="font-medium text-white">SLA:</strong> T+24hrs Response Frame</p>
                                 </div>
                             </div>
                         </SlideLeft>
 
-                        {/* Right — Form */}
-                        <SlideRight custom={0} className="lg:col-span-3">
-                            <ContactForm />
+                        {/* Contact Form Module */}
+                        <SlideRight custom={0} className="w-full">
+                            <div className="p-8 md:p-10 bg-[#0A0A0A] border border-[#1A1A1A] rounded-[2px] shadow-[0_0_80px_rgba(255,87,34,0.02)] relative overflow-hidden group hover:border-[#333] transition-colors duration-500">
+                                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none" />
+                                
+                                <div className="relative z-10">
+                                    <div className="flex items-center gap-3 border-b border-[#1A1A1A] pb-6 mb-8">
+                                        <GitCommit className="w-4 h-4 text-[#00a2ff]" />
+                                        <h3 className="text-sm font-mono text-white uppercase tracking-widest">Transmit Payload</h3>
+                                    </div>
+                                    <ContactForm />
+                                </div>
+                            </div>
                         </SlideRight>
+
                     </div>
                 </div>
             </section>

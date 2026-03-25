@@ -1,0 +1,96 @@
+﻿
+> boldflow-labs-website@0.1.0 lint
+> eslint
+
+
+C:\Users\USER\projects\boldflow-labs\src\app\about\page.tsx
+  43:113  error  Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+  78:129  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`         react/no-unescaped-entities
+  84:43   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`         react/no-unescaped-entities
+  87:84   error  Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+
+C:\Users\USER\projects\boldflow-labs\src\app\admin\editor\page.tsx
+    5:23  warning  'setDoc' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+   43:8   warning  React Hook useEffect has a missing dependency: 'fetchPost'. Either include it or remove the dependency array                                                                                                                                                                             react-hooks/exhaustive-deps
+  231:37  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\USER\projects\boldflow-labs\src\app\admin\login\page.tsx
+  35:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\USER\projects\boldflow-labs\src\app\admin\page.tsx
+   14:40  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                 @typescript-eslint/no-explicit-any
+   87:76  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  119:61  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\USER\projects\boldflow-labs\src\app\api\create-post\route.ts
+  54:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\USER\projects\boldflow-labs\src\app\blog\[slug]\page.tsx
+   14:38  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                 @typescript-eslint/no-explicit-any
+   51:77  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+   84:37  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  121:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\USER\projects\boldflow-labs\src\app\blog\page.tsx
+   4:36  warning  'orderBy' is defined but never used       @typescript-eslint/no-unused-vars
+  10:40  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\USER\projects\boldflow-labs\src\app\case-studies\page.tsx
+  36:109  error  Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+  47:35   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`         react/no-unescaped-entities
+
+C:\Users\USER\projects\boldflow-labs\src\app\contact\page.tsx
+  2:23  warning  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\USER\projects\boldflow-labs\src\app\page.tsx
+   11:3   warning  'Terminal' is defined but never used                                    @typescript-eslint/no-unused-vars
+  152:99  error    Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+  205:99  error    Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+  260:98  error    Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+
+C:\Users\USER\projects\boldflow-labs\src\app\pricing\page.tsx
+    3:10   warning  'ArrowRight' is defined but never used                                  @typescript-eslint/no-unused-vars
+    4:18   warning  'SlideLeft' is defined but never used                                   @typescript-eslint/no-unused-vars
+  100:109  error    Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+  132:109  error    Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+  152:101  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`         react/no-unescaped-entities
+
+C:\Users\USER\projects\boldflow-labs\src\app\services\page.tsx
+   13:18   warning  'SlideLeft' is defined but never used                                   @typescript-eslint/no-unused-vars
+  115:113  error    Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+
+C:\Users\USER\projects\boldflow-labs\src\app\testimonials\page.tsx
+  58:113  error  Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+
+C:\Users\USER\projects\boldflow-labs\src\components\BlogCard.tsx
+  11:20  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                 @typescript-eslint/no-explicit-any
+  26:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  52:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\USER\projects\boldflow-labs\src\components\CaseStudyFilter.tsx
+  3:25  warning  'ReactNode' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\USER\projects\boldflow-labs\src\components\Navbar.tsx
+  32:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\USER\projects\boldflow-labs\src\components\Navbar.tsx:32:9
+  30 |
+  31 |     useEffect(() => {
+> 32 |         setIsOpen(false);
+     |         ^^^^^^^^^ Avoid calling setState() directly within an effect
+  33 |     }, [pathname]);
+  34 |
+  35 |     // Hide Navbar on admin routes to prevent double navbars  react-hooks/set-state-in-effect
+
+C:\Users\USER\projects\boldflow-labs\src\components\PricingInteractive.tsx
+   78:116  error  Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+  134:108  error  Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+
+Γ£û 40 problems (25 errors, 15 warnings)
+

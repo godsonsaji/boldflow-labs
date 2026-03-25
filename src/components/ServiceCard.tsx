@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
-import { CheckCircle2, ChevronDown } from "lucide-react";
-import { CollapsibleContent } from "@/components/AnimationWrappers";
+import { ReactNode } from "react";
+import Link from "next/link";
+import { Terminal, Cpu } from "lucide-react";
 
 interface ServiceCardProps {
     index: number;
@@ -11,73 +11,68 @@ interface ServiceCardProps {
     subtitle?: string;
     description: string;
     features: string[];
-    technologies?: string;
 }
 
-export default function ServiceCard({ index, icon, title, subtitle, description, features, technologies }: ServiceCardProps) {
-    const [isOpen, setIsOpen] = useState(false);
-
+export default function ServiceCard({ index, icon, title, subtitle, description, features }: ServiceCardProps) {
+    const formattedIndex = String(index + 1).padStart(2, "0");
+    
     return (
-        <div className="group relative border-b border-white/[0.04] last:border-b-0">
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-full h-full flex items-start gap-4 md:gap-6 py-6 md:py-10 text-left hover:bg-white/[0.01] transition-colors duration-300 px-0 md:px-2"
-                aria-expanded={isOpen}
-            >
-                <div className="shrink-0 flex items-center gap-3 md:gap-4">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/30 font-bold tabular-nums w-5 md:w-6">
-                        {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#0066ff]/[0.06] border border-[#00a2ff]/10 flex items-center justify-center group-hover:bg-[#0066ff]/10 group-hover:border-[#00a2ff]/20 transition-all duration-300">
-                        {icon}
+        <div className="border-t border-[#1A1A1A] group hover:bg-[#050505] transition-colors duration-300">
+            <div className="max-w-7xl mx-auto px-6 py-24 md:py-32 flex flex-col lg:flex-row gap-16 lg:gap-24 relative">
+                
+                {/* Left Column: Number & Sub-headline */}
+                <div className="lg:w-5/12 relative z-10 flex flex-col">
+                    <div className="flex items-center gap-6 mb-8">
+                        <span className="text-4xl md:text-6xl font-mono text-[#1A1A1A] group-hover:text-[#00a2ff]/40 transition-colors tracking-tighter">
+                            {formattedIndex}
+                        </span>
+                        <div className="w-12 h-12 rounded-[2px] bg-[#111] border border-[#1A1A1A] flex items-center justify-center">
+                            {icon}
+                        </div>
                     </div>
-                </div>
-                <div className="flex-1 min-w-0">
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1 group-hover:text-[#00a2ff] transition-colors duration-300">
+                    <h3 className="text-3xl font-medium text-white mb-4 leading-tight tracking-tight">
                         {title}
                     </h3>
-                    {subtitle && (
-                        <p className="text-[#00a2ff]/60 text-sm font-medium mb-1">{subtitle}</p>
-                    )}
-                    <p className="text-gray-400 text-sm line-clamp-1 md:line-clamp-none max-w-2xl">
+                    <p className="text-[10px] font-mono tracking-[0.15em] uppercase text-[#00a2ff] mb-6">
+                        {subtitle}
+                    </p>
+                    <p className="text-[#A1A1AA] leading-relaxed font-light text-sm max-w-lg">
                         {description}
                     </p>
                 </div>
-                <ChevronDown
-                    className={`w-5 h-5 text-gray-400 shrink-0 mt-2 transition-transform duration-300 ${isOpen ? "rotate-180 text-[#00a2ff]" : ""}`}
-                />
-            </button>
 
-            <CollapsibleContent isOpen={isOpen}>
-                <div className="pl-12 md:pl-24 pb-8 pr-4 md:pr-8">
-                    <p className="text-gray-300 text-sm leading-relaxed mb-6 max-w-2xl">
-                        {description}
-                    </p>
-
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#00a2ff]/50 font-semibold mb-3">
-                        What this means for your business
-                    </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
-                        {features.map((feature) => (
-                            <div key={feature} className="flex items-center gap-2.5 text-sm text-gray-300">
-                                <CheckCircle2 className="w-3.5 h-3.5 text-[#00a2ff]/60 shrink-0" />
-                                {feature}
-                            </div>
-                        ))}
-                    </div>
-
-                    {technologies && (
-                        <div className="pt-4 border-t border-white/[0.04]">
-                            <p className="text-[10px] uppercase tracking-[0.2em] text-[#00a2ff]/50 font-semibold mb-2">
-                                Core Technologies
-                            </p>
-                            <p className="text-gray-400 text-xs leading-relaxed">
-                                {technologies}
-                            </p>
+                {/* Middle Column: API/Terminal Outcomes */}
+                <div className="lg:w-4/12 relative z-10">
+                    <div className="rounded-[2px] bg-[#0A0A0A] border border-[#1A1A1A] overflow-hidden group-hover:border-[#333] transition-colors duration-300">
+                        <div className="bg-[#111] border-b border-[#1A1A1A] px-5 py-3 flex items-center gap-3">
+                            <Terminal className="w-3.5 h-3.5 text-[#A1A1AA]" />
+                            <span className="text-[10px] uppercase font-mono text-[#A1A1AA] tracking-widest">System Outputs</span>
                         </div>
-                    )}
+                        <div className="p-6 font-mono text-xs text-[#71717A] space-y-4">
+                            {features.map((feature, i) => (
+                                <div key={i} className="flex gap-3 items-start">
+                                    <span className="text-[#00a2ff] mt-0.5">{">"}</span>
+                                    <span className="leading-relaxed group-hover:text-[#A1A1AA] transition-colors">{feature}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-            </CollapsibleContent>
+
+                {/* Right Column: CTA */}
+                <div className="lg:w-3/12 relative z-10 flex flex-col justify-center items-start lg:items-end text-left lg:text-right">
+                    <div className="mb-10 hidden lg:block opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+                        <Cpu className="w-12 h-12 text-[#1A1A1A] group-hover:text-[#00a2ff]/20 transition-colors" />
+                    </div>
+                    <Link
+                        href="/contact"
+                        className="inline-flex items-center justify-center w-full lg:w-auto px-8 py-4 bg-transparent border border-[#333] text-white font-mono text-[10px] uppercase tracking-widest hover:bg-white hover:text-black hover:border-white transition-all duration-300 rounded-[2px]"
+                    >
+                        Deploy This System
+                    </Link>
+                </div>
+
+            </div>
         </div>
     );
 }

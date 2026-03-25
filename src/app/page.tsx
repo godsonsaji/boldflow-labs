@@ -1,596 +1,306 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata } from 'next';
+import Link from 'next/link';
 import {
+  ArrowRight,
+  Database,
+  Network,
+  Cpu,
   Bot,
-  Workflow,
   BarChart3,
-  Sparkles,
-  Zap,
+  Layers,
+  Activity,
   Shield,
   Clock,
-  TrendingUp,
-  Users,
-  CheckCircle2,
-  ArrowRight,
-  CalendarCheck,
-  Target,
-  UserCheck,
-  Calendar,
-  Share2,
-} from "lucide-react";
-import {
-  FadeUp,
-  SlideLeft,
-  SlideRight,
-  SpinningRings,
-  FloatingNode,
-} from "@/components/AnimationWrappers";
+  Code2
+} from 'lucide-react';
+import { FadeUp, SlideLeft } from '@/components/AnimationWrappers';
+import { SystemPulse } from '@/components/SystemPulse';
 
 export const metadata: Metadata = {
-  title: "BoldFlow Labs | AI Automation Agency — Workflow Automation & Intelligent Systems",
-  description:
-    "BoldFlow Labs designs and deploys custom AI automation systems — from intelligent chatbots and workflow pipelines to predictive analytics and bespoke AI models.",
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: "BoldFlow Labs | AI Automation Agency — Workflow Automation & Intelligent Systems",
-    description:
-      "BoldFlow Labs designs and deploys custom AI automation systems engineered specifically around how your business operates.",
-    url: "/",
-  },
+  title: 'BoldFlow Labs | Intelligent Automation Systems',
+  description: 'We architect bespoke AI workflows that eliminate friction, capture revenue, and scale infinitely.',
 };
 
-const features = [
+const services = [
   {
-    icon: Users,
-    title: "AI-Powered Lead Follow-Up & CRM Automation",
-    description:
-      "Most businesses lose potential revenue not because their product is wrong — but because follow-up is slow, inconsistent, or forgotten entirely. Manual lead management is one of the highest-cost inefficiencies in modern sales operations.",
-    benefits: [
-      "Instant, automated responses to new leads",
-      "Smart follow-up sequences that adapt to behaviour",
-      "Automatic CRM data entry and pipeline updates",
-      "Lead scoring logic that prioritises high-value opportunities",
-    ],
-    label: "01",
+    icon: Database,
+    title: 'AI-Powered Lead Follow-Up',
+    description: 'Instant, automated responses and smart follow-up sequences. No more leaked revenue from slow responses.',
+    tags: ['Sub-minute SLAs', 'Dynamic Scoring', 'CRM Sync'],
+    label: '01',
   },
   {
     icon: Bot,
-    title: "AI Chatbot & Customer Support Automation",
-    description:
-      "Your customers don't work business hours. We design and deploy AI-powered chatbots and conversational agents that handle real customer interactions — resolving queries, capturing leads, and qualifying prospects.",
-    benefits: [
-      "Intelligent chatbot deployment across multiple platforms",
-      "Automated handling of FAQs and support requests",
-      "Lead capture and qualification embedded in conversations",
-      "Seamless human handoff logic for complex issues",
-    ],
-    label: "02",
+    title: 'AI Support & Conversational Agents',
+    description: 'Resolve customer queries 24/7. Capture leads and qualify prospects seamlessly without human intervention.',
+    tags: ['Multi-platform', 'LLM Routing', 'Human Handoff'],
+    label: '02',
   },
   {
-    icon: Calendar,
-    title: "Automated Appointment Booking & Reminder Systems",
-    description:
-      "We build end-to-end automated scheduling systems that let prospects and clients book appointments instantly — and keep them engaged with smart, multi-channel reminders that dramatically reduce cancellations and no-shows.",
-    benefits: [
-      "Automated booking flows integrated with your calendar",
-      "Multi-channel confirmation and reminder sequences",
-      "Pre-appointment intake forms to collect information",
-      "Automated rescheduling and cancellation handling",
-    ],
-    label: "03",
+    icon: Network,
+    title: 'Automated Scheduling Systems',
+    description: 'End-to-end booking flows with multi-channel reminders that drastically reduce cancellations and no-shows.',
+    tags: ['2-Way Sync', 'Smart Reminders', 'Automated Triage'],
+    label: '03',
   },
   {
-    icon: Share2,
-    title: "Social Media & Content Automation",
-    description:
-      "We design content automation systems that keep your brand active across platforms, repurpose existing content intelligently, and schedule posts for maximum reach — all without daily manual effort.",
-    benefits: [
-      "Automated content scheduling and cross-platform publishing",
-      "AI-assisted content drafting and repurposing pipelines",
-      "Content calendar automation pulling from your assets",
-      "Performance-based scheduling for optimal engagement windows",
-    ],
-    label: "04",
+    icon: Layers,
+    title: 'Social & Content Pipelines',
+    description: 'Intelligent content distribution systems that draft, schedule, and repurpose assets across your entire stack.',
+    tags: ['Cross-platform', 'GenAI Drafting', 'Auto-publishing'],
+    label: '04',
   },
   {
     icon: BarChart3,
-    title: "Automated Reporting & Business Dashboards",
-    description:
-      "We build automated reporting systems and real-time operational dashboards that surface the metrics that matter — the moment they change, keeping your team informed and your decisions grounded in reality.",
-    benefits: [
-      "Automated data aggregation from multiple systems",
-      "Custom real-time dashboards tailored to your KPIs",
-      "Scheduled automated reports delivered to stakeholders",
-      "Elimination of manual spreadsheet updates and inconsistencies",
-    ],
-    label: "05",
+    title: 'Automated BI Dashboards',
+    description: 'Real-time operational reporting. Surface the metrics that matter and eliminate manual spreadsheet management.',
+    tags: ['Data Aggregation', 'Custom KPIs', 'Real-time Sync'],
+    label: '05',
   },
   {
-    icon: Workflow,
-    title: "Custom AI Workflows & AI Voice Agents",
-    description:
-      "For challenges too complex for generic templates, we build fully custom AI workflows and intelligent voice agents engineered from the ground up around your exact operations, data, and objectives.",
-    benefits: [
-      "Custom AI voice agents for inbound and outbound calls",
-      "Proprietary multi-step AI workflows for complex processes",
-      "Agentic AI systems capable of reasoning and deciding",
-      "Full ownership of your automation logic and models",
-    ],
-    label: "06",
+    icon: Cpu,
+    title: 'Custom Agentic Workflows',
+    description: 'Bespoke AI architectures designed specifically for complex, multi-step operations unique to your business.',
+    tags: ['Multi-agent logic', 'API Integration', 'Full IP Rights'],
+    label: '06',
   },
 ];
 
-const whyChooseUs = [
+const processPhases = [
   {
-    icon: Shield,
-    title: "Security-First Architecture",
-    desc: "Enterprise-grade encryption, access controls, and data handling protocols from day one — not as an afterthought.",
+    id: '01',
+    title: 'Discovery & Schema Design',
+    desc: 'Complete audit of operational bottlenecks and technical requirements to define system architecture.',
   },
   {
-    icon: Clock,
-    title: "Fast Time to Value",
-    desc: "Milestone-driven sprints that deliver working systems in weeks, not months. We build for speed and durability.",
+    id: '02',
+    title: 'Architecture Approval',
+    desc: 'Review data flows, security protocols, and integration schemas prior to engineering.',
   },
   {
-    icon: TrendingUp,
-    title: "Outcome-Focused Delivery",
-    desc: "Clearly defined KPIs and shared accountability for results. We measure success by the impact on your operations.",
+    id: '03',
+    title: 'Build & Integration',
+    desc: 'Iterative development sprints integrating core enterprise tools with custom AI agentic logic.',
   },
   {
-    icon: Users,
-    title: "Dedicated Automation Engineer",
-    desc: "One point of contact across every phase of your project. Direct access, clear communication, and no ticket queues.",
-  },
-  {
-    icon: Zap,
-    title: "Modern AI Stack",
-    desc: "LLMs, agentic frameworks, vector databases, and ML infrastructure selected for durability, scale, and performance.",
-  },
-  {
-    icon: CheckCircle2,
-    title: "Ongoing Optimization",
-    desc: "Post-launch monitoring and continuous improvement cycles, because deployed AI needs to evolve alongside your business.",
+    id: '04',
+    title: 'Deployment & Telemetry',
+    desc: 'System go-live with real-time error monitoring, logging, and ongoing optimization cycles.',
   },
 ];
 
 export default function HomePage() {
   return (
     <>
-      {/* JSON-LD for Home Page */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: "BoldFlow Labs",
-            url: "https://boldflowlabs.com",
-            description:
-              "BroadFlow Labs designs and deploys custom AI automation systems that eliminate operational bottlenecks and drive growth.",
-            potentialAction: {
-              "@type": "SearchAction",
-              target: "https://boldflowlabs.com/?q={search_term_string}",
-              "query-input": "required name=search_term_string",
-            },
-          }),
-        }}
-      />
-
       {/* ── Hero Section ──────────────────────────── */}
-      <section
-        className="relative min-h-screen flex items-center overflow-hidden noise-overlay"
-        aria-label="Hero — AI Automation Agency"
-      >
-        {/* Background Effects */}
-        <div className="orb orb-blue w-[700px] h-[700px] -top-60 -left-60 opacity-30" aria-hidden="true" />
-        <div className="orb orb-cyan w-[500px] h-[500px] bottom-[-200px] right-[-100px] opacity-20" aria-hidden="true" />
-
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          aria-hidden="true"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,162,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0,162,255,0.15) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-28 pb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left — Text */}
-            <div>
-              <SlideLeft custom={1} viewport={false}>
-                <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight mb-6">
-                  <span className="text-white">Intelligent AI</span>
-                  <br className="hidden sm:block" />
-                  <span className="shimmer-text">Automation Systems,</span>
-                  <br className="hidden sm:block" />
-                  <span className="text-white">Built for Growth</span>
-                </h1>
-              </SlideLeft>
-
-              <SlideLeft custom={2} viewport={false}>
-                <p className="text-base md:text-xl text-gray-300 max-w-lg mb-6 leading-relaxed font-medium">
-                  Built to Eliminate Friction and Unlock Growth
-                </p>
-              </SlideLeft>
-
-              <SlideLeft custom={2.5} viewport={false}>
-                <div className="space-y-4 text-gray-400 max-w-lg mb-10 leading-relaxed text-sm">
-                  <p>
-                    Most businesses aren&apos;t losing to competitors — they&apos;re losing to inefficiency. Manual workflows, disconnected tools, and reactive decision-making quietly drain time, money, and momentum every single day.
-                  </p>
-                  <p className="text-white/90">
-                    BoldFlow Labs exists to change that.
-                  </p>
-                  <p>
-                    We design and deploy custom AI automation systems engineered specifically around how your business operates, not how a template assumes it does.
-                  </p>
-                </div>
-              </SlideLeft>
-
-              <SlideLeft custom={3} viewport={false} className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4">
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-sm hover:shadow-2xl hover:shadow-[#0066ff]/30 transition-all duration-300 hover:scale-[1.03] btn-magnetic w-full sm:w-auto"
-                >
-                  Book Your Free Strategy Call
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-gray-400 text-sm font-semibold btn-outline transition-all duration-300 w-full sm:w-auto text-center"
-                >
-                  Explore Our Services
-                </Link>
-              </SlideLeft>
-            </div>
-
-            {/* Right — Abstract Geometric Art */}
-            <SlideRight custom={1} viewport={false} className="relative hidden lg:flex items-center justify-center">
-              <div className="relative w-full aspect-square max-w-md mx-auto">
-                <SpinningRings />
-                {/* Center orb */}
-                <div className="absolute inset-24 rounded-full bg-gradient-to-br from-[#0066ff]/20 to-[#00d4ff]/10 backdrop-blur-sm animate-glow-pulse" />
-
-                {/* Floating nodes */}
-                <FloatingNode delay={0} style={{ top: "5%", left: "50%", transform: "translate(-50%, -50%)" }}>
-                  <Bot className="w-4 h-4 text-[#00a2ff]" />
-                </FloatingNode>
-                <FloatingNode delay={1} style={{ top: "50%", right: "0%", transform: "translate(-50%, -50%)" }}>
-                  <Sparkles className="w-4 h-4 text-[#00a2ff]" />
-                </FloatingNode>
-                <FloatingNode delay={2} style={{ bottom: "5%", left: "50%", transform: "translate(-50%, -50%)" }}>
-                  <BarChart3 className="w-4 h-4 text-[#00a2ff]" />
-                </FloatingNode>
-                <FloatingNode delay={3} style={{ top: "50%", left: "0%", transform: "translate(-50%, -50%)" }}>
-                  <Workflow className="w-4 h-4 text-[#00a2ff]" />
-                </FloatingNode>
-              </div>
-            </SlideRight>
-          </div>
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden border-b border-[#1A1A1A]">
+        <div className="absolute inset-0 bg-[#050505] noise-overlay z-0" />
+        
+        {/* Kinetic Tech Background equivalent */}
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.15] pointer-events-none mix-blend-screen z-0">
+           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,87,34,0.15),transparent_60%)] animate-pulse-glow" />
+           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_100%)]" />
         </div>
-      </section>
 
-      {/* ── Trust Signal ──────────────────────────── */}
-      <section className="py-10 border-y border-white/[0.03] relative overflow-hidden" aria-label="Trust signal">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <FadeUp custom={0}>
-            <p className="text-gray-300 text-sm md:text-base leading-relaxed italic">
-              A new kind of automation agency — built from the ground up on{" "}
-              <span className="text-gray-300 font-medium not-italic">transparency</span>,{" "}
-              <span className="text-gray-300 font-medium not-italic">technical rigor</span>, and a genuine obsession with{" "}
-              <span className="text-gray-300 font-medium not-italic">outcomes</span>.
-            </p>
-          </FadeUp>
-        </div>
-      </section>
-
-      {/* ── Features — Bento Grid ─────────────────── */}
-      <section className="section-padding relative" aria-label="Our AI automation services">
-        <div className="max-w-7xl mx-auto">
-          <FadeUp custom={0} className="mb-14">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
-              What We Do
-            </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 max-w-lg">
-              End-to-End AI Automation Services for{" "}
-              <span className="gradient-text">Modern Businesses</span>
-            </h2>
-            <p className="text-gray-300 max-w-xl text-base">
-              Every solution we build starts with one question: where is friction costing you the most? From there, we architect intelligent, scalable systems that connect your tools, automate your processes, and surface insights your team can actually act on.
-            </p>
-          </FadeUp>
-
-          <div className="bento-grid">
-            {features.map((feature, i) => (
-              <FadeUp
-                key={feature.title}
-                custom={i}
-                whileHover={{ y: -4, transition: { duration: 0.3 } }}
-                className="group relative glass glass-hover rounded-2xl p-8 transition-all duration-300 card-interactive overflow-hidden"
-              >
-                {/* Watermark label */}
-                <span className="absolute top-4 right-6 text-[5rem] font-black leading-none bg-gradient-to-b from-[#0066ff]/[0.06] to-transparent bg-clip-text text-transparent select-none pointer-events-none" aria-hidden="true">
-                  {feature.label}
-                </span>
-
-                <div className="relative z-10">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0066ff]/15 to-[#00d4ff]/10 flex items-center justify-center mb-5 group-hover:from-[#0066ff]/25 group-hover:to-[#00d4ff]/20 transition-colors">
-                    <feature.icon className="w-5 h-5 text-[#00a2ff] icon-hover-spin" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                    {feature.description}
-                  </p>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#00a2ff]/50 font-semibold mb-2">
-                    What this means for you
-                  </p>
-                  <ul className="space-y-1.5">
-                    {feature.benefits.map((benefit) => (
-                      <li key={benefit} className="flex items-start gap-2 text-xs text-gray-400">
-                        <CheckCircle2 className="w-3 h-3 text-[#00a2ff]/50 mt-0.5 shrink-0" />
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Why Choose Us — Alternating Steps ────── */}
-      <section className="section-padding" aria-label="Why choose BoldFlow Labs">
-        <div className="max-w-7xl mx-auto">
-          <FadeUp custom={0} className="text-center mb-20">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
-              Why BoldFlow Labs
-            </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
-              A Different Kind of <span className="gradient-text">AI Automation Partner</span>
-            </h2>
-            <p className="text-gray-300 text-lg md:text-lg mt-4">
-              We don&apos;t just deploy tools — we take accountability for outcomes.
-            </p>
-          </FadeUp>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyChooseUs.map((item, i) => (
-              <FadeUp
-                key={item.title}
-                custom={i}
-                className="group glass glass-hover rounded-2xl p-8 transition-all duration-300 card-interactive"
-              >
-                <div className="relative z-10">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0066ff]/15 to-[#00d4ff]/10 flex items-center justify-center mb-5 group-hover:from-[#0066ff]/25 group-hover:to-[#00d4ff]/20 transition-colors">
-                    <item.icon className="w-5 h-5 text-[#00a2ff] icon-hover-spin" />
-                  </div>
-                  <span className="text-[10px] font-bold text-[#0066ff]/30 tracking-wider mb-2 block">
-                    0{i + 1}
-                  </span>
-                  <h3 className="text-lg font-semibold text-white mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Our Process — Methodology ─────────────── */}
-      <section className="section-padding relative overflow-hidden" aria-label="Our four-phase methodology">
-        {/* Subtle background accent */}
-        <div className="orb orb-blue w-[500px] h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04]" aria-hidden="true" />
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <FadeUp custom={0} className="text-center mb-20">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-[#00a2ff] mb-3 font-medium">
-              How We Work
-            </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-5 max-w-2xl mx-auto">
-              A Four-Phase Framework That{" "}
-              <span className="gradient-text">Eliminates Guesswork</span>
-            </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto text-base leading-relaxed">
-              AI automation fails when it&apos;s deployed without context. Our structured methodology ensures every solution we build is grounded in your actual operations — not a generic template applied to your problem.
-            </p>
-          </FadeUp>
-
-          {/* Phase Timeline */}
-          <div className="relative">
-            {/* Connecting vertical line */}
-            <div className="absolute left-[24px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-[#0066ff]/30 via-[#00d4ff]/20 to-transparent" aria-hidden="true" />
-
-            {/* Phase 1 */}
-            <SlideLeft custom={0} className="relative mb-20 lg:mb-24">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-12">
-                {/* Number for mobile (Inline) */}
-                <div className="lg:hidden flex items-center gap-4 mb-2">
-                  <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20">
-                    <span className="text-white font-bold text-xs">01</span>
-                  </div>
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff] font-bold">
-                    Phase 1  ·  Week 1–2
-                  </span>
-                </div>
-
-                {/* Left content */}
-                <div className="lg:w-1/2 lg:text-right lg:pr-12 order-2 lg:order-1 lg:pl-0">
-                  <span className="hidden lg:block text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
-                    Phase 1  ·  Week 1–2
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">
-                    Discovery & Diagnostic
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    We audit your current workflows, map automation opportunities, quantify potential impact, and document technical requirements — delivering a clear roadmap whether or not you move forward with us.
-                  </p>
-                </div>
-                {/* Center node (Desktop only) */}
-                <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-2">
-                  <span className="text-white font-bold text-sm">01</span>
-                </div>
-                {/* Right spacer */}
-                <div className="lg:w-1/2 order-3 hidden lg:block" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-32 pb-20">
+          <div className="max-w-4xl">
+            <SlideLeft custom={1} viewport={false}>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#00d4ff] animate-pulse" />
+                <span className="text-[10px] font-mono text-gray-300 tracking-widest uppercase">Systems Operational</span>
               </div>
             </SlideLeft>
 
-            {/* Phase 2 */}
-            <SlideRight custom={0} className="relative mb-20 lg:mb-24">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-12">
-                {/* Number for mobile (Inline) */}
-                <div className="lg:hidden flex items-center gap-4 mb-2">
-                  <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20">
-                    <span className="text-white font-bold text-xs">02</span>
-                  </div>
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff] font-bold">
-                    Phase 2  ·  Week 2–3
-                  </span>
-                </div>
-
-                {/* Left spacer */}
-                <div className="lg:w-1/2 order-1 hidden lg:block" />
-                {/* Center node (Desktop only) */}
-                <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-2">
-                  <span className="text-white font-bold text-sm">02</span>
-                </div>
-                {/* Right content */}
-                <div className="lg:w-1/2 lg:pl-12 order-2 lg:order-3 lg:pl-12">
-                  <span className="hidden lg:block text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
-                    Phase 2  ·  Week 2–3
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">
-                    Architecture & Design
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Full system design — data flows, integration schemas, security protocols, and modular architecture — reviewed and approved by you before a single line of code is written.
-                  </p>
-                </div>
-              </div>
-            </SlideRight>
-
-            {/* Phase 3 */}
-            <SlideLeft custom={0} className="relative mb-20 lg:mb-24">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-12">
-                {/* Number for mobile (Inline) */}
-                <div className="lg:hidden flex items-center gap-4 mb-2">
-                  <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20">
-                    <span className="text-white font-bold text-xs">03</span>
-                  </div>
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff] font-bold">
-                    Phase 3  ·  Week 3–6
-                  </span>
-                </div>
-
-                {/* Left content */}
-                <div className="lg:w-1/2 lg:text-right lg:pr-12 order-2 lg:order-1 lg:pl-0">
-                  <span className="hidden lg:block text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
-                    Phase 3  ·  Week 3–6
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">
-                    Build, Test & Iterate
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Tight development sprints with working deliverables at each stage. You see progress early and often — not just at the finish line. Every sprint ends with a review and feedback loop.
-                  </p>
-                </div>
-                {/* Center node (Desktop only) */}
-                <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-2">
-                  <span className="text-white font-bold text-sm">03</span>
-                </div>
-                {/* Right spacer */}
-                <div className="lg:w-1/2 order-3 hidden lg:block" />
-              </div>
+            <SlideLeft custom={2} viewport={false}>
+              <h1 className="text-6xl sm:text-7xl md:text-[6rem] font-medium tracking-tighter leading-[0.9] mb-8 text-white">
+                Intelligent Automation.<br />
+                <span className="text-[#A1A1AA] italic font-serif">Built for Scale.</span>
+              </h1>
             </SlideLeft>
 
-            {/* Phase 4 */}
-            <SlideRight custom={0} className="relative">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-12">
-                {/* Number for mobile (Inline) */}
-                <div className="lg:hidden flex items-center gap-4 mb-2">
-                  <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] flex items-center justify-center shadow-lg shadow-[#0066ff]/20">
-                    <span className="text-white font-bold text-xs">04</span>
-                  </div>
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#0066ff] font-bold">
-                    Phase 4  ·  Ongoing
-                  </span>
-                </div>
+            <SlideLeft custom={3} viewport={false}>
+              <p className="text-lg md:text-xl text-[#71717A] max-w-2xl mb-12 leading-relaxed font-light">
+                Stop doing manually what intelligent systems can do better. We architect bespoke AI workflows that eliminate friction, capture revenue, and scale infinitely.
+              </p>
+            </SlideLeft>
 
-                {/* Left spacer */}
-                <div className="lg:w-1/2 order-1 hidden lg:block" />
-                {/* Center node (Desktop only) */}
-                <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#0066ff] to-[#00a2ff] items-center justify-center shadow-lg shadow-[#0066ff]/20 z-10 order-2">
-                  <span className="text-white font-bold text-sm">04</span>
-                </div>
-                {/* Right content */}
-                <div className="lg:w-1/2 lg:pl-12 order-2 lg:order-3 lg:pl-12">
-                  <span className="hidden lg:block text-[10px] uppercase tracking-[0.3em] text-[#0066ff]/40 font-bold">
-                    Phase 4  ·  Ongoing
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-semibold text-white mt-1 mb-3">
-                    Deploy, Monitor & Optimize
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Go-live is a milestone, not a finish line. We manage deployment, monitor performance in real time, and run continuous optimization cycles to ensure your automation delivers compounding ROI over time.
-                  </p>
-                </div>
-              </div>
-            </SlideRight>
+            <SlideLeft custom={4} viewport={false} className="flex flex-col sm:flex-row items-center gap-4">
+              <Link
+                href="/contact"
+                className="w-full sm:w-auto px-8 py-4 bg-[#EDEDED] text-[#050505] font-medium text-sm hover:bg-white hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all duration-300 text-center rounded-[2px]"
+              >
+                Initialize Strategy Call
+              </Link>
+              <Link
+                href="/services"
+                className="group w-full sm:w-auto px-8 py-4 border border-[#1A1A1A] text-[#EDEDED] font-medium text-sm hover:border-[#333] hover:bg-white/5 transition-all duration-300 flex items-center justify-center gap-2 rounded-[2px]"
+              >
+                Explore the Architecture
+                <ArrowRight className="w-4 h-4 text-[#71717A] group-hover:text-white transition-colors" />
+              </Link>
+            </SlideLeft>
           </div>
         </div>
       </section>
 
-      {/* ── CTA Section — Full Bleed ─────────────── */}
-      <section
-        className="relative overflow-hidden noise-overlay"
-        style={{ background: "linear-gradient(135deg, rgba(0,102,255,0.06) 0%, rgba(0,0,0,1) 50%, rgba(0,212,255,0.04) 100%)" }}
-        aria-label="Call to action"
-      >
-        <div className="orb orb-blue w-[600px] h-[600px] -bottom-60 -left-60 opacity-25" aria-hidden="true" />
-        <div className="orb orb-cyan w-[400px] h-[400px] -top-40 -right-40 opacity-15" aria-hidden="true" />
-        <div className="max-w-4xl mx-auto text-center relative z-10 py-28 px-4">
-          <FadeUp custom={0}>
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Ready to Automate What&apos;s{" "}
-              <span className="shimmer-text">Slowing You Down?</span>
-            </h2>
-            <p className="text-gray-300 text-base md:text-lg mb-8 max-w-xl mx-auto">
-              Book a free 30-minute strategy session. We&apos;ll review your current workflows, pinpoint your highest-impact automation opportunities, and give you an honest, actionable picture of what&apos;s possible — no obligation, no pressure.
-            </p>
-
-            {/* Supporting points */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10 text-sm text-gray-400">
-              <div className="flex items-center gap-2">
-                <CalendarCheck className="w-4 h-4 text-[#00a2ff]/60" />
-                Free, no-obligation workflow diagnostic
-              </div>
-              <div className="flex items-center gap-2">
-                <Target className="w-4 h-4 text-[#00a2ff]/60" />
-                Actionable clarity you keep, regardless of next steps
-              </div>
-              <div className="flex items-center gap-2">
-                <UserCheck className="w-4 h-4 text-[#00a2ff]/60" />
-                Limited spots available each quarter
-              </div>
+      {/* ── Core Services Peek ────────────────────── */}
+      <section className="py-32 border-b border-[#1A1A1A] relative" aria-label="System Architectures">
+        <div className="max-w-7xl mx-auto px-6">
+          <FadeUp custom={0} className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="max-w-2xl">
+              <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#71717A] mb-4">
+                {"//"} System Capabilities
+              </p>
+              <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white">
+                End-to-End Autonomous Systems
+              </h2>
             </div>
-
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 px-10 py-4 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-base hover:shadow-2xl hover:shadow-[#0066ff]/30 transition-all duration-300 hover:scale-[1.03] btn-magnetic"
-            >
-              Schedule Your Free Strategy Call
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <Link href="/services" className="text-sm font-mono text-[#00a2ff] hover:text-[#00d4ff] transition-colors flex items-center gap-2">
+              [ View All Systems ] <ArrowRight className="w-4 h-4" />
             </Link>
           </FadeUp>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#1A1A1A] border border-[#1A1A1A]">
+            {services.map((service, i) => (
+              <FadeUp
+                key={service.label}
+                custom={i}
+                className="group relative bg-[#050505] p-8 hover:bg-[#0A0A0A] transition-colors duration-300 h-full flex flex-col justify-between overflow-hidden"
+              >
+                {/* Accent glow on hover */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF5722] opacity-0 group-hover:opacity-[0.03] blur-3xl transition-opacity duration-500 rounded-full pointer-events-none" />
+
+                <div>
+                  <div className="flex justify-between items-start mb-12">
+                    <service.icon className="w-5 h-5 text-[#71717A] group-hover:text-white transition-colors" />
+                    <span className="text-xs font-mono text-[#333]">{service.label}</span>
+                  </div>
+                  <h3 className="text-lg font-medium text-white mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-[#71717A] leading-relaxed mb-8">
+                    {service.description}
+                  </p>
+                </div>
+                
+                <div className="flex flex-wrap gap-2">
+                  {service.tags.map(tag => (
+                    <span key={tag} className="text-[10px] uppercase font-mono bg-white/5 text-[#A1A1AA] px-2 py-1 border border-white/5 rounded-[2px]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </FadeUp>
+            ))}
+          </div>
         </div>
+      </section>
+
+      {/* ── Why Us (The Manifesto) ────────────────── */}
+      <section className="py-32 border-b border-[#1A1A1A]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <div className="lg:col-span-4">
+              <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#71717A] mb-4">
+                {"//"} Engineering Integrity
+              </p>
+              <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-6">
+                Built on rigorous technical standards.
+              </h2>
+              <p className="text-sm text-[#71717A] leading-relaxed">
+                We refuse to deploy fragile boilerplate. Every workflow, model, and integration we architect is built with enterprise security, infinite scalability, and immediate ROI in mind.
+              </p>
+            </div>
+            
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
+              <FadeUp custom={1} className="flex gap-4">
+                <Shield className="w-5 h-5 text-[#FF5722] shrink-0" />
+                <div>
+                  <h4 className="text-sm font-medium text-white mb-2">Security-First Architecture</h4>
+                  <p className="text-xs text-[#71717A] leading-relaxed">Enterprise-grade encryption, role-based access controls, and strict PII data handling protocols from day one.</p>
+                </div>
+              </FadeUp>
+              <FadeUp custom={2} className="flex gap-4">
+                <Clock className="w-5 h-5 text-[#FF5722] shrink-0" />
+                <div>
+                  <h4 className="text-sm font-medium text-white mb-2">Weeks, Not Months</h4>
+                  <p className="text-xs text-[#71717A] leading-relaxed">Milestone-driven agile sprints designed to deliver compounding value and working systems to your team fast.</p>
+                </div>
+              </FadeUp>
+              <FadeUp custom={3} className="flex gap-4">
+                <Activity className="w-5 h-5 text-[#FF5722] shrink-0" />
+                <div>
+                  <h4 className="text-sm font-medium text-white mb-2">Telemetry & Optimization</h4>
+                  <p className="text-xs text-[#71717A] leading-relaxed">Advanced logging and runtime monitoring to ensure systems process flawlessly and improve autonomously over time.</p>
+                </div>
+              </FadeUp>
+              <FadeUp custom={4} className="flex gap-4">
+                <Code2 className="w-5 h-5 text-[#FF5722] shrink-0" />
+                <div>
+                  <h4 className="text-sm font-medium text-white mb-2">Dedicated Engineers</h4>
+                  <p className="text-xs text-[#71717A] leading-relaxed">You communicate directly with the lead system architects building your product. No middle-men account managers.</p>
+                </div>
+              </FadeUp>
+            </div>
+          </div>
+          
+          <div className="mt-16 sm:mt-24 max-w-4xl mx-auto">
+             <FadeUp custom={5}>
+                <SystemPulse />
+             </FadeUp>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4-Phase Architecture Process ──────────── */}
+      <section className="py-32 border-b border-[#1A1A1A] relative" aria-label="Deployment Process">
+        <div className="max-w-7xl mx-auto px-6">
+          <FadeUp custom={0} className="mb-20 text-center">
+             <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#71717A] mb-4">
+                {"//"} Deployment Vector
+             </p>
+             <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6">
+                The Engineering Lifecycle.
+             </h2>
+          </FadeUp>
+
+          <div className="relative max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
+              {processPhases.map((phase, i) => (
+                <FadeUp key={phase.id} custom={i} className="relative group">
+                  <div className="h-0.5 w-full bg-[#1A1A1A] mb-6 relative overflow-hidden">
+                    {/* Glowing progress line on hover */}
+                    <div className="absolute inset-y-0 left-0 w-0 bg-[#00a2ff] group-hover:w-full transition-all duration-700 ease-out" />
+                  </div>
+                  <span className="text-xs font-mono text-[#71717A] group-hover:text-white transition-colors">Phase {phase.id}</span>
+                  <h4 className="text-lg font-medium text-white mt-3 mb-3">{phase.title}</h4>
+                  <p className="text-sm text-[#71717A] leading-relaxed">{phase.desc}</p>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Contextual CTA ────────────────────────── */}
+      <section className="py-32 relative overflow-hidden bg-[#050505] text-center">
+         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(0,102,255,0.08),transparent_70%)] pointer-events-none" />
+         
+         <div className="max-w-3xl mx-auto px-6 relative z-10">
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
+              Ready to execute?
+            </h2>
+            <p className="text-[#A1A1AA] mb-10 text-lg font-light">
+              Book a strategic diagnostic call to analyze your current stack, uncover immediate operational friction, and map a scalable automation architecture.
+            </p>
+            
+            <Link
+                href="/contact"
+                className="inline-flex px-10 py-4 bg-white text-black font-medium text-sm hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] transition-shadow duration-300 rounded-[2px]"
+              >
+                Book Technical Diagnostic
+            </Link>
+         </div>
       </section>
     </>
   );

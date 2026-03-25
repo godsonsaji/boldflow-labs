@@ -1,23 +1,11 @@
-import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+﻿import type { Metadata } from "next";
+import { Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { AuthProvider } from "@/context/AuthContext";
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -30,7 +18,7 @@ const BASE_URL = "https://boldflowlabs.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "BoldFlow Labs — AI Automation Agency",
+    default: "BoldFlow Labs ΓÇö AI Automation Agency",
     template: "%s | BoldFlow Labs",
   },
   description:
@@ -59,7 +47,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: BASE_URL,
     siteName: "BoldFlow Labs",
-    title: "BoldFlow Labs — AI Automation Agency",
+    title: "BoldFlow Labs ΓÇö AI Automation Agency",
     description:
       "We build intelligent AI automation solutions that transform your business operations. From workflow automation to custom AI agents, we deliver measurable results.",
     images: [
@@ -67,13 +55,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "BoldFlow Labs — AI Automation Agency",
+        alt: "BoldFlow Labs ΓÇö AI Automation Agency",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BoldFlow Labs — AI Automation Agency",
+    title: "BoldFlow Labs ΓÇö AI Automation Agency",
     description:
       "We build intelligent AI automation solutions that transform your business operations.",
     creator: "@boldflowlabs",
@@ -155,7 +143,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${jakarta.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} font-sans antialiased text-white bg-[#030303]`}>
+      <body className={`${spaceGrotesk.variable} font-sans antialiased`}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
