@@ -7,18 +7,18 @@ import { ArrowRight, CheckCircle2, Clock, CalendarHeart, CodeIcon, LineChart } f
 const homeServices = [
   {
     icon: <LineChart className="w-6 h-6 text-[#0066ff] mb-4" />,
-    title: 'Automated Lead Follow-Up',
-    description: 'Instant responses and smart follow-up sequences. Stop losing revenue to slow response times.',
+    title: 'AI Voice Agent Development',
+    description: 'Deploy intelligent voice agents that answer, qualify, and close — around the clock.',
   },
   {
     icon: <CalendarHeart className="w-6 h-6 text-[#0066ff] mb-4" />,
-    title: 'Smart Scheduling Systems',
-    description: 'End-to-end booking flows with multi-channel reminders to drastically reduce no-shows.',
+    title: 'End-to-End CRM + Sales Pipeline Automation',
+    description: 'From first touch to closed deal — fully automated. A sales pipeline that moves itself.',
   },
   {
     icon: <CodeIcon className="w-6 h-6 text-[#0066ff] mb-4" />,
-    title: 'Custom Workflow Integration',
-    description: 'We connect your CRM, email, and internal tools to eliminate manual data entry entirely.',
+    title: 'Autonomous AI Agent Development',
+    description: 'Custom-built agents that reason, decide, and act on real-time data to handle complex workflows.',
   }
 ];
 
@@ -51,20 +51,20 @@ const processPhases = [
 
 const pricingTiers = [
   {
-    name: 'Starter',
-    price: 'from $995',
-    description: 'Perfect for small businesses needing a single core automation workflow.',
+    name: 'STARTER',
+    target: 'Solopreneurs & early-stage businesses',
+    description: 'For businesses taking their first step into AI automation. One focused workflow, deployed and running — with the foundation built to scale.',
   },
   {
-    name: 'Growth',
-    price: 'from $2,495',
-    description: 'Multi-step automation across several platforms for growing teams.',
+    name: 'GROWTH',
+    target: 'Growing SMBs scaling operations',
+    description: 'For teams ready to connect the dots. Multiple systems working together, full CRM automation, multi-channel conversations, and real-time business intelligence.',
     popular: true
   },
   {
-    name: 'Authority',
-    price: 'Custom',
-    description: 'Complete operational overhaul and ongoing technical partnership.',
+    name: 'AUTHORITY',
+    target: 'Established businesses going all-in on AI',
+    description: 'For businesses that want the full picture. Voice agents, autonomous AI, advanced dashboards, dedicated engineering support, and a quarterly roadmap built around your goals.',
   }
 ];
 
@@ -318,7 +318,7 @@ export default function HomePage() {
                               </div>
                           )}
                           <h3 className="text-xl font-medium text-[#F5F5F5] mb-2">{tier.name}</h3>
-                          <div className="text-[32px] font-semibold text-[#F5F5F5] mb-4">{tier.price}</div>
+                          <div className="text-[18px] font-medium text-[#0066ff] mb-4">{tier.target}</div>
                           <p className="text-[#A3A3A3] text-[15px] mb-8 flex-1">{tier.description}</p>
                       </div>
                   ))}
@@ -336,10 +336,10 @@ export default function HomePage() {
       <section className="py-32 flex justify-center px-6 border-b border-[#1A1A1A]">
           <div className="w-full max-w-[800px] text-center">
               <h2 className="text-[36px] md:text-[48px] font-medium text-[#F5F5F5] mb-6 tracking-tight leading-tight">
-                  Stop the busywork.<br />Start scaling.
+                  Book a Free Discovery Call
               </h2>
               <p className="text-body-lg text-[#A3A3A3] mb-10 max-w-lg mx-auto leading-relaxed">
-                  Book a free 30-minute discovery call. We'll look at your workflows and tell you exactly where an automated system could save you hours every week. Zero pressure.
+                  We'll scope your project, recommend the right tier, and give you a clear price — no pressure, no ambiguity.
               </p>
               
               <div className="flex flex-col items-center gap-6">

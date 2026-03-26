@@ -7,76 +7,82 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 const services = [
     {
         icon: "01",
-        title: "Automated Lead Follow-Up & CRM Routing",
-        subheadline: "Never Let a Hot Lead Go Cold Again",
-        description: "Intelligent follow-up systems that engage new enquiries instantly, nurture prospects through multi-step sequences, update your CRM in real time, and escalate sales-ready leads to your team.",
+        title: "AI Voice Agent Development",
+        subheadline: "Inbound + Outbound · Available 24/7 · No hiring, no burnout.",
+        description: "",
         whatsIncluded: [
-            "Instant multi-channel response (SMS/Email)",
-            "Automated prospect qualification sequences",
-            "Real-time CRM sync and pipeline updates"
+            "Deploy intelligent voice agents that answer, qualify, and close — around the clock",
+            "Outbound agents that prospect, follow up, and book meetings without a human on the line",
+            "Natural conversation flows trained on your scripts, tone, and objection-handling logic",
+            "Full call logging, transcription, and CRM sync after every interaction"
         ],
-        bestFor: "Real estate agencies, clinics, remodeling contractors"
+        outcome: "A tireless sales rep that scales infinitely and costs a fraction of a human hire"
     },
     {
         icon: "02",
-        title: "Customer Support Automation",
-        subheadline: "24/7 Customer Engagement — Without Expanding Your Team",
-        description: "Purpose-built conversational systems trained on your business data and tone to resolve routine queries, capture leads, and escalate complex issues gracefully to human staff.",
+        title: "End-to-End CRM + Sales Pipeline Automation",
+        subheadline: "From first touch to closed deal — fully automated.",
+        description: "",
         whatsIncluded: [
-            "Custom knowledge base integration",
-            "Omnichannel deployment (Web, WhatsApp, FB)",
-            "Seamless human-handoff protocols"
+            "Instant lead capture and enrichment from every channel you operate on",
+            "Intelligent follow-up sequences that adapt based on lead behaviour and intent signals",
+            "Automatic deal progression, task creation, and pipeline health alerts",
+            "CRM hygiene maintained without manual data entry — ever"
         ],
-        bestFor: "E-commerce stores, SaaS companies, high-volume service desks"
+        outcome: "A sales pipeline that moves itself, so your team closes instead of chasing"
     },
     {
         icon: "03",
-        title: "Smart Scheduling Systems",
-        subheadline: "Fill Your Calendar Automatically. Eliminate No-Shows.",
-        description: "End-to-end scheduling flows with instant booking and dynamic, multi-channel reminders that dramatically reduce cancellations and admin overhead.",
+        title: "Autonomous AI Agent Development",
+        subheadline: "Custom-built agents that reason, decide, and act.",
+        description: "",
         whatsIncluded: [
-            "Two-way calendar syncing",
-            "Automated confirmation and reminder flows",
-            "Self-serve rescheduling links"
+            "Multi-step agentic workflows that handle complex, non-linear business processes",
+            "Agents that browse, retrieve, synthesise, and act on real-time data",
+            "Built on modern LLM + tool-use frameworks — designed for durability and scale",
+            "Seamless integration with your existing stack, APIs, and data sources"
         ],
-        bestFor: "Coaches, consultants, personal trainers, medical clinics"
+        outcome: "A digital workforce that handles work your team doesn't have bandwidth for"
     },
     {
         icon: "04",
-        title: "Social Media & Content Pipelines",
-        subheadline: "Consistent Presence. Zero Manual Posting.",
-        description: "Content automation systems that keep your brand active across platforms, repurposing your core assets intelligently and scheduling them for maximum reach.",
+        title: "Business Intelligence Dashboards",
+        subheadline: "Niche-specific · Real-time · Decision-ready.",
+        description: "",
         whatsIncluded: [
-            "Automated cross-platform formatting",
-            "AI-assisted draft generation",
-            "Approval workflows before publishing"
+            "Custom dashboards built around the exact KPIs your business lives and dies by",
+            "Real-time data aggregation from multiple tools, CRMs, ad platforms, and more",
+            "Automated reporting delivered to stakeholders on your schedule",
+            "Zero manual spreadsheet updates — your numbers are always live and accurate"
         ],
-        bestFor: "Marketing agencies, creators, local authority brands"
+        outcome: "Decisions grounded in reality, not gut feel or yesterday's data"
     },
     {
         icon: "05",
-        title: "Automated Reporting Dashboards",
-        subheadline: "Real-Time Intelligence. No More Spreadsheet Scuttling.",
-        description: "Automated reporting systems that aggregate data across your tools and surface KPIs the moment they change, eliminating hours of manual data entry.",
+        title: "WhatsApp & Multi-Channel Conversational Automation",
+        subheadline: "Meet your customers exactly where they are.",
+        description: "",
         whatsIncluded: [
-            "Cross-platform data aggregation",
-            "Custom outcome-focused visual dashboards",
-            "Automated weekly digest emails"
+            "Intelligent WhatsApp bots that qualify leads, book calls, and resolve queries",
+            "Unified conversational automation across WhatsApp, Instagram DMs, SMS, and web chat",
+            "Seamless handoff protocols to human agents when complexity demands it",
+            "Broadcast campaigns, drip sequences, and re-engagement flows — fully automated"
         ],
-        bestFor: "Agency owners, fractional executives, multi-location businesses"
+        outcome: "Faster response times, higher conversion rates, and zero missed conversations"
     },
     {
         icon: "06",
-        title: "Bespoke System Workflows",
-        subheadline: "When Off-the-Shelf Tools Aren't Enough",
-        description: "Fully custom workflow architectures built from scratch to handle multi-step, complex operational procedures completely unique to your business.",
+        title: "AI Strategy Consulting + Automation Roadmapping",
+        subheadline: "Clarity before commitment.",
+        description: "",
         whatsIncluded: [
-            "Deep API integrations",
-            "Custom business logic implementation",
-            "Full architectural documentation"
+            "Deep-dive audit of your current workflows, tools, and automation gaps",
+            "Prioritised automation roadmap — sequenced by ROI and implementation complexity",
+            "Technology selection guidance so you invest in tools that last",
+            "Executive-ready presentation of findings, opportunities, and projected impact"
         ],
-        bestFor: "Mid-market operators with highly specific, non-standard operations"
-    },
+        outcome: "A clear, confident path to AI-powered operations — no guesswork, no wasted spend"
+    }
 ];
 
 export default function ServicesPage() {
@@ -93,7 +99,7 @@ export default function ServicesPage() {
                         transition={{ duration: 0.4 }}
                         className="text-[13px] tracking-wider text-[#0066ff] font-medium mb-6 uppercase"
                     >
-                        What We Build
+                        WHAT WE BUILD
                     </motion.div>
                     
                     <motion.h1 
@@ -102,7 +108,7 @@ export default function ServicesPage() {
                         transition={{ duration: 0.5, delay: 0.1 }}
                         className="text-[40px] md:text-h1 text-[#F5F5F5] font-medium tracking-tight leading-tight mb-8 max-w-4xl"
                     >
-                        Replace Manual Work<br />With Reliable Systems.
+                        AI Systems That Work While You Sleep.
                     </motion.h1>
 
                     <motion.p 
@@ -111,7 +117,7 @@ export default function ServicesPage() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="text-body-lg text-[#A3A3A3] max-w-2xl leading-relaxed"
                     >
-                        We design and build the exact automations your business needs to scale operations without adding headcount.
+                        We don't sell software. We engineer outcomes. Every solution BoldFlow Labs deploys is designed from first principles around your business — built to eliminate friction, compress sales cycles, and unlock the kind of growth that compounds over time.
                     </motion.p>
                 </div>
             </section>
@@ -144,9 +150,11 @@ export default function ServicesPage() {
                                      <h3 className="text-[18px] font-medium text-[#0066ff] mb-6">
                                          {svc.subheadline}
                                      </h3>
-                                     <p className="text-[16px] text-[#A3A3A3] leading-relaxed mb-8">
-                                         {svc.description}
-                                     </p>
+                                     {svc.description && (
+                                         <p className="text-[16px] text-[#A3A3A3] leading-relaxed mb-8">
+                                             {svc.description}
+                                         </p>
+                                     )}
                                      
                                      {/* Micro-Lists & Tags */}
                                      <div className="bg-[#0A0A0A] border border-[#1A1A1A] p-6 lg:p-8 mb-4">
@@ -163,8 +171,8 @@ export default function ServicesPage() {
                                          </ul>
                                          
                                          <div className="pt-6 border-t border-[#1A1A1A]">
-                                             <span className="text-[#71717A] text-[14px] uppercase tracking-wider font-medium">Best for: </span>
-                                             <span className="text-[#E5E5E5] text-[14px]">{svc.bestFor}</span>
+                                             <span className="text-[#71717A] text-[14px] uppercase tracking-wider font-medium">Outcome: </span>
+                                             <span className="text-[#E5E5E5] text-[14px]">{svc.outcome}</span>
                                          </div>
                                      </div>
                                      

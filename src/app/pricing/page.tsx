@@ -7,45 +7,46 @@ import { CheckCircle2, ChevronDown, ChevronUp } from "lucide-react";
 
 const tiers = [
     {
-        name: "Starter",
-        price: "from $995",
-        description: "Perfect for small businesses needing a single core automation workflow.",
+        name: "STARTER",
+        target: "Solopreneurs & early-stage businesses",
+        price: "Custom Quote on Call",
+        description: "For businesses taking their first step into AI automation. One focused workflow, deployed and running — with the foundation built to scale.",
         features: [
-            "1 Core Automation (Lead follow-up, chatbot, or booking)",
-            "Up to 3 integrations",
-            "Basic reporting setup",
-            "1-week build timeline",
+            "1 Core AI Workflow (e.g. AI Voice Agent or Chatbot)",
+            "Seamless integration with current stack",
+            "Deployed, running, and automated",
+            "Foundation architecture built to scale",
         ],
-        ctaText: "Get Started",
+        ctaText: "Book Your Discovery Call",
         style: "starter"
     },
     {
-        name: "Growth",
+        name: "GROWTH",
         isPopular: true,
-        price: "from $2,495",
-        description: "Multi-step automation across several platforms for growing teams.",
+        target: "Growing SMBs scaling operations",
+        price: "Custom Quote on Call",
+        description: "For teams ready to connect the dots. Multiple systems working together, full CRM automation, multi-channel conversations, and real-time business intelligence.",
         features: [
-            "3 Core Automations (Unified system)",
-            "Full CRM integration",
-            "Monthly performance dashboard",
-            "Content scheduling automation",
-            "2–3 week build timeline",
+            "Multiple AI systems working together",
+            "Full CRM & Sales Pipeline Automation",
+            "Multi-channel conversational agents (WhatsApp, SMS)",
+            "Real-time business intelligence dashboards",
         ],
-        ctaText: "Get Started",
+        ctaText: "Book Your Discovery Call",
         style: "growth"
     },
     {
-        name: "Authority",
-        price: "Custom",
-        description: "Complete operational overhaul and ongoing technical partnership.",
+        name: "AUTHORITY",
+        target: "Established businesses going all-in on AI",
+        price: "Custom Quote on Call",
+        description: "For businesses that want the full picture. Voice agents, autonomous AI, advanced dashboards, dedicated engineering support, and a quarterly roadmap built around your goals.",
         features: [
-            "All 5 core services as unified ecosystem",
-            "Custom AI chatbot with advanced flows",
-            "End-to-end customer journey automation",
-            "Real-time BI dashboard & CRM pipeline",
-            "4–6 week build timeline",
+            "Full deployment of advanced AI Voice Agents",
+            "Autonomous AI workflows for complex processes",
+            "Custom niche-specific BI dashboards",
+            "Dedicated engineering support & quarterly roadmapping",
         ],
-        ctaText: "Contact to Scope",
+        ctaText: "Book Your Discovery Call",
         style: "authority"
     }
 ];
@@ -84,12 +85,12 @@ const comparisonData = [
 ];
 
 const faqs = [
-    { q: "Why a setup fee + separate monthly retainer?", a: "Building custom automation requires intense upfront engineering to map logic and integrate tools. The retainer covers server costs, API limits, ongoing monitoring, and direct engineer access to ensure your system constantly improves." },
-    { q: "Do I have to commit to the monthly retainer?", a: "No. The retainer is month-to-month. If you have an internal technical team capable of monitoring workflows and webhooks, we will hand over the documentation after launch." },
-    { q: "What is the difference between Starter and Growth?", a: "Starter solves a single, isolated bottleneck like an AI chatbot. Growth deploys an intertwined architecture that links multiple endpoints together (e.g. chatbot qualifies lead -> routes to CRM -> triggers SMS sequence)." },
-    { q: "Can I upgrade after getting started?", a: "Absolutely. We view automation iteratively. You can deploy a Starter module immediately and add additional capabilities via the Growth plan once ROI is validated." },
-    { q: "How long does setup take?", a: "Depending on pipeline complexity, deployment ranges from 7 days (Starter) to 6+ weeks (Authority). We rely on strict schedules to prevent scope creep." },
-    { q: "Do you work with clients outside your timezone?", a: "Yes. Our systems process globally round-the-clock. We coordinate discovery and handoff calls across major time zones effortlessly." }
+    { q: "How does pricing work if there are no fixed numbers?", a: "Pricing is scoped based on your specific workflows, tech stack, and automation complexity. On our free discovery call, we audit your setup and provide a clear, transparent proposal before you commit to anything." },
+    { q: "What happens during the discovery call?", a: "We conduct a deep-dive audit of your current workflows and identify the highest-leverage opportunities to eliminate manual work. You'll get a clear automation roadmap sequenced by ROI and implementation complexity." },
+    { q: "What is the difference between Starter and Growth?", a: "Starter is for deploying one focused workflow (like an AI voice agent or CRM sync) to solve a single bottleneck. Growth connects multiple systems together—such as multi-channel conversations running alongside real-time dashboards and pipeline automation." },
+    { q: "Can I upgrade my tier later?", a: "Absolutely. We view automation iteratively. You can deploy a Starter module immediately to validate ROI, and add additional capabilities via the Growth plan as your capacity needs increase." },
+    { q: "How long does a typical build take?", a: "Depending on the complexity of your pipelines and the tier you choose, deployment ranges from a few weeks for a Starter workflow, to a more extensive timeline for Authority operational overhauls. We define the exact timeline in your proposal." },
+    { q: "Do you work with clients outside your timezone?", a: "Yes. Our systems process globally round-the-clock. We coordinate discovery and handoff calls across major time zones effortlessly, ensuring your automated systems work while you sleep." }
 ];
 
 export default function PricingPage() {
@@ -100,21 +101,30 @@ export default function PricingPage() {
             {/* ── HERO ─────────────────────────────────── */}
             <section className="relative pt-40 pb-20 border-b border-[#1A1A1A] overflow-hidden bg-[#0A0A0A]">
                 <div className="max-w-[1280px] w-full mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="text-[13px] tracking-wider text-[#0066ff] font-medium mb-6 uppercase"
+                    >
+                        Structured. Transparent. Scoped on a call.
+                    </motion.div>
+                    
                     <motion.h1 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="text-h2 md:text-h1 text-[#F5F5F5] font-medium leading-tight tracking-tight mb-6 max-w-4xl"
                     >
-                        Transparent Pricing <br className="hidden md:block"/>for Custom Systems.
+                        Our Philosophy:<br className="hidden md:block"/>No Guesswork. No Generic Packages.
                     </motion.h1>
 
                     <motion.p 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.1 }}
-                        className="text-body-lg text-[#A3A3A3] max-w-2xl font-light mb-12"
+                        className="text-body-lg text-[#A3A3A3] max-w-3xl font-light mb-12 mx-auto leading-relaxed"
                     >
-                        No surprise invoices or hidden retainers. Choose the tier that matches your current workflow bottleneck.
+                        Every business we work with has a different starting point — different tools, different gaps, different growth stage. That's why we don't publish fixed numbers. What we do publish is our structure, so you know exactly what tier fits your situation before we ever speak.
                     </motion.p>
                 </div>
             </section>
@@ -122,6 +132,12 @@ export default function PricingPage() {
             {/* ── TIERS ────────────────────────────────── */}
             <section className="py-24 bg-[#050505] border-b border-[#1A1A1A]">
                 <div className="max-w-[1280px] mx-auto px-6">
+                    <div className="mb-16 max-w-3xl mx-auto text-center">
+                        <h2 className="text-[#0066ff] font-medium tracking-wider uppercase text-[15px] mb-4">THREE TIERS. ONE CONVERSATION.</h2>
+                        <p className="text-[#A3A3A3] text-body-lg leading-relaxed">
+                            Pricing is scoped based on your workflows, stack, and automation complexity. Every engagement starts with a free discovery call — we audit your current setup, identify the highest-leverage opportunities, and give you a clear proposal before you commit to anything.
+                        </p>
+                    </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {tiers.map((tier, i) => (
                             <motion.div
@@ -143,7 +159,8 @@ export default function PricingPage() {
 
                                 <div className="mb-8">
                                     <h3 className="text-xl font-medium text-[#F5F5F5] mb-2">{tier.name}</h3>
-                                    <div className="text-[36px] font-semibold text-[#F5F5F5] mb-4">{tier.price}</div>
+                                    <div className="text-[28px] font-semibold text-[#F5F5F5] mb-1">{tier.price}</div>
+                                    <div className="text-[16px] font-medium text-[#0066ff] mb-4">{tier.target}</div>
                                     <p className="text-[#A3A3A3] text-sm leading-relaxed pb-6 border-b border-[#1A1A1A]">{tier.description}</p>
                                 </div>
 
@@ -245,10 +262,10 @@ export default function PricingPage() {
             <section className="py-32 flex justify-center px-6 bg-[#0A0A0A] border-b border-[#1A1A1A]">
                 <div className="w-full max-w-[800px] text-center">
                     <h2 className="text-[32px] md:text-[40px] font-medium text-[#F5F5F5] mb-6 tracking-tight leading-tight">
-                        Ready to automate your operations?
+                        Book a Free Discovery Call
                     </h2>
                     <p className="text-body-lg text-[#A3A3A3] mb-10 max-w-lg mx-auto leading-relaxed">
-                        Book a free strategy session. We'll map your current workflow bottlenecks and outline exactly what an automated system looks like for you.
+                        We'll scope your project, recommend the right tier, and give you a clear price — no pressure, no ambiguity.
                     </p>
                     <div className="flex flex-col items-center gap-6">
                         <Link href="/contact" className="px-10 py-5 btn-primary font-medium text-sm text-center w-full sm:w-auto min-w-[280px]">

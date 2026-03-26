@@ -23,7 +23,7 @@ export default function Footer() {
                     Reliable Systems.<br />
                     Zero Friction.
                 </h2>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-[#1A1A1A]">
                     {/* Brand Core - Column 1 */}
                     <div className="py-12 md:pr-12 md:border-r border-[#1A1A1A] flex flex-col justify-between h-full">
@@ -37,7 +37,7 @@ export default function Footer() {
                                 We build custom automation systems for service businesses so you can stop doing repetitive tasks and focus on revenue.
                             </p>
                         </div>
-                        
+
                         <div className="flex flex-col gap-2 font-mono text-[11px] text-[#A3A3A3] mt-auto">
                             <span className="uppercase tracking-widest text-[#F5F5F5] opacity-80">BASED IN KERALA, INDIA</span>
                             <span className="uppercase tracking-widest text-[#F5F5F5] opacity-60">SERVING GLOBAL CLIENTS</span>
@@ -74,11 +74,11 @@ export default function Footer() {
                                 Contact
                             </h3>
                         </div>
-                        
+
                         <ul className="space-y-4 mb-auto">
                             <li>
-                                <a href="mailto:hello@boldflowlabs.com" className="text-[#A3A3A3] hover:text-[#F5F5F5] text-[14px] transition-colors duration-150 block break-all">
-                                    hello@boldflowlabs.com
+                                <a href="mailto:boldflowlabs@gmail.com" className="text-[#A3A3A3] hover:text-[#F5F5F5] text-[14px] transition-colors duration-150 block break-all">
+                                    boldflowlabs@gmail.com
                                 </a>
                             </li>
                             <li>
