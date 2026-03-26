@@ -1,399 +1,354 @@
 "use client";
 
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { SystemPulse } from '@/components/SystemPulse';
+import { motion } from 'framer-motion';
+import { ArrowRight, CheckCircle2, Clock, CalendarHeart, CodeIcon, LineChart } from 'lucide-react';
 
-const services = [
+const homeServices = [
   {
-    label: '01',
-    title: 'AI-Powered Lead Follow-Up',
-    description: 'Instant, automated responses and smart follow-up sequences. No more leaked revenue from slow responses.',
-    tags: ['<1M_SLA', 'DYNAMIC_SCORING', 'CRM_SYNC'],
+    icon: <LineChart className="w-6 h-6 text-[#0066ff] mb-4" />,
+    title: 'Automated Lead Follow-Up',
+    description: 'Instant responses and smart follow-up sequences. Stop losing revenue to slow response times.',
   },
   {
-    label: '02',
-    title: 'AI Support & Conversational Agents',
-    description: 'Resolve customer queries 24/7. Capture leads and qualify prospects seamlessly without human intervention.',
-    tags: ['MULTI_PLATFORM', 'LLM_ROUTING', 'HUMAN_HANDOFF'],
+    icon: <CalendarHeart className="w-6 h-6 text-[#0066ff] mb-4" />,
+    title: 'Smart Scheduling Systems',
+    description: 'End-to-end booking flows with multi-channel reminders to drastically reduce no-shows.',
   },
   {
-    label: '03',
-    title: 'Automated Scheduling Systems',
-    description: 'End-to-end booking flows with multi-channel reminders that drastically reduce cancellations and no-shows.',
-    tags: ['2_WAY_SYNC', 'SMART_REMINDERS', 'AUTO_TRIAGE'],
-  },
-  {
-    label: '04',
-    title: 'Social & Content Pipelines',
-    description: 'Intelligent content distribution systems that draft, schedule, and repurpose assets across your entire stack.',
-    tags: ['CROSS_PLATFORM', 'GENAI_DRAFTING', 'AUTO_PUBLISH'],
-  },
-  {
-    label: '05',
-    title: 'Automated BI Dashboards',
-    description: 'Real-time operational reporting. Surface the metrics that matter and eliminate manual spreadsheet management.',
-    tags: ['DATA_AGGREG', 'CUSTOM_KPI', 'REAL_TIME_SYNC'],
-  },
-  {
-    label: '06',
-    title: 'Custom Agentic Workflows',
-    description: 'Bespoke AI architectures designed specifically for complex, multi-step operations unique to your business.',
-    tags: ['MULTI_AGENT', 'API_INTEGRATION', 'FULL_IP_RIGHTS'],
-  },
+    icon: <CodeIcon className="w-6 h-6 text-[#0066ff] mb-4" />,
+    title: 'Custom Workflow Integration',
+    description: 'We connect your CRM, email, and internal tools to eliminate manual data entry entirely.',
+  }
 ];
 
 const processPhases = [
   {
-    id: '01',
-    title: 'Discovery & Schema Design',
-    desc: 'Complete audit of operational bottlenecks and technical requirements to define system architecture.',
+    step: '01',
+    title: 'Discovery Call',
+    desc: 'We map exactly where you are losing time and money in your current operations.',
+    timeline: 'Day 1'
   },
   {
-    id: '02',
-    title: 'Architecture Approval',
-    desc: 'Review data flows, security protocols, and integration schemas prior to engineering execution.',
+    step: '02',
+    title: 'System Design',
+    desc: 'We architect the right automated solution tailored entirely for your exact workflow.',
+    timeline: 'Days 2-3'
   },
   {
-    id: '03',
-    title: 'Build & Integration',
-    desc: 'Iterative development sprints integrating core enterprise tools with custom AI agentic logic.',
+    step: '03',
+    title: 'Build & Test',
+    desc: 'We build the tools, integrate the platforms, and rigorously verify that everything works flawlessly.',
+    timeline: 'Weeks 1-3'
   },
   {
-    id: '04',
-    title: 'Deployment & Telemetry',
-    desc: 'System go-live with real-time error monitoring, logging, and ongoing optimization cycles.',
+    step: '04',
+    title: 'Go Live & Optimise',
+    desc: 'We deploy the system and stay totally accountable for its performance and ongoing results.',
+    timeline: 'Week 4+'
   },
 ];
 
-const differentiators = [
+const pricingTiers = [
   {
-    id: '01',
-    title: 'Security-First Architecture',
-    desc: 'Enterprise-grade encryption, strict role-based access controls, and absolute compliance handling protocols designed immediately from day zero. We deploy infrastructure that guarantees total data sovereignty.',
-    payload: [
-      "REQUEST: SEC_AUDIT_HANDSHAKE",
-      "[ OK ] ENCRYPTION: AES-256",
-      "[ OK ] IAM_ROLE: RESTRICTED",
-      "> PII_MASKING: ENABLED",
-      "SYS: VAULT_SEAL_INTACT."
-    ]
+    name: 'Starter',
+    price: 'from $995',
+    description: 'Perfect for small businesses needing a single core automation workflow.',
   },
   {
-    id: '02',
-    title: 'Weeks, Not Months',
-    desc: 'Finite milestone-driven agile sprints designed purely to deliver compounding value and functional operational systems to your immediate team fast. Zero theoretical bloat.',
-    payload: [
-      "CALCULATING DEPLOY_VECTOR...",
-      "TARGET_VELOCITY: EXCEEDED",
-      "> SPRINT_01: COMPLETE",
-      "> PIPELINE_BUILD: 14 DAYS",
-      "[ OK ] SYSTEM_ONLINE."
-    ]
+    name: 'Growth',
+    price: 'from $2,495',
+    description: 'Multi-step automation across several platforms for growing teams.',
+    popular: true
   },
   {
-    id: '03',
-    title: 'Telemetry & Optimization',
-    desc: 'Deep runtime observability, algorithmic logging architectures, and continuous runtime monitoring to ensure your autonomous pipelines process flawlessly and improve radically over time.',
-    payload: [
-      "PINGING LIVE_NODES...",
-      "> LATENCY: 8ms",
-      "> THROUGHPUT: MAX_CAPACITY",
-      "[ WARNING ] THROTTLE_PREVENTED",
-      "SYS: AUTO_SCALED INSTANCES."
-    ]
-  },
-  {
-    id: '04',
-    title: 'Dedicated Engineers',
-    desc: 'You communicate natively and exclusively with the direct lead system architects deploying your product. We completely eliminate the operational friction of middle-tier account managers.',
-    payload: [
-      "ESTABLISHING COMMS_LINK...",
-      "ROUTING TO -> CHIEF_ARCHITECT",
-      "[ OK ] DIRECT_STREAM_ESTABLISHED",
-      "> NO_RELAYS",
-      "> RAW_ACCESS_GRANTED."
-    ]
+    name: 'Authority',
+    price: 'Custom',
+    description: 'Complete operational overhaul and ongoing technical partnership.',
   }
 ];
 
+const techStackImages = [
+  { name: 'OpenAI', src: '/logos/openai.svg' },
+  { name: 'Make', src: '/logos/make.svg' },
+  { name: 'n8n', src: '/logos/n8n.svg' },
+  { name: 'Stripe', src: '/logos/stripe.svg' },
+  { name: 'Airtable', src: '/logos/airtable.svg' }
+];
+
 export default function HomePage() {
-  const processRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: processRef,
-    offset: ["start center", "end center"]
-  });
-
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
-  // Manifesto Scroll Tracking for Terminal
-  const [activeReason, setActiveReason] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-        const sections = document.querySelectorAll('.reason-section');
-        let currentActive = 0;
-        sections.forEach((sec, idx) => {
-            const rect = sec.getBoundingClientRect();
-            if (rect.top <= window.innerHeight * 0.5) currentActive = idx;
-        });
-        setActiveReason(currentActive);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <>
-      {/* ── SECTION 2: HERO ──────────────────────────── */}
-      <section className="relative min-h-screen flex items-center border-b border-[#1A1A1A] overflow-hidden pt-20">
-        <div className="noise-overlay" />
-        <div className="absolute inset-0 radial-glow opacity-30 z-0" />
+      {/* ── HERO SECTION ──────────────────────────── */}
+      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 flex items-center border-b border-[#1A1A1A] overflow-hidden">
+        <div className="absolute inset-0 bg-[#0A0A0A] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#0066ff]/10 via-[#0A0A0A] to-[#0A0A0A] -z-10" />
         
-        <div className="max-w-[1280px] w-full mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
+        <div className="max-w-[1280px] w-full mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 relative z-10">
             {/* Left Col - Typography */}
-            <div className="lg:col-span-7 flex flex-col justify-center">
-                <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.1, delay: 0.1 }}
-                    className="flex items-center gap-2 mb-8 bg-[#0066ff]/5 border border-[rgba(0,102,255,0.2)] px-3 py-1.5 w-max"
-                >
-                    <span className="w-1.5 h-1.5 bg-[#0066ff] rounded-full animate-pulse-dot" />
-                    <span className="text-label text-[#0066ff]">SYSTEMS OPERATIONAL</span>
-                </motion.div>
+            <div className="flex flex-col justify-center">
                 
-                <h1 className="text-hero text-[#F5F5F5] mb-8 uppercase" style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
-                    <motion.div
-                        initial={{ y: "100%" }}
-                        animate={{ y: 0 }}
-                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-                    >
-                        Deterministic<br />
-                        Automation.<br />
-                        Finite<br />
-                        Execution.
-                    </motion.div>
-                </h1>
+                <motion.h1 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-h1 md:text-hero text-[#F5F5F5] mb-6 leading-[1.05] tracking-tight"
+                >
+                    Your business runs on manual work. 
+                    <span className="text-[#A3A3A3] block mt-2">Ours runs on fixing that.</span>
+                </motion.h1>
 
                 <motion.p 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.45 }}
-                    className="text-body-lg text-[#A3A3A3] max-w-xl mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="text-body-lg text-[#A3A3A3] max-w-xl mb-12 leading-relaxed"
                 >
-                    Stop paying humans to act like algorithms. We engineer bespoke AI pipelines that eliminate operational friction, execute with zero latency, and scale unconditionally.
+                    We build custom automation systems for service businesses so you can stop doing repetitive tasks and focus on revenue.
                 </motion.p>
 
                 <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.6 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
                     className="flex flex-col sm:flex-row items-center gap-4"
                 >
-                    <Link href="/contact" className="w-full sm:w-auto px-8 py-4 btn-primary font-medium text-sm text-center">
-                        INITIALIZE DIAGNOSTIC
+                    <Link href="/contact" className="w-full sm:w-auto px-8 py-4 btn-primary font-medium text-[15px] text-center flex items-center justify-center gap-2">
+                        Book a Free Strategy Call <ArrowRight className="w-4 h-4" />
                     </Link>
-                    <Link href="/services" className="w-full sm:w-auto px-8 py-4 btn-ghost font-mono text-[13px] text-center tracking-wider">
-                        [ RUN ARCHITECTURE DOCS ]
+                    <Link href="#process" className="w-full sm:w-auto px-8 py-4 bg-transparent border border-[#333333] hover:border-[#666] text-[#F5F5F5] font-medium text-[15px] text-center transition-colors">
+                        See How It Works
                     </Link>
                 </motion.div>
             </div>
 
-            {/* Right Col - Visual Anchor */}
+            {/* Right Col - Visual Abstract Workspace */}
             <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.1, delay: 0.8 }}
-                className="lg:col-span-5 h-[500px] lg:h-auto animate-crt relative"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="hidden lg:flex items-center justify-center relative"
             >
-                <SystemPulse />
-                <div className="target-hex target-hex-left-top" />
-                <div className="target-hex target-hex-right-bottom" />
+                <div className="w-full max-w-[500px] aspect-square rounded-full border-[1px] border-[#1A1A1A] relative flex items-center justify-center">
+                   <div className="w-3/4 h-3/4 rounded-full border-[1px] border-[#333333] flex items-center justify-center bg-[#050505]/40 backdrop-blur-sm shadow-[0_0_80px_rgba(0,102,255,0.05)]">
+                       <div className="w-1/2 h-1/2 rounded-full border-[1px] border-[#0066ff]/20 bg-[#0066ff]/5 relative flex items-center justify-center">
+                           <div className="absolute w-3 h-3 bg-[#0066ff] rounded-full shadow-[0_0_20px_#0066ff]" />
+                       </div>
+                   </div>
+                   
+                   {/* Orbiting nodes indicating workflow chunks */}
+                   <motion.div 
+                     animate={{ rotate: 360 }} 
+                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                     className="absolute inset-0 rounded-full"
+                   >
+                       <div className="w-4 h-4 bg-[#333] rounded-full absolute top-[-8px] left-1/2 -translate-x-1/2" />
+                   </motion.div>
+                </div>
             </motion.div>
         </div>
       </section>
 
-      {/* ── SECTION 3: TRUST BAR ────────────────────── */}
-      <section className="h-[120px] border-b border-[#1A1A1A] w-full overflow-hidden flex items-center bg-[#050505] relative">
-          <div className="flex whitespace-nowrap overflow-hidden w-full font-mono text-label text-[#525252]">
-              <motion.div
-                  animate={{ x: [0, -1000] }}
-                  transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
-                  className="flex items-center"
-              >
-                  {/* Repeated blocks for infinite marquee */}
-                  {[1,2,3].map(i => (
-                      <div key={i} className="flex items-center">
-                          <span className="mx-12">{"//"} UPTIME: 99.999%</span>
-                          <span className="text-[#1A1A1A]">[ + ]</span>
-                          <span className="mx-12">{"//"} AVG_LATENCY: 12ms</span>
-                          <span className="text-[#1A1A1A]">[ + ]</span>
-                          <span className="mx-12">{"//"} ACTIVE_NODES: 2,048</span>
-                          <span className="text-[#1A1A1A]">[ + ]</span>
-                          <span className="mx-12">{"//"} ZERO_DAY_REDUNDANCY: ONLINE</span>
-                          <span className="text-[#1A1A1A]">[ + ]</span>
-                      </div>
-                  ))}
-              </motion.div>
+      {/* ── TRUST BAR ───────────────────────────────── */}
+      <section className="border-b border-[#1A1A1A] w-full flex items-center justify-center bg-[#0A0A0A] py-6 px-4">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-12 text-[14px] text-[#A3A3A3] font-medium">
+              <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#0066ff]" /> Free 30-min strategy call
+              </div>
+              <span className="hidden md:block text-[#333]">·</span>
+              <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#0066ff]" /> No obligation
+              </div>
+              <span className="hidden md:block text-[#333]">·</span>
+              <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-[#0066ff]" /> Response within 1 business day
+              </div>
           </div>
       </section>
 
-      {/* ── SECTION 4: SERVICES ─────────────────────── */}
-      <section className="py-32 lg:py-48 border-b border-[#1A1A1A]">
+      {/* ── SERVICES PREVIEW ────────────────────────── */}
+      <section className="py-24 lg:py-32 border-b border-[#1A1A1A]">
         <div className="max-w-[1280px] mx-auto px-6">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                 <div>
-                   <p className="text-label text-[#71717A] mb-4 uppercase">
-                       <span className="text-[#0066ff]">{"//"}</span> SYSTEM CAPABILITIES
-                   </p>
-                   <h2 className="text-h2 text-[#F5F5F5] uppercase">
-                       Engineer Workflow<br/>Pipelines.
+                   <h2 className="text-h2 text-[#F5F5F5] font-medium tracking-tight mb-4">
+                       Where We Remove the Manual Work
                    </h2>
+                   <p className="text-body text-[#A3A3A3] max-w-xl">
+                       We specialize in eliminating operational drag for service businesses through intelligent system architecture.
+                   </p>
                 </div>
-                <Link href="/services" className="font-mono text-[13px] text-[#A3A3A3] hover:text-[#0066ff] transition-colors relative group">
-                    [ EXECUTE : VIEW ALL SYSTEMS ]
-                    <span className="absolute left-0 bottom-[-4px] w-full h-[1px] bg-[#0066ff] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-150" />
-                </Link>
             </div>
 
-            {/* Matrix Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[#1A1A1A]">
-                {services.map((svc, idx) => (
-                    <motion.div
-                        key={svc.label}
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-10%" }}
-                        transition={{ duration: 0.15, delay: idx * 0.1, ease: "linear" }}
-                        className="service-card p-10 flex flex-col h-full"
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {homeServices.map((svc, idx) => (
+                    <div
+                        key={svc.title}
+                        className="p-8 border border-[#1A1A1A] bg-[#0A0A0A] hover:border-[#333333] transition-colors flex flex-col items-start"
                     >
-                        <div className="text-label text-[#525252] mb-12">{"//"} {svc.label}</div>
-                        <h3 className="text-h3 text-[#F5F5F5] mb-4">{svc.title}</h3>
-                        <p className="text-body text-[#A3A3A3] mb-12 flex-1">{svc.description}</p>
-                        <div className="flex flex-wrap gap-2 mt-auto">
-                            {svc.tags.map(tag => (
-                                <span key={tag} className="mono-tag text-[#71717A] border border-[#1A1A1A] px-2 py-1 bg-[#050505]">{`[ ${tag} ]`}</span>
-                            ))}
-                        </div>
-                    </motion.div>
+                        {svc.icon}
+                        <h3 className="text-xl font-medium text-[#F5F5F5] mb-3">{svc.title}</h3>
+                        <p className="text-[#A3A3A3] mb-8 leading-relaxed flex-1">{svc.description}</p>
+                        <Link href="/services" className="text-[#0066ff] font-medium text-[14px] flex items-center gap-2 hover:gap-3 transition-all mt-auto">
+                            Learn more <ArrowRight className="w-4 h-4" />
+                        </Link>
+                    </div>
                 ))}
+            </div>
+            
+            <div className="mt-12 text-center">
+                <Link href="/services" className="inline-block px-8 py-4 border border-[#333] text-[#F5F5F5] hover:bg-[#111] transition-colors font-medium">
+                    View All Services
+                </Link>
             </div>
         </div>
       </section>
 
-      {/* ── SECTION 5: WHY BOLDFLOW ─────────────────── */}
-      <section className="py-32 lg:py-48 border-b border-[#1A1A1A]">
-          <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
-              {/* Left Column - Sticky */}
-              <div className="lg:col-span-5 relative">
-                  <div className="sticky top-32">
-                      <p className="text-label text-[#71717A] mb-4 uppercase">
-                          <span className="text-[#0066ff]">{"//"}</span> ENGINEERING INTEGRITY
-                      </p>
-                      <h2 className="text-h2 text-[#F5F5F5] uppercase mb-12">
-                          Absolute<br />Technical<br />Credibility.
-                      </h2>
-                      <div className="h-[300px] w-full opacity-100">
-                          <SystemPulse customPayloads={differentiators[activeReason].payload} />
-                      </div>
-                  </div>
+      {/* ── PROCESS SECTION ─────────────────────────── */}
+      <section id="process" className="py-24 lg:py-32 border-b border-[#1A1A1A] bg-[#050505]">
+          <div className="max-w-[1280px] mx-auto px-6">
+              <div className="text-center mb-20">
+                  <h2 className="text-h2 text-[#F5F5F5] font-medium tracking-tight mb-4">
+                      How It Works
+                  </h2>
+                  <p className="text-body text-[#A3A3A3] max-w-2xl mx-auto">
+                      A transparent, milestone-driven approach to deploying your automation systems.
+                  </p>
               </div>
 
-              {/* Right Column - Scrolling */}
-              <div className="lg:col-span-7 flex flex-col pt-[50vh] pb-[20vh] space-y-32">
-                  {differentiators.map((diff, i) => (
-                      <div key={diff.id} className="reason-section border-t border-[#1A1A1A] pt-8 relative">
-                          <div className="target-hex target-hex-left-top" />
-                          <div className="text-label text-[#0066ff] mb-6 block">
-                              [ REASON_{diff.id} ]
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+                  {/* Desktop Connecting Line */}
+                  <div className="hidden md:block absolute top-[24px] left-[50px] right-[50px] h-[1px] bg-[#1A1A1A] z-0" />
+                  
+                  {processPhases.map((phase) => (
+                      <div key={phase.step} className="relative z-10 flex flex-col items-start md:items-center md:text-center p-6 bg-[#0A0A0A] md:bg-transparent border border-[#1A1A1A] md:border-transparent">
+                          <div className="w-12 h-12 rounded-full bg-[#111] border border-[#333] flex items-center justify-center text-[#F5F5F5] font-medium mb-6 mx-0 md:mx-auto pt-1 shadow-[0_0_0_10px_#050505]">
+                              {phase.step}
                           </div>
-                          <h3 className="text-[32px] font-medium text-[#F5F5F5] uppercase leading-tight mb-6">{diff.title}</h3>
-                          <p className="text-body-lg text-[#A3A3A3] max-w-xl">{diff.desc}</p>
+                          <div className="text-[#0066ff] font-medium text-[12px] uppercase tracking-wider mb-2">
+                              {phase.timeline}
+                          </div>
+                          <h3 className="text-xl font-medium text-[#F5F5F5] mb-4">{phase.title}</h3>
+                          <p className="text-[#A3A3A3] text-[15px] leading-relaxed">
+                              {phase.desc}
+                          </p>
                       </div>
                   ))}
               </div>
           </div>
       </section>
 
-      {/* ── SECTION 6: PROCESS ──────────────────────── */}
-      <section ref={processRef} className="py-32 lg:py-48 border-b border-[#1A1A1A]">
-          <div className="max-w-[1280px] mx-auto px-6">
-              <p className="text-label text-[#71717A] mb-4 uppercase">
-                  <span className="text-[#0066ff]">{"//"}</span> DEPLOYMENT VECTOR
-              </p>
-              <h2 className="text-h2 text-[#F5F5F5] uppercase mb-24">
-                  The Engineering<br/>Lifecycle.
-              </h2>
-
-              <div className="relative pl-0 md:pl-12 max-w-4xl">
-                  {/* Vertical Rail */}
-                  <div className="absolute left-[15px] top-[10px] bottom-[10px] w-[1px] bg-[#1A1A1A] hidden md:block">
-                      <motion.div 
-                          className="w-full bg-[#0066ff] transform origin-top"
-                          style={{ scaleY: lineHeight }}
-                      />
+      {/* ── TRUST & TRANSPARENCY SECTION ────────────── */}
+      <section className="py-24 lg:py-32 border-b border-[#1A1A1A] relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0066ff]/5 rounded-full blur-[120px] -z-10" />
+          
+          <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
+              <div>
+                  <h2 className="text-h2 text-[#F5F5F5] font-medium tracking-tight mb-6">
+                      We're early-stage, and proud of it. Here's what that means for you.
+                  </h2>
+                  <p className="text-body-lg text-[#A3A3A3] mb-8 leading-relaxed">
+                      BoldFlow Labs is built by practitioners, not salespeople. We are actively seeking our first "Founding Clients" to build incredible case studies out of.
+                  </p>
+                  
+                  <ul className="space-y-6 mb-12">
+                      <li className="flex items-start gap-4">
+                          <CheckCircle2 className="w-6 h-6 text-[#0066ff] shrink-0 mt-0.5" />
+                          <div>
+                              <strong className="text-[#F5F5F5] font-medium block mb-1">Direct Architect Access</strong>
+                              <span className="text-[#A3A3A3]">No account managers. You work directly with the engineer building your system.</span>
+                          </div>
+                      </li>
+                      <li className="flex items-start gap-4">
+                          <CheckCircle2 className="w-6 h-6 text-[#0066ff] shrink-0 mt-0.5" />
+                          <div>
+                              <strong className="text-[#F5F5F5] font-medium block mb-1">Favorable Pricing Scope</strong>
+                              <span className="text-[#A3A3A3]">Because we want the case study, we will over-deliver on scope compared to established legacy agencies.</span>
+                          </div>
+                      </li>
+                      <li className="flex items-start gap-4">
+                          <CheckCircle2 className="w-6 h-6 text-[#0066ff] shrink-0 mt-0.5" />
+                          <div>
+                              <strong className="text-[#F5F5F5] font-medium block mb-1">Hyper-Responsive Support</strong>
+                              <span className="text-[#A3A3A3]">You are not a ticket number. We fix issues immediately and answer questions directly.</span>
+                          </div>
+                      </li>
+                  </ul>
+                  
+                  <div className="p-6 bg-[#0066ff]/5 border border-[#0066ff]/20">
+                      <h4 className="text-[#F5F5F5] font-medium mb-2">Founding Client Programme</h4>
+                      <p className="text-[#A3A3A3] text-[14px] mb-4">Limited spots available for ambitious service businesses ready to scale.</p>
+                      <Link href="/work" className="text-[#0066ff] font-medium text-[14px] flex items-center gap-2 hover:gap-3 transition-all">
+                          Read about the programme <ArrowRight className="w-4 h-4" />
+                      </Link>
                   </div>
-
-                  <div className="flex flex-col gap-20 relative">
-                     {processPhases.map((phase, i) => (
-                         <div key={phase.id} className="relative group md:pl-16 flex flex-col">
-                             {/* Rail Node Indicator */}
-                             <div className="hidden md:flex absolute left-[-2px] top-[10px] w-[9px] h-[9px] bg-[#050505] border border-[#525252] rounded-full z-10 items-center justify-center transition-colors duration-[0ms] group-hover:border-[#0066ff] group-hover:bg-[#0066ff]">
-                             </div>
-
-                             <div className="text-label text-[#525252] mb-4 transition-colors duration-[0ms] group-hover:text-[#0066ff]">
-                                 PHASE_{phase.id}
-                             </div>
-                             
-                             <div className="bg-transparent group-hover:bg-[#0A0A0A] p-0 md:group-hover:px-8 md:group-hover:py-6 transition-all duration-[0ms] border border-transparent group-hover:border-[#1A1A1A]">
-                                 <h3 className="text-[28px] md:text-[32px] font-medium text-[#A3A3A3] group-hover:text-[#F5F5F5] uppercase mb-4 transition-colors duration-[0ms]">
-                                     {phase.title}
-                                 </h3>
-                                 <p className="text-body text-[#71717A] max-w-2xl transition-colors duration-[0ms] group-hover:text-[#A3A3A3]">
-                                     {phase.desc}
-                                 </p>
-                             </div>
-                         </div>
-                     ))}
+              </div>
+              
+              <div className="lg:pl-12 flex flex-col justify-center">
+                  <h3 className="text-[#F5F5F5] text-xl font-medium mb-8 text-center lg:text-left">Built entirely on industry-leading tools:</h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                      {/* Temporary textual logos since we don't have SVG files yet */
+                      techStackImages.map((tech) => (
+                          <div key={tech.name} className="flex items-center justify-center lg:justify-start h-12 text-[#F5F5F5] font-bold text-xl tracking-tight opacity-50">
+                              {tech.name}
+                          </div>
+                      ))}
                   </div>
               </div>
           </div>
       </section>
 
-      {/* ── SECTION 7: MID-PAGE CTA ─────────────────── */}
-      <section className="py-32 lg:py-48 flex justify-center px-6">
-          <div className="w-full max-w-[800px] border border-[#1A1A1A] bg-[#0A0A0A] relative p-16 md:p-24 text-center group active:scale-[0.99] transition-transform duration-150">
-              {/* Outer stroke animation on hover */}
-              <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 p-[1px] z-20">
-                  <div className="w-full h-full animate-sweep-border opacity-50" />
-              </div>
-
-              {/* Grid & Glow */}
-              <div className="grid-overlay pointer-events-none absolute inset-0 z-0" />
-              <div className="absolute inset-0 radial-glow z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="target-hex target-hex-left-top" />
-              <div className="target-hex target-hex-right-bottom" />
-              <div className="target-hex target-hex-right-top" />
-              <div className="target-hex target-hex-left-bottom" />
-
-              <div className="absolute top-6 right-8 text-label text-[#525252]">
-                  {"//"} ONDEMAND_CAPACITY: <span className="text-[#F5F5F5]">82% RESERVED</span>
-              </div>
-
-              <div className="relative z-10 flex flex-col items-center">
-                  <h2 className="text-[32px] md:text-h2 font-medium text-[#F5F5F5] uppercase mb-6 leading-tight">
-                      SYSTEMS AWAITING<br/>DEPLOYMENT.
+      {/* ── PRICING PREVIEW ─────────────────────────── */}
+      <section className="py-24 lg:py-32 border-b border-[#1A1A1A] bg-[#0A0A0A]">
+          <div className="max-w-[1280px] mx-auto px-6">
+              <div className="text-center mb-16">
+                  <h2 className="text-h2 text-[#F5F5F5] font-medium tracking-tight mb-4">
+                      Simple, Predictable Pricing
                   </h2>
-                  <p className="text-body-lg text-[#A3A3A3] mb-12 max-w-md mx-auto">
-                      Secure your infrastructure diagnostic. Zero theoreticals. Pure architectural clarity.
+                  <p className="text-body text-[#A3A3A3] max-w-2xl mx-auto">
+                      Choose the capacity that matches your workflow bottleneck.
                   </p>
-                  
-                  <Link href="/contact" className="px-10 py-5 btn-primary font-medium text-sm text-center tracking-wide w-full sm:w-auto min-w-[240px]">
-                      INITIALIZE DIAGNOSIS
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
+                  {pricingTiers.map((tier) => (
+                      <div key={tier.name} className={`p-8 border bg-[#050505] flex flex-col ${tier.popular ? 'border-[#0066ff] relative shadow-[0_0_30px_rgba(0,102,255,0.05)]' : 'border-[#1A1A1A]'}`}>
+                          {tier.popular && (
+                              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#0066ff] text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1">
+                                  Most Popular
+                              </div>
+                          )}
+                          <h3 className="text-xl font-medium text-[#F5F5F5] mb-2">{tier.name}</h3>
+                          <div className="text-[32px] font-semibold text-[#F5F5F5] mb-4">{tier.price}</div>
+                          <p className="text-[#A3A3A3] text-[15px] mb-8 flex-1">{tier.description}</p>
+                      </div>
+                  ))}
+              </div>
+
+              <div className="text-center">
+                  <Link href="/pricing" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#F5F5F5] text-[#050505] font-medium hover:bg-white transition-colors">
+                      See Full Pricing & What's Included
                   </Link>
+              </div>
+          </div>
+      </section>
+
+      {/* ── FINAL CTA ───────────────────────────────── */}
+      <section className="py-32 flex justify-center px-6 border-b border-[#1A1A1A]">
+          <div className="w-full max-w-[800px] text-center">
+              <h2 className="text-[36px] md:text-[48px] font-medium text-[#F5F5F5] mb-6 tracking-tight leading-tight">
+                  Stop the busywork.<br />Start scaling.
+              </h2>
+              <p className="text-body-lg text-[#A3A3A3] mb-10 max-w-lg mx-auto leading-relaxed">
+                  Book a free 30-minute discovery call. We'll look at your workflows and tell you exactly where an automated system could save you hours every week. Zero pressure.
+              </p>
+              
+              <div className="flex flex-col items-center gap-6">
+                  <Link href="/contact" className="px-10 py-5 btn-primary font-medium text-[16px] text-center w-full sm:w-auto min-w-[280px]">
+                      Book Your Free Strategy Call
+                  </Link>
+                  <p className="text-[14px] text-[#71717A]">
+                      No commitment required. Honest answers guaranteed.
+                  </p>
               </div>
           </div>
       </section>

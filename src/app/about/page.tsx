@@ -1,6 +1,5 @@
 "use client";
 
-import type { Metadata } from "next";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -11,7 +10,7 @@ const traits = [
     },
     {
         title: "Intentional Scale",
-        desc: "We maintain a deliberately small team and limited roster. You get direct access to the senior engineers architecting your systems."
+        desc: "We maintain a deliberately small team and limited roster. You get direct access to the engineers architecting your systems."
     },
     {
         title: "Outcome Focus",
@@ -31,48 +30,43 @@ const philosophy = [
 ];
 
 const expertise = [
-    "LLM fine-tuning & RAG API integration",
-    "Agentic AI & autonomous multi-agent orchestration",
     "End-to-end workflow automation (n8n/Make)",
-    "Proprietary AI model development",
-    "Scalable cloud automation architecture",
-    "Real-time operational dashboards & Predictive analytics"
+    "Custom AI Chatbots & Support Agents",
+    "CRM & Pipeline Integration",
+    "Smart Scheduling & Lead Routing",
+    "Real-time operational dashboards"
 ];
 
 export default function AboutPage() {
     return (
         <>
             {/* ── HERO ─────────────────────────────────── */}
-            <section className="relative pt-40 pb-32 border-b border-[#1A1A1A] overflow-hidden">
-                <div className="noise-overlay" />
-                <div className="grid-overlay pointer-events-none absolute inset-0 z-0" />
-                <div className="absolute inset-0 radial-glow opacity-30 z-0" />
-                
+            <section className="relative pt-40 pb-24 border-b border-[#1A1A1A] overflow-hidden bg-[#0A0A0A]">
                 <div className="max-w-[1280px] w-full mx-auto px-6 relative z-10 flex flex-col justify-center">
                     <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-label text-[#0066ff] mb-6 uppercase"
+                        className="text-label text-[#0066ff] mb-6 uppercase tracking-wider"
                     >
-                        {"//"} ABOUT THE LABS
+                        About Us
                     </motion.div>
                     
                     <motion.h1 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-h1 md:text-[80px] text-[#F5F5F5] uppercase leading-[0.9] mb-8 max-w-5xl tracking-tighter"
+                        className="text-[40px] md:text-h1 text-[#F5F5F5] font-medium leading-[1.1] mb-8 max-w-4xl tracking-tight"
                     >
-                        A deep algorithmic focus on automation<br/>that actually works.
+                        We Build Systems Because We Hate Busywork.
                     </motion.h1>
 
                     <motion.p 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-body-lg text-[#F5F5F5] max-w-2xl font-medium mb-4"
+                        className="text-body-lg text-[#A3A3A3] max-w-2xl font-light mb-4 leading-relaxed"
                     >
-                        Lean by design. Technical by nature. Deeply committed to systems that genuinely solve massive operational problems.
+                        BoldFlow Labs is an independent AI automation agency focused entirely on delivering real results for service businesses.
                     </motion.p>
                 </div>
             </section>
@@ -81,19 +75,19 @@ export default function AboutPage() {
             <section className="py-24 bg-[#050505] border-b border-[#1A1A1A]">
                  <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
                      <div>
-                         <h2 className="text-h2 text-[#F5F5F5] uppercase sticky top-32">
-                             Why We Built<br/>This Pipeline.
+                         <h2 className="text-h2 text-[#F5F5F5] font-medium tracking-tight sticky top-32">
+                             Why We Built<br/>BoldFlow Labs.
                          </h2>
                      </div>
-                     <div className="flex flex-col gap-8 text-[#A3A3A3] text-body-lg leading-relaxed font-light">
+                     <div className="flex flex-col gap-6 text-[#A3A3A3] text-[16px] leading-relaxed">
                          <p>
-                             We were born entirely from frustration. The current landscape is saturated with agencies selling automation as undefined magic—delivering off-the-shelf integrations wrapped tightly in highly inflated consulting fees, with zero customization and absolutely no accountability for end results.
+                             We saw too many great service businesses bleeding revenue simply because they couldn't keep up with manual admin tasks. Teams were drowning in lead follow-ups, repetitive data entry, and dropped communications.
                          </p>
                          <p>
-                             BoldFlow Labs was constructed differently. We do it properly. That means profound engineering depth, genuine structural customization, and deterministic systems designed deliberately to evolve with your scale.
+                             BoldFlow Labs was built to fix exactly that. We engineer custom automation systems that do the heavy lifting in the background, giving founders and operators their time back to focus on actual growth. There's no fluff, no buzzwords, and no off-the-shelf band-aids.
                          </p>
-                         <p className="text-[#F5F5F5] font-medium border-l border-[#0066ff] pl-6 py-2">
-                             We are early-stage, and we are completely honest about it. But our engineering capability is absolutely not early-stage.
+                         <p className="border-l border-[#0066ff] pl-6 py-2 mt-4 text-[#F5F5F5] font-medium">
+                             We rely on profound engineering depth to build reliable infrastructures that scale with your business.
                          </p>
                      </div>
                  </div>
@@ -102,13 +96,13 @@ export default function AboutPage() {
             {/* ── TRAITS & PHILOSOPHY ──────────────────── */}
             <section className="py-32 bg-[#0A0A0A] border-b border-[#1A1A1A]">
                 <div className="max-w-[1280px] mx-auto px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-[#1A1A1A] mb-32">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-32">
                         {traits.map((trait, i) => (
-                            <div key={i} className="bg-[#050505] p-8 service-card flex flex-col relative justify-between">
+                            <div key={i} className="bg-[#050505] p-8 border border-[#1A1A1A] flex flex-col relative justify-between hover:border-[#333333] transition-colors">
                                  <div>
-                                     <div className="text-label text-[#525252] mb-12">{"//"} {String(i+1).padStart(2,'0')}</div>
-                                     <h3 className="text-h3 text-[#F5F5F5] uppercase mb-4">{trait.title}</h3>
-                                     <p className="text-body text-[#A3A3A3] leading-relaxed mb-8">{trait.desc}</p>
+                                     <div className="text-[12px] font-medium text-[#71717A] mb-8">{String(i+1).padStart(2,'0')}</div>
+                                     <h3 className="text-[20px] font-medium text-[#F5F5F5] mb-4">{trait.title}</h3>
+                                     <p className="text-[15px] text-[#A3A3A3] leading-relaxed mb-4">{trait.desc}</p>
                                  </div>
                             </div>
                         ))}
@@ -116,29 +110,32 @@ export default function AboutPage() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                         <div>
-                            <h2 className="text-h2 text-[#F5F5F5] uppercase mb-8">
+                            <h2 className="text-[32px] font-medium text-[#F5F5F5] tracking-tight mb-8">
                                 How We Calculate<br/>Automation.
                             </h2>
-                            <ul className="space-y-6 flex flex-col items-start border-l border-[#1A1A1A] pl-8">
+                            <ul className="space-y-8 flex flex-col items-start pt-4">
                                  {philosophy.map((item, i) => (
                                      <li key={i} className="flex gap-4 items-start">
-                                         <span className="text-[#0066ff] font-mono mt-1 text-[14px]">{">"}</span>
+                                         <span className="text-[#0066ff] font-medium mt-0.5 text-[16px]">0{i+1}.</span>
                                          <div>
-                                             <div className="text-[#F5F5F5] font-medium uppercase text-sm tracking-wider mb-2">{item.title}</div>
-                                             <span className="text-sm text-[#A3A3A3]">{item.desc}</span>
+                                             <div className="text-[#F5F5F5] font-medium text-[16px] mb-2">{item.title}</div>
+                                             <span className="text-[15px] text-[#A3A3A3] leading-relaxed">{item.desc}</span>
                                          </div>
                                      </li>
                                  ))}
                             </ul>
                         </div>
-                        <div className="bg-[#050505] border border-[#1A1A1A] p-12 relative overflow-hidden group">
-                             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-50 z-0 pointer-events-none" />
+                        
+                        <div className="bg-[#050505] border border-[#1A1A1A] p-10 md:p-14 relative overflow-hidden flex flex-col justify-center">
                              <div className="relative z-10">
-                                 <div className="text-label text-[#0066ff] mb-8">{"//"} STACK ARCHITECTURE</div>
-                                 <h3 className="text-[24px] font-medium text-[#F5F5F5] uppercase leading-tight mb-8">What we bring<br/>to the table.</h3>
-                                 <div className="flex flex-wrap gap-2">
+                                 <div className="text-[12px] font-medium uppercase tracking-wider text-[#0066ff] mb-6">Stack Architecture</div>
+                                 <h3 className="text-[28px] font-medium text-[#F5F5F5] tracking-tight leading-tight mb-10">What we bring<br/>to the table.</h3>
+                                 <div className="flex flex-col gap-4">
                                      {expertise.map(exp => (
-                                         <span key={exp} className="font-mono text-[11px] text-[#A3A3A3] border border-[#333333] px-3 py-1.5 uppercase tracking-wider">{exp}</span>
+                                         <div key={exp} className="flex items-center gap-3">
+                                             <div className="w-1.5 h-1.5 bg-[#0066ff] rounded-full" />
+                                             <span className="text-[15px] text-[#E5E5E5]">{exp}</span>
+                                         </div>
                                      ))}
                                  </div>
                              </div>
@@ -150,57 +147,45 @@ export default function AboutPage() {
             {/* ── THE TEAM ─────────────────────────────── */}
             <section className="py-32 bg-[#050505] border-b border-[#1A1A1A] relative">
                 <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                    <div className="lg:col-span-5">
-                       <h2 className="text-h2 text-[#F5F5F5] uppercase mb-8">
+                    <div className="lg:col-span-6 lg:order-2">
+                       <h2 className="text-[32px] font-medium text-[#F5F5F5] tracking-tight mb-6">
                            The Lead<br/>Engineer.
                        </h2>
-                       <p className="text-[#A3A3A3] text-body-lg font-light leading-relaxed mb-8">
-                           Full-stack AI engineer. Hands-on directly across LLM integration, advanced workflow pipelines, and cloud deployment architecture.
+                       <p className="text-[#A3A3A3] text-[16px] leading-relaxed mb-6">
+                           Godson Saji is a full-stack AI engineer focused on practical workflow pipelines and robust integrations. He works directly with every client, completely eliminating the "telephone game" typical of traditional agencies.
                        </p>
-                       <p className="text-[#71717A] text-body leading-relaxed">
-                           Built BoldFlow Labs explicitly to deliver high-impact, deterministic automation work that bloated larger agencies actively overlook or overcharge for.
+                       <p className="text-[#A3A3A3] text-[16px] leading-relaxed">
+                           He built BoldFlow Labs explicitly to deliver high-impact, deterministic automation work that bloated larger agencies actively overlook or overcharge for.
                        </p>
                     </div>
 
-                    <div className="lg:col-span-7 flex justify-center lg:justify-end">
-                        <div className="w-[400px] aspect-[4/5] border border-[#1A1A1A] bg-[#0A0A0A] relative p-4 group overflow-hidden grayscale contrast-125 transition-all duration-300 hover:grayscale-0 hover:border-[#333]">
-                            {/* Placeholder for high-contrast portrait */}
-                            <div className="w-full h-full bg-[#111] border border-[#1A1A1A] flex items-center justify-center relative overflow-hidden">
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:8px_8px] opacity-20 pointer-events-none" />
-                                <span className="text-[#333] font-mono text-xl tracking-widest uppercase">PORTRAIT_DATA</span>
+                    <div className="lg:col-span-6 lg:order-1 flex justify-center lg:justify-start">
+                        <div className="w-[320px] md:w-[400px] aspect-[4/5] bg-[#0A0A0A] border border-[#1A1A1A] relative p-4 group overflow-hidden transition-all duration-300 hover:border-[#333]">
+                            <div className="w-full h-full bg-[#111111] flex flex-col items-center justify-center text-center px-6">
+                                {/* Photo Placeholder */}
+                                <div className="w-24 h-24 rounded-full bg-[#1A1A1A] border-2 border-[#333333] mb-6 flex items-center justify-center">
+                                    <span className="text-[#555] font-medium tracking-widest text-[10px]">PHOTO</span>
+                                </div>
+                                <h3 className="text-xl font-medium text-[#F5F5F5] mb-2">Godson Saji</h3>
+                                <p className="text-[#0066ff] text-[13px] font-medium uppercase tracking-wider">Founder</p>
                             </div>
-                            
-                            <div className="absolute bottom-6 right-6 bg-[#050505] border border-[#1A1A1A] px-4 py-2 font-mono flex flex-col items-end">
-                                <span className="text-[12px] text-[#F5F5F5] uppercase tracking-wider">Godson Saji</span>
-                                <span className="text-[10px] text-[#0066ff] uppercase tracking-widest mt-1">{"//"} Founder</span>
-                            </div>
-                            
-                            <div className="target-hex target-hex-left-top" />
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* ── PAGE CTA ─────────────────────────────── */}
-            <section className="py-32 lg:py-48 flex justify-center px-6 bg-[#050505]">
-                <div className="w-full max-w-[800px] border border-[#1A1A1A] bg-[#0A0A0A] relative p-16 md:p-24 text-center group active:scale-[0.99] transition-transform duration-150">
-                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 p-[1px] z-20">
-                        <div className="w-full h-full animate-sweep-border opacity-50" />
-                    </div>
-
-                    <div className="grid-overlay pointer-events-none absolute inset-0 z-0" />
-                    <div className="absolute inset-0 radial-glow z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    <div className="target-hex target-hex-left-top" />
-                    <div className="target-hex target-hex-right-bottom" />
-
-                    <div className="relative z-10 flex flex-col items-center">
-                        <h2 className="text-[32px] md:text-h2 font-medium text-[#F5F5F5] uppercase mb-12 leading-tight">
-                            WANT TO BUILD SOMETHING THAT MATTERS?
-                        </h2>
-                        
-                        <Link href="/contact" className="px-10 py-5 btn-primary font-medium text-sm text-center tracking-wide w-full sm:w-auto min-w-[240px]">
-                            INITIALIZE CONVERSATION
+            {/* ── CTA ─────────────────────────────── */}
+            <section className="py-32 flex justify-center px-6 bg-[#0A0A0A] border-b border-[#1A1A1A]">
+                <div className="w-full max-w-[800px] text-center">
+                    <h2 className="text-[32px] md:text-[40px] font-medium text-[#F5F5F5] mb-6 tracking-tight leading-tight">
+                        Want to see if we're a good fit?
+                    </h2>
+                    <p className="text-body-lg text-[#A3A3A3] mb-10 max-w-lg mx-auto leading-relaxed">
+                        Let's have a quick, honest chat about your operations. No high-pressure sales, just an objective look at what automation could do for your business.
+                    </p>
+                    <div className="flex flex-col items-center gap-6">
+                        <Link href="/contact" className="px-10 py-5 btn-primary font-medium text-[16px] text-center w-full sm:w-auto min-w-[280px]">
+                            Book a Free Strategy Call
                         </Link>
                     </div>
                 </div>

@@ -2,16 +2,16 @@ import Link from "next/link";
 import { Bot } from "lucide-react";
 
 const footerLinks = {
-    Architecture: [
-        { href: "/about", label: "The Lead Engineer" },
-        { href: "/testimonials", label: "Engineering Manifesto" },
-        { href: "/contact", label: "Contact / Deploy" },
+    Main: [
+        { href: "/", label: "Home" },
+        { href: "/services", label: "Services" },
+        { href: "/pricing", label: "Pricing" },
+        { href: "/about", label: "About" },
     ],
-    Deployments: [
-        { href: "/services", label: "System Capabilities" },
-        { href: "/pricing", label: "Architecture Models" },
-        { href: "/case-studies", label: "Founding Cohort" },
-        { href: "/blog", label: "Telemetry & Logs" },
+    Resources: [
+        { href: "/work", label: "Work" },
+        { href: "/contact", label: "Contact" },
+        { href: "/blog", label: "Blog" },
     ],
 };
 
@@ -20,7 +20,7 @@ export default function Footer() {
         <footer aria-label="Footer" className="bg-[#050505] border-t border-[#1A1A1A] pt-24 pb-0 relative">
             <div className="max-w-[1280px] mx-auto px-6 mb-16">
                 <h2 className="text-4xl md:text-6xl lg:text-[72px] font-medium tracking-tighter text-[#F5F5F5] mb-16 leading-[1.1] uppercase w-full">
-                    Deterministic Code.<br />
+                    Reliable Systems.<br />
                     Zero Friction.
                 </h2>
                 
@@ -34,13 +34,13 @@ export default function Footer() {
                                 </span>
                             </Link>
                             <p className="text-[#A3A3A3] text-body mb-8 max-w-[280px]">
-                                We architect bespoke AI workflows that eliminate operational friction and replace manual tasks with deterministic code.
+                                We build custom automation systems for service businesses so you can stop doing repetitive tasks and focus on revenue.
                             </p>
                         </div>
                         
                         <div className="flex flex-col gap-2 font-mono text-[11px] text-[#A3A3A3] mt-auto">
-                            <span className="uppercase tracking-widest text-[#F5F5F5]">LOC: KERALA, INDIA [ SERVER EDGE ]</span>
-                            <span className="uppercase tracking-widest text-[#F5F5F5] opacity-60">{"->"} GLOBAL OPERATIONS</span>
+                            <span className="uppercase tracking-widest text-[#F5F5F5] opacity-80">BASED IN KERALA, INDIA</span>
+                            <span className="uppercase tracking-widest text-[#F5F5F5] opacity-60">SERVING GLOBAL CLIENTS</span>
                         </div>
                     </div>
 
@@ -48,8 +48,8 @@ export default function Footer() {
                     <div className="py-12 md:px-12 md:border-r border-[#1A1A1A] grid grid-cols-2 gap-8">
                         {Object.entries(footerLinks).map(([title, links]) => (
                             <div key={title}>
-                                <h3 className="text-label text-[#71717A] mb-6">
-                                    <span className="text-[#0066ff]">{"//"}</span> {title}
+                                <h3 className="text-label text-[#71717A] mb-6 font-semibold uppercase tracking-wider">
+                                    {title}
                                 </h3>
                                 <ul className="space-y-4">
                                     {links.map((link, i) => (
@@ -70,19 +70,15 @@ export default function Footer() {
                     {/* Transmit - Column 3 */}
                     <div className="py-12 md:pl-12 flex flex-col">
                         <div className="flex justify-between items-start mb-6">
-                            <h3 className="text-label text-[#71717A]">
-                                <span className="text-[#0066ff]">{"//"}</span> Transmit
+                            <h3 className="text-label text-[#71717A] font-semibold uppercase tracking-wider">
+                                Contact
                             </h3>
-                            <div className="flex items-center gap-2 border border-[rgba(0,102,255,0.2)] bg-[rgba(0,102,255,0.05)] px-2 py-1 select-none">
-                                <span className="w-1.5 h-1.5 bg-[#0066ff] rounded-full animate-pulse-dot" />
-                                <span className="text-[11px] font-mono text-[#F5F5F5] uppercase tracking-widest">MAINFRAME ONLINE</span>
-                            </div>
                         </div>
                         
                         <ul className="space-y-4 mb-auto">
                             <li>
-                                <a href="mailto:boldflowlabs@gmail.com" className="text-[#A3A3A3] hover:text-[#F5F5F5] text-[14px] transition-colors duration-150 block break-all">
-                                    boldflowlabs@gmail.com
+                                <a href="mailto:hello@boldflowlabs.com" className="text-[#A3A3A3] hover:text-[#F5F5F5] text-[14px] transition-colors duration-150 block break-all">
+                                    hello@boldflowlabs.com
                                 </a>
                             </li>
                             <li>
@@ -91,8 +87,8 @@ export default function Footer() {
                                 </a>
                             </li>
                             <li className="pt-4 flex gap-4">
-                                <a href="https://linkedin.com/company/boldflowlabs" target="_blank" rel="noopener noreferrer" className="font-mono text-[#A3A3A3] hover:text-[#0066ff] hover:bg-[#0066ff]/10 px-2 py-1 transition-all duration-150">[ LN ]</a>
-                                <a href="https://x.com/boldflowlabs" target="_blank" rel="noopener noreferrer" className="font-mono text-[#A3A3A3] hover:text-[#F5F5F5] hover:bg-white/10 px-2 py-1 transition-all duration-150">[ X ]</a>
+                                <a href="https://linkedin.com/company/boldflowlabs" target="_blank" rel="noopener noreferrer" className="text-[14px] text-[#A3A3A3] hover:text-[#F5F5F5] transition-colors duration-150">LinkedIn</a>
+                                <a href="https://x.com/boldflowlabs" target="_blank" rel="noopener noreferrer" className="text-[14px] text-[#A3A3A3] hover:text-[#F5F5F5] transition-colors duration-150">X</a>
                             </li>
                         </ul>
 
@@ -102,7 +98,7 @@ export default function Footer() {
                                 <Link href="#" className="hover:text-[#A3A3A3] transition-colors">Terms</Link>
                                 <Link href="#" className="hover:text-[#A3A3A3] transition-colors">Status</Link>
                             </div>
-                            <span className="text-label text-[#525252]">{"//"} BUILD: v.1.0.0</span>
+                            <span className="text-[12px] text-[#525252]">© {new Date().getFullYear()} BoldFlow Labs.</span>
                         </div>
                     </div>
                 </div>

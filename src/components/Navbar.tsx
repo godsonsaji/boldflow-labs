@@ -8,11 +8,11 @@ import { Bot } from "lucide-react";
 
 const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/services", label: "Systems" },
-    { href: "/case-studies", label: "Founding Cohort" },
-    { href: "/testimonials", label: "Architecture" },
+    { href: "/services", label: "Services" },
     { href: "/pricing", label: "Pricing" },
-    { href: "/blog", label: "Telemetry" },
+    { href: "/about", label: "About" },
+    { href: "/work", label: "Work" },
+    { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -62,13 +62,11 @@ export default function Navbar() {
                                     <Link
                                         key={link.href}
                                         href={link.href}
-                                        className={`group relative text-[14px] font-mono transition-colors duration-150 ${
+                                        className={`group relative text-[14px] font-medium transition-colors duration-150 ${
                                             isActive ? "text-[#F5F5F5]" : "text-[#A3A3A3] hover:text-[#F5F5F5]"
                                         }`}
                                     >
-                                        <span className={`opacity-0 group-hover:opacity-100 transition-opacity duration-150 ${isActive ? "opacity-100 text-[#0066ff]" : "text-[#525252]"}`}>[ </span>
                                         {link.label}
-                                        <span className={`opacity-0 group-hover:opacity-100 transition-opacity duration-150 ${isActive ? "opacity-100 text-[#0066ff]" : "text-[#525252]"}`}> ]</span>
                                     </Link>
                                 );
                             })}
@@ -80,7 +78,7 @@ export default function Navbar() {
                                 href="/contact"
                                 className="hidden lg:inline-flex px-6 py-2.5 text-[14px] font-medium btn-primary"
                             >
-                                Deploy System
+                                Book a Free Call
                             </Link>
 
                             <button
@@ -88,8 +86,8 @@ export default function Navbar() {
                                 className="lg:hidden p-2 text-[#A3A3A3] hover:text-[#F5F5F5] transition-colors focus:outline-none"
                                 aria-label="Toggle menu"
                             >
-                                <span className="font-mono text-[12px] uppercase tracking-widest text-label">
-                                    {isOpen ? "[ CLOSE ]" : "[ MENU ]"}
+                                <span className="font-medium text-[12px] uppercase tracking-widest text-[#F5F5F5]">
+                                    {isOpen ? "CLOSE" : "MENU"}
                                 </span>
                             </button>
                         </div>
@@ -125,9 +123,6 @@ export default function Navbar() {
                                             }`}
                                         >
                                             {link.label}
-                                            {isActive && (
-                                                <span className="ml-4 text-[#0066ff] animate-cursor-blink">█</span>
-                                            )}
                                         </Link>
                                     </motion.div>
                                 );
@@ -144,7 +139,7 @@ export default function Navbar() {
                                     onClick={() => setIsOpen(false)}
                                     className="flex items-center justify-center w-full px-6 py-4 text-sm font-medium btn-primary"
                                 >
-                                    Deploy System
+                                    Book a Free Call
                                 </Link>
                             </motion.div>
                         </div>

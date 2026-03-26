@@ -1,76 +1,95 @@
 "use client";
 
-import type { Metadata } from "next";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { CheckCircle2, ChevronDown, ChevronUp } from "lucide-react";
 
 const tiers = [
     {
-        name: "Starter Plan",
-        tag: "First Wins",
-        setup: "$497–$997",
-        retainer: "$297–$497",
-        bestFor: "Solopreneurs, local businesses, first-time automation buyers",
+        name: "Starter",
+        price: "from $995",
+        description: "Perfect for small businesses needing a single core automation workflow.",
         features: [
-            "1 Core Automation (lead follow-up, chatbot, or booking)",
+            "1 Core Automation (Lead follow-up, chatbot, or booking)",
             "Up to 3 integrations",
-            "Basic reporting",
+            "Basic reporting setup",
             "1-week build timeline",
-            "WhatsApp & email support",
-            "1 revision round"
         ],
-        ctaText: "BOOK YOUR DISCOVERY CALL",
+        ctaText: "Get Started",
         style: "starter"
     },
     {
-        name: "Growth Plan",
-        tag: "Scaling Smart",
+        name: "Growth",
         isPopular: true,
-        setup: "$1,500–$2,500",
-        retainer: "$797–$1,200",
-        bestFor: "Growing SMBs, marketing agencies, coaches with teams",
+        price: "from $2,495",
+        description: "Multi-step automation across several platforms for growing teams.",
         features: [
             "3 Core Automations (Unified system)",
             "Full CRM integration",
             "Monthly performance dashboard",
             "Content scheduling automation",
             "2–3 week build timeline",
-            "Weekly check-in calls",
-            "Priority WhatsApp support",
-            "2 revision rounds + full documentation"
         ],
-        ctaText: "BOOK YOUR DISCOVERY CALL",
+        ctaText: "Get Started",
         style: "growth"
     },
     {
-        name: "Authority Plan",
-        tag: "Full-Stack Automation",
-        setup: "$3,500–$6,000+",
-        retainer: "$1,500–$2,500",
-        bestFor: "Established businesses, multi-location operations, agencies seeking white-label",
+        name: "Authority",
+        price: "Custom",
+        description: "Complete operational overhaul and ongoing technical partnership.",
         features: [
             "All 5 core services as unified ecosystem",
             "Custom AI chatbot with advanced flows",
             "End-to-end customer journey automation",
             "Real-time BI dashboard & CRM pipeline",
-            "Social & content automation",
             "4–6 week build timeline",
-            "Dedicated Slack channel & Bi-weekly calls",
-            "Quarterly automation audit"
         ],
-        ctaText: "CONTACT TO SCOPE BUILD",
+        ctaText: "Contact to Scope",
         style: "authority"
     }
 ];
 
+const comparisonData = [
+    {
+        feature: "Custom AI Workflows",
+        starter: "1",
+        growth: "3",
+        authority: "Unlimited",
+    },
+    {
+        feature: "API Integrations",
+        starter: "Up to 3",
+        growth: "Up to 10",
+        authority: "Unlimited",
+    },
+    {
+        feature: "Real-Time BI Dashboard",
+        starter: "-",
+        growth: "Standard",
+        authority: "Custom Multi-View",
+    },
+    {
+        feature: "Dedicated Slack Channel",
+        starter: "-",
+        growth: "✓",
+        authority: "✓",
+    },
+    {
+        feature: "Quarterly System Audits",
+        starter: "-",
+        growth: "-",
+        authority: "✓",
+    },
+];
+
 const faqs = [
-    { q: "Why a setup fee + separate monthly retainer?", a: "Building custom automation requires intense upfront engineering to map logic, sequence APIs, and design schemas. The retainer covers the server costs, autonomous API limits, ongoing telemetry monitoring, and direct engineer access to prevent your systems from decaying." },
-    { q: "Do I have to commit to the monthly retainer?", a: "No. The retainer is strictly month-to-month. If you have an internal technical team capable of monitoring API endpoints and webhook structures, we will hand over the documentation after launch." },
-    { q: "What is the difference between Starter and Growth?", a: "Starter solves a single, isolated bottleneck (like an AI chatbot). Growth deploys an intertwined architecture that links multiple endpoints together (e.g., chatbot qualifies lead -> routes to CRM -> triggers SMS sequence -> schedules consultation autonomously)." },
-    { q: "Can I upgrade after getting started?", a: "Absolutely. We view automation iteratively. You can deploy a Starter module immediately and sequence additional modular capabilities via the Growth plan once ROI is validated." },
-    { q: "How long does setup take?", a: "Depending on pipeline complexity, deployment ranges from 7 days (Starter) to 6+ weeks (Authority). We rely on rigid sprint schedules to prevent scope creep." },
-    { q: "Do you work with clients outside India?", a: "Yes. Our systems process natively across global boundaries. We coordinate sync calls across major time zones effortlessly." }
+    { q: "Why a setup fee + separate monthly retainer?", a: "Building custom automation requires intense upfront engineering to map logic and integrate tools. The retainer covers server costs, API limits, ongoing monitoring, and direct engineer access to ensure your system constantly improves." },
+    { q: "Do I have to commit to the monthly retainer?", a: "No. The retainer is month-to-month. If you have an internal technical team capable of monitoring workflows and webhooks, we will hand over the documentation after launch." },
+    { q: "What is the difference between Starter and Growth?", a: "Starter solves a single, isolated bottleneck like an AI chatbot. Growth deploys an intertwined architecture that links multiple endpoints together (e.g. chatbot qualifies lead -> routes to CRM -> triggers SMS sequence)." },
+    { q: "Can I upgrade after getting started?", a: "Absolutely. We view automation iteratively. You can deploy a Starter module immediately and add additional capabilities via the Growth plan once ROI is validated." },
+    { q: "How long does setup take?", a: "Depending on pipeline complexity, deployment ranges from 7 days (Starter) to 6+ weeks (Authority). We rely on strict schedules to prevent scope creep." },
+    { q: "Do you work with clients outside your timezone?", a: "Yes. Our systems process globally round-the-clock. We coordinate discovery and handoff calls across major time zones effortlessly." }
 ];
 
 export default function PricingPage() {
@@ -79,65 +98,31 @@ export default function PricingPage() {
     return (
         <>
             {/* ── HERO ─────────────────────────────────── */}
-            <section className="relative pt-40 pb-32 border-b border-[#1A1A1A] overflow-hidden">
-                <div className="noise-overlay" />
-                <div className="grid-overlay pointer-events-none absolute inset-0 z-0" />
-                
+            <section className="relative pt-40 pb-20 border-b border-[#1A1A1A] overflow-hidden bg-[#0A0A0A]">
                 <div className="max-w-[1280px] w-full mx-auto px-6 relative z-10 flex flex-col items-center text-center">
-                    <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-label text-[#0066ff] mb-6 uppercase"
-                    >
-                        {"//"} PRICING MODELS
-                    </motion.div>
-                    
                     <motion.h1 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-h1 md:text-hero text-[#F5F5F5] uppercase leading-tight mb-8 max-w-5xl"
+                        className="text-h2 md:text-h1 text-[#F5F5F5] font-medium leading-tight tracking-tight mb-6 max-w-4xl"
                     >
-                        Transparent AI Automation Pricing — Built Around Your Stage of Growth.
+                        Transparent Pricing <br className="hidden md:block"/>for Custom Systems.
                     </motion.h1>
 
                     <motion.p 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-body-lg text-[#F5F5F5] font-medium mb-4"
+                        transition={{ delay: 0.1 }}
+                        className="text-body-lg text-[#A3A3A3] max-w-2xl font-light mb-12"
                     >
-                        One-time setup. Predictable monthly retainer. Zero surprises.
+                        No surprise invoices or hidden retainers. Choose the tier that matches your current workflow bottleneck.
                     </motion.p>
-                    
-                    <motion.p 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                        className="text-body text-[#A3A3A3] max-w-2xl font-light mb-12"
-                    >
-                        Setup fee covers complete schema design, build, and active deployment. Optional monthly retainers ensure continuous endpoint monitoring, system optimization, and direct architectural support. No lock-in.
-                    </motion.p>
-
-                    <motion.div 
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.4 }}
-                        className="inline-flex flex-col md:flex-row items-center gap-4 bg-[#0A0A0A] border border-[#1A1A1A] px-6 py-4 font-mono text-[13px] text-[#A3A3A3]"
-                    >
-                        <span>Setup from <span className="text-[#F5F5F5]">$497</span></span>
-                        <span className="hidden md:inline text-[#333]">|</span>
-                        <span>Monthly from <span className="text-[#F5F5F5]">$297/mo</span></span>
-                        <span className="hidden md:inline text-[#333]">|</span>
-                        <span><span className="text-[#0066ff]">{"//"}</span> Dedicated Support</span>
-                    </motion.div>
                 </div>
             </section>
 
             {/* ── TIERS ────────────────────────────────── */}
             <section className="py-24 bg-[#050505] border-b border-[#1A1A1A]">
                 <div className="max-w-[1280px] mx-auto px-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {tiers.map((tier, i) => (
                             <motion.div
                                 key={tier.name}
@@ -145,46 +130,27 @@ export default function PricingPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-10%" }}
                                 transition={{ delay: i * 0.1 }}
-                                className={`flex flex-col h-full relative p-8 ${
-                                    tier.style === 'starter' ? 'bg-[#0A0A0A] border z-10 border-[#1A1A1A]' :
-                                    tier.style === 'growth' ? 'bg-[#111111] border z-20 border-[rgba(0,102,255,0.15)] shadow-[0_0_80px_rgba(0,102,255,0.05)] transform lg:-translate-y-4' :
-                                    'bg-[#050505] border z-0 border-[#333333] opacity-80 hover:opacity-100 transition-opacity duration-300'
+                                className={`flex flex-col h-full relative p-8 md:p-10 ${
+                                    tier.style === 'growth' ? 'bg-[#111111] border z-20 border-[#0066ff] shadow-[0_0_80px_rgba(0,102,255,0.05)] transform lg:-translate-y-4' :
+                                    'bg-[#050505] border z-0 border-[#1A1A1A]'
                                 }`}
                             >
-                                {tier.style === 'growth' && (
-                                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#0066ff]" />
+                                {tier.isPopular && (
+                                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#0066ff] text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1">
+                                        Most Popular
+                                    </div>
                                 )}
 
                                 <div className="mb-8">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <h3 className="text-h3 text-[#F5F5F5] uppercase">{tier.name}</h3>
-                                        {tier.isPopular && (
-                                            <span className="mono-tag text-[#0066ff] border border-[rgba(0,102,255,0.2)] bg-[rgba(0,102,255,0.05)] px-2 py-1">MOST_POPULAR</span>
-                                        )}
-                                    </div>
-                                    <span className="text-label text-[#A3A3A3] block mb-8">{"//"} {tier.tag}</span>
-
-                                    <div className="space-y-2 mb-8 border-b border-[#1A1A1A] pb-8">
-                                        <div className="flex justify-between items-end">
-                                            <span className="text-caption text-[#71717A] uppercase tracking-wider">Deploy Base:</span>
-                                            <span className="text-h3 text-[#F5F5F5] font-mono leading-none">{tier.setup}</span>
-                                        </div>
-                                        <div className="flex justify-between items-end">
-                                            <span className="text-caption text-[#71717A] uppercase tracking-wider">Telemetry Retainer:</span>
-                                            <span className="text-[20px] text-[#A3A3A3] font-mono">{tier.retainer}</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="mb-8">
-                                        <span className="text-caption text-[#F5F5F5] mb-2 block font-medium uppercase">Optimal Fit:</span>
-                                        <p className="text-sm text-[#71717A] leading-relaxed">{tier.bestFor}</p>
-                                    </div>
+                                    <h3 className="text-xl font-medium text-[#F5F5F5] mb-2">{tier.name}</h3>
+                                    <div className="text-[36px] font-semibold text-[#F5F5F5] mb-4">{tier.price}</div>
+                                    <p className="text-[#A3A3A3] text-sm leading-relaxed pb-6 border-b border-[#1A1A1A]">{tier.description}</p>
                                 </div>
 
                                 <ul className="space-y-4 mb-12 flex-1">
                                     {tier.features.map(feat => (
                                         <li key={feat} className="flex gap-3 text-sm text-[#A3A3A3] items-start">
-                                            <span className="text-[#0066ff] font-mono mt-0.5">{">"}</span>
+                                            <CheckCircle2 className="w-5 h-5 text-[#0066ff] shrink-0" />
                                             <span>{feat}</span>
                                         </li>
                                     ))}
@@ -192,10 +158,10 @@ export default function PricingPage() {
 
                                 <Link 
                                     href="/contact" 
-                                    className={`w-full py-4 text-center text-[13px] font-medium transition-all duration-150 ${
+                                    className={`w-full py-4 text-center text-sm font-medium transition-all duration-150 ${
                                         tier.style === 'growth' 
-                                            ? 'btn-primary' 
-                                            : 'btn-ghost'
+                                            ? 'bg-[#0066ff] text-white hover:bg-[#0055dd]' 
+                                            : 'bg-[#F5F5F5] text-[#050505] hover:bg-white'
                                     }`}
                                 >
                                     {tier.ctaText}
@@ -206,44 +172,51 @@ export default function PricingPage() {
                 </div>
             </section>
 
-            {/* ── PRICING MODEL BREAKDOWN ───────────────── */}
-            <section className="py-24 bg-[#050505] border-b border-[#1A1A1A]">
-                <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
-                     <div>
-                         <div className="text-label text-[#0066ff] mb-4">{"//"} 01</div>
-                         <h4 className="text-[20px] font-medium text-[#F5F5F5] uppercase mb-3">One-Time Setup</h4>
-                         <p className="text-sm text-[#A3A3A3] leading-relaxed">Comprehensive architecture mapping, robust script building, rigorous testing, and live deployment configurations.</p>
-                     </div>
-                     <div>
-                         <div className="text-label text-[#0066ff] mb-4">{"//"} 02</div>
-                         <h4 className="text-[20px] font-medium text-[#F5F5F5] uppercase mb-3">Monthly Retainer</h4>
-                         <p className="text-sm text-[#A3A3A3] leading-relaxed">Server payload coverage, daily endpoint monitoring, automated reporting suites, and direct line access to our engineering team.</p>
-                     </div>
-                     <div>
-                         <div className="text-label text-[#0066ff] mb-4">{"//"} 03</div>
-                         <h4 className="text-[20px] font-medium text-[#F5F5F5] uppercase mb-3">Growth & Optimisation</h4>
-                         <p className="text-sm text-[#A3A3A3] leading-relaxed">Dedicated bi-weekly strategy sessions, rigorous quarterly logic audits, and continuous iterative improvement loops.</p>
-                     </div>
+            {/* ── COMPARISON TABLE ─────────────────────── */}
+            <section className="py-24 bg-[#0A0A0A] border-b border-[#1A1A1A]">
+                <div className="max-w-[1000px] mx-auto px-6 overflow-x-auto">
+                    <h2 className="text-2xl font-medium text-[#F5F5F5] mb-12 text-center md:text-left">Compare Plans</h2>
+                    
+                    <table className="w-full text-left border-collapse min-w-[600px]">
+                        <thead>
+                            <tr className="border-b border-[#333333]">
+                                <th className="py-4 px-4 font-medium text-[#F5F5F5] w-2/5">Features</th>
+                                <th className="py-4 px-4 font-medium text-[#F5F5F5] w-1/5">Starter</th>
+                                <th className="py-4 px-4 font-medium text-[#0066ff] w-1/5">Growth</th>
+                                <th className="py-4 px-4 font-medium text-[#F5F5F5] w-1/5">Authority</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {comparisonData.map((row, i) => (
+                                <tr key={i} className="border-b border-[#1A1A1A] hover:bg-[#111111]/50 transition-colors">
+                                    <td className="py-5 px-4 text-[#A3A3A3] text-sm">{row.feature}</td>
+                                    <td className="py-5 px-4 text-[#F5F5F5] text-sm">{row.starter}</td>
+                                    <td className="py-5 px-4 text-[#F5F5F5] text-sm font-medium">{row.growth}</td>
+                                    <td className="py-5 px-4 text-[#F5F5F5] text-sm">{row.authority}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </section>
 
             {/* ── FAQ ─────────────────────────────────── */}
-            <section className="py-32 bg-[#0A0A0A] border-b border-[#1A1A1A]">
+            <section className="py-24 bg-[#050505] border-b border-[#1A1A1A]">
                 <div className="max-w-[800px] mx-auto px-6">
-                    <h2 className="text-h2 font-medium text-[#F5F5F5] uppercase mb-16 text-center">Frequently Asked Queries.</h2>
+                    <h2 className="text-h3 font-medium text-[#F5F5F5] tracking-tight mb-12 text-center">Frequently Asked Questions</h2>
                     
-                    <div className="flex flex-col relative border-t border-[#1A1A1A]">
+                    <div className="flex flex-col gap-4">
                         {faqs.map((faq, i) => (
-                            <div key={i} className="border-b border-[#1A1A1A] overflow-hidden group">
+                            <div key={i} className="border border-[#1A1A1A] bg-[#0A0A0A] hover:border-[#333333] transition-colors overflow-hidden">
                                 <button 
                                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                                    className="w-full text-left py-6 flex justify-between items-center transition-colors focus:outline-none"
+                                    className="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none"
                                 >
-                                    <span className={`text-[16px] md:text-body-lg font-medium pr-8 transition-colors duration-150 ${openFaq === i ? 'text-[#F5F5F5]' : 'text-[#A3A3A3]'}`}>
+                                    <span className="text-[16px] font-medium text-[#F5F5F5] pr-8">
                                         {faq.q}
                                     </span>
-                                    <span className={`font-mono text-label shrink-0 transition-colors duration-150 ${openFaq === i ? 'text-[#0066ff]' : 'text-[#525252]'}`}>
-                                        {openFaq === i ? "[ - ]" : "[ + ]"}
+                                    <span className="text-[#A3A3A3] shrink-0">
+                                        {openFaq === i ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
                                     </span>
                                 </button>
                                 
@@ -253,12 +226,12 @@ export default function PricingPage() {
                                             initial={{ height: 0, opacity: 0 }}
                                             animate={{ height: "auto", opacity: 1 }}
                                             exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0, ease: "linear" }}
+                                            transition={{ duration: 0.2, ease: "easeInOut" }}
                                             className="overflow-hidden"
                                         >
-                                            <p className="text-[#A3A3A3] text-sm leading-relaxed pb-8 max-w-2xl">
+                                            <div className="px-6 pb-6 text-[#A3A3A3] text-[15px] leading-relaxed border-t border-[#1A1A1A] pt-4 mt-2">
                                                 {faq.a}
-                                            </p>
+                                            </div>
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
@@ -268,32 +241,18 @@ export default function PricingPage() {
                 </div>
             </section>
 
-            {/* ── PAGE CTA ─────────────────────────────── */}
-            <section className="py-32 lg:py-48 flex justify-center px-6 bg-[#050505]">
-                <div className="w-full max-w-[800px] border border-[#1A1A1A] bg-[#0A0A0A] relative p-16 md:p-24 text-center group active:scale-[0.99] transition-transform duration-150">
-                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 p-[1px] z-20">
-                        <div className="w-full h-full animate-sweep-border opacity-50" />
-                    </div>
-
-                    <div className="grid-overlay pointer-events-none absolute inset-0 z-0" />
-                    <div className="absolute inset-0 radial-glow z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    <div className="target-hex target-hex-left-top" />
-                    <div className="target-hex target-hex-right-bottom" />
-                    
-                    <div className="relative z-10 flex flex-col items-center">
-                        <h2 className="text-[32px] md:text-h2 font-medium text-[#F5F5F5] uppercase mb-12 leading-tight">
-                            SECURE YOUR INFRASTRUCTURE EVALUATION.
-                        </h2>
-                        
-                        <div className="flex flex-col gap-4 text-left mb-12 border-l border-[#0066ff] pl-6 max-w-sm mx-auto">
-                            <span className="text-caption text-[#A3A3A3]"><span className="text-[#525252] font-mono mr-2">{"//"}</span> No obligation</span>
-                            <span className="text-caption text-[#A3A3A3]"><span className="text-[#525252] font-mono mr-2">{"//"}</span> Straight answers</span>
-                            <span className="text-caption text-[#A3A3A3]"><span className="text-[#525252] font-mono mr-2">{"//"}</span> Limited spots per month</span>
-                        </div>
-
-                        <Link href="/contact" className="px-10 py-5 btn-primary font-medium text-sm text-center tracking-wide w-full sm:w-auto min-w-[240px]">
-                            BOOK YOUR FREE DISCOVERY CALL
+            {/* ── FINAL CTA BLOCK ─────────────────────────── */}
+            <section className="py-32 flex justify-center px-6 bg-[#0A0A0A] border-b border-[#1A1A1A]">
+                <div className="w-full max-w-[800px] text-center">
+                    <h2 className="text-[32px] md:text-[40px] font-medium text-[#F5F5F5] mb-6 tracking-tight leading-tight">
+                        Ready to automate your operations?
+                    </h2>
+                    <p className="text-body-lg text-[#A3A3A3] mb-10 max-w-lg mx-auto leading-relaxed">
+                        Book a free strategy session. We'll map your current workflow bottlenecks and outline exactly what an automated system looks like for you.
+                    </p>
+                    <div className="flex flex-col items-center gap-6">
+                        <Link href="/contact" className="px-10 py-5 btn-primary font-medium text-sm text-center w-full sm:w-auto min-w-[280px]">
+                            Book a Free Strategy Call
                         </Link>
                     </div>
                 </div>
