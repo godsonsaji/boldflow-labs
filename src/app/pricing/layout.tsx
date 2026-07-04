@@ -1,0 +1,14 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Predictable AI Automation Pricing | BoldFlow Labs",
+  description: "Explore our transparent monthly pricing tiers for AI Voice Agents and automated receptionists starting at $297/month. Designed for HVAC, roofing, and home services.",
+};
+
+export default function PricingLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
+}

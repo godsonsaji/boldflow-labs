@@ -7,44 +7,47 @@ import { CheckCircle2, ChevronDown, ChevronUp } from "lucide-react";
 
 const tiers = [
     {
-        name: "STARTER",
-        target: "Solopreneurs & early-stage businesses",
-        price: "Custom Quote on Call",
-        description: "For businesses taking their first step into AI automation. One focused workflow, deployed and running — with the foundation built to scale.",
+        name: "INBOUND ONLY",
+        target: "Capturing inbound leads 24/7",
+        price: "~$297/month",
+        description: "Capture every lead instantly. Our AI receptionist answers calls, replies to texts, and books appointments on your calendar day and night.",
         features: [
-            "1 Core AI Workflow (e.g. AI Voice Agent or Chatbot)",
-            "Seamless integration with current stack",
-            "Deployed, running, and automated",
-            "Foundation architecture built to scale",
+            "24/7 AI Voice Receptionist (never miss a call)",
+            "Instant text back for web forms & missed calls",
+            "Automated appointment booking & scheduling",
+            "Automatic sync with your CRM (ServiceTitan, Housecall Pro, Salesforce, etc.)",
+            "Monthly performance report and optimization"
         ],
         ctaText: "Book Your Discovery Call",
         style: "starter"
     },
     {
-        name: "GROWTH",
+        name: "OUTBOUND ONLY",
         isPopular: true,
-        target: "Growing SMBs scaling operations",
-        price: "Custom Quote on Call",
-        description: "For teams ready to connect the dots. Multiple systems working together, full CRM automation, multi-channel conversations, and real-time business intelligence.",
+        target: "Lead reactivation & follow-ups",
+        price: "~$597/month",
+        description: "Proactively turn cold leads and missed estimates into booked jobs. Our AI calls, text-messages, and follows up with prospects automatically.",
         features: [
-            "Multiple AI systems working together",
-            "Full CRM & Sales Pipeline Automation",
-            "Multi-channel conversational agents (WhatsApp, SMS)",
-            "Real-time business intelligence dashboards",
+            "AI Outbound calling to reactivate old leads",
+            "Automated follow-up for open quotes & missed estimates",
+            "Custom text/SMS nurturing campaigns",
+            "Direct calendar booking for interested leads",
+            "Full pipeline status tracking and CRM integration"
         ],
         ctaText: "Book Your Discovery Call",
         style: "growth"
     },
     {
-        name: "AUTHORITY",
-        target: "Established businesses going all-in on AI",
-        price: "Custom Quote on Call",
-        description: "For businesses that want the full picture. Voice agents, autonomous AI, advanced dashboards, dedicated engineering support, and a quarterly roadmap built around your goals.",
+        name: "FULL STACK",
+        target: "Complete hands-free lead management",
+        price: "~$797/month",
+        description: "Complete hands-free lead management. Combine inbound reception with proactive outbound campaigns and automated client onboarding.",
         features: [
-            "Full deployment of advanced AI Voice Agents",
-            "Autonomous AI workflows for complex processes",
-            "Custom niche-specific BI dashboards",
-            "Dedicated engineering support & quarterly roadmapping",
+            "All Inbound Receptionist + Outbound Calling tools",
+            "Custom multi-channel campaigns (WhatsApp, SMS, Call)",
+            "Smart AI voicemail drops & automated email routing",
+            "Priority support & dedicated Slack channel with your developer",
+            "Quarterly workflow audits and custom system updates"
         ],
         ctaText: "Book Your Discovery Call",
         style: "authority"
@@ -53,44 +56,44 @@ const tiers = [
 
 const comparisonData = [
     {
-        feature: "Custom AI Workflows",
-        starter: "1",
-        growth: "3",
-        authority: "Unlimited",
+        feature: "24/7 AI Voice Receptionist",
+        starter: "Included",
+        growth: "-",
+        authority: "Included",
     },
     {
-        feature: "API Integrations",
-        starter: "Up to 3",
-        growth: "Up to 10",
-        authority: "Unlimited",
+        feature: "Instant 60-Sec Lead Response",
+        starter: "Call & SMS",
+        growth: "Call & SMS",
+        authority: "Multi-Channel",
     },
     {
-        feature: "Real-Time BI Dashboard",
+        feature: "Lead Reactivation / Outbound Calls",
         starter: "-",
-        growth: "Standard",
-        authority: "Custom Multi-View",
+        growth: "Included",
+        authority: "Included",
     },
     {
-        feature: "Dedicated Slack Channel",
+        feature: "CRM & Calendar Sync",
+        starter: "Standard",
+        growth: "Standard",
+        authority: "Custom Bi-Directional",
+    },
+    {
+        feature: "Dedicated Slack Support",
         starter: "-",
         growth: "✓",
-        authority: "✓",
-    },
-    {
-        feature: "Quarterly System Audits",
-        starter: "-",
-        growth: "-",
         authority: "✓",
     },
 ];
 
 const faqs = [
-    { q: "How does pricing work if there are no fixed numbers?", a: "Pricing is scoped based on your specific workflows, tech stack, and automation complexity. On our free discovery call, we audit your setup and provide a clear, transparent proposal before you commit to anything." },
-    { q: "What happens during the discovery call?", a: "We conduct a deep-dive audit of your current workflows and identify the highest-leverage opportunities to eliminate manual work. You'll get a clear automation roadmap sequenced by ROI and implementation complexity." },
-    { q: "What is the difference between Starter and Growth?", a: "Starter is for deploying one focused workflow (like an AI voice agent or CRM sync) to solve a single bottleneck. Growth connects multiple systems together—such as multi-channel conversations running alongside real-time dashboards and pipeline automation." },
-    { q: "Can I upgrade my tier later?", a: "Absolutely. We view automation iteratively. You can deploy a Starter module immediately to validate ROI, and add additional capabilities via the Growth plan as your capacity needs increase." },
-    { q: "How long does a typical build take?", a: "Depending on the complexity of your pipelines and the tier you choose, deployment ranges from a few weeks for a Starter workflow, to a more extensive timeline for Authority operational overhauls. We define the exact timeline in your proposal." },
-    { q: "Do you work with clients outside your timezone?", a: "Yes. Our systems process globally round-the-clock. We coordinate discovery and handoff calls across major time zones effortlessly, ensuring your automated systems work while you sleep." }
+    { q: "Are there setup fees or hidden costs?", a: "Every setup is customized for your specific business. We charge a one-time build fee based on the complexity of your CRM integration and scripts, which we agree upon upfront. There are never any hidden costs." },
+    { q: "What happens during the discovery call?", a: "We audit your current lead response times and map exactly where you are losing prospects. We'll show you exactly how our voice and SMS AI agents can plug those leaks and provide a clear setup proposal." },
+    { q: "What is the difference between Inbound Only and Outbound Only?", a: "Inbound Only handles incoming traffic—answering missed calls, replying to text/web form submissions, and booking jobs 24/7. Outbound Only reactivates old leads, follows up on open quotes, and makes proactive calls to get appointments booked." },
+    { q: "Can I upgrade my tier later?", a: "Absolutely. You can start with Inbound Only to secure missed calls, and easily add Outbound follow-ups and CRM integrations as your lead flow grows." },
+    { q: "How long does the setup take?", a: "Most systems are live and answering your leads within 7 to 14 days. This includes writing custom scripts, training the AI voice receptionist, and integrating it with your calendar/CRM." },
+    { q: "Do you serve clients outside the United States?", a: "Yes. We work with service businesses across the USA, UK, Canada, Australia, and UAE. Our AI agents operate 24/7/365, and we set up communication slots that match your local timezone." }
 ];
 
 export default function PricingPage() {
@@ -107,7 +110,7 @@ export default function PricingPage() {
                         transition={{ duration: 0.4 }}
                         className="text-[13px] tracking-wider text-[#0066ff] font-medium mb-6 uppercase"
                     >
-                        Structured. Transparent. Scoped on a call.
+                        Simple. Predictable. Flat Monthly Rates.
                     </motion.div>
                     
                     <motion.h1 
@@ -115,7 +118,7 @@ export default function PricingPage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-h2 md:text-h1 text-[#F5F5F5] font-medium leading-tight tracking-tight mb-6 max-w-4xl"
                     >
-                        Our Philosophy:<br className="hidden md:block"/>No Guesswork. No Generic Packages.
+                        Simple, Performance-Driven Pricing.
                     </motion.h1>
 
                     <motion.p 
@@ -124,7 +127,7 @@ export default function PricingPage() {
                         transition={{ delay: 0.1 }}
                         className="text-body-lg text-[#A3A3A3] max-w-3xl font-light mb-12 mx-auto leading-relaxed"
                     >
-                        Every business we work with has a different starting point — different tools, different gaps, different growth stage. That's why we don't publish fixed numbers. What we do publish is our structure, so you know exactly what tier fits your situation before we ever speak.
+                        Choose the right capacity for your business. Whether you want to capture every inbound call 24/7, reactivate cold leads via outbound follow-ups, or automate your entire pipeline, we have a tier designed for you.
                     </motion.p>
                 </div>
             </section>
@@ -133,9 +136,9 @@ export default function PricingPage() {
             <section className="py-24 bg-[#050505] border-b border-[#1A1A1A]">
                 <div className="max-w-[1280px] mx-auto px-6">
                     <div className="mb-16 max-w-3xl mx-auto text-center">
-                        <h2 className="text-[#0066ff] font-medium tracking-wider uppercase text-[15px] mb-4">THREE TIERS. ONE CONVERSATION.</h2>
+                        <h2 className="text-[#0066ff] font-medium tracking-wider uppercase text-[15px] mb-4">Three Clear Packages</h2>
                         <p className="text-[#A3A3A3] text-body-lg leading-relaxed">
-                            Pricing is scoped based on your workflows, stack, and automation complexity. Every engagement starts with a free discovery call — we audit your current setup, identify the highest-leverage opportunities, and give you a clear proposal before you commit to anything.
+                            Choose the plan that matches your current workflow bottleneck. Every package comes with direct developer setup and full integration.
                         </p>
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -198,9 +201,9 @@ export default function PricingPage() {
                         <thead>
                             <tr className="border-b border-[#333333]">
                                 <th className="py-4 px-4 font-medium text-[#F5F5F5] w-2/5">Features</th>
-                                <th className="py-4 px-4 font-medium text-[#F5F5F5] w-1/5">Starter</th>
-                                <th className="py-4 px-4 font-medium text-[#0066ff] w-1/5">Growth</th>
-                                <th className="py-4 px-4 font-medium text-[#F5F5F5] w-1/5">Authority</th>
+                                <th className="py-4 px-4 font-medium text-[#F5F5F5] w-1/5">Inbound Only</th>
+                                <th className="py-4 px-4 font-medium text-[#0066ff] w-1/5">Outbound Only</th>
+                                <th className="py-4 px-4 font-medium text-[#F5F5F5] w-1/5">Full Stack</th>
                             </tr>
                         </thead>
                         <tbody>

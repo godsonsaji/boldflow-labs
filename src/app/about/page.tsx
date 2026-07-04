@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import founderImg from "@/img/founder_img.png";
 
 const traits = [
     {
@@ -71,27 +73,30 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* ── ORIGIN STORY ─────────────────────────── */}
-            <section className="py-24 bg-[#050505] border-b border-[#1A1A1A]">
-                 <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
-                     <div>
-                         <h2 className="text-h2 text-[#F5F5F5] font-medium tracking-tight sticky top-32">
-                             Why We Built<br/>BoldFlow Labs.
-                         </h2>
-                     </div>
-                     <div className="flex flex-col gap-6 text-[#A3A3A3] text-[16px] leading-relaxed">
-                         <p>
-                             We saw too many great service businesses bleeding revenue simply because they couldn't keep up with manual admin tasks. Teams were drowning in lead follow-ups, repetitive data entry, and dropped communications.
-                         </p>
-                         <p>
-                             BoldFlow Labs was built to fix exactly that. We engineer custom automation systems that do the heavy lifting in the background, giving founders and operators their time back to focus on actual growth. There's no fluff, no buzzwords, and no off-the-shelf band-aids.
-                         </p>
-                         <p className="border-l border-[#0066ff] pl-6 py-2 mt-4 text-[#F5F5F5] font-medium">
-                             We rely on profound engineering depth to build reliable infrastructures that scale with your business.
-                         </p>
-                     </div>
-                 </div>
-            </section>
+             {/* ── ORIGIN STORY ─────────────────────────── */}
+             <section className="py-24 bg-[#050505] border-b border-[#1A1A1A]">
+                  <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
+                      <div>
+                          <h2 className="text-h2 text-[#F5F5F5] font-medium tracking-tight sticky top-32">
+                              Why We Built<br/>BoldFlow Labs.
+                          </h2>
+                      </div>
+                      <div className="flex flex-col gap-6 text-[#A3A3A3] text-[16px] leading-relaxed">
+                          <p>
+                              It started with a simple observation. I noticed that local HVAC contractors, roofers, and real estate agents were spending thousands of dollars on advertising, only to let half of their leads go cold. 
+                          </p>
+                          <p>
+                              The reality of the home services industry is brutal: if you don’t respond to a new lead within 5 minutes, your chances of qualification drop by 80%. If you take longer than 30 minutes, they’ve already booked with a competitor. Most business owners are on job sites or managing teams—they simply can't answer the phone or text back in under a minute.
+                          </p>
+                          <p>
+                              I founded BoldFlow Labs to solve this 60-second lead response problem once and for all. By building custom AI voice receptionists, smart SMS callback systems, and direct CRM integrations, we ensure that every single inbound lead gets a call or text response within 60 seconds, 24/7/365.
+                          </p>
+                          <p className="border-l border-[#0066ff] pl-6 py-2 mt-4 text-[#F5F5F5] font-medium">
+                              We don't sell generic "AI consulting." We deploy reliable, engineered voice and message systems that lock in jobs before your competitors even see the notification.
+                          </p>
+                      </div>
+                  </div>
+             </section>
 
             {/* ── TRAITS & PHILOSOPHY ──────────────────── */}
             <section className="py-32 bg-[#0A0A0A] border-b border-[#1A1A1A]">
@@ -161,13 +166,18 @@ export default function AboutPage() {
 
                     <div className="lg:col-span-6 lg:order-1 flex justify-center lg:justify-start">
                         <div className="w-[320px] md:w-[400px] aspect-[4/5] bg-[#0A0A0A] border border-[#1A1A1A] relative p-4 group overflow-hidden transition-all duration-300 hover:border-[#333]">
-                            <div className="w-full h-full bg-[#111111] flex flex-col items-center justify-center text-center px-6">
-                                {/* Photo Placeholder */}
-                                <div className="w-24 h-24 rounded-full bg-[#1A1A1A] border-2 border-[#333333] mb-6 flex items-center justify-center">
-                                    <span className="text-[#555] font-medium tracking-widest text-[10px]">PHOTO</span>
+                            <div className="w-full h-full relative overflow-hidden bg-[#111111]">
+                                <Image
+                                    src={founderImg}
+                                    alt="Godson Saji - Founder of BoldFlow Labs"
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    priority
+                                />
+                                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-start z-10">
+                                    <h3 className="text-xl font-medium text-[#F5F5F5] mb-1">Godson Saji</h3>
+                                    <p className="text-[#0066ff] text-[13px] font-medium uppercase tracking-wider">Founder</p>
                                 </div>
-                                <h3 className="text-xl font-medium text-[#F5F5F5] mb-2">Godson Saji</h3>
-                                <p className="text-[#0066ff] text-[13px] font-medium uppercase tracking-wider">Founder</p>
                             </div>
                         </div>
                     </div>

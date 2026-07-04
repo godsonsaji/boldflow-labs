@@ -7,74 +7,68 @@ import { ArrowRight, CheckCircle2, Clock, CalendarHeart, CodeIcon, LineChart } f
 const homeServices = [
   {
     icon: <LineChart className="w-6 h-6 text-[#0066ff] mb-4" />,
-    title: 'AI Voice Agent Development',
-    description: 'Deploy intelligent voice agents that answer, qualify, and close — around the clock.',
+    title: '24/7 AI Voice Receptionists',
+    description: 'Intelligent voice agents that answer calls instantly, qualify leads, and book jobs directly into your calendar day and night.',
   },
   {
     icon: <CalendarHeart className="w-6 h-6 text-[#0066ff] mb-4" />,
-    title: 'End-to-End CRM + Sales Pipeline Automation',
-    description: 'From first touch to closed deal — fully automated. A sales pipeline that moves itself.',
+    title: '60-Second Lead Callbacks',
+    description: 'Automatically call or text new inbound web leads within 60 seconds of form submission. Stop losing clients to faster competitors.',
   },
   {
     icon: <CodeIcon className="w-6 h-6 text-[#0066ff] mb-4" />,
-    title: 'Autonomous AI Agent Development',
-    description: 'Custom-built agents that reason, decide, and act on real-time data to handle complex workflows.',
+    title: 'CRM & Calendar Automation',
+    description: 'Sync booked appointments and customer details instantly with ServiceTitan, Housecall Pro, Salesforce, or your existing software.',
   }
 ];
 
 const processPhases = [
   {
     step: '01',
-    title: 'Discovery Call',
-    desc: 'We map exactly where you are losing time and money in your current operations.',
-    timeline: 'Day 1'
+    title: 'Lead Arrives',
+    desc: 'A customer fills out a form on your site, sends a text message, or calls your phone number (including missed calls).',
+    timeline: 'Instant'
   },
   {
     step: '02',
-    title: 'System Design',
-    desc: 'We architect the right automated solution tailored entirely for your exact workflow.',
-    timeline: 'Days 2-3'
+    title: '60-Second Response',
+    desc: 'Our AI calls or texts the lead back in under 60 seconds — day, night, or weekends — so you never lose a job.',
+    timeline: 'Under 1 Min'
   },
   {
     step: '03',
-    title: 'Build & Test',
-    desc: 'We build the tools, integrate the platforms, and rigorously verify that everything works flawlessly.',
-    timeline: 'Weeks 1-3'
+    title: 'Qualify & Book',
+    desc: 'The AI answers questions, checks your availability, qualifies the job type, and books the appointment.',
+    timeline: '2 Minutes'
   },
   {
     step: '04',
-    title: 'Go Live & Optimise',
-    desc: 'We deploy the system and stay totally accountable for its performance and ongoing results.',
-    timeline: 'Week 4+'
+    title: 'Synced to CRM',
+    desc: 'The booked job and detailed conversation notes sync automatically into your calendar and software database.',
+    timeline: 'Real-time'
   },
 ];
 
 const pricingTiers = [
   {
-    name: 'STARTER',
-    target: 'Solopreneurs & early-stage businesses',
-    description: 'For businesses taking their first step into AI automation. One focused workflow, deployed and running — with the foundation built to scale.',
+    name: 'INBOUND ONLY',
+    target: 'Capturing inbound leads 24/7',
+    description: 'Capture every call and form submission. Features a 24/7 AI receptionist that calls back, text-backs, and schedules leads instantly (~$297/mo).',
   },
   {
-    name: 'GROWTH',
-    target: 'Growing SMBs scaling operations',
-    description: 'For teams ready to connect the dots. Multiple systems working together, full CRM automation, multi-channel conversations, and real-time business intelligence.',
+    name: 'OUTBOUND ONLY',
+    target: 'Lead reactivation & estimate follow-ups',
+    description: 'Proactively outbound call/text cold leads, open quotes, and missed estimates to secure booked jobs directly into your schedule (~$597/mo).',
     popular: true
   },
   {
-    name: 'AUTHORITY',
-    target: 'Established businesses going all-in on AI',
-    description: 'For businesses that want the full picture. Voice agents, autonomous AI, advanced dashboards, dedicated engineering support, and a quarterly roadmap built around your goals.',
+    name: 'FULL STACK',
+    target: 'Complete hands-free lead management',
+    description: 'Full integration of 24/7 inbound receptionist and proactive outbound campaigns, with priority support and custom workflow syncs (~$797/mo).',
   }
 ];
 
-const techStackImages = [
-  { name: 'OpenAI', src: '/logos/openai.svg' },
-  { name: 'Make', src: '/logos/make.svg' },
-  { name: 'n8n', src: '/logos/n8n.svg' },
-  { name: 'Stripe', src: '/logos/stripe.svg' },
-  { name: 'Airtable', src: '/logos/airtable.svg' }
-];
+
 
 export default function HomePage() {
   return (
@@ -93,8 +87,8 @@ export default function HomePage() {
                     transition={{ duration: 0.6 }}
                     className="text-h1 md:text-hero text-[#F5F5F5] mb-6 leading-[1.05] tracking-tight"
                 >
-                    Your business runs on manual work. 
-                    <span className="text-[#A3A3A3] block mt-2">Ours runs on fixing that.</span>
+                    We Answer Your Leads in 60 Seconds. Every Time.
+                    <span className="text-[#A3A3A3] block mt-2">Day or Night, 24/7.</span>
                 </motion.h1>
 
                 <motion.p 
@@ -103,7 +97,7 @@ export default function HomePage() {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="text-body-lg text-[#A3A3A3] max-w-xl mb-12 leading-relaxed"
                 >
-                    We build custom automation systems for service businesses so you can stop doing repetitive tasks and focus on revenue.
+                    Never lose another job to a slower competitor. Our AI voice agents and messaging systems qualify inbound leads and book them directly into your calendar in under a minute.
                 </motion.p>
 
                 <motion.div 
@@ -171,10 +165,10 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                 <div>
                    <h2 className="text-h2 text-[#F5F5F5] font-medium tracking-tight mb-4">
-                       Where We Remove the Manual Work
+                       Capture Every Lead, Book Every Job
                    </h2>
                    <p className="text-body text-[#A3A3A3] max-w-xl">
-                       We specialize in eliminating operational drag for service businesses through intelligent system architecture.
+                       We deploy custom lead-booking tools built specifically for service businesses to stop lead leakage.
                    </p>
                 </div>
             </div>
@@ -211,7 +205,7 @@ export default function HomePage() {
                       How It Works
                   </h2>
                   <p className="text-body text-[#A3A3A3] max-w-2xl mx-auto">
-                      A transparent, milestone-driven approach to deploying your automation systems.
+                      From inbound lead to booked appointment on your calendar in under 3 minutes.
                   </p>
               </div>
 
@@ -284,15 +278,12 @@ export default function HomePage() {
               </div>
               
               <div className="lg:pl-12 flex flex-col justify-center">
-                  <h3 className="text-[#F5F5F5] text-xl font-medium mb-8 text-center lg:text-left">Built entirely on industry-leading tools:</h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                      {/* Temporary textual logos since we don't have SVG files yet */
-                      techStackImages.map((tech) => (
-                          <div key={tech.name} className="flex items-center justify-center lg:justify-start h-12 text-[#F5F5F5] font-bold text-xl tracking-tight opacity-50">
-                              {tech.name}
-                          </div>
-                      ))}
-                  </div>
+                  <h3 className="text-[#F5F5F5] text-xl font-medium mb-6 text-center lg:text-left">
+                      Enterprise-Grade Infrastructure
+                  </h3>
+                  <p className="text-[16px] text-[#A3A3A3] leading-relaxed text-center lg:text-left">
+                      Powered by enterprise-grade AI infrastructure — including OpenAI, Claude, real-time telephony via Telnyx, and low-latency conversational AI through Gemini Live and LiveKit — so your leads get a natural, instant response every time.
+                  </p>
               </div>
           </div>
       </section>
@@ -302,10 +293,10 @@ export default function HomePage() {
           <div className="max-w-[1280px] mx-auto px-6">
               <div className="text-center mb-16">
                   <h2 className="text-h2 text-[#F5F5F5] font-medium tracking-tight mb-4">
-                      Simple, Predictable Pricing
+                      Simple, Transparent Pricing
                   </h2>
                   <p className="text-body text-[#A3A3A3] max-w-2xl mx-auto">
-                      Choose the capacity that matches your workflow bottleneck.
+                      Choose the capacity that fits your business needs.
                   </p>
               </div>
 

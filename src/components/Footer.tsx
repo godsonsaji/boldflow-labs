@@ -39,8 +39,8 @@ export default function Footer() {
                         </div>
 
                         <div className="flex flex-col gap-2 font-mono text-[11px] text-[#A3A3A3] mt-auto">
-                            <span className="uppercase tracking-widest text-[#F5F5F5] opacity-80">BASED IN KERALA, INDIA</span>
-                            <span className="uppercase tracking-widest text-[#F5F5F5] opacity-60">SERVING GLOBAL CLIENTS</span>
+                            <span className="uppercase tracking-widest text-[#F5F5F5] opacity-80">GLOBAL AI AUTOMATION AGENCY</span>
+                            <span className="uppercase tracking-widest text-[#F5F5F5] opacity-60">SERVING CLIENTS GLOBALLY</span>
                         </div>
                     </div>
 
@@ -77,13 +77,8 @@ export default function Footer() {
 
                         <ul className="space-y-4 mb-auto">
                             <li>
-                                <a href="mailto:boldflowlabs@gmail.com" className="text-[#A3A3A3] hover:text-[#F5F5F5] text-[14px] transition-colors duration-150 block break-all">
-                                    boldflowlabs@gmail.com
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tel:+919447178166" className="text-[#A3A3A3] hover:text-[#F5F5F5] text-[14px] transition-colors duration-150">
-                                    +91-9447178166
+                                <a href="mailto:hello@boldflowlabs.com" className="text-[#A3A3A3] hover:text-[#F5F5F5] text-[14px] transition-colors duration-150 block break-all">
+                                    hello@boldflowlabs.com
                                 </a>
                             </li>
                             <li className="pt-4 flex gap-4">

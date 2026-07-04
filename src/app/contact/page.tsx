@@ -70,11 +70,7 @@ export default function ContactPage() {
                             <ul className="space-y-6">
                                 <li>
                                     <span className="text-[13px] text-[#71717A] uppercase font-medium tracking-wider block mb-2">Email:</span>
-                                    <a href="mailto:boldflowlabs@gmail.com" className="text-[18px] text-[#F5F5F5] hover:text-[#0066ff] transition-colors">boldflowlabs@gmail.com</a>
-                                </li>
-                                <li>
-                                    <span className="text-[13px] text-[#71717A] uppercase font-medium tracking-wider block mb-2">Phone:</span>
-                                    <a href="tel:+91-9447178166" className="text-[18px] text-[#F5F5F5] hover:text-[#0066ff] transition-colors">+91-9447178166</a>
+                                    <a href="mailto:hello@boldflowlabs.com" className="text-[18px] text-[#F5F5F5] hover:text-[#0066ff] transition-colors">hello@boldflowlabs.com</a>
                                 </li>
                                 <li className="pt-6 border-t border-[#1A1A1A]">
                                     <span className="text-[13px] text-[#71717A] uppercase font-medium tracking-wider block mb-3">Response Time:</span>
