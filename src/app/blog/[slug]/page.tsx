@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from "@/firebase/config";
+import { staticBlogPosts } from "@/data/blogData";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -27,9 +28,19 @@ export default function BlogPostPage() {
                 const querySnapshot = await getDocs(q);
                 if (!querySnapshot.empty) {
                     setPost({ id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() });
+                } else {
+                    // Try static fallback
+                    const staticMatch = staticBlogPosts.find(p => p.slug === slug);
+                    if (staticMatch) {
+                        setPost(staticMatch);
+                    }
                 }
             } catch (error) {
-                console.error("Error fetching blog post:", error);
+                console.error("Error fetching blog post, trying static fallback:", error);
+                const staticMatch = staticBlogPosts.find(p => p.slug === slug);
+                if (staticMatch) {
+                    setPost(staticMatch);
+                }
             } finally {
                 setLoading(false);
             }

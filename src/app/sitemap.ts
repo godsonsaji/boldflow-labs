@@ -17,9 +17,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
-            url: `${BASE_URL}/case-studies`,
+            url: `${BASE_URL}/use-cases`,
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/work`,
             lastModified: new Date(),
             changeFrequency: "weekly",
+            priority: 0.8,
+        },
+        {
+            url: `${BASE_URL}/pricing`,
+            lastModified: new Date(),
+            changeFrequency: "monthly",
             priority: 0.8,
         },
         {
@@ -29,15 +41,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.7,
         },
         {
-            url: `${BASE_URL}/testimonials`,
+            url: `${BASE_URL}/blog`,
             lastModified: new Date(),
-            changeFrequency: "monthly",
-            priority: 0.7,
-        },
-        {
-            url: `${BASE_URL}/pricing`,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
+            changeFrequency: "weekly",
             priority: 0.8,
         },
         {

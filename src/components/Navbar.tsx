@@ -9,9 +9,11 @@ import { Bot } from "lucide-react";
 const navLinks = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
+    { href: "/use-cases", label: "Use Cases" },
+    { href: "/work", label: "Work" },
     { href: "/pricing", label: "Pricing" },
     { href: "/about", label: "About" },
-    { href: "/work", label: "Work" },
+    { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" },
 ];
 
@@ -41,7 +43,7 @@ export default function Navbar() {
                 aria-label="Main navigation"
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
                     scrolled || isOpen
-                        ? "bg-[#0A0A0A]/85 backdrop-blur-[16px] border-[#333333]"
+                        ? "bg-[#0A0A0F]/90 backdrop-blur-[16px] border-white/5"
                         : "bg-transparent border-transparent"
                 }`}
             >
@@ -50,20 +52,20 @@ export default function Navbar() {
                         {/* Logo */}
                         <Link href="/" className="flex items-center group z-50 relative">
                             <span style={{ fontFamily: "var(--font-space), 'Space Grotesk', sans-serif" }} className="text-2xl font-bold text-white tracking-tight">
-                                Bold<span className="text-[#0066ff]">Flow</span>
+                                Bold<span className="text-[#0047FF]">Flow</span>
                             </span>
                         </Link>
 
                         {/* Desktop Nav */}
-                        <div className="hidden lg:flex items-center justify-center flex-1 gap-8">
+                        <div className="hidden lg:flex items-center justify-center flex-1 gap-6">
                             {navLinks.map((link) => {
                                 const isActive = pathname === link.href;
                                 return (
                                     <Link
                                         key={link.href}
                                         href={link.href}
-                                        className={`group relative text-[14px] font-medium transition-colors duration-150 ${
-                                            isActive ? "text-[#F5F5F5]" : "text-[#A3A3A3] hover:text-[#F5F5F5]"
+                                        className={`group relative text-[13px] uppercase tracking-wider font-semibold font-mono transition-colors duration-150 ${
+                                            isActive ? "text-[#0047FF]" : "text-[#A3A3B3] hover:text-[#F5F6FA]"
                                         }`}
                                     >
                                         {link.label}
@@ -76,7 +78,7 @@ export default function Navbar() {
                         <div className="flex items-center justify-end shrink-0 gap-4">
                             <Link
                                 href="/contact"
-                                className="hidden lg:inline-flex px-6 py-2.5 text-[14px] font-medium btn-primary"
+                                className="hidden lg:inline-flex px-5 py-2 text-[12px] uppercase font-semibold font-mono tracking-wider btn-primary"
                             >
                                 Book a Free Call
                             </Link>
@@ -103,7 +105,7 @@ export default function Navbar() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.15 }}
-                        className="fixed inset-0 top-[80px] z-40 bg-[#050505] lg:hidden flex flex-col justify-start overflow-y-auto"
+                        className="fixed inset-0 top-[80px] z-40 bg-[#0A0A0F] lg:hidden flex flex-col justify-start overflow-y-auto"
                     >
                         <div className="px-6 py-12 flex flex-col gap-6">
                             {navLinks.map((link, i) => {
@@ -118,8 +120,9 @@ export default function Navbar() {
                                         <Link
                                             href={link.href}
                                             onClick={() => setIsOpen(false)}
-                                            className={`text-[32px] font-medium flex items-center transition-colors ${
-                                                isActive ? "text-[#F5F5F5]" : "text-[#A3A3A3] hover:text-[#F5F5F5]"
+                                            style={{ fontFamily: "var(--font-space), 'Space Grotesk', sans-serif" }}
+                                            className={`text-[28px] font-bold tracking-tight flex items-center transition-colors ${
+                                                isActive ? "text-[#0047FF]" : "text-[#A3A3B3] hover:text-[#F5F6FA]"
                                             }`}
                                         >
                                             {link.label}
@@ -132,12 +135,12 @@ export default function Navbar() {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.2, delay: navLinks.length * 0.05 }}
-                                className="pt-8 mt-4 border-t border-[#1A1A1A]"
+                                className="pt-8 mt-4 border-t border-[#1C1C24]"
                             >
                                 <Link
                                     href="/contact"
                                     onClick={() => setIsOpen(false)}
-                                    className="flex items-center justify-center w-full px-6 py-4 text-sm font-medium btn-primary"
+                                    className="flex items-center justify-center w-full px-6 py-4 text-xs font-mono font-bold tracking-wider uppercase btn-primary"
                                 >
                                     Book a Free Call
                                 </Link>
