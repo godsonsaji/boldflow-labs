@@ -101,7 +101,12 @@ export default function Footer() {
                                     hello@boldflowlabs.com
                                 </a>
                             </li>
-                            <li className="pt-4 flex gap-4">
+                            <li>
+                                <a href="https://cal.com/boldflow-labs/30min" target="_blank" rel="noopener noreferrer" className="text-[#0047FF] hover:text-white text-[13px] font-mono font-bold transition-colors duration-150 block">
+                                    Book 30-Min Call ↗
+                                </a>
+                            </li>
+                            <li className="pt-2 flex gap-4">
                                 <a href="https://linkedin.com/company/boldflowlabs" target="_blank" rel="noopener noreferrer" className="text-[14px] text-[#A3A3B3] hover:text-[#0047FF] transition-colors duration-150 font-medium">LinkedIn</a>
                                 <a href="https://x.com/boldflowlabs" target="_blank" rel="noopener noreferrer" className="text-[14px] text-[#A3A3B3] hover:text-[#0047FF] transition-colors duration-150 font-medium">X</a>
                             </li>

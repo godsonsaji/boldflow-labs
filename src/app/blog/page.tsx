@@ -68,14 +68,31 @@ export default function BlogPage() {
         fetchPosts();
     }, []);
 
-    const handleSubmit = (e: React.FormEvent) => {
+const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!email) return;
         setIsSubmitting(true);
-        setTimeout(() => {
-            setIsSubmitting(false);
+        try {
+            await fetch(WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email,
+                    source: "blog_newsletter",
+                    submittedAt: new Date().toISOString()
+                })
+            });
             setIsSubmitted(true);
             setEmail("");
-        }, 1500);
+        } catch (err) {
+            console.error("Newsletter webhook error:", err);
+            setIsSubmitted(true);
+            setEmail("");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     // Extract all unique tags

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, ArrowRight, Mail, Clock, CalendarRange } from "lucide-react";
 
+const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
+
 const processSteps = [
     { title: "Schedule a Discovery Call", desc: "Confirmed natively within 1 business day via our automated dispatch system." },
     { title: "We Listen Before We Recommend", desc: "We map your specific business processes and operational friction points first." },
@@ -14,20 +16,62 @@ const processSteps = [
 export default function ContactPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [error, setError] = useState("");
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        company: "",
+        service: "lead_followup",
+        message: "",
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        setFormData(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }));
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setTimeout(() => {
-            setIsSubmitting(false);
+        setError("");
+
+        const payload = {
+            ...formData,
+            source: "contact_page",
+            submittedAt: new Date().toISOString(),
+        };
+
+        try {
+            const response = await fetch(WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to send message. Please try again.");
+            }
+
             setIsSubmitted(true);
-        }, 1500);
+            setFormData({ name: "", email: "", company: "", service: "lead_followup", message: "" });
+        } catch (err) {
+            console.error("Webhook submission error:", err);
+            setError(
+                err instanceof Error
+                    ? err.message
+                    : "Something went wrong. Please try again or email us directly at hello@boldflowlabs.com"
+            );
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
         <div className="bg-[#0A0A0F] min-h-screen">
             <div className="absolute inset-0 grid-overlay opacity-5 pointer-events-none z-0" />
-            
+
             {/* ── HERO ─────────────────────────────────── */}
             <section className="relative pt-40 pb-24 border-b border-[#1C1C24] overflow-hidden">
                 <div className="max-w-[1280px] w-full mx-auto px-6 relative z-10 flex flex-col justify-center text-center items-center">
@@ -86,6 +130,17 @@ export default function ContactPage() {
                                         <span className="text-sm font-space text-white block">Confirmed in under 1 business day</span>
                                     </div>
                                 </li>
+                                <li className="pt-6 border-t border-[#1C1C24] flex gap-4 items-start">
+                                    <div className="p-2.5 bg-[#111116] border border-[#1C1C24] rounded-sm text-[#0047FF] shrink-0">
+                                        <CalendarRange className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <span className="text-[10px] text-[#626272] uppercase font-mono tracking-wider block mb-1">Instant Calendar Booking:</span>
+                                        <a href="https://cal.com/boldflow-labs/30min" target="_blank" rel="noopener noreferrer" className="text-sm font-mono text-[#0047FF] hover:text-white transition-colors underline font-bold flex items-center gap-1 mt-1">
+                                            Book 30-Min Call on Cal.com <ArrowRight className="w-3 h-3" />
+                                        </a>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
 
@@ -107,7 +162,7 @@ export default function ContactPage() {
                     <div>
                         <div className="bg-[#0A0A0F] border border-[#1C1C24] p-8 md:p-12 relative group hover:border-[#0047FF]/20 transition-all duration-300 rounded-[8px] shadow-2xl">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_top_right,rgba(0,71,255,0.03),transparent_70%)]" />
-                            
+
                             <h3 className="text-xl font-bold font-space text-white tracking-tight mb-8">Request a Diagnostic</h3>
 
                             {!isSubmitted ? (
@@ -115,23 +170,23 @@ export default function ContactPage() {
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                         <div className="flex flex-col relative w-full">
                                             <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Full Name *</label>
-                                            <input required type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. John Doe" />
+                                            <input required name="name" value={formData.name} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. John Doe" />
                                         </div>
                                         <div className="flex flex-col relative w-full">
                                             <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Work Email *</label>
-                                            <input required type="email" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. name@company.com" />
+                                            <input required name="email" value={formData.email} onChange={handleChange} type="email" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. name@company.com" />
                                         </div>
                                     </div>
 
                                     <div className="flex flex-col relative w-full">
                                         <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Company Name</label>
-                                        <input type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. Acme Corp Infrastructure" />
+                                        <input name="company" value={formData.company} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. Acme Corp Infrastructure" />
                                     </div>
 
                                     <div className="flex flex-col relative w-full">
                                         <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">What do you need help with?</label>
                                         <div className="relative">
-                                            <select className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors appearance-none cursor-pointer">
+                                            <select name="service" value={formData.service} onChange={handleChange} className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors appearance-none cursor-pointer">
                                                 <option value="lead_followup">Automated Inbound Receptionist</option>
                                                 <option value="outbound">Outbound Lead Reactivation</option>
                                                 <option value="scheduling">CRM Scheduling Integrations</option>
@@ -144,8 +199,12 @@ export default function ContactPage() {
 
                                     <div className="flex flex-col relative w-full mb-4">
                                         <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Tell us about your current bottlenecks (Optional)</label>
-                                        <textarea rows={4} className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors resize-none" placeholder="Provide some context on where you're losing time or leads..." />
+                                        <textarea name="message" value={formData.message} onChange={handleChange} rows={4} className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors resize-none" placeholder="Provide some context on where you're losing time or leads..." />
                                     </div>
+
+                                    {error && (
+                                        <p className="text-red-400 text-xs font-mono">{error}</p>
+                                    )}
 
                                     <button type="submit" disabled={isSubmitting} className="w-full py-5 bg-[#0047FF] hover:bg-[#1E5CFF] text-white font-mono text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center transition-colors rounded-[4px] shadow-lg">
                                         {isSubmitting ? (
@@ -154,6 +213,18 @@ export default function ContactPage() {
                                             <span className="flex items-center gap-2">Book My Free Strategy Call <ArrowRight className="w-4 h-4" /></span>
                                         )}
                                     </button>
+
+                                    <div className="text-center pt-2">
+                                        <a
+                                            href="https://cal.com/boldflow-labs/30min"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-xs font-mono text-[#A3A3B3] hover:text-[#0047FF] transition-colors inline-flex items-center gap-1.5"
+                                        >
+                                            <span>Or schedule directly on calendar</span>
+                                            <CalendarRange className="w-3.5 h-3.5 text-[#0047FF]" />
+                                        </a>
+                                    </div>
                                 </form>
                             ) : (
                                 <motion.div
@@ -163,9 +234,17 @@ export default function ContactPage() {
                                 >
                                     <CheckCircle2 className="w-16 h-16 text-[#0047FF] mb-6" />
                                     <h4 className="text-xl font-bold font-space text-[#F5F6FA] mb-4">Request Received</h4>
-                                    <p className="text-[#A3A3B3] text-sm leading-relaxed max-w-sm mb-8">
+                                    <p className="text-[#A3A3B3] text-sm leading-relaxed max-w-sm mb-6">
                                         Thank you for reaching out. We will review your details and send you a link to book your strategy call within 1 business day.
                                     </p>
+                                    <a
+                                        href="https://cal.com/boldflow-labs/30min"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="mb-8 px-6 py-4 bg-[#0047FF] hover:bg-[#1E5CFF] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-[4px] inline-flex items-center gap-2 transition-colors shadow-lg"
+                                    >
+                                        <CalendarRange className="w-4 h-4" /> Pick a Time directly on Cal.com <ArrowRight className="w-4 h-4" />
+                                    </a>
                                     <button onClick={() => setIsSubmitted(false)} className="text-[#FF5A1F] font-mono text-xs uppercase tracking-wider font-bold hover:underline">
                                         Submit another request
                                     </button>

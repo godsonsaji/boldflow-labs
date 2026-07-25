@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle2, Loader2 } from "lucide-react";
+import { Send, CheckCircle2, Loader2, CalendarRange } from "lucide-react";
 
 const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
 
@@ -23,6 +23,8 @@ export default function ContactForm() {
             company: (form.elements.namedItem("contact-company") as HTMLInputElement).value,
             service: (form.elements.namedItem("contact-service") as HTMLSelectElement).value,
             message: (form.elements.namedItem("contact-message") as HTMLTextAreaElement).value,
+            source: "contact_form_component",
+            submittedAt: new Date().toISOString(),
         };
 
         try {
@@ -61,10 +63,18 @@ export default function ContactForm() {
                 <h3 className="text-2xl font-bold text-white mb-3">
                     Message Sent!
                 </h3>
-                <p className="text-gray-300 text-sm max-w-sm mb-8">
+                <p className="text-gray-300 text-sm max-w-sm mb-6">
                     Thank you for reaching out. We&apos;ll get back to you
                     within 24 hours with next steps.
                 </p>
+                <a
+                    href="https://cal.com/boldflow-labs/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mb-6 px-6 py-3 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-sm hover:shadow-lg transition-all duration-300 inline-flex items-center gap-2"
+                >
+                    <CalendarRange className="w-4 h-4" /> Pick a Time on Our Calendar
+                </a>
                 <button
                     onClick={() => setSubmitted(false)}
                     className="text-sm text-[#00a2ff] hover:text-white transition-colors"
