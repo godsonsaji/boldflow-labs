@@ -30,75 +30,75 @@ const homeServices = [
   {
     icon: <Activity className="w-6 h-6 text-[#0047FF] mb-4" />,
     title: "24/7 AI Voice Receptionists",
-    description: "Intelligent voice agents that answer calls instantly, qualify leads, and book jobs directly into your calendar day and night.",
+    description: "Intelligent voice agents that answer calls instantly, qualify enquiries, and book appointments or site visits directly into your calendar, day and night.",
     href: "/services#01"
   },
   {
     icon: <MessageSquare className="w-6 h-6 text-[#0047FF] mb-4" />,
-    title: "60-Second Lead Callbacks",
-    description: "Automatically call or text new inbound web leads within 60 seconds of form submission. Stop losing clients to faster competitors.",
+    title: "60-Second Enquiry Callbacks",
+    description: "Automatically call or text new website and ad enquiries within 60 seconds of submission. Stop losing patients, buyers, and admissions to whoever answers first.",
     href: "/services#02"
   },
   {
     icon: <Database className="w-6 h-6 text-[#0047FF] mb-4" />,
     title: "CRM & Calendar Automation",
-    description: "Sync booked appointments and customer details instantly with ServiceTitan, Housecall Pro, Salesforce, or your existing software.",
-    href: "/services#02"
+    description: "Sync booked appointments and enquiry details instantly with Zoho, LeadSquared, Kylas, or your existing CRM.",
+    href: "/services#03"
   }
 ];
 
 const processPhases = [
   {
     step: "01",
-    title: "Lead Arrives",
-    desc: "A customer fills out a form on your site, sends a text message, or calls your phone number (including missed calls).",
+    title: "Enquiry Arrives",
+    desc: "A patient, buyer, or student fills a form, sends a message, or calls (including a missed call).",
     timeline: "Instant"
   },
   {
     step: "02",
     title: "60-Second Response",
-    desc: "Our AI calls or texts the lead back in under 60 seconds — day, night, or weekends — so you never lose a job.",
+    desc: "Our AI calls or texts back in under 60 seconds — day, night, or weekends.",
     timeline: "Under 1 Min"
   },
   {
     step: "03",
     title: "Qualify & Book",
-    desc: "The AI answers questions, checks your availability, qualifies the job type, and books the appointment.",
+    desc: "The AI answers questions, checks availability, qualifies the enquiry, and books the appointment or site visit.",
     timeline: "2 Minutes"
   },
   {
     step: "04",
     title: "Synced to CRM",
-    desc: "The booked job and detailed conversation notes sync automatically into your calendar and software database.",
+    desc: "Booked appointments and conversation notes sync automatically into your calendar and CRM.",
     timeline: "Real-time"
   }
 ];
 
 const demoAgents = [
   {
-    id: "hvac",
-    name: "Aria",
-    role: "HVAC Receptionist",
-    specialty: "ServiceTitan / Diagnostic Triage",
-    scenario: "Answers missed calls, asks diagnostic triage questions, books emergency repairs directly into dispatch queue.",
+    id: "ananya",
+    name: "Ananya",
+    role: "Clinic & Hospital Receptionist",
+    specialty: "Inbound Triage / Calendar Booking",
+    scenario: "Answers missed calls, triages appointment urgency, books consultations directly into your schedule.",
     badge: "Coming Soon",
     status: "inactive"
   },
   {
-    id: "roofing",
-    name: "Marcus",
-    role: "Roofing Dispatcher",
-    specialty: "Housecall Pro / Estimate Scheduling",
-    scenario: "Handles storm lead spikes, schedules roof inspection estimates, and filters solicitation calls.",
+    id: "rohan",
+    name: "Rohan",
+    role: "Real Estate Developer Qualifier",
+    specialty: "Property Lead Callbacks / Site Visits",
+    scenario: "Reaches out to project enquiry leads within 60s, checks budget and timeline, books site visits.",
     badge: "Coming Soon",
     status: "inactive"
   },
   {
-    id: "realestate",
-    name: "Chloe",
-    role: "Real Estate Qualifier",
-    specialty: "Follow Up Boss / Zillow Lead Callbacks",
-    scenario: "Reaches out to Realtor/Zillow leads within 60s, checks buying timeline, budget, pre-approval, and books call.",
+    id: "priya",
+    name: "Priya",
+    role: "Admissions Counselor",
+    specialty: "Course Fit / Admissions Screening",
+    scenario: "Handles admission-season enquiry spikes for coaching institutes and colleges, qualifies course fit, books counseling calls.",
     badge: "Coming Soon",
     status: "inactive"
   }
@@ -107,7 +107,7 @@ const demoAgents = [
 const faqData = [
   {
     q: "How much does this cost?",
-    a: "We design and deploy custom agents. Our implementation plans operate across flat monthly tiers starting at ~$297/mo for inbound reception, scaling to ~$797/mo for full-stack pipeline and outbound call campaigns. You only pay for what fits your operations."
+    a: "We design and deploy custom agents. Implementation plans operate across flat monthly tiers starting at ₹25,000/mo for inbound reception, scaling to ₹65,000/mo for full-stack pipeline and outbound campaigns."
   },
   {
     q: "Will it sound like a robot?",
@@ -118,8 +118,8 @@ const faqData = [
     a: "Our typical design-to-deployment workflow takes between 7 and 14 days. This covers script writing, model training, speech integration, calendar mapping, and full CRM end-to-end testing."
   },
   {
-    q: "Does it work with ServiceTitan / Housecall Pro?",
-    a: "Yes. We specialize in home services integrations. Our systems write jobs, customer profiles, and voice transcripts directly into ServiceTitan, Housecall Pro, Jobber, Salesforce, Follow Up Boss, and other major CRMs."
+    q: "Does it work with my CRM?",
+    a: "Yes. We specialize in custom integrations. Our systems write appointments, customer profiles, and voice transcripts directly into Zoho, LeadSquared, Kylas, Salesforce, Google Calendar, and your existing CRM."
   },
   {
     q: "What happens to leads after hours?",
@@ -158,12 +158,12 @@ export default function HomePage() {
                 </motion.div>
                 
                 <h1 className="text-hero text-[#F5F6FA] mb-6 tracking-tight leading-[1.05]">
-                  We answer your leads in <span className="text-[#0047FF] underline decoration-[#0047FF]/30 underline-offset-8">60 seconds</span>, every time.
+                  We answer your patients, buyers, and admissions leads in <span className="text-[#0047FF] underline decoration-[#0047FF]/30 underline-offset-8">60 seconds</span>. Every time.
                   <span className="text-[#A3A3B3] block mt-2 font-light text-2xl md:text-4xl">Day or night, 24/7.</span>
                 </h1>
 
                 <p className="text-body-lg mb-12 max-w-xl">
-                  Never lose another customer to a slower competitor. Our custom AI voice receptionists and smart message systems qualify inbound leads and book them directly into your calendar.
+                  Never lose a lead to a slower competitor down the road. Our custom AI voice receptionists and messaging systems qualify inbound enquiries and book them straight into your calendar — day or night.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -224,7 +224,7 @@ export default function HomePage() {
                     <div className="border-t border-[#1C1C24] pt-4 font-mono text-[9px] text-[#626272] flex justify-between z-10">
                         <div className="flex flex-col">
                             <span>RECEPTIONIST: ACTIVE_INTENT_TRIAGE</span>
-                            <span>DATABASE_SYNC: SERVICETITAN_LIVE</span>
+                            <span>DATABASE_SYNC: ZOHO_LEADSQUARED_LIVE</span>
                         </div>
                         <div className="text-right flex flex-col">
                             <span>TELEPHONY: TELNYX_VOIP</span>
@@ -248,7 +248,7 @@ export default function HomePage() {
               </div>
               <span className="hidden md:block text-[#1C1C24]">|</span>
               <div className="flex items-center gap-2">
-                  <Building className="w-4 h-4 text-[#0047FF]" /> Serving HVAC, Roofing & Real Estate
+                  <Building className="w-4 h-4 text-[#0047FF]" /> Serving Healthcare, Education & Real Estate
               </div>
           </div>
       </section>
@@ -263,10 +263,10 @@ export default function HomePage() {
                 <div>
                    <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">// SECURING LEAD PIPELINES</span>
                    <h2 className="text-h2 text-[#F5F6FA] mb-4">
-                       Capture Every Lead, Book Every Job
+                       Capture Every Enquiry, Book Every Appointment
                    </h2>
                    <p className="text-body max-w-xl">
-                       We deploy custom lead-booking tools built specifically for service businesses to stop lead leakage.
+                       We deploy custom lead-booking tools built specifically for appointment-driven and enquiry-driven businesses to stop leads slipping through the cracks.
                    </p>
                 </div>
             </div>
@@ -304,7 +304,7 @@ export default function HomePage() {
                       How It Works
                   </h2>
                   <p className="text-body max-w-xl mx-auto">
-                      From inbound lead to booked appointment on your calendar in under 3 minutes.
+                      From inbound enquiry to booked appointment or site visit on your calendar in under 3 minutes.
                   </p>
               </div>
 
@@ -339,16 +339,16 @@ export default function HomePage() {
                   <div className="lg:w-2/5 flex flex-col justify-center">
                       <span className="text-[11px] font-mono text-[#FF5A1F] uppercase tracking-wider block mb-3">// VOICE BOT SIMULATIONS</span>
                       <h2 className="text-h2 text-[#F5F6FA] mb-6">
-                          Experience the Agent Craft.
+                          Voice Bot Simulations
                       </h2>
                       <p className="text-body mb-8">
-                          We train conversational voice bots tailored for trade verticals. Click to call our dispatch and qualifier models to test response latency, scheduling syncs, and custom scripts.
+                          We train conversational voice bots tailored for clinics, real estate developers, and education institutes. Contact us to test response latency, calendar syncs, and custom scenarios.
                       </p>
                       
                       <div className="p-6 bg-[#0A0A0F] border border-[#1C1C24] rounded-[4px] mb-8">
                           <h4 className="text-sm font-bold font-space text-white mb-2">Looking for a live test?</h4>
                           <p className="text-[#A3A3B3] text-xs leading-relaxed mb-4">
-                              Book a quick operations discovery call and we will trigger a live outbound call to your phone demonstrating your specific trade scenario.
+                              Book a discovery call and we'll trigger a live outbound call demonstrating your specific scenario.
                           </p>
                           <Link href="/contact" className="text-[#0047FF] text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1 hover:gap-2 transition-all">
                               Request a Live Outbound Call <ArrowUpRight className="w-4 h-4" />
@@ -357,7 +357,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Right panel - simulation cards */}
-                  <div className="lg:w-3/5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-6">
+                  <div className="lg:w-3/5 grid grid-cols-1 gap-6">
                       {demoAgents.map((agent) => (
                           <div key={agent.id} className="p-6 border border-[#1C1C24] bg-[#0A0A0F]/60 rounded-[6px] relative flex flex-col justify-between">
                               <div>
@@ -392,17 +392,17 @@ export default function HomePage() {
           <div className="max-w-[1000px] mx-auto px-6 text-center">
               <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">// QUANTIFIABLE OPERATIONS</span>
               <h2 className="text-h2 text-[#F5F6FA] mb-6">
-                  What is slow response costing your business?
+                  What Slow Response Is Costing You
               </h2>
               <p className="text-body max-w-2xl mx-auto mb-12">
-                  Answering leads in 60 seconds vs 30 minutes is the difference between booking a job or paying for a competitor's click. Calculate the exact revenue recovered by deploying automated instant response.
+                  Answering enquiries in 60 seconds vs 30 minutes is the difference between securing a consultation or losing patients, buyers, and students to a competitor.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
                   <div className="p-8 bg-[#111116] border border-[#1C1C24] rounded-[6px]">
-                      <span className="text-[10px] font-mono text-[#626272] block mb-2">INDUSTRY AVERAGE</span>
+                      <span className="text-[10px] font-mono text-[#626272] block mb-2">UNANSWERED ENQUIRIES</span>
                       <strong className="text-3xl font-bold font-space text-[#FF5A1F] block mb-2">32%</strong>
-                      <span className="text-xs text-[#A3A3B3]">of trade phone calls and leads go directly to voicemail.</span>
+                      <span className="text-xs text-[#A3A3B3]">of phone enquiries at appointment-driven businesses go unanswered during peak hours.</span>
                   </div>
                   <div className="p-8 bg-[#111116] border border-[#1C1C24] rounded-[6px]">
                       <span className="text-[10px] font-mono text-[#626272] block mb-2">SPEED-TO-LEAD DROP</span>
@@ -410,9 +410,9 @@ export default function HomePage() {
                       <span className="text-xs text-[#A3A3B3]">reduction in closing rate if response takes over 5 minutes.</span>
                   </div>
                   <div className="p-8 bg-[#111116] border border-[#1C1C24] rounded-[6px]">
-                      <span className="text-[10px] font-mono text-[#626272] block mb-2">AVERAGE TICKET RECOVERED</span>
-                      <strong className="text-3xl font-bold font-space text-[#0047FF] block mb-2">$3,200+</strong>
-                      <span className="text-xs text-[#A3A3B3]">Typical job value captured from immediate callbacks.</span>
+                      <span className="text-[10px] font-mono text-[#626272] block mb-2">REVENUE RECOVERED</span>
+                      <strong className="text-3xl font-bold font-space text-[#0047FF] block mb-2">High-Ticket</strong>
+                      <span className="text-xs text-[#A3A3B3]">Patient consultation and property booking value retained per captured lead.</span>
                   </div>
               </div>
               
@@ -436,28 +436,28 @@ export default function HomePage() {
                       Founding Client Programme
                   </h2>
                   <p className="text-body-lg mb-8">
-                      We are an early-stage agency. We don't hide this — we use it as our biggest differentiator. We are looking for exactly 5 service businesses to turn into legendary case studies.
+                      We are an early-stage agency. We don't hide this — we use it as our biggest differentiator. We are looking for 5 businesses across healthcare, education, and real estate to turn into our first case studies.
                   </p>
                   
                   <ul className="space-y-4 mb-8">
                       <li className="flex gap-3 text-sm text-[#A3A3B3] items-start">
                           <CheckCircle2 className="w-5 h-5 text-[#0047FF] shrink-0 mt-0.5" />
-                          <span><strong>Direct Architect Access:</strong> Work directly with our developer (no junior account managers).</span>
+                          <span><strong>Direct Architect Access:</strong> Work directly with our developer, no junior account managers.</span>
                       </li>
                       <li className="flex gap-3 text-sm text-[#A3A3B3] items-start">
                           <CheckCircle2 className="w-5 h-5 text-[#0047FF] shrink-0 mt-0.5" />
-                          <span><strong>Over-Delivered Scope:</strong> We build features outside of terms if they yield better case study outcomes.</span>
+                          <span><strong>Over-Delivered Scope:</strong> We build features outside terms if they yield better case study outcomes.</span>
                       </li>
                       <li className="flex gap-3 text-sm text-[#A3A3B3] items-start">
                           <CheckCircle2 className="w-5 h-5 text-[#0047FF] shrink-0 mt-0.5" />
-                          <span><strong>At-Cost Setup Fees:</strong> Significant discount on build prices to remove entry friction.</span>
+                          <span><strong>At-Cost Setup Fees:</strong> Significant discount on build pricing to remove entry friction.</span>
                       </li>
                   </ul>
                   
                   <div className="inline-flex items-center gap-4 px-4 py-3 bg-[#FF5A1F]/10 border border-[#FF5A1F]/20 rounded-[4px]">
                       <span className="w-2 h-2 rounded-full bg-[#FF5A1F] animate-pulse" />
                       <span className="text-xs font-mono text-[#FF5A1F] font-bold uppercase tracking-wider">
-                          Scarcity: Only 2 of 5 Founding Spots Remaining
+                          Scarcity: Only 4 of 5 Founding Spots Remaining
                       </span>
                   </div>
               </div>
@@ -526,15 +526,23 @@ export default function HomePage() {
       <section className="py-24 bg-[#111116] border-b border-[#1C1C24]">
           <div className="max-w-[1000px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="flex justify-center md:justify-start">
-                  <div className="w-[280px] md:w-[320px] aspect-[4/5] bg-[#0A0A0F] border border-[#1C1C24] p-3 rounded-[6px] relative group overflow-hidden">
-                      <div className="w-full h-full relative overflow-hidden bg-[#161622] rounded-[4px]">
+                  <div className="w-[280px] md:w-[340px] aspect-[4/5] bg-[#111116] border border-[#0047FF]/30 p-3 rounded-[12px] relative group overflow-hidden shadow-[0_0_40px_rgba(0,71,255,0.15)] hover:border-[#0047FF] hover:shadow-[0_0_60px_rgba(0,71,255,0.3)] transition-all duration-500">
+                      <div className="w-full h-full relative overflow-hidden bg-[#0A0A0F] rounded-[8px]">
                           <Image
                               src={founderImg}
                               alt="Godson Saji - Founder of BoldFlow Labs"
                               fill
-                              className="object-cover transition-transform duration-500 group-hover:scale-103 grayscale opacity-80 group-hover:opacity-100"
+                              className="object-cover transition-transform duration-700 group-hover:scale-105"
                               priority
                           />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/90 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                          <div className="absolute bottom-4 left-4 right-4 p-3 bg-[#0A0A0F]/80 backdrop-blur-md border border-white/10 rounded-[6px] flex items-center justify-between">
+                              <div>
+                                  <span className="text-xs font-bold font-space text-white block">Godson Saji</span>
+                                  <span className="text-[10px] font-mono text-[#0047FF] uppercase font-semibold">Founder & Chief Architect</span>
+                              </div>
+                              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+                          </div>
                       </div>
                   </div>
               </div>
@@ -568,7 +576,7 @@ export default function HomePage() {
               </p>
               
               <div className="flex flex-col items-center gap-6">
-                  <Link href="/contact" className="px-10 py-5 btn-primary font-mono text-xs font-bold uppercase tracking-wider text-center w-full sm:w-auto min-w-[280px] rounded-[4px]">
+                  <Link href="/contact" className="px-6 sm:px-10 py-5 btn-primary font-mono text-xs font-bold uppercase tracking-wider text-center w-full sm:w-auto sm:min-w-[280px] min-w-0 max-w-full rounded-[4px]">
                       INITIALIZE CORE STRATEGY CALL
                   </Link>
                   <p className="text-[11px] font-mono text-[#626272] uppercase tracking-wider">

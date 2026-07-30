@@ -149,20 +149,25 @@ export default function BlogPostPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="prose prose-invert max-w-none 
-                        prose-p:text-[#A3A3A3] prose-p:text-lg prose-p:leading-relaxed prose-p:font-light
-                        prose-headings:text-[#F5F5F5] prose-headings:uppercase prose-headings:tracking-tight prose-headings:font-medium
-                        prose-h2:text-[32px] prose-h2:mt-16 prose-h2:mb-8
-                        prose-h3:text-[24px] prose-h3:mt-12 prose-h3:mb-6
-                        prose-strong:text-[#F5F5F5] prose-strong:font-medium
-                        prose-a:text-[#0066ff] prose-a:no-underline hover:prose-a:underline
-                        prose-blockquote:border-l-2 prose-blockquote:border-[#0066ff] prose-blockquote:bg-[#0A0A0A] prose-blockquote:px-8 prose-blockquote:py-4 prose-blockquote:not-italic prose-blockquote:text-[#F5F5F5] 
-                        prose-img:border prose-img:border-[#1A1A1A] prose-img:grayscale
-                        prose-code:text-[#0066ff] prose-code:bg-[#0A0A0A] prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-[13px]
-                        prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-[#1A1A1A] prose-pre:rounded-none
-                        prose-ul:text-[#A3A3A3] prose-li:marker:text-[#0066ff]"
-                    dangerouslySetInnerHTML={{ __html: post.content }}
-                />
+                    className="overflow-x-auto max-w-full"
+                >
+                    <div
+                        className="prose prose-invert max-w-none 
+                            prose-p:text-[#A3A3A3] prose-p:text-base sm:prose-p:text-lg prose-p:leading-relaxed prose-p:font-light
+                            prose-headings:text-[#F5F5F5] prose-headings:uppercase prose-headings:tracking-tight prose-headings:font-medium
+                            prose-h2:text-[24px] sm:prose-h2:text-[32px] prose-h2:mt-12 sm:prose-h2:mt-16 prose-h2:mb-6 sm:prose-h2:mb-8
+                            prose-h3:text-[20px] sm:prose-h3:text-[24px] prose-h3:mt-8 sm:prose-h3:mt-12 prose-h3:mb-4 sm:prose-h3:mb-6
+                            prose-strong:text-[#F5F5F5] prose-strong:font-medium
+                            prose-a:text-[#0066ff] prose-a:no-underline hover:prose-a:underline
+                            prose-blockquote:border-l-2 prose-blockquote:border-[#0066ff] prose-blockquote:bg-[#0A0A0A] prose-blockquote:px-4 sm:prose-blockquote:px-8 prose-blockquote:py-4 prose-blockquote:not-italic prose-blockquote:text-[#F5F5F5] 
+                            prose-img:border prose-img:border-[#1A1A1A] prose-img:rounded-md
+                            prose-code:text-[#0066ff] prose-code:bg-[#0A0A0A] prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-[13px] prose-code:break-words
+                            prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-[#1A1A1A] prose-pre:rounded-none prose-pre:overflow-x-auto
+                            prose-table:w-full prose-table:block prose-table:overflow-x-auto
+                            prose-ul:text-[#A3A3A3] prose-li:marker:text-[#0066ff]"
+                        dangerouslySetInnerHTML={{ __html: post.content }}
+                    />
+                </motion.div>
 
                 {/* Footer / Tags & CTA */}
                 <div className="mt-32 pt-16 border-t border-[#1A1A1A]">

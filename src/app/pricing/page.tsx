@@ -7,57 +7,58 @@ import { CheckCircle2, ChevronDown, ChevronUp, TrendingUp, Calculator, ShieldChe
 
 const tiers = [
     {
-        name: "Pilot Deployment",
-        subtitle: "Perfect for a first deployment",
-        target: "One agent, live in 14 days",
-        price: "From $399",
+        name: "Inbound Receptionist",
+        subtitle: "Perfect for Clinics & Local Businesses",
+        target: "One 24/7 AI Receptionist live in 7–14 days",
+        price: "₹25,000",
         period: "/month",
-        subPrice: "No setup fee",
-        description: "Perfect for a first deployment. Includes 1 production voice agent live in 14 days handling both inbound and outbound calls.",
+        subPrice: "($297/mo approx) · At-cost setup",
+        description: "Includes 1 production voice agent live in 14 days handling inbound call triage, enquiry qualifying, and direct calendar booking.",
         features: [
-            "3,000+ call minutes included",
-            "1 production voice agent, handling your inbound and outbound calls",
-            "Dedicated phone number included",
-            "Extra minutes at $0.08/min"
+            "24/7 Inbound voice receptionist",
+            "Under 60-second response latency",
+            "Calendar sync & SMS appointment confirmation",
+            "Zoho, LeadSquared, Kylas & CRM integration",
+            "Full call transcripts & analytics dashboard"
         ],
-        ctaText: "Start a pilot",
+        ctaText: "Start Inbound Pilot",
         ctaHref: "/contact",
         style: "starter"
     },
     {
-        name: "Scale Plan",
+        name: "Full-Stack Pipeline",
         isPopular: true,
-        subtitle: "Most deployed",
-        target: "For operations running real call volume",
-        price: "From $0.05",
-        period: "/min all-in",
-        subPrice: "Volume-based per-minute pricing",
-        description: "Volume-based pricing designed for scaling operations with high concurrent call volume and multi-channel campaigns.",
+        subtitle: "Most deployed for high volume",
+        target: "For hospitals, developers & colleges",
+        price: "₹65,000",
+        period: "/month",
+        subPrice: "($797/mo approx) · Multi-channel campaign",
+        description: "Full-stack lead capture, instant 60s enquiry callbacks, multi-agent outbound sequences, and multi-channel WhatsApp messaging.",
         features: [
-            "Effective rates from $0.05/min all-in",
-            "Multiple agents across campaigns",
-            "Up to 100 concurrent calls",
-            "CRM, WhatsApp, and calendar integrations",
-            "Weekly revenue + hours reporting"
+            "Inbound receptionist + 60s outbound callbacks",
+            "Multiple voice agents across campaigns",
+            "WhatsApp & multi-channel chat automation",
+            "Advanced CRM deep sync (Zoho, LeadSquared, Kylas)",
+            "Weekly performance & revenue recovery reporting"
         ],
-        ctaText: "Run your numbers",
+        ctaText: "Deploy Full Pipeline",
         ctaHref: "#calculator",
         style: "growth"
     },
     {
-        name: "Enterprise",
-        subtitle: "Custom scalable plans",
-        target: "For large organisations and partners",
+        name: "Enterprise Custom",
+        subtitle: "Custom scalable infrastructure",
+        target: "For multi-branch groups & organizations",
         price: "Custom",
         period: "",
         subPrice: "Committed volume pricing",
-        description: "Tailored infrastructure, white-label options, and dedicated support for enterprise organizations and agency partners.",
+        description: "Tailored telephony infrastructure, custom multi-branch routing, white-label options, and dedicated developer support.",
         features: [
-            "Best-in-class pricing at committed volumes",
-            "Custom integrations and deployment",
-            "White-label and sub-account access",
-            "Priority support, dedicated manager",
-            "Multi-language support"
+            "High-volume concurrent call capacity",
+            "Custom integrations & API webhooks",
+            "Dedicated developer architect support",
+            "Multi-language voice agents (Hindi, English, regional)",
+            "SLA & uptime guarantee"
         ],
         ctaText: "Talk to the founder",
         ctaHref: "/contact",
@@ -118,7 +119,7 @@ export default function PricingPage() {
     
     // ROI Calculator States
     const [leadVolume, setLeadVolume] = useState<number>(100);
-    const [ticketValue, setTicketValue] = useState<number>(3000);
+    const [ticketValue, setTicketValue] = useState<number>(25000);
     const [leakRate, setLeakRate] = useState<number>(30); // in percent
 
     // ROI Math logic
@@ -132,8 +133,8 @@ export default function PricingPage() {
     const recaptureRate = 0.70;
     const recoveredRevenue = Math.round(lostRevenue * recaptureRate);
     
-    // Net ROI multiple based on average pricing of Inbound (~$297/mo)
-    const annualInvestment = 297 * 12;
+    // Net ROI multiple based on average pricing of Inbound (₹25,000/mo)
+    const annualInvestment = 25000 * 12;
     const annualRecovery = recoveredRevenue * 12;
     const roiRatio = annualInvestment > 0 ? (annualRecovery / annualInvestment).toFixed(1) : "0";
 
@@ -149,7 +150,7 @@ export default function PricingPage() {
                         transition={{ duration: 0.4 }}
                         className="text-[11px] tracking-wider text-[#0047FF] font-mono font-bold mb-6 uppercase"
                     >
-                        {"//"} Simple. Predictable. Flat Monthly Rates.
+                        {"//"} Simple. Predictable. Flat Monthly Tiers.
                     </motion.div>
                     
                     <motion.h1 
@@ -187,7 +188,7 @@ export default function PricingPage() {
                             <div>
                                 <div className="flex justify-between items-center mb-3">
                                     <span className="text-sm font-bold font-space text-white">Monthly Lead Volume</span>
-                                    <span className="font-mono text-sm text-[#0047FF] font-bold">{leadVolume} Leads</span>
+                                    <span className="font-mono text-sm text-[#0047FF] font-bold">{leadVolume} Enquiries</span>
                                 </div>
                                 <input 
                                     type="range" 
@@ -202,14 +203,14 @@ export default function PricingPage() {
 
                             <div>
                                 <div className="flex justify-between items-center mb-3">
-                                    <span className="text-sm font-bold font-space text-white">Average Ticket / Job Value</span>
-                                    <span className="font-mono text-sm text-[#0047FF] font-bold">${ticketValue.toLocaleString()}</span>
+                                    <span className="text-sm font-bold font-space text-white">Average Ticket / Booking Value</span>
+                                    <span className="font-mono text-sm text-[#0047FF] font-bold">₹{ticketValue.toLocaleString()}</span>
                                 </div>
                                 <input 
                                     type="range" 
-                                    min="500" 
-                                    max="15000" 
-                                    step="250"
+                                    min="5000" 
+                                    max="200000" 
+                                    step="5000"
                                     value={ticketValue}
                                     onChange={(e) => setTicketValue(parseInt(e.target.value))}
                                     className="w-full accent-[#0047FF] bg-[#161622] h-2 rounded-lg cursor-pointer"
@@ -230,7 +231,7 @@ export default function PricingPage() {
                                     onChange={(e) => setLeakRate(parseInt(e.target.value))}
                                     className="w-full accent-[#FF5A1F] bg-[#161622] h-2 rounded-lg cursor-pointer"
                                 />
-                                <span className="text-[10px] text-[#626272] block mt-2 font-mono">Industry average is 32% missed calls/voicemails.</span>
+                                <span className="text-[10px] text-[#626272] block mt-2 font-mono">Industry average is 32% unanswered phone calls/enquiries.</span>
                             </div>
                         </div>
 
@@ -238,18 +239,18 @@ export default function PricingPage() {
                         <div className="lg:col-span-6 border-t lg:border-t-0 lg:border-l border-[#1C1C24] pt-8 lg:pt-0 lg:pl-12 flex flex-col justify-between">
                             <div className="flex flex-col gap-6">
                                 <div className="flex justify-between items-center pb-4 border-b border-[#1C1C24]">
-                                    <span className="text-xs text-[#A3A3B3] font-mono">1. LEAKING LEADS</span>
-                                    <span className="text-lg font-bold text-white font-space">{lostLeads} Leads / mo</span>
+                                    <span className="text-xs text-[#A3A3B3] font-mono">1. LEAKING ENQUIRIES</span>
+                                    <span className="text-lg font-bold text-white font-space">{lostLeads} Enquiries / mo</span>
                                 </div>
                                 
                                 <div className="flex justify-between items-center pb-4 border-b border-[#1C1C24]">
                                     <span className="text-xs text-[#A3A3B3] font-mono">2. CURRENT REVENUE LOST</span>
-                                    <span className="text-lg font-bold text-[#FF5A1F] font-space">${lostRevenue.toLocaleString()} / mo</span>
+                                    <span className="text-lg font-bold text-[#FF5A1F] font-space">₹{lostRevenue.toLocaleString()} / mo</span>
                                 </div>
 
                                 <div className="p-6 bg-[#0047FF]/5 border border-[#0047FF]/20 rounded-[4px]">
                                     <span className="text-[10px] font-mono text-[#0047FF] uppercase tracking-wider block mb-1">Estimated monthly revenue recovered</span>
-                                    <strong className="text-3xl font-bold font-space text-[#0047FF] block mb-2">${recoveredRevenue.toLocaleString()} / mo</strong>
+                                    <strong className="text-3xl font-bold font-space text-[#0047FF] block mb-2">₹{recoveredRevenue.toLocaleString()} / mo</strong>
                                     <span className="text-xs text-[#A3A3B3]">Assuming standard 20% conversion and 70% immediate response recapture rate.</span>
                                 </div>
                             </div>
@@ -293,14 +294,12 @@ export default function PricingPage() {
                                 )}
 
                                 <div className="mb-8">
-                                    <div className="flex items-center justify-between gap-2 mb-2">
-                                        <h3 className="text-xl font-bold font-space text-[#F5F6FA]">{tier.name}</h3>
-                                        {tier.subtitle && (
-                                            <span className="text-[10px] font-mono text-[#0047FF] bg-[#0047FF]/10 border border-[#0047FF]/20 px-2 py-0.5 rounded font-semibold uppercase tracking-wide shrink-0">
-                                                {tier.subtitle}
-                                            </span>
-                                        )}
-                                    </div>
+                                    {tier.subtitle && (
+                                        <span className="text-[10px] font-mono text-[#0047FF] bg-[#0047FF]/10 border border-[#0047FF]/20 px-2.5 py-1 rounded font-semibold uppercase tracking-wider inline-block mb-3 max-w-full truncate">
+                                            {tier.subtitle}
+                                        </span>
+                                    )}
+                                    <h3 className="text-2xl font-bold font-space text-[#F5F6FA] mb-3 leading-tight">{tier.name}</h3>
                                     <div className="flex items-baseline gap-1.5 mb-1">
                                         <span className="text-[32px] font-bold text-white font-space">{tier.price}</span>
                                         {tier.period && <span className="text-xs font-mono text-[#A3A3B3]">{tier.period}</span>}

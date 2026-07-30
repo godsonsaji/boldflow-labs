@@ -110,7 +110,7 @@ function ReviewCard({ rev }: { rev: Review }) {
       tabIndex={0}
       role="article"
       aria-label={`Review by ${rev.name}`}
-      className="w-[340px] sm:w-[400px] md:w-[440px] shrink-0 bg-[#111116] border border-[#1C1C24] p-7 rounded-[8px] flex flex-col justify-between hover:border-[#0047FF]/50 hover:shadow-[0_0_40px_rgba(0,71,255,0.06)] hover:scale-[1.01] focus:scale-[1.01] focus:border-[#0047FF] focus:outline-none transition-all duration-300 relative group cursor-pointer"
+      className="w-[280px] sm:w-[400px] md:w-[440px] max-w-[85vw] shrink-0 bg-[#111116] border border-[#1C1C24] p-5 sm:p-7 rounded-[8px] flex flex-col justify-between hover:border-[#0047FF]/50 hover:shadow-[0_0_40px_rgba(0,71,255,0.06)] hover:scale-[1.01] focus:scale-[1.01] focus:border-[#0047FF] focus:outline-none transition-all duration-300 relative group cursor-pointer"
     >
       <div>
         {/* Top Badge & Rating */}

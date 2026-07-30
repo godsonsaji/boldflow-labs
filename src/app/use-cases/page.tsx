@@ -22,91 +22,91 @@ import {
 
 const useCases = [
   {
-    id: "hvac",
-    category: "Home Services",
-    industry: "HVAC Contractors",
-    title: "24/7 Diagnostics Intake & Dispatch Agent",
-    tagline: "Answering emergency breakdowns, diagnostics triage, and booking direct jobs into ServiceTitan.",
-    description: "During peak seasons (summer heatwaves or winter freezes), HVAC teams are flooded with calls. Missed calls go straight to competitors. Our HVAC receptionist answers instantly, classifies standard vs. emergency calls, runs basic diagnostic checklists, and schedules repairs directly into the technician's queue.",
+    id: "clinic",
+    category: "Healthcare",
+    industry: "Clinics & Hospitals",
+    title: "24/7 Patient Consultation & Triage Receptionist",
+    tagline: "Answering missed calls, triaging appointment urgency, and booking doctor consultations directly into your schedule.",
+    description: "During peak patient hours, reception desks are swamped with walk-ins and phone calls. Missed calls mean lost patients seeking treatment elsewhere. Our AI receptionist answers instantly, classifies emergency vs routine consultations, collects patient symptoms, and schedules doctor slots in real-time.",
     kpis: [
-      { label: "Lead Response Latency", value: "< 2 Secs" },
-      { label: "Voicemail Leak Restored", value: "100%" },
-      { label: "Average HVAC Ticket Captured", value: "$3,400" }
+      { label: "Enquiry Latency", value: "< 60 Secs" },
+      { label: "Missed Call Capture", value: "100%" },
+      { label: "CRM Sync", value: "Zoho / LeadSquared" }
     ],
     flow: [
-      { step: "01", label: "Inbound Call", desc: "Customer calls during after-hours with a furnace blowout." },
-      { step: "02", label: "Diagnostic Check", desc: "AI agent asks system type, age, error codes, and home size." },
-      { step: "03", label: "Schedule Sync", desc: "Checks dispatch capacity in ServiceTitan in real-time." },
-      { step: "04", label: "Confirm Booking", desc: "Writes dispatch job, books technician, and SMS-confirms details." }
+      { step: "01", label: "Inbound Call / Form", desc: "Patient calls clinic or submits inquiry on website/ads." },
+      { step: "02", label: "Medical Triage", desc: "AI agent asks doctor preference, symptom urgency, and consultation type." },
+      { step: "03", label: "Availability Check", desc: "Checks doctor calendar and slot capacity in real-time." },
+      { step: "04", label: "Confirm Booking", desc: "Books appointment slot, sends SMS confirmation, and logs to CRM." }
     ],
-    integration: "ServiceTitan / Housecall Pro / Jobber",
+    integration: "Zoho CRM / LeadSquared / Kylas / Google Calendar",
     badge: "Most Popular",
     color: "#0047FF"
   },
   {
-    id: "roofing",
-    category: "Home Services",
-    industry: "Roofing Dispatch",
-    title: "Storm-Event Lead Response Dispatcher",
-    tagline: "Instantly qualifying and booking emergency inspection jobs during severe weather events.",
-    description: "After hailstorms or heavy winds, roofing firms get hundreds of leads from directories and local ads. The first company to call back wins the project. Our Roofing Dispatcher makes proactive outbound text/calls to incoming quote request forms in 60 seconds, scheduling inspections immediately before they call competitor listings.",
+    id: "realestate",
+    category: "Real Estate",
+    industry: "Real Estate Developers",
+    title: "60-Second Property Enquiry Callback Qualifier",
+    tagline: "Reaching out to project enquiry leads within 60 seconds, checking budget & timeline, booking site visits.",
+    description: "High-end residential and commercial buyers enquire on multiple developer projects. Speed-to-lead dictates who gets the first site visit. Rohan, our Real Estate Qualifier, rings or texts new ad leads in under 60 seconds, qualifies budget range and buying timeframe, and schedules site visits.",
     kpis: [
-      { label: "Speed-to-Lead Interval", value: "45 Secs" },
-      { label: "Storm Lead Booking Rate", value: "84%" },
-      { label: "Average Roof Job Value", value: "$12,500" }
+      { label: "Speed-to-Lead Interval", value: "< 60 Secs" },
+      { label: "Site Visit Booking Rate", value: "78%" },
+      { label: "CRM Sync Latency", value: "Real-Time" }
     ],
     flow: [
-      { step: "01", label: "Storm Lead Submission", desc: "Hail storm hits. Lead fills out a Facebook or Google quote form." },
-      { step: "02", label: "Immediate Outbound", desc: "AI agent triggers outbound call/text sequence in under 60 seconds." },
-      { step: "03", label: "Triage & Screen", desc: "Confirms owner status, leak location, and insurance status." },
-      { step: "04", label: "Calendar Booking", desc: "Schedules inspection on calendar; routes contact profile to CRM." }
+      { step: "01", label: "Lead Submission", desc: "Buyer submits enquiry on Facebook, Google Ad, or project website." },
+      { step: "02", label: "Immediate Ringback", desc: "AI agent triggers outbound call/text sequence in under 60 seconds." },
+      { step: "03", label: "Qualify Intent", desc: "Confirms BHK preference, budget range, and site visit availability." },
+      { step: "04", label: "Calendar Booking", desc: "Schedules site visit with relationship manager; syncs with CRM." }
     ],
-    integration: "Housecall Pro / Salesforce / n8n / Make",
-    badge: "Limited Cohort",
+    integration: "Kylas / LeadSquared / Zoho / Salesforce",
+    badge: "High Conversion",
     color: "#FF5A1F"
   },
   {
-    id: "solar",
-    category: "Home Services",
-    industry: "Solar Installers",
-    title: "Utility Bill Screener & Design Scheduler",
-    tagline: "Qualifying solar prospects by screening bill costs, home shading, and booking consultations.",
-    description: "Solar lead generation produces high volumes of low-intent leads. Human reps spend hours filtering junk. Our solar agent screeners verify monthly utility bills, check home ownership, analyze shading objections, and book qualified consultations for field reps.",
+    id: "education",
+    category: "Education",
+    industry: "Coaching Institutes & Colleges",
+    title: "Admissions Spike & Student Screening Counselor",
+    tagline: "Handling admission-season enquiry spikes for coaching institutes and colleges, qualifying course fit, booking counseling calls.",
+    description: "During admission cycles, institute counselors get overwhelmed with student and parent calls. Priya, our AI Admissions Counselor, handles enquiry spikes 24/7, answers course eligibility queries, screens student background, and books 1-on-1 counseling calls.",
     kpis: [
-      { label: "Consultation Booking Lift", value: "2.5x" },
-      { label: "Junk Lead Reduction", value: "65%" },
-      { label: "System Payback Term", value: "1 Month" }
+      { label: "Admissions Peak Capacity", value: "Infinite" },
+      { label: "Counseling Booking Lift", value: "3.2x" },
+      { label: "Response Latency", value: "Instant" }
     ],
     flow: [
-      { step: "01", label: "Lead Ingest", desc: "Solar ad click. System triggers immediate SMS interaction." },
-      { step: "02", label: "Utility Verification", desc: "AI agent prompts client for average bill cost and home orientation." },
-      { step: "03", label: "Check Qualifications", desc: "Filters out renters, low utility bills (<$150/mo), and heavily shaded lots." },
-      { step: "04", label: "Close Consultation", desc: "Passes lead info to CRM, books home energy assessment consultant." }
+      { step: "01", label: "Student Enquiry", desc: "Parent or student fills admission form or calls hotline." },
+      { step: "02", label: "Course Eligibility", desc: "AI agent screens academic background, target batch, and stream." },
+      { step: "03", label: "Counseling Schedule", desc: "Matches available counselor slot and reserves 1-on-1 session." },
+      { step: "04", label: "CRM Data Push", desc: "Pushes complete student profile and call notes directly into CRM." }
     ],
-    integration: "HubSpot / Salesforce / Google Calendar",
-    badge: "Early Stage",
+    integration: "LeadSquared / Zoho CRM / Google Workspace",
+    badge: "Seasonal Scaler",
     color: "#FFB020"
   },
   {
-    id: "realestate",
-    category: "Real Estate",
-    industry: "Real Estate Agencies",
-    title: "Zillow / Realtor Lead Fast-Response Qualifier",
-    tagline: "Capturing Realtor.com and Zillow inquiries instantly, pre-qualifying, and routing to agents.",
-    description: "Real estate portals sell the same lead to multiple agents. The agent who responds first gets the relationship. Chloe, our Realtor assistant, makes automatic outbound phone callbacks and SMS prompts inside 60 seconds of any portal submission, qualifying pre-approval, timeline, and budget.",
+    id: "labs",
+    category: "Healthcare",
+    industry: "Diagnostic Labs & Imaging Centers",
+    title: "Home Sample Collection & Lab Test Booking Agent",
+    tagline: "Booking diagnostic test appointments and home sample collection visits automatically 24/7.",
+    description: "Patients calling diagnostic centers want quick test pricing, fasting requirements, and home collection slots. Our Diagnostic AI Receptionist answers instant queries, provides test instructions, and schedules phlebotomist home visits.",
     kpis: [
-      { label: "Lead Contact Rate", value: "91%" },
-      { label: "Agent Pipeline Cleanliness", value: "100%" },
-      { label: "Missed-Lead Revenue Saved", value: "Var" }
+      { label: "Call Answer Rate", value: "100%" },
+      { label: "Home Booking Conversion", value: "88%" },
+      { label: "After-Hours Capture", value: "24/7" }
     ],
     flow: [
-      { step: "01", label: "Portal Ping", desc: "Lead submits inquiry on Zillow or Realtor.com." },
-      { step: "02", label: "Immediate Ring", desc: "AI agent rings the buyer/seller instantly with personalized context." },
-      { step: "03", label: "Prequalify Screening", desc: "Asks about buyer agent status, pre-approval status, and buying timeframe." },
-      { step: "04", label: "Agent Hand-off", desc: "Routes prospect profile to Follow Up Boss and sets up active live agent call." }
+      { step: "01", label: "Test Enquiry", desc: "Patient calls or messages for blood test / health package." },
+      { step: "02", label: "Instruction Guidance", desc: "AI confirms test requirements (e.g. 10-hr fasting) and collection address." },
+      { step: "03", label: "Phlebotomist Slot", desc: "Schedules home sample collection time window." },
+      { step: "04", label: "Dispatch Sync", desc: "Syncs dispatch ticket and address details into lab software." }
     ],
-    integration: "Follow Up Boss / LionDesk / KVCore",
-    badge: "Enterprise Core",
+    integration: "Custom LIMS / Zoho / LeadSquared",
+    badge: "24/7 Dispatch",
     color: "#0047FF"
   }
 ];
@@ -131,18 +131,18 @@ export default function UseCasesPage() {
             Vertical Use Cases
           </h1>
           <p className="text-body-lg">
-            Explore how we build specific, deterministic conversational pathways for trade companies and real estate brokerages to stop lead leaks and drive bookings.
+            Explore how we build specific, deterministic conversational pathways for healthcare clinics, education institutes, real estate developers, and diagnostic labs to stop lead leaks and drive bookings.
           </p>
         </header>
 
         {/* Filter Navigation */}
-        <div className="flex flex-wrap gap-2 border-b border-[#1C1C24] pb-6 mb-16">
+        <div className="flex overflow-x-auto pb-4 sm:pb-6 gap-2 no-scrollbar border-b border-[#1C1C24] mb-16 sm:flex-wrap">
           {[
             { id: "all", label: "All Use Cases" },
-            { id: "hvac", label: "HVAC Repair" },
-            { id: "roofing", label: "Roofing storm dispatch" },
-            { id: "solar", label: "Solar Qualifier" },
-            { id: "realestate", label: "Real Estate Brokerage" }
+            { id: "clinic", label: "Clinics & Hospitals" },
+            { id: "realestate", label: "Real Estate Developers" },
+            { id: "education", label: "Education Admissions" },
+            { id: "labs", label: "Diagnostic Labs" }
           ].map(tab => (
             <button
               key={tab.id}

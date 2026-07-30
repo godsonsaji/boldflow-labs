@@ -176,15 +176,23 @@ export default function AboutPage() {
                     </div>
 
                     <div className="lg:col-span-5 lg:order-1 flex justify-center lg:justify-start">
-                        <div className="w-[280px] md:w-[320px] aspect-[4/5] bg-[#0A0A0F] border border-[#1C1C24] p-3 rounded-[6px] relative group overflow-hidden">
-                            <div className="w-full h-full relative overflow-hidden bg-[#161622] rounded-[4px]">
+                        <div className="w-[280px] md:w-[340px] aspect-[4/5] bg-[#111116] border border-[#0047FF]/30 p-3 rounded-[12px] relative group overflow-hidden shadow-[0_0_40px_rgba(0,71,255,0.15)] hover:border-[#0047FF] hover:shadow-[0_0_60px_rgba(0,71,255,0.3)] transition-all duration-500">
+                            <div className="w-full h-full relative overflow-hidden bg-[#0A0A0F] rounded-[8px]">
                                 <Image
                                     src={founderImg}
                                     alt="Godson Saji - Founder of BoldFlow Labs"
                                     fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-103 grayscale opacity-80 group-hover:opacity-100"
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                                     priority
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/90 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                                <div className="absolute bottom-4 left-4 right-4 p-3 bg-[#0A0A0F]/80 backdrop-blur-md border border-white/10 rounded-[6px] flex items-center justify-between">
+                                    <div>
+                                        <span className="text-xs font-bold font-space text-white block">Godson Saji</span>
+                                        <span className="text-[10px] font-mono text-[#0047FF] uppercase font-semibold">Founder & CEO</span>
+                                    </div>
+                                    <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+                                </div>
                             </div>
                         </div>
                     </div>

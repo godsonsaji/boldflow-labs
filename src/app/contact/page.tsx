@@ -118,7 +118,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <span className="text-[10px] text-[#626272] uppercase font-mono tracking-wider block mb-1">Email:</span>
-                                        <a href="mailto:hello@boldflowlabs.com" className="text-lg font-mono text-[#F5F6FA] hover:text-[#0047FF] transition-colors">hello@boldflowlabs.com</a>
+                                        <a href="mailto:hello@boldflowlabs.com" className="text-base sm:text-lg font-mono text-[#F5F6FA] hover:text-[#0047FF] transition-colors break-all sm:break-normal">hello@boldflowlabs.com</a>
                                     </div>
                                 </li>
                                 <li className="pt-6 border-t border-[#1C1C24] flex gap-4 items-start">

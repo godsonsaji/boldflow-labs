@@ -35,6 +35,17 @@ export default function Navbar() {
         setIsOpen(false);
     }, [pathname]);
 
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isOpen]);
+
     if (pathname?.startsWith("/admin")) return null;
 
     return (
