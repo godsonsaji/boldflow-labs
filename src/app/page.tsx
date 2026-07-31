@@ -107,7 +107,7 @@ const demoAgents = [
 const faqData = [
   {
     q: "How much does this cost?",
-    a: "We design and deploy custom agents. Implementation plans operate across flat monthly tiers starting at ₹25,000/mo for inbound reception, scaling to ₹65,000/mo for full-stack pipeline and outbound campaigns."
+    a: "We design and deploy custom agents. Implementation plans operate across clear tiers: starting with our Pilot Deployment (₹35,000/mo with 3,000+ mins included), scaling to our volume-based Scale Plan (₹5/min), and tailored Enterprise infrastructure."
   },
   {
     q: "Will it sound like a robot?",

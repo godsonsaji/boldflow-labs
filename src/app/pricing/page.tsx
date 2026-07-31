@@ -7,60 +7,63 @@ import { CheckCircle2, ChevronDown, ChevronUp, TrendingUp, Calculator, ShieldChe
 
 const tiers = [
     {
-        name: "Inbound Receptionist",
-        subtitle: "Perfect for Clinics & Local Businesses",
-        target: "One 24/7 AI Receptionist live in 7–14 days",
-        price: "₹25,000",
+        name: "Pilot Deployment",
+        subtitle: "Ideal for Testing & Validation",
+        target: "1 Production Voice Agent live in 14 days",
+        price: "₹35,000",
         period: "/month",
-        subPrice: "($297/mo approx) · At-cost setup",
-        description: "Includes 1 production voice agent live in 14 days handling inbound call triage, enquiry qualifying, and direct calendar booking.",
+        subPrice: "3,000+ mins included · At-cost setup",
+        description: "Deploy 1 production AI voice agent live in 14 days with 3,000+ call minutes included to test inbound triage, lead qualification, and automatic calendar booking.",
         features: [
-            "24/7 Inbound voice receptionist",
+            "1 Production Voice Agent (Inbound & Outbound)",
+            "3,000+ included call minutes / month",
             "Under 60-second response latency",
-            "Calendar sync & SMS appointment confirmation",
-            "Zoho, LeadSquared, Kylas & CRM integration",
+            "Dedicated phone number & calendar sync",
+            "CRM integration (Zoho, LeadSquared, Kylas)",
             "Full call transcripts & analytics dashboard"
         ],
-        ctaText: "Start Inbound Pilot",
+        ctaText: "Start Pilot Deployment",
         ctaHref: "/contact",
         style: "starter"
     },
     {
-        name: "Full-Stack Pipeline",
+        name: "Scale Plan",
         isPopular: true,
-        subtitle: "Most deployed for high volume",
-        target: "For hospitals, developers & colleges",
-        price: "₹65,000",
-        period: "/month",
-        subPrice: "($797/mo approx) · Multi-channel campaign",
-        description: "Full-stack lead capture, instant 60s enquiry callbacks, multi-agent outbound sequences, and multi-channel WhatsApp messaging.",
+        subtitle: "Most deployed for growing teams",
+        target: "For hospitals, developers & high volume",
+        price: "₹5",
+        period: "/min",
+        subPrice: "Volume-based usage · Multi-agent",
+        description: "High-volume call capacity with multiple voice agents across inbound and outbound campaigns, WhatsApp messaging, and advanced CRM deep sync.",
         features: [
-            "Inbound receptionist + 60s outbound callbacks",
             "Multiple voice agents across campaigns",
+            "Up to 100 concurrent call capacity",
+            "Instant 60s enquiry callbacks & lead recovery",
             "WhatsApp & multi-channel chat automation",
-            "Advanced CRM deep sync (Zoho, LeadSquared, Kylas)",
+            "Advanced CRM deep sync & API webhooks",
             "Weekly performance & revenue recovery reporting"
         ],
-        ctaText: "Deploy Full Pipeline",
+        ctaText: "Deploy Scale Plan",
         ctaHref: "#calculator",
         style: "growth"
     },
     {
-        name: "Enterprise Custom",
-        subtitle: "Custom scalable infrastructure",
-        target: "For multi-branch groups & organizations",
+        name: "Enterprise",
+        subtitle: "Custom Scalable Infrastructure",
+        target: "For multi-branch groups & large organizations",
         price: "Custom",
         period: "",
-        subPrice: "Committed volume pricing",
-        description: "Tailored telephony infrastructure, custom multi-branch routing, white-label options, and dedicated developer support.",
+        subPrice: "Committed volume pricing & SLAs",
+        description: "Tailored telephony infrastructure, custom multi-branch routing, white-label deployment options, multi-language voice agents, and dedicated developer support.",
         features: [
             "High-volume concurrent call capacity",
-            "Custom integrations & API webhooks",
-            "Dedicated developer architect support",
+            "Custom telephony infrastructure & routing",
             "Multi-language voice agents (Hindi, English, regional)",
-            "SLA & uptime guarantee"
+            "Dedicated developer architect support",
+            "White-label options & custom API webhooks",
+            "99.9% Uptime SLA & priority 24/7 support"
         ],
-        ctaText: "Talk to the founder",
+        ctaText: "Contact Enterprise Sales",
         ctaHref: "/contact",
         style: "authority"
     }
@@ -106,9 +109,9 @@ const comparisonData = [
 ];
 
 const faqs = [
-    { q: "Are there setup fees or hidden costs?", a: "Our Pilot Deployment has no setup fee and starts from $399/month with 3,000+ call minutes included. Scale plans use volume-based pricing with effective rates from $0.05/min all-in. There are never any hidden costs." },
-    { q: "What is included in the Pilot Deployment?", a: "You get 1 production voice agent live in 14 days handling both your inbound and outbound calls, 3,000+ call minutes, a dedicated phone number, and extra minutes at $0.08/min with no setup fee." },
-    { q: "How does the Scale Plan per-minute pricing work?", a: "The Scale Plan offers volume-based per-minute pricing with effective rates from $0.05/min all-in. It supports multiple agents across campaigns, up to 100 concurrent calls, CRM/WhatsApp/calendar integrations, and weekly reporting." },
+    { q: "Are there setup fees or hidden costs?", a: "Our Pilot Deployment has no setup fee and starts from ₹35,000/month with 3,000+ call minutes included. Scale plans use volume-based pricing at ₹5/min all-in. There are never any hidden costs." },
+    { q: "What is included in the Pilot Deployment?", a: "You get 1 production voice agent live in 14 days handling both your inbound and outbound calls, 3,000+ call minutes, a dedicated phone number, and extra minutes with no setup fee." },
+    { q: "How does the Scale Plan per-minute pricing work?", a: "The Scale Plan offers volume-based per-minute pricing at ₹5/min all-in. It supports multiple agents across campaigns, up to 100 concurrent calls, CRM/WhatsApp/calendar integrations, and weekly reporting." },
     { q: "Can I upgrade from Pilot to Scale or Enterprise?", a: "Absolutely. You can test your first voice agent with a Pilot Deployment and scale up seamlessly as your call volume grows." },
     { q: "How long does setup take?", a: "Your Pilot Deployment agent is built, trained, and live within 14 days." },
     { q: "Do you support multi-language agents?", a: "Yes, multi-language support is built-in for Enterprise plans and available for Scale Plan accounts." }
@@ -133,8 +136,8 @@ export default function PricingPage() {
     const recaptureRate = 0.70;
     const recoveredRevenue = Math.round(lostRevenue * recaptureRate);
     
-    // Net ROI multiple based on average pricing of Inbound (₹25,000/mo)
-    const annualInvestment = 25000 * 12;
+    // Net ROI multiple based on pricing of Pilot Deployment (₹35,000/mo)
+    const annualInvestment = 35000 * 12;
     const annualRecovery = recoveredRevenue * 12;
     const roiRatio = annualInvestment > 0 ? (annualRecovery / annualInvestment).toFixed(1) : "0";
 
@@ -150,7 +153,7 @@ export default function PricingPage() {
                         transition={{ duration: 0.4 }}
                         className="text-[11px] tracking-wider text-[#0047FF] font-mono font-bold mb-6 uppercase"
                     >
-                        {"//"} Simple. Predictable. Flat Monthly Tiers.
+                        {"//"} Simple. Predictable. Scalable Plans.
                     </motion.div>
                     
                     <motion.h1 
@@ -167,7 +170,7 @@ export default function PricingPage() {
                         transition={{ delay: 0.1 }}
                         className="text-body-lg max-w-3xl mb-12 mx-auto"
                     >
-                        Choose the capacity that fits your business needs. Whether you want to capture every inbound call 24/7, reactivate cold leads via outbound campaigns, or automate your entire pipeline, we have a clear, flat monthly tier.
+                        Choose the plan that fits your growth strategy. Start testing with a Pilot Deployment, scale up volume across campaigns with our Scale Plan, or build custom Enterprise voice infrastructure.
                     </motion.p>
                 </div>
             </section>
