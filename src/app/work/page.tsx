@@ -18,10 +18,10 @@ const placeholders = [
         date: "Launching Q4"
     },
     {
-        industry: "DTC E-Commerce",
-        system: "24/7 AI Support Escalation Flow",
+        industry: "Solar & Roofing Contractors",
+        system: "Storm Lead & Electric Bill AI Qualifier",
         status: "In Development",
-        date: "Launching Q1"
+        date: "Launching Q4"
     }
 ];
 

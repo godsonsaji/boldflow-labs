@@ -9,7 +9,7 @@ const processSteps = [
         icon: <Crosshair className="w-6 h-6 text-[#0047FF]" />,
         title: "01. Discovery & Diagnostic",
         timeline: "Days 1-2",
-        desc: "We don't guess. We map your current manual operations line by line to locate exactly where you are losing hours and leaking margins. If automation won't yield a 3x ROI on your time or money, we will tell you not to hire us."
+        desc: "We don't guess. We map your current phone dispatcher and lead intake flow line by line to locate exactly where you are leaking calls, losing after-hours jobs, or letting leads go cold. If AI voice automation won't yield a 3x ROI, we will tell you not to hire us."
     },
     {
         icon: <Wrench className="w-6 h-6 text-[#0047FF]" />,

@@ -22,91 +22,91 @@ import {
 
 const useCases = [
   {
-    id: "clinic",
-    category: "Healthcare",
-    industry: "Clinics & Hospitals",
-    title: "24/7 Patient Consultation & Triage Receptionist",
-    tagline: "Answering missed calls, triaging appointment urgency, and booking doctor consultations directly into your schedule.",
-    description: "During peak patient hours, reception desks are swamped with walk-ins and phone calls. Missed calls mean lost patients seeking treatment elsewhere. Our AI receptionist answers instantly, classifies emergency vs routine consultations, collects patient symptoms, and schedules doctor slots in real-time.",
+    id: "hvac",
+    category: "Home Services",
+    industry: "HVAC & Mechanical Contractors",
+    title: "24/7 After-Hours Emergency Triage & Job Dispatcher",
+    tagline: "Answering missed calls after-hours, triaging AC/heating emergencies, and scheduling service jobs into ServiceTitan.",
+    description: "When an AC breaks down in July or a furnace stops in January, homeowners don't leave voicemails—they call the next contractor. Our AI receptionist answers within 2 rings 24/7/365, triages emergency urgency, collects customer details, and books service jobs directly into your dispatcher calendar.",
     kpis: [
       { label: "Enquiry Latency", value: "< 60 Secs" },
-      { label: "Missed Call Capture", value: "100%" },
-      { label: "CRM Sync", value: "Zoho / LeadSquared" }
+      { label: "After-Hours Call Capture", value: "100%" },
+      { label: "CRM Sync", value: "ServiceTitan / Housecall Pro" }
     ],
     flow: [
-      { step: "01", label: "Inbound Call / Form", desc: "Patient calls clinic or submits inquiry on website/ads." },
-      { step: "02", label: "Medical Triage", desc: "AI agent asks doctor preference, symptom urgency, and consultation type." },
-      { step: "03", label: "Availability Check", desc: "Checks doctor calendar and slot capacity in real-time." },
-      { step: "04", label: "Confirm Booking", desc: "Books appointment slot, sends SMS confirmation, and logs to CRM." }
+      { step: "01", label: "Inbound Call / Form", desc: "Homeowner calls emergency line or submits online service request." },
+      { step: "02", label: "Emergency Triage", desc: "AI agent classifies heating/cooling urgency and collects job site details." },
+      { step: "03", label: "Dispatcher Slot Sync", desc: "Checks technician availability and open time windows in real-time." },
+      { step: "04", label: "Job Confirmation", desc: "Books appointment slot, sends SMS confirmation, and dispatches tech." }
     ],
-    integration: "Zoho CRM / LeadSquared / Kylas / Google Calendar",
+    integration: "ServiceTitan / Housecall Pro / Jobber / Google Calendar",
     badge: "Most Popular",
     color: "#0047FF"
   },
   {
-    id: "realestate",
-    category: "Real Estate",
-    industry: "Real Estate Developers",
-    title: "60-Second Property Enquiry Callback Qualifier",
-    tagline: "Reaching out to project enquiry leads within 60 seconds, checking budget & timeline, booking site visits.",
-    description: "High-end residential and commercial buyers enquire on multiple developer projects. Speed-to-lead dictates who gets the first site visit. Rohan, our Real Estate Qualifier, rings or texts new ad leads in under 60 seconds, qualifies budget range and buying timeframe, and schedules site visits.",
+    id: "roofing",
+    category: "Home Services",
+    industry: "Roofing & Exterior Contracting",
+    title: "Storm Lead Callback & Inspection Booking Agent",
+    tagline: "Reaching out to hail and storm damage web leads in under 60 seconds to book inspection appointments.",
+    description: "During severe storm seasons, roof inspection lead volume spikes 10x. Speed-to-lead dictates who locks in the roof replacement. Our AI outbound agent rings web form submissions within 45 seconds, screens roof age and insurance status, and books inspection estimates for sales reps.",
     kpis: [
       { label: "Speed-to-Lead Interval", value: "< 60 Secs" },
-      { label: "Site Visit Booking Rate", value: "78%" },
+      { label: "Inspection Booking Rate", value: "84%" },
       { label: "CRM Sync Latency", value: "Real-Time" }
     ],
     flow: [
-      { step: "01", label: "Lead Submission", desc: "Buyer submits enquiry on Facebook, Google Ad, or project website." },
-      { step: "02", label: "Immediate Ringback", desc: "AI agent triggers outbound call/text sequence in under 60 seconds." },
-      { step: "03", label: "Qualify Intent", desc: "Confirms BHK preference, budget range, and site visit availability." },
-      { step: "04", label: "Calendar Booking", desc: "Schedules site visit with relationship manager; syncs with CRM." }
+      { step: "01", label: "Form Submission", desc: "Homeowner requests estimate via Facebook Ad, Google, or website form." },
+      { step: "02", label: "Immediate Outbound Call", desc: "AI triggers outbound phone call or SMS sequence in under 60 seconds." },
+      { step: "03", label: "Qualify Damage Intent", desc: "Confirms storm damage type, roof age, and insurance claim status." },
+      { step: "04", label: "Inspector Booking", desc: "Schedules free inspection with rep and writes full call transcript to CRM." }
     ],
-    integration: "Kylas / LeadSquared / Zoho / Salesforce",
+    integration: "AccuLynx / HubSpot / Jobber / Salesforce",
     badge: "High Conversion",
     color: "#FF5A1F"
   },
   {
-    id: "education",
-    category: "Education",
-    industry: "Coaching Institutes & Colleges",
-    title: "Admissions Spike & Student Screening Counselor",
-    tagline: "Handling admission-season enquiry spikes for coaching institutes and colleges, qualifying course fit, booking counseling calls.",
-    description: "During admission cycles, institute counselors get overwhelmed with student and parent calls. Priya, our AI Admissions Counselor, handles enquiry spikes 24/7, answers course eligibility queries, screens student background, and books 1-on-1 counseling calls.",
+    id: "realestate",
+    category: "Real Estate",
+    industry: "Real Estate Brokerages & Teams",
+    title: "Zillow & Web Lead Qualification Concierge",
+    tagline: "Reactivating cold CRM databases and qualifying buyer leads for real estate agents 24/7.",
+    description: "Real estate agents spend up to 4 hours a day chasing cold lead form submissions. Our AI real estate concierge reaches out to Zillow, Realtor.com, and website leads in under a minute, qualifies budget and timeframe, and schedules buyer consultation calls onto rep calendars.",
     kpis: [
-      { label: "Admissions Peak Capacity", value: "Infinite" },
-      { label: "Counseling Booking Lift", value: "3.2x" },
+      { label: "Database Reactivation", value: "3.8x Yield" },
+      { label: "Agent Time Saved", value: "15 Hrs/Wk" },
       { label: "Response Latency", value: "Instant" }
     ],
     flow: [
-      { step: "01", label: "Student Enquiry", desc: "Parent or student fills admission form or calls hotline." },
-      { step: "02", label: "Course Eligibility", desc: "AI agent screens academic background, target batch, and stream." },
-      { step: "03", label: "Counseling Schedule", desc: "Matches available counselor slot and reserves 1-on-1 session." },
-      { step: "04", label: "CRM Data Push", desc: "Pushes complete student profile and call notes directly into CRM." }
+      { step: "01", label: "Portal Enquiry", desc: "Buyer submits inquiry on Zillow, Realtor.com, or team website." },
+      { step: "02", label: "Instant Qualification", desc: "AI verifies pre-approval status, desired neighborhood, and move-in timeline." },
+      { step: "03", label: "Schedule Call", desc: "Matches available agent calendar slot and books 15-min discovery call." },
+      { step: "04", label: "Follow Up Boss Sync", desc: "Syncs buyer profile, notes, and call audio directly into Follow Up Boss." }
     ],
-    integration: "LeadSquared / Zoho CRM / Google Workspace",
-    badge: "Seasonal Scaler",
+    integration: "Follow Up Boss / KvCORE / Salesforce / HubSpot",
+    badge: "Top ROI",
     color: "#FFB020"
   },
   {
-    id: "labs",
-    category: "Healthcare",
-    industry: "Diagnostic Labs & Imaging Centers",
-    title: "Home Sample Collection & Lab Test Booking Agent",
-    tagline: "Booking diagnostic test appointments and home sample collection visits automatically 24/7.",
-    description: "Patients calling diagnostic centers want quick test pricing, fasting requirements, and home collection slots. Our Diagnostic AI Receptionist answers instant queries, provides test instructions, and schedules phlebotomist home visits.",
+    id: "solar",
+    category: "Clean Energy",
+    industry: "Solar Installers & Clean Energy",
+    title: "Solar Bill Qualification & Consultation Scheduler",
+    tagline: "Qualifying monthly electric bill thresholds and scheduling residential solar consultations.",
+    description: "Solar ad campaigns generate thousands of clicks, but only homeowners with $150+ monthly electric bills and owned roofs qualify. Our AI agent calls incoming leads instantly, verifies utility bill eligibility, and schedules solar design consultations.",
     kpis: [
       { label: "Call Answer Rate", value: "100%" },
-      { label: "Home Booking Conversion", value: "88%" },
+      { label: "Consultation Conversion", value: "76%" },
       { label: "After-Hours Capture", value: "24/7" }
     ],
     flow: [
-      { step: "01", label: "Test Enquiry", desc: "Patient calls or messages for blood test / health package." },
-      { step: "02", label: "Instruction Guidance", desc: "AI confirms test requirements (e.g. 10-hr fasting) and collection address." },
-      { step: "03", label: "Phlebotomist Slot", desc: "Schedules home sample collection time window." },
-      { step: "04", label: "Dispatch Sync", desc: "Syncs dispatch ticket and address details into lab software." }
+      { step: "01", label: "Ad Lead Capture", desc: "Homeowner requests free solar quote via online quiz or ad." },
+      { step: "02", label: "Utility Verification", desc: "AI agent asks average electric bill amount and roof ownership." },
+      { step: "03", label: "Design Consultation", desc: "Schedules remote or on-site solar proposal presentation." },
+      { step: "04", label: "CRM Pipeline Update", desc: "Pushes qualified lead details and bill amount straight into CRM." }
     ],
-    integration: "Custom LIMS / Zoho / LeadSquared",
-    badge: "24/7 Dispatch",
+    integration: "HubSpot / Salesforce / Sunbase / Google Calendar",
+    badge: "24/7 Qualification",
     color: "#0047FF"
   }
 ];

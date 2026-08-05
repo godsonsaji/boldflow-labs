@@ -30,19 +30,19 @@ const BASE_URL = "https://boldflowlabs.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Instant Enquiry Response & AI Voice Agents for Clinics, Hospitals & Education | BoldFlow Labs",
+    default: "Instant Enquiry Response & AI Voice Agents for Home Services & Real Estate | BoldFlow Labs",
     template: "%s | BoldFlow Labs",
   },
   description:
-    "We deploy AI voice agents and messaging receptionists for clinics, hospitals, education institutes, and real estate developers that answer inbound enquiries and book appointments in under 60 seconds, 24/7.",
+    "We deploy AI voice agents and messaging receptionists for HVAC, roofing, solar, real estate, pool builders, and med spas across the US, UK, UAE, Canada, and Australia that answer inbound leads and book appointments in under 60 seconds, 24/7.",
   keywords: [
-    "AI voice agent for clinics India",
-    "AI receptionist for hospitals",
-    "appointment booking AI healthcare",
-    "AI voice agent for real estate developers India",
-    "missed call callback India",
-    "admissions enquiry automation",
-    "instant lead response",
+    "AI voice agent for home services",
+    "AI receptionist for HVAC and roofing",
+    "appointment booking AI voice",
+    "AI voice agent for real estate brokers",
+    "60 second lead response AI",
+    "inbound lead qualification voice AI",
+    "instant lead callback",
     "AI voice receptionist",
   ],
   authors: [{ name: "BoldFlow Labs", url: BASE_URL }],
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: BASE_URL,
     siteName: "BoldFlow Labs",
-    title: "Instant Enquiry Response & AI Voice Agents for Clinics, Hospitals & Education | BoldFlow Labs",
+    title: "Instant Enquiry Response & AI Voice Agents for Home Services & Real Estate | BoldFlow Labs",
     description:
-      "We deploy AI voice agents and messaging receptionists for clinics, hospitals, education institutes, and real estate developers that answer inbound enquiries and book appointments in under 60 seconds, 24/7.",
+      "We deploy AI voice agents and messaging receptionists for HVAC, roofing, solar, real estate, pool builders, and med spas across the US, UK, UAE, Canada, and Australia that answer inbound leads and book appointments in under 60 seconds, 24/7.",
     images: [
       {
         url: "/og-image.png",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BoldFlow Labs — AI Automation Agency",
     description:
-      "We deploy AI voice agents and messaging receptionists for clinics, hospitals, education institutes, and real estate developers.",
+      "We deploy AI voice agents and messaging receptionists for home services, real estate, and med spas.",
     creator: "@boldflowlabs",
   },
   robots: {

@@ -7,81 +7,81 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 const services = [
     {
         icon: "01",
-        title: "AI Voice Agent Development",
-        subheadline: "Inbound + Outbound · Available 24/7 · No hiring, no burnout.",
-        description: "We code and train dedicated conversational voice bots using low-latency pipelines. Our agents behave exactly like a native receptionist, handling caller interruptions, screening queries, and scheduling calendars.",
+        title: "24/7 AI Inbound Voice Receptionists",
+        subheadline: "Instant Call Answer · Triage & Booking · ServiceTitan & CRM Sync",
+        description: "We deploy custom-trained conversational voice agents that answer inbound calls on the second ring, 24/7/365. They handle caller interruptions, screen emergency urgency, answer FAQs, and book appointments directly on your team's calendar.",
         whatsIncluded: [
-            "Deploy intelligent voice agents that answer, qualify, and close — around the clock",
-            "Outbound agents that reactivate old databases, follow up, and book estimates",
-            "Natural conversation flows trained on your scripts, tone, and objection-handling rules",
-            "Full call logs, transcripts, and calendar routing synced to your database"
+            "Sub-120ms voice response latency for natural, human-like caller experience",
+            "Emergency triage rules for HVAC, plumbing, roofing, and property enquiries",
+            "Direct calendar integration with ServiceTitan, Follow Up Boss, HubSpot & Jobber",
+            "Full call audio recordings, instant transcripts, and SMS confirmations to caller"
         ],
-        outcome: "A tireless sales rep that scales infinitely and costs a fraction of a human hire"
+        outcome: "Zero missed calls after-hours or during peak dispatch hours — capturing 100% of high-intent leads"
     },
     {
         icon: "02",
-        title: "End-to-End CRM + Sales Pipeline Automation",
-        subheadline: "From first touch to closed deal — fully automated.",
-        description: "Lead follow-up speed decides close rates. We construct automated data webhooks syncing all inbound queries instantly with trade software.",
+        title: "60-Second Outbound Lead Callbacks",
+        subheadline: "Web Form Hook · Speed-to-Lead · Immediate Voice Qualification",
+        description: "Speed-to-lead dictates close rates. When a homeowner or buyer submits a form on Facebook, Google Ads, or your website, our system calls them back in under 60 seconds to qualify intent and book a consultation.",
         whatsIncluded: [
-            "Instant lead capture and enrichment from every ad, form, or call channel",
-            "Intelligent callback sequences that adapt based on user intent signals",
-            "Automatic dispatcher assignment, job logs, and status updates in CRM",
-            "CRM hygiene maintained without manual data entry — ever"
+            "Automated webhook trigger initiating outbound calls within 45 seconds of form submit",
+            "Conversational screening verifying budget, project scope, and timeline",
+            "Live transfer capability to on-duty sales reps or instant calendar booking",
+            "Automated multi-step SMS retry sequences if the lead misses the initial call"
         ],
-        outcome: "A sales pipeline that moves itself, so your team closes instead of chasing"
+        outcome: "391% higher lead contact rate by locking in appointments before competitors respond"
     },
     {
         icon: "03",
-        title: "Autonomous AI Agent Development",
-        subheadline: "Custom-built agents that reason, decide, and act.",
-        description: "We deploy complex agentic workflows that leverage API tool-use to manage multi-step back-office operational tasks.",
+        title: "CRM & Field Dispatch Pipeline Automation",
+        subheadline: "ServiceTitan · Follow Up Boss · HubSpot · Jobber · Salesforce",
+        description: "We eliminate manual data entry by wiring deep bidirectional webhooks between your voice agents, ad platforms, and trade CRM software.",
         whatsIncluded: [
-            "Multi-step agentic workflows that handle complex, non-linear business processes",
-            "Agents that search, retrieve, synthesize, and update internal file servers",
-            "Built on modern LLM + developer tool-use frameworks for structural durability",
-            "Flawless integration with your existing proprietary software stack"
+            "Instant lead enrichment and job creation in ServiceTitan, Follow Up Boss, or HubSpot",
+            "Automatic technician or real estate agent assignment based on zip code and schedule",
+            "Zero manual CRM data entry — call summaries, tags, and transcripts push instantly",
+            "Automated post-service follow-up sequences for reviews and referral requests"
         ],
-        outcome: "A digital workforce that handles work your team doesn't have bandwidth for"
+        outcome: "Clean, automated pipeline hygiene with zero sales rep overhead"
     },
     {
         icon: "04",
-        title: "Business Intelligence Dashboards",
-        subheadline: "Niche-specific · Real-time · Decision-ready.",
-        description: "Ditch manual tracking logs. We build visual analytics panels mapping your customer acquisition cost, conversion rate, and revenue pipeline.",
+        title: "Database Reactivation & Outbound AI Campaigns",
+        subheadline: "Stale Lead Reactivation · Seasonal Tune-Ups · Buyer Check-Ins",
+        description: "Turn cold leads sitting in your CRM into booked appointments. Our AI agents execute targeted outbound phone and SMS campaigns to reactivate past clients and past quotes.",
         whatsIncluded: [
-            "Custom dashboards built around the exact KPIs your business lives and dies by",
-            "Real-time data aggregation from multiple tools, CRMs, ad platforms, and more",
-            "Automated reporting delivered to stakeholders on your schedule",
-            "Zero manual spreadsheet updates — your numbers are always live and accurate"
+            "Automated outbound campaign triggers targeting leads older than 30-90 days",
+            "Conversational re-engagement pitching seasonal HVAC maintenance, roof checks, or new property listings",
+            "Real-time objection handling and calendar slot booking",
+            "Automatic opt-out compliance and DNC list filtering"
         ],
-        outcome: "Decisions grounded in reality, not gut feel or yesterday's data"
+        outcome: "Recovered revenue from existing CRM assets without additional ad spend"
     },
     {
         icon: "05",
-        title: "WhatsApp & Multi-Channel Conversational Automation",
-        subheadline: "Meet your customers exactly where they are.",
-        description: "Engage clients across chat streams. We deploy intelligent chatbots linking SMS, WhatsApp, and social DMs under one routing engine.",
+        title: "Multi-Channel SMS & Conversational Automation",
+        subheadline: "Instant Text Response · Web Chat Sync · 24/7 After-Hours Chat",
+        description: "Meet clients on their preferred channel. We deploy intelligent conversational bots that unite SMS text, web chat, and messaging under one unified dispatch engine.",
         whatsIncluded: [
-            "Intelligent WhatsApp bots that qualify leads, book calls, and resolve queries",
-            "Unified conversational automation across WhatsApp, Instagram DMs, SMS, and web chat",
-            "Seamless handoff protocols to human agents when complexity demands it",
-            "Broadcast campaigns, drip sequences, and re-engagement flows — fully automated"
+            "Instant 2-way SMS text sequences following up on missed calls and web forms",
+            "Smart web chat widgets trained on your exact pricing policies, service area, and FAQs",
+            "Seamless handoff protocols to human dispatchers when complex issues arise",
+            "Automated appointment reminders and location pin drops sent via text"
         ],
-        outcome: "Faster response times, higher conversion rates, and zero missed conversations"
+        outcome: "Faster response times, lower no-show rates, and 24/7 coverage on all text channels"
     },
     {
         icon: "06",
-        title: "AI Strategy Consulting + Automation Roadmapping",
-        subheadline: "Clarity before commitment.",
-        description: "We audit your company's workflows to spot operational leakage, preparing an engineering roadmap prioritized by ROI.",
+        title: "Revenue Recovery & Voice Analytics Dashboards",
+        subheadline: "Real-Time Tracking · Call Outcomes · Missed Lead Analytics",
+        description: "Ditch manual tracking spreadsheets. We build visual analytics panels mapping your call answer speed, appointment booking rate, and recaptured revenue.",
         whatsIncluded: [
-            "Deep-dive audit of your current workflows, tools, and automation gaps",
-            "Prioritized automation roadmap — sequenced by ROI and implementation complexity",
-            "Technology selection guidance so you invest in tools that last",
-            "Executive-ready presentation of findings, opportunities, and projected impact"
+            "Custom dashboard mapping call volume, speed-to-lead latency, and close rates",
+            "Real-time call transcription analysis identifying top customer questions and objections",
+            "Weekly automated executive summaries delivered directly to your inbox",
+            "Complete transparency on ROI and cost per booked appointment"
         ],
-        outcome: "A clear, confident path to AI-powered operations — no guesswork, no wasted spend"
+        outcome: "Decisions grounded in real-time operational data, not gut feeling"
     }
 ];
 

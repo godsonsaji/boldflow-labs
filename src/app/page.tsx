@@ -30,19 +30,19 @@ const homeServices = [
   {
     icon: <Activity className="w-6 h-6 text-[#0047FF] mb-4" />,
     title: "24/7 AI Voice Receptionists",
-    description: "Intelligent voice agents that answer calls instantly, qualify enquiries, and book appointments or site visits directly into your calendar, day and night.",
+    description: "Intelligent voice agents that answer calls instantly, qualify enquiries, and book appointments or service calls directly into your calendar, day and night.",
     href: "/services#01"
   },
   {
     icon: <MessageSquare className="w-6 h-6 text-[#0047FF] mb-4" />,
     title: "60-Second Enquiry Callbacks",
-    description: "Automatically call or text new website and ad enquiries within 60 seconds of submission. Stop losing patients, buyers, and admissions to whoever answers first.",
+    description: "Automatically call or text new website and ad enquiries within 60 seconds of submission. Stop losing homeowners, buyers, and clients to whoever answers first.",
     href: "/services#02"
   },
   {
     icon: <Database className="w-6 h-6 text-[#0047FF] mb-4" />,
     title: "CRM & Calendar Automation",
-    description: "Sync booked appointments and enquiry details instantly with Zoho, LeadSquared, Kylas, or your existing CRM.",
+    description: "Sync booked jobs and enquiry details instantly with ServiceTitan, Follow Up Boss, HubSpot, Jobber, Salesforce, or your existing CRM.",
     href: "/services#03"
   }
 ];
@@ -51,7 +51,7 @@ const processPhases = [
   {
     step: "01",
     title: "Enquiry Arrives",
-    desc: "A patient, buyer, or student fills a form, sends a message, or calls (including a missed call).",
+    desc: "A homeowner, buyer, or client fills a form, sends a message, or calls (including a missed call).",
     timeline: "Instant"
   },
   {
@@ -63,42 +63,42 @@ const processPhases = [
   {
     step: "03",
     title: "Qualify & Book",
-    desc: "The AI answers questions, checks availability, qualifies the enquiry, and books the appointment or site visit.",
+    desc: "The AI answers questions, checks availability, qualifies job urgency, and books the estimate or consultation.",
     timeline: "2 Minutes"
   },
   {
     step: "04",
     title: "Synced to CRM",
-    desc: "Booked appointments and conversation notes sync automatically into your calendar and CRM.",
+    desc: "Booked appointments and conversation notes sync automatically into your dispatcher calendar and CRM.",
     timeline: "Real-time"
   }
 ];
 
 const demoAgents = [
   {
-    id: "ananya",
-    name: "Ananya",
-    role: "Clinic & Hospital Receptionist",
-    specialty: "Inbound Triage / Calendar Booking",
-    scenario: "Answers missed calls, triages appointment urgency, books consultations directly into your schedule.",
+    id: "sarah",
+    name: "Sarah",
+    role: "HVAC & Mechanical Dispatcher",
+    specialty: "Inbound Emergency Triage / Job Scheduling",
+    scenario: "Answers missed calls after-hours, triages HVAC emergency urgency, books service appointments directly into ServiceTitan.",
     badge: "Coming Soon",
     status: "inactive"
   },
   {
-    id: "rohan",
-    name: "Rohan",
-    role: "Real Estate Developer Qualifier",
-    specialty: "Property Lead Callbacks / Site Visits",
-    scenario: "Reaches out to project enquiry leads within 60s, checks budget and timeline, books site visits.",
+    id: "marcus",
+    name: "Marcus",
+    role: "Real Estate & Solar Qualifier",
+    specialty: "Web Lead Callbacks / Buyer Screening",
+    scenario: "Reaches out to Zillow, Meta, and Google ad leads within 60s, checks budget and timeline, books consultation calls.",
     badge: "Coming Soon",
     status: "inactive"
   },
   {
-    id: "priya",
-    name: "Priya",
-    role: "Admissions Counselor",
-    specialty: "Course Fit / Admissions Screening",
-    scenario: "Handles admission-season enquiry spikes for coaching institutes and colleges, qualifies course fit, books counseling calls.",
+    id: "elena",
+    name: "Elena",
+    role: "Med Spa & Remodeling Concierge",
+    specialty: "Consultation Booking & Service Screening",
+    scenario: "Handles high enquiry volume for med spas and home remodelers, screens treatment fit, books 1-on-1 consultations.",
     badge: "Coming Soon",
     status: "inactive"
   }
@@ -107,7 +107,7 @@ const demoAgents = [
 const faqData = [
   {
     q: "How much does this cost?",
-    a: "We design and deploy custom agents. Implementation plans operate across clear tiers: starting with our Pilot Deployment (₹35,000/mo with 3,000+ mins included), scaling to our volume-based Scale Plan (₹5/min), and tailored Enterprise infrastructure."
+    a: "We design and deploy custom agents. Implementation plans operate across clear tiers: starting with our Pilot Deployment ($499/mo with 1,000+ mins included), scaling to our volume-based Scale Plan ($0.15/min), and tailored Enterprise infrastructure."
   },
   {
     q: "Will it sound like a robot?",
@@ -119,7 +119,7 @@ const faqData = [
   },
   {
     q: "Does it work with my CRM?",
-    a: "Yes. We specialize in custom integrations. Our systems write appointments, customer profiles, and voice transcripts directly into Zoho, LeadSquared, Kylas, Salesforce, Google Calendar, and your existing CRM."
+    a: "Yes. We specialize in custom integrations. Our systems write appointments, customer profiles, and voice transcripts directly into ServiceTitan, Follow Up Boss, HubSpot, Salesforce, Jobber, Google Calendar, and your existing CRM."
   },
   {
     q: "What happens to leads after hours?",

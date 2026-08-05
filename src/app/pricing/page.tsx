@@ -10,16 +10,16 @@ const tiers = [
         name: "Pilot Deployment",
         subtitle: "Ideal for Testing & Validation",
         target: "1 Production Voice Agent live in 14 days",
-        price: "₹35,000",
+        price: "$499",
         period: "/month",
-        subPrice: "3,000+ mins included · At-cost setup",
-        description: "Deploy 1 production AI voice agent live in 14 days with 3,000+ call minutes included to test inbound triage, lead qualification, and automatic calendar booking.",
+        subPrice: "1,000+ mins included · At-cost setup",
+        description: "Deploy 1 production AI voice agent live in 14 days with 1,000+ call minutes included to test inbound triage, lead qualification, and automatic calendar booking.",
         features: [
             "1 Production Voice Agent (Inbound & Outbound)",
-            "3,000+ included call minutes / month",
+            "1,000+ included call minutes / month",
             "Under 60-second response latency",
             "Dedicated phone number & calendar sync",
-            "CRM integration (Zoho, LeadSquared, Kylas)",
+            "CRM integration (ServiceTitan, Follow Up Boss, HubSpot)",
             "Full call transcripts & analytics dashboard"
         ],
         ctaText: "Start Pilot Deployment",
@@ -30,16 +30,16 @@ const tiers = [
         name: "Scale Plan",
         isPopular: true,
         subtitle: "Most deployed for growing teams",
-        target: "For hospitals, developers & high volume",
-        price: "₹5",
+        target: "For multi-location SMBs & high volume",
+        price: "$0.15",
         period: "/min",
         subPrice: "Volume-based usage · Multi-agent",
-        description: "High-volume call capacity with multiple voice agents across inbound and outbound campaigns, WhatsApp messaging, and advanced CRM deep sync.",
+        description: "High-volume call capacity with multiple voice agents across inbound and outbound campaigns, SMS messaging, and advanced CRM deep sync.",
         features: [
             "Multiple voice agents across campaigns",
             "Up to 100 concurrent call capacity",
             "Instant 60s enquiry callbacks & lead recovery",
-            "WhatsApp & multi-channel chat automation",
+            "Multi-channel SMS & web chat automation",
             "Advanced CRM deep sync & API webhooks",
             "Weekly performance & revenue recovery reporting"
         ],
@@ -50,15 +50,15 @@ const tiers = [
     {
         name: "Enterprise",
         subtitle: "Custom Scalable Infrastructure",
-        target: "For multi-branch groups & large organizations",
+        target: "For multi-franchise groups & large organizations",
         price: "Custom",
         period: "",
         subPrice: "Committed volume pricing & SLAs",
-        description: "Tailored telephony infrastructure, custom multi-branch routing, white-label deployment options, multi-language voice agents, and dedicated developer support.",
+        description: "Tailored telephony infrastructure, custom multi-location routing, white-label deployment options, multi-language voice agents, and dedicated developer support.",
         features: [
             "High-volume concurrent call capacity",
             "Custom telephony infrastructure & routing",
-            "Multi-language voice agents (Hindi, English, regional)",
+            "Multi-language voice agents (English, Spanish, French, Arabic)",
             "Dedicated developer architect support",
             "White-label options & custom API webhooks",
             "99.9% Uptime SLA & priority 24/7 support"
@@ -72,7 +72,7 @@ const tiers = [
 const comparisonData = [
     {
         feature: "Included Call Minutes",
-        pilot: "3,000+ mins/mo",
+        pilot: "1,000+ mins/mo",
         scale: "Volume-based per-min",
         enterprise: "Custom committed volume",
     },
@@ -97,7 +97,7 @@ const comparisonData = [
     {
         feature: "Integrations",
         pilot: "Dedicated Phone Number",
-        scale: "CRM, WhatsApp & Calendar",
+        scale: "CRM, SMS & Calendar",
         enterprise: "Custom & White-label",
     },
     {
@@ -109,12 +109,12 @@ const comparisonData = [
 ];
 
 const faqs = [
-    { q: "Are there setup fees or hidden costs?", a: "Our Pilot Deployment has no setup fee and starts from ₹35,000/month with 3,000+ call minutes included. Scale plans use volume-based pricing at ₹5/min all-in. There are never any hidden costs." },
-    { q: "What is included in the Pilot Deployment?", a: "You get 1 production voice agent live in 14 days handling both your inbound and outbound calls, 3,000+ call minutes, a dedicated phone number, and extra minutes with no setup fee." },
-    { q: "How does the Scale Plan per-minute pricing work?", a: "The Scale Plan offers volume-based per-minute pricing at ₹5/min all-in. It supports multiple agents across campaigns, up to 100 concurrent calls, CRM/WhatsApp/calendar integrations, and weekly reporting." },
+    { q: "Are there setup fees or hidden costs?", a: "Our Pilot Deployment has no setup fee and starts from $499/month with 1,000+ call minutes included. Scale plans use volume-based pricing at $0.15/min all-in. There are never any hidden costs." },
+    { q: "What is included in the Pilot Deployment?", a: "You get 1 production voice agent live in 14 days handling both your inbound and outbound calls, 1,000+ call minutes, a dedicated phone number, and extra minutes with no setup fee." },
+    { q: "How does the Scale Plan per-minute pricing work?", a: "The Scale Plan offers volume-based per-minute pricing at $0.15/min all-in. It supports multiple agents across campaigns, up to 100 concurrent calls, CRM/SMS/calendar integrations, and weekly reporting." },
     { q: "Can I upgrade from Pilot to Scale or Enterprise?", a: "Absolutely. You can test your first voice agent with a Pilot Deployment and scale up seamlessly as your call volume grows." },
     { q: "How long does setup take?", a: "Your Pilot Deployment agent is built, trained, and live within 14 days." },
-    { q: "Do you support multi-language agents?", a: "Yes, multi-language support is built-in for Enterprise plans and available for Scale Plan accounts." }
+    { q: "Do you support multi-language agents?", a: "Yes, multi-language support (English, Spanish, French, Arabic) is built-in for Enterprise plans and available for Scale Plan accounts." }
 ];
 
 export default function PricingPage() {
@@ -122,7 +122,7 @@ export default function PricingPage() {
     
     // ROI Calculator States
     const [leadVolume, setLeadVolume] = useState<number>(100);
-    const [ticketValue, setTicketValue] = useState<number>(25000);
+    const [ticketValue, setTicketValue] = useState<number>(1500);
     const [leakRate, setLeakRate] = useState<number>(30); // in percent
 
     // ROI Math logic
@@ -136,8 +136,8 @@ export default function PricingPage() {
     const recaptureRate = 0.70;
     const recoveredRevenue = Math.round(lostRevenue * recaptureRate);
     
-    // Net ROI multiple based on pricing of Pilot Deployment (₹35,000/mo)
-    const annualInvestment = 35000 * 12;
+    // Net ROI multiple based on pricing of Pilot Deployment ($499/mo)
+    const annualInvestment = 499 * 12;
     const annualRecovery = recoveredRevenue * 12;
     const roiRatio = annualInvestment > 0 ? (annualRecovery / annualInvestment).toFixed(1) : "0";
 
@@ -207,13 +207,13 @@ export default function PricingPage() {
                             <div>
                                 <div className="flex justify-between items-center mb-3">
                                     <span className="text-sm font-bold font-space text-white">Average Ticket / Booking Value</span>
-                                    <span className="font-mono text-sm text-[#0047FF] font-bold">₹{ticketValue.toLocaleString()}</span>
+                                    <span className="font-mono text-sm text-[#0047FF] font-bold">${ticketValue.toLocaleString()}</span>
                                 </div>
                                 <input 
                                     type="range" 
-                                    min="5000" 
-                                    max="200000" 
-                                    step="5000"
+                                    min="300" 
+                                    max="15000" 
+                                    step="100"
                                     value={ticketValue}
                                     onChange={(e) => setTicketValue(parseInt(e.target.value))}
                                     className="w-full accent-[#0047FF] bg-[#161622] h-2 rounded-lg cursor-pointer"
@@ -248,12 +248,12 @@ export default function PricingPage() {
                                 
                                 <div className="flex justify-between items-center pb-4 border-b border-[#1C1C24]">
                                     <span className="text-xs text-[#A3A3B3] font-mono">2. CURRENT REVENUE LOST</span>
-                                    <span className="text-lg font-bold text-[#FF5A1F] font-space">₹{lostRevenue.toLocaleString()} / mo</span>
+                                    <span className="text-lg font-bold text-[#FF5A1F] font-space">${lostRevenue.toLocaleString()} / mo</span>
                                 </div>
 
                                 <div className="p-6 bg-[#0047FF]/5 border border-[#0047FF]/20 rounded-[4px]">
                                     <span className="text-[10px] font-mono text-[#0047FF] uppercase tracking-wider block mb-1">Estimated monthly revenue recovered</span>
-                                    <strong className="text-3xl font-bold font-space text-[#0047FF] block mb-2">₹{recoveredRevenue.toLocaleString()} / mo</strong>
+                                    <strong className="text-3xl font-bold font-space text-[#0047FF] block mb-2">${recoveredRevenue.toLocaleString()} / mo</strong>
                                     <span className="text-xs text-[#A3A3B3]">Assuming standard 20% conversion and 70% immediate response recapture rate.</span>
                                 </div>
                             </div>

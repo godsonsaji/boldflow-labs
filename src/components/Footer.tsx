@@ -34,8 +34,8 @@ export default function Footer() {
                     </div>
                     <div>
                         <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-1">{"//"} VERTICALS SERVED</span>
-                        <span className="text-xl font-bold font-space text-white leading-tight block">Healthcare, Education & Real Estate</span>
-                        <span className="text-xs text-[#A3A3B3] block">Clinics, hospitals, coaching institutes, and developers</span>
+                        <span className="text-xl font-bold font-space text-white leading-tight block">Home Services, Real Estate & Med Spas</span>
+                        <span className="text-xs text-[#A3A3B3] block">HVAC, roofing, solar, real estate, pool builders & med spas</span>
                     </div>
                     <div>
                         <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-1">{"//"} TELEPHONY & AI INFRA</span>
@@ -54,7 +54,7 @@ export default function Footer() {
                                 </span>
                             </Link>
                             <p className="text-[#A3A3B3] text-[15px] mb-8 max-w-[280px] leading-relaxed">
-                                We deploy AI voice agents and messaging receptionists for clinics, hospitals, education institutes, and developers that book appointments in under 60 seconds, 24/7.
+                                We deploy AI voice agents and messaging receptionists for home services, real estate, and med spas across US, UK, UAE, Canada & Australia that book appointments in under 60 seconds, 24/7.
                             </p>
                         </div>
 

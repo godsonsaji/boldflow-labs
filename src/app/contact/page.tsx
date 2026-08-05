@@ -180,17 +180,17 @@ export default function ContactPage() {
 
                                     <div className="flex flex-col relative w-full">
                                         <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Company Name</label>
-                                        <input name="company" value={formData.company} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. Acme Corp Infrastructure" />
+                                        <input name="company" value={formData.company} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. Vance HVAC & Mechanical" />
                                     </div>
 
                                     <div className="flex flex-col relative w-full">
                                         <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">What do you need help with?</label>
                                         <div className="relative">
                                             <select name="service" value={formData.service} onChange={handleChange} className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors appearance-none cursor-pointer">
-                                                <option value="lead_followup">Automated Inbound Receptionist</option>
-                                                <option value="outbound">Outbound Lead Reactivation</option>
-                                                <option value="scheduling">CRM Scheduling Integrations</option>
-                                                <option value="custom_workflow">Custom Internal Workflows</option>
+                                                <option value="lead_followup">24/7 AI Inbound Receptionist</option>
+                                                <option value="outbound">60-Second Outbound Lead Callbacks</option>
+                                                <option value="scheduling">ServiceTitan / CRM Scheduling Sync</option>
+                                                <option value="custom_workflow">Stale Database Lead Reactivation</option>
                                                 <option value="unsure">Not sure, I need guidance</option>
                                             </select>
                                             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#626272] text-[10px]">▼</div>
@@ -199,7 +199,7 @@ export default function ContactPage() {
 
                                     <div className="flex flex-col relative w-full mb-4">
                                         <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Tell us about your current bottlenecks (Optional)</label>
-                                        <textarea name="message" value={formData.message} onChange={handleChange} rows={4} className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors resize-none" placeholder="Provide some context on where you're losing time or leads..." />
+                                        <textarea name="message" value={formData.message} onChange={handleChange} rows={4} className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors resize-none" placeholder="Provide context on your monthly call volume, current CRM, or where you're losing missed calls..." />
                                     </div>
 
                                     {error && (

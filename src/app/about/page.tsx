@@ -70,7 +70,7 @@ export default function AboutPage() {
                         transition={{ delay: 0.2 }}
                         className="text-body-lg max-w-2xl"
                     >
-                        BoldFlow Labs is an independent AI automation agency focused entirely on delivering real operational results for home services and real estate SMBs.
+                        BoldFlow Labs is an independent AI automation agency focused entirely on delivering real operational results for home services, real estate, and med spa SMBs across the US, UK, UAE, Canada, and Australia.
                     </motion.p>
                 </div>
             </section>
