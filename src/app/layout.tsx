@@ -30,15 +30,18 @@ const BASE_URL = "https://boldflowlabs.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "AI Phone Assistants & Voice Agents for Indian SMBs | BoldFlow Labs",
+    default: "AI Phone Assistants & Voice Agents for Indian Businesses | BoldFlow Labs",
     template: "%s | BoldFlow Labs",
   },
   description:
-    "24/7 TRAI-compliant AI voice agents answering business calls in Hindi, Tamil, Kannada, Telugu, Marathi, Gujarati & English. Built for Indian real estate brokers, coaching institutes, and clinics.",
+    "24/7 TRAI-compliant AI voice agents answering business calls in Hindi, Tamil, Kannada, Telugu, Marathi, Gujarati & English. Built for Indian real estate brokers, D2C brands, and insurance agencies.",
   keywords: [
     "AI voice agent for Indian real estate",
+    "AI voice agent for D2C brands India",
+    "COD order confirmation call automation",
+    "insurance renewal reminder AI India",
+    "policy renewal call automation",
     "multilingual AI receptionist India",
-    "coaching institute AI calling agent",
     "Tamil AI receptionist Chennai",
     "Kannada AI voice agent Bangalore",
     "Hindi AI voice assistant Delhi",
@@ -59,23 +62,23 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: BASE_URL,
     siteName: "BoldFlow Labs",
-    title: "AI Phone Assistants & Voice Agents for Indian SMBs | BoldFlow Labs",
+    title: "AI Phone Assistants & Voice Agents for Indian Businesses | BoldFlow Labs",
     description:
-      "24/7 TRAI-compliant AI phone receptionists in Hindi, Tamil, Kannada, Telugu & English for Indian real estate brokers, coaching institutes, and clinics.",
+      "24/7 TRAI-compliant AI phone receptionists in Hindi, Tamil, Kannada, Telugu & English for Indian real estate brokers, D2C brands, and insurance agencies.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "BoldFlow Labs — AI Voice Agents for Indian SMBs",
+        alt: "BoldFlow Labs — AI Voice Agents for Indian Businesses",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BoldFlow Labs — AI Phone Assistants for Indian SMBs",
+    title: "BoldFlow Labs — AI Phone Assistants for Indian Businesses",
     description:
-      "Multilingual 24/7 AI voice agents for Indian real estate brokers, coaching centers, and clinics.",
+      "Multilingual 24/7 AI voice agents for Indian real estate brokers, D2C brands, and insurance agencies.",
     creator: "@boldflowlabs",
   },
   robots: {
@@ -138,7 +141,7 @@ export default function RootLayout({
               url: BASE_URL,
               logo: `${BASE_URL}/logo.png`,
               description:
-                "BoldFlow Labs deploys multilingual 24/7 AI voice phone receptionists and automated lead qualification systems for Indian real estate brokers, coaching institutes, and healthcare clinics.",
+                "BoldFlow Labs deploys multilingual 24/7 AI voice phone receptionists and automated lead qualification systems for Indian real estate brokers, D2C e-commerce brands, and insurance agencies.",
               address: {
                 "@type": "PostalAddress",
                 addressRegion: "Kerala",

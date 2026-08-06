@@ -29,13 +29,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
-            url: `${BASE_URL}/coaching-institute-ai-agent`,
+            url: `${BASE_URL}/d2c-ai-agent`,
             lastModified: new Date(),
             changeFrequency: "weekly",
             priority: 0.9,
         },
         {
-            url: `${BASE_URL}/clinic-ai-agent`,
+            url: `${BASE_URL}/insurance-ai-agent`,
             lastModified: new Date(),
             changeFrequency: "weekly",
             priority: 0.9,

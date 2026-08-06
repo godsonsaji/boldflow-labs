@@ -56,40 +56,40 @@ const homeServices = [
 const processPhases = [
   {
     step: "01",
-    title: "Missed Call Arrives",
-    desc: "A parent calls your coaching center or a buyer calls your property line at 8:30 PM. Line is busy or unattended.",
+    title: "Enquiry or Order Arrives",
+    desc: "A buyer submits a property enquiry, places a COD order, or a policy nears renewal.",
     timeline: "Instant"
   },
   {
     step: "02",
-    title: "AI Answers in 10 Seconds",
-    desc: "Speaks in the caller's language (Hindi in Delhi/Kota, Tamil in Chennai, Kannada in Bangalore, and so on). Asks course, budget, and batch timing.",
-    timeline: "Under 10 Secs"
+    title: "AI Responds in Minutes",
+    desc: "Speaks in the customer's language (Hindi in Delhi/Gurgaon, Tamil in Chennai, Kannada in Bangalore). Confirms details, qualifies interest, or checks renewal intent.",
+    timeline: "Under 60 Secs"
   },
   {
     step: "03",
-    title: "Books Counseling Session",
-    desc: "Checks your Google Calendar and books a slot. Sends an instant WhatsApp confirmation message to the parent or buyer.",
+    title: "Books or Confirms",
+    desc: "Schedules a site visit, confirms an order, or books an agent callback. Sends an instant WhatsApp confirmation message.",
     timeline: "2 Minutes"
   },
   {
     step: "04",
     title: "Syncs to Your System",
-    desc: "Lead details and audio summary drop directly into LeadSquared, Zoho CRM, Practo, or Excel for your team tomorrow morning.",
+    desc: "Call transcript, verification notes, and callback requests drop directly into LeadSquared, Zoho CRM, Shopify, or Excel.",
     timeline: "Real-time"
   }
 ];
 
 const demoAgents = [
   {
-    id: "priya",
-    name: "Priya",
-    role: "Coaching Institute Admission Counselor",
-    cityLanguage: "Delhi / Kota Belt · Hindi / English",
-    specialty: "Inbound Admission Triage / Batch Booking",
-    scenario: "Answers parent inquiries at 8:30 PM, captures student class and target exam (JEE/NEET), books counseling sessions on Google Calendar.",
+    id: "ananya",
+    name: "Ananya",
+    role: "D2C Order Confirmation & RTO Agent",
+    cityLanguage: "Delhi / Gurgaon · Hindi / English",
+    specialty: "COD Verification / Address & Payment Triage",
+    scenario: "Confirms COD orders within minutes of checkout, verifies address and payment mode, flags unreachable orders for manual review.",
     badge: "Interactive Demo Available",
-    audioPreviewText: "“Namaste! Main Career Academy se Priya bol rahi hoon. Kya aap JEE ya NEET batch ke baare me enquiry kar rahe hain?”",
+    audioPreviewText: "“Namaste! BoldFlow Brands se Ananya bol rahi hoon. Order #4821 ke COD confirmation ke liye call kiya hai. Delivery address D-14 South Ext Delhi confirm kar dein?”",
     status: "active"
   },
   {
@@ -104,37 +104,15 @@ const demoAgents = [
     status: "active"
   },
   {
-    id: "dr-krishnan",
-    name: "Dr. Krishnan's Assistant",
-    role: "Clinic Appointment Booker",
+    id: "suresh",
+    name: "Suresh",
+    role: "Insurance Renewal Reminder Agent",
     cityLanguage: "Chennai · Tamil / English",
-    specialty: "Patient Screening & Practo Calendar Booking",
-    scenario: "Handles high Sunday call volume for multi-specialty dental clinic in Chennai, books consultation slots, sends WhatsApp confirmation.",
+    specialty: "Policy Lapse Prevention & Agent Callback",
+    scenario: "Calls policyholders ahead of renewal, checks if they have questions, books a callback with their agent if interested.",
     badge: "Active Agent",
-    audioPreviewText: "“Vanakkam! Dr. Krishnan Dental Clinic receptionist. Doctor appointment Sunday 11 AM-ku slot available-ah irukku. Book panlama?”",
-    status: "inactive"
-  },
-  {
-    id: "vikram",
-    name: "Vikram",
-    role: "Loan Inquiry Handler",
-    cityLanguage: "Mumbai · English / Hinglish",
-    specialty: "Commercial & Business Loan Qualification",
-    scenario: "Engages business owners asking about loan eligibility, screens monthly turnover, triggers callback from loan manager.",
-    badge: "Active Agent",
-    audioPreviewText: "“Hello! Main Capital Care se Vikram bol raha hoon. Aapke business loan application ki quick verification ke liye call kiya hai.”",
-    status: "inactive"
-  },
-  {
-    id: "anjali",
-    name: "Anjali",
-    role: "Auto Service Booking Agent",
-    cityLanguage: "Hyderabad · Telugu / English",
-    specialty: "Vehicle Service & Test Drive Scheduler",
-    scenario: "Schedules periodic car service appointments and home test drives across Hyderabad, syncing directly with dealership calendar.",
-    badge: "Active Agent",
-    audioPreviewText: "“Namaskaram! Auto Care Hyderabad nundi Anjali matladutunnanu. Mee car service pickup slot tomorrow morning 10 AM ki fix cheyala?”",
-    status: "inactive"
+    audioPreviewText: "“Vanakkam! Main BoldFlow Insurance se Suresh pesuren. Ungaloda Health Insurance policy renewal next week due irukku. Agent callback book pannalaama?”",
+    status: "active"
   }
 ];
 
@@ -205,11 +183,11 @@ export default function HomePage() {
                 </h1>
 
                 <p className="text-body-lg mb-6 leading-relaxed">
-                  AI phone assistants that answer your business calls in your customers' language — <strong className="text-white">Hindi, Tamil, Kannada, Telugu & more, plus English — 24/7</strong>. Built for Indian real estate brokers, coaching institutes, and clinics.
+                  AI phone assistants that answer your business calls in your customers' language — <strong className="text-white">Hindi, Tamil, Kannada, Telugu & more, plus English — 24/7</strong>. Built for Indian real estate brokers, D2C brands, and insurance agencies.
                 </p>
 
                 <p className="text-sm text-[#A3A3B3] mb-8 leading-relaxed italic border-l-2 border-[#0047FF] pl-4">
-                  "Your 99acres leads call after 7 PM. Your coaching inquiries spike during admission season. Your clinic patients call on Sundays. Who answers?"
+                  "Your 99acres leads call after 7 PM. Your D2C COD orders spike during flash sales. Your insurance policy renewals slip through without reminders. Who calls?"
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -380,7 +358,7 @@ export default function HomePage() {
                 ))}
             </div>
             
-            {/* Quick Links to 3 New Niche Landing Pages */}
+            {/* Quick Links to 3 Niche Landing Pages */}
             <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Link href="/real-estate-ai-agent" className="p-5 bg-[#0A0A0F] border border-[#1C1C24] hover:border-[#0047FF] rounded-[4px] flex justify-between items-center group transition-colors">
                     <div>
@@ -388,16 +366,16 @@ export default function HomePage() {
                         <span className="text-sm font-bold font-space text-white">99acres & Broker Voice AI →</span>
                     </div>
                 </Link>
-                <Link href="/coaching-institute-ai-agent" className="p-5 bg-[#0A0A0F] border border-[#1C1C24] hover:border-[#0047FF] rounded-[4px] flex justify-between items-center group transition-colors">
+                <Link href="/d2c-ai-agent" className="p-5 bg-[#0A0A0F] border border-[#1C1C24] hover:border-[#0047FF] rounded-[4px] flex justify-between items-center group transition-colors">
                     <div>
-                        <span className="text-xs font-mono text-[#0047FF] uppercase block font-bold">Education Solution</span>
-                        <span className="text-sm font-bold font-space text-white">Coaching Admission Voice AI →</span>
+                        <span className="text-xs font-mono text-[#0047FF] uppercase block font-bold">D2C & E-Commerce Solution</span>
+                        <span className="text-sm font-bold font-space text-white">COD Confirmation & RTO Voice AI →</span>
                     </div>
                 </Link>
-                <Link href="/clinic-ai-agent" className="p-5 bg-[#0A0A0F] border border-[#1C1C24] hover:border-[#0047FF] rounded-[4px] flex justify-between items-center group transition-colors">
+                <Link href="/insurance-ai-agent" className="p-5 bg-[#0A0A0F] border border-[#1C1C24] hover:border-[#0047FF] rounded-[4px] flex justify-between items-center group transition-colors">
                     <div>
-                        <span className="text-xs font-mono text-[#10B981] uppercase block font-bold">Healthcare Solution</span>
-                        <span className="text-sm font-bold font-space text-white">Clinic Appointment Voice AI →</span>
+                        <span className="text-xs font-mono text-[#10B981] uppercase block font-bold">Insurance Solution</span>
+                        <span className="text-sm font-bold font-space text-white">Policy Renewal Reminder Voice AI →</span>
                     </div>
                 </Link>
             </div>
@@ -413,7 +391,7 @@ export default function HomePage() {
                       How It Works
                   </h2>
                   <p className="text-body max-w-xl mx-auto">
-                      From missed call to booked counseling session or site visit on your calendar in under 2 minutes.
+                      From property enquiry, COD order, or policy renewal to confirmed booking on your system in under 2 minutes.
                   </p>
               </div>
 
@@ -568,19 +546,19 @@ export default function HomePage() {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
                   <div className="p-8 bg-[#0A0A0F] border border-[#1C1C24] rounded-[6px]">
-                      <span className="text-[10px] font-mono text-[#626272] block mb-2 uppercase">AFTER-HOURS CALL LOSS</span>
+                      <span className="text-[10px] font-mono text-[#626272] block mb-2 uppercase">REAL ESTATE LEAD RESPONSE</span>
                       <strong className="text-3xl font-bold font-space text-[#FF5A1F] block mb-2">58%</strong>
                       <span className="text-xs text-[#A3A3B3]">of 99acres and property portal leads call after 7 PM after office hours.</span>
                   </div>
                   <div className="p-8 bg-[#0A0A0F] border border-[#1C1C24] rounded-[6px]">
-                      <span className="text-[10px] font-mono text-[#626272] block mb-2 uppercase">ADMISSION SEASON SPIKE</span>
-                      <strong className="text-3xl font-bold font-space text-[#FF5A1F] block mb-2">40+ Calls</strong>
-                      <span className="text-xs text-[#A3A3B3]">unanswered per day at Kota and Delhi coaching centers during May–July.</span>
+                      <span className="text-[10px] font-mono text-[#626272] block mb-2 uppercase">D2C COD & RTO CONFIRMATION</span>
+                      <strong className="text-3xl font-bold font-space text-[#0047FF] block mb-2">Instant Call</strong>
+                      <span className="text-xs text-[#A3A3B3]">COD orders without a confirmation call see higher RTO rates. Our AI confirms every order within minutes of checkout.</span>
                   </div>
                   <div className="p-8 bg-[#0A0A0F] border border-[#1C1C24] rounded-[6px]">
-                      <span className="text-[10px] font-mono text-[#626272] block mb-2 uppercase">CLINIC SLOT RECOVERY</span>
-                      <strong className="text-3xl font-bold font-space text-[#0047FF] block mb-2">₹1,500+</strong>
-                      <span className="text-xs text-[#A3A3B3]">recovered per empty dental or consultation slot filled via AI.</span>
+                      <span className="text-[10px] font-mono text-[#626272] block mb-2 uppercase">INSURANCE RENEWAL OUTREACH</span>
+                      <strong className="text-3xl font-bold font-space text-[#10B981] block mb-2">100% Reach</strong>
+                      <span className="text-xs text-[#A3A3B3]">Agencies with large expiring-policy books can't call every customer in time. Our AI reaches policyholders before renewal date.</span>
                   </div>
               </div>
               

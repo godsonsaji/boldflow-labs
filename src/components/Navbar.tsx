@@ -19,8 +19,8 @@ const navLinks = [
 
 const solutionLinks = [
     { href: "/real-estate-ai-agent", label: "Real Estate Brokers" },
-    { href: "/coaching-institute-ai-agent", label: "Coaching Institutes" },
-    { href: "/clinic-ai-agent", label: "Clinics & Doctors" },
+    { href: "/d2c-ai-agent", label: "D2C & E-Commerce" },
+    { href: "/insurance-ai-agent", label: "Insurance Agencies" },
 ];
 
 export default function Navbar() {

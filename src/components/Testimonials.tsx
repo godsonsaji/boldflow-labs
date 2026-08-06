@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldCheck, TrendingUp, Building2, GraduationCap, Stethoscope } from "lucide-react";
+import { ShieldCheck, TrendingUp, Building2, ShoppingBag, PhoneCall } from "lucide-react";
 
 interface ExpectedResultCard {
   id: string;
@@ -15,37 +15,37 @@ interface ExpectedResultCard {
 
 const expectedResults: ExpectedResultCard[] = [
   {
-    id: "coaching-expected",
-    vertical: "Education & Coaching",
-    industry: "Coaching Institutes & Academies",
-    location: "Kota / Delhi NCR / Hyderabad",
-    metric: "40+ Calls/Day",
-    metricLabel: "Recovered Admission Enquiries",
+    id: "d2c-expected",
+    vertical: "D2C & E-Commerce",
+    industry: "D2C Brands & E-Commerce",
+    location: "Delhi NCR / Mumbai / Gurgaon",
+    metric: "Instant Call",
+    metricLabel: "COD Order Confirmation",
     quote:
-      "A coaching institute in Kota typically receives 80+ inquiry calls/day during peak admission season. Our AI phone assistant captures the 40+ calls their front-desk staff misses after hours.",
-    icon: GraduationCap,
+      "COD orders without a confirmation call see meaningfully higher return-to-origin rates. Our AI confirms every order within minutes of checkout.",
+    icon: ShoppingBag,
   },
   {
     id: "realestate-expected",
     vertical: "Real Estate Brokerage",
     industry: "Property Brokers & Developers",
     location: "Bangalore / Mumbai / Gurgaon",
-    metric: "₹1,500/Lead",
-    metricLabel: "Portal Ad Spend Saved",
+    metric: "7x Conversion",
+    metricLabel: "Speed-to-Lead Response",
     quote:
-      "Average real estate lead in India costs ₹800–₹1,500 from portals like 99acres and MagicBricks. Missing the call after 7 PM means burning that spend. Our AI locks in site visits instantly.",
+      "Real estate leads called back within 60s are 7x more likely to book site visits than those called back after 1 hour. The broker who answers first locks in the showing.",
     icon: Building2,
   },
   {
-    id: "clinic-expected",
-    vertical: "Healthcare & Clinics",
-    industry: "Dental & Multi-Specialty Clinics",
-    location: "Chennai / Bangalore / Delhi",
-    metric: "₹45,000/Mo",
-    metricLabel: "Recovered Consultation Revenue",
+    id: "insurance-expected",
+    vertical: "Insurance & Advisory",
+    industry: "Insurance Agencies & Brokers",
+    location: "Chennai / Bangalore / Hyderabad",
+    metric: "100% Reach",
+    metricLabel: "Lapsing Policy Coverage",
     quote:
-      "One empty slot per day = ₹1,500–₹5,000 lost revenue for a urban clinic. Our AI phone receptionist fills them 24/7 for just ₹267/day, confirming appointments via WhatsApp.",
-    icon: Stethoscope,
+      "Agencies with large expiring-policy books can't call every lapsing customer in time. Our AI reaches every policyholder before renewal date, every time.",
+    icon: ShieldCheck,
   },
 ];
 
@@ -120,7 +120,7 @@ export default function Testimonials() {
           What Our Pilot Businesses Expect to Recover
         </h2>
         <p className="text-body max-w-xl mx-auto">
-          Built explicitly for high-ticket Indian SMBs—coaching centers, real estate agencies, and clinics—to capture missed after-hours phone calls and recover lost revenue.
+          Built explicitly for high-growth Indian verticals—real estate agencies, D2C brands, and insurance brokers—to verify orders, capture leads, and prevent policy lapses.
         </p>
       </div>
 

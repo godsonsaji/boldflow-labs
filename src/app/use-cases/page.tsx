@@ -37,47 +37,47 @@ const useCases = [
     color: "#0047FF"
   },
   {
-    id: "coaching",
-    category: "Education",
-    industry: "Coaching Institutes & Academies",
-    title: "Admission Season Parent Inquiry & Counseling Booker",
-    tagline: "Handling 80+ daily calls during JEE/NEET admission spikes across Kota, Delhi NCR, and South Indian hubs.",
-    description: "During peak admission season (May–July), coaching center staff are overwhelmed by 80–100 parent calls per day. Our AI receptionist answers in 10 seconds in Hindi, Tamil, Telugu, or English, captures student target exam details, and books counselor appointments.",
+    id: "d2c",
+    category: "D2C & E-Commerce",
+    industry: "D2C Brands & E-Commerce",
+    title: "Post-Checkout COD Order Confirmation & RTO Reduction Voice Agent",
+    tagline: "Calling Cash-on-Delivery orders within minutes of checkout to confirm address, payment mode, and order intent.",
+    description: "Unconfirmed COD orders shipped without verification lead to massive RTO costs (reverse shipping, repackaging, and inventory hold). Our AI voice agent calls buyers right after checkout in Hindi, Hinglish, or English, verifies delivery address, confirms COD intent, and flags invalid orders.",
     kpis: [
-      { label: "Call Answer Latency", value: "< 10 Secs" },
-      { label: "Peak Capacity", value: "Unlimited Concurrent" },
-      { label: "Enrollment Yield", value: "40+ Extra Calls/Day" }
+      { label: "RTO Reduction", value: "Meaningful" },
+      { label: "Call Latency", value: "< 2 Mins Post-Checkout" },
+      { label: "Order Verification", value: "100% Automated" }
     ],
     flow: [
-      { step: "01", label: "Parent Phone Call", desc: "Parent calls coaching center at 8:30 PM asking about batch timings." },
-      { step: "02", label: "Multilingual AI Triage", desc: "AI converses in Hindi/Tamil/Telugu, collecting class, exam target, and budget." },
-      { step: "03", label: "Counseling Slot Sync", desc: "Checks Google Calendar for open counselor slots and books appointment." },
-      { step: "04", label: "WhatsApp Confirmation", desc: "Sends fee structure PDF and appointment confirmation via WhatsApp." }
+      { step: "01", label: "Checkout Created", desc: "Customer places COD order on Shopify or WooCommerce." },
+      { step: "02", label: "Instant Voice Call", desc: "AI calls buyer within minutes in regional language + English." },
+      { step: "03", label: "Address & Intent Verify", desc: "Verifies pincode, delivery address, sizing, and cash intent." },
+      { step: "04", label: "Shopify / CRM Write", desc: "Updates order tags in Shopify/Shiprocket and sends WhatsApp confirmation." }
     ],
-    integration: "LeadSquared / Zoho CRM / Excel / WhatsApp API",
-    badge: "High Conversion",
+    integration: "Shopify / WooCommerce / Shiprocket / WhatsApp API",
+    badge: "Top RTO Saver",
     color: "#FF5A1F"
   },
   {
-    id: "clinic",
-    category: "Healthcare",
-    industry: "Clinics & Multi-Specialty Practices",
-    title: "Sunday & After-Hours Patient Appointment Booking Agent",
-    tagline: "Answering patient phone inquiries 24/7, reducing empty appointment slots for urban clinics.",
-    description: "Front-desk staff putting patients on hold leads to dropped calls and empty doctor schedules. Our AI phone assistant handles routine appointment bookings, screens patient consult requirements, and syncs directly with Practo and Google Calendar.",
+    id: "insurance",
+    category: "Insurance",
+    industry: "Insurance Agencies & Advisors",
+    title: "Policy Renewal Reminder & Lapse Prevention Voice Agent",
+    tagline: "Outreaching to policyholders ahead of renewal dates to answer questions and book advisor callbacks.",
+    description: "Agencies managing thousands of expiring policies cannot manually call every policyholder before lapse. Our AI voice agent calls customers 30 days and 7 days prior to renewal, reminds them of coverage details, and books callbacks with licensed advisors if changes or renewals are needed.",
     kpis: [
-      { label: "Slot Recovery", value: "₹45,000 / Mo" },
-      { label: "Patient No-Show Drop", value: "-40%" },
-      { label: "Response Latency", value: "< 200ms" }
+      { label: "Renewal Coverage", value: "100% Policy Book" },
+      { label: "Compliance Rate", value: "IRDAI / TRAI Compliant" },
+      { label: "Lapse Prevention", value: "High Retention" }
     ],
     flow: [
-      { step: "01", label: "Patient Call", desc: "Patient calls clinic line on Sunday or evening for dental/general consultation." },
-      { step: "02", label: "Natural Language Booking", desc: "AI verifies consult reason, doctor preference, and open time slots." },
-      { step: "03", label: "Practo / Calendar Write", desc: "Writes appointment directly into doctor's Practo or Google Calendar." },
-      { step: "04", label: "WhatsApp Reminder", desc: "Dispatches automated location pin and pre-appointment reminder." }
+      { step: "01", label: "Renewal Trigger", desc: "CRM flags policy expiring in 30 days." },
+      { step: "02", label: "Service Reminder Call", desc: "AI calls policyholder in Tamil/Hindi/English with respectful reminder." },
+      { step: "03", label: "Advisor Slot Booking", desc: "If customer has questions, AI schedules callback with assigned advisor." },
+      { step: "04", label: "WhatsApp Document Push", desc: "Pushes policy renewal notice and online payment link over WhatsApp." }
     ],
-    integration: "Practo / Google Calendar / WhatsApp Business API",
-    badge: "Top ROI",
+    integration: "LeadSquared / Zoho CRM / Google Calendar / WhatsApp API",
+    badge: "Retention Boost",
     color: "#10B981"
   }
 ];
@@ -102,7 +102,7 @@ export default function UseCasesPage() {
             Vertical Use Cases
           </h1>
           <p className="text-body-lg">
-            Explore how we deploy multilingual conversational voice agents tailored for Indian real estate brokers, coaching institutes, and healthcare clinics to capture missed calls and drive bookings.
+            Explore how we deploy multilingual conversational voice agents tailored for Indian real estate brokers, D2C brands, and insurance agencies to confirm orders, book site visits, and retain policyholders.
           </p>
         </header>
 
@@ -111,8 +111,8 @@ export default function UseCasesPage() {
           {[
             { id: "all", label: "All Solutions" },
             { id: "realestate", label: "Real Estate Brokers" },
-            { id: "coaching", label: "Coaching Institutes" },
-            { id: "clinic", label: "Clinics & Doctors" }
+            { id: "d2c", label: "D2C & E-Commerce" },
+            { id: "insurance", label: "Insurance Agencies" }
           ].map(tab => (
             <button
               key={tab.id}

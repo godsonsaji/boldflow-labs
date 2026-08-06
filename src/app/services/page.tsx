@@ -12,9 +12,9 @@ const services = [
         description: "We deploy custom-trained conversational voice agents that answer inbound business calls on the second ring, 24/7/365. They converse naturally in Hindi, Tamil, Kannada, Telugu, Marathi, Bengali, Hinglish, and English, answering FAQs and booking appointments directly on your calendar.",
         whatsIncluded: [
             "Sub-200ms voice response latency over Exotel, Plivo, and Vobiz Indian VoIP trunks",
-            "Custom triage rules for coaching admissions, real estate site visits, and clinic consults",
-            "Direct calendar integration with LeadSquared, Zoho CRM, Practo, and Google Calendar",
-            "Instant WhatsApp confirmation messages sent to caller automatically"
+            "Custom triage rules for real estate site visits, D2C COD confirmation, and insurance renewals",
+            "Direct calendar & system integration with LeadSquared, Zoho CRM, Shopify, and Google Calendar",
+            "Instant WhatsApp confirmation messages sent to customer automatically"
         ],
         outcome: "Zero missed calls after 7 PM or on Sundays — capturing 100% of high-intent portal and ad leads"
     },
@@ -117,7 +117,7 @@ export default function ServicesPage() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="text-body-lg max-w-2xl leading-relaxed"
                     >
-                        We don't sell generic templates. Every voice assistant BoldFlow Labs deploys is built from first principles for Indian real estate, education, and healthcare operations — integrated with Exotel, Plivo, LeadSquared, Zoho, Practo, and WhatsApp.
+                        We don't sell generic templates. Every voice assistant BoldFlow Labs deploys is built from first principles for Indian real estate, D2C e-commerce, and insurance operations — integrated with Exotel, Plivo, LeadSquared, Zoho, Shopify, and WhatsApp.
                     </motion.p>
                 </div>
             </section>

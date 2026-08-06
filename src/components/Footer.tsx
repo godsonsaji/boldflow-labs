@@ -11,8 +11,8 @@ const footerLinks = {
     ],
     Solutions: [
         { href: "/real-estate-ai-agent", label: "Real Estate Brokers" },
-        { href: "/coaching-institute-ai-agent", label: "Coaching Institutes" },
-        { href: "/clinic-ai-agent", label: "Clinics & Doctors" },
+        { href: "/d2c-ai-agent", label: "D2C & E-Commerce" },
+        { href: "/insurance-ai-agent", label: "Insurance Agencies" },
         { href: "/about", label: "About" },
         { href: "/blog", label: "Blog" },
     ],
@@ -36,8 +36,8 @@ export default function Footer() {
                     </div>
                     <div>
                         <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-1">{"//"} VERTICALS SERVED</span>
-                        <span className="text-xl font-bold font-space text-white leading-tight block">Real Estate, Education & Healthcare</span>
-                        <span className="text-xs text-[#A3A3B3] block">Coaching institutes, real estate brokers & clinics</span>
+                        <span className="text-xl font-bold font-space text-white leading-tight block">Real Estate, D2C & Insurance</span>
+                        <span className="text-xs text-[#A3A3B3] block">Real estate brokers, D2C brands & insurance agencies</span>
                     </div>
                     <div>
                         <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-1">{"//"} TELEPHONY & AI INFRA</span>
@@ -56,7 +56,7 @@ export default function Footer() {
                                 </span>
                             </Link>
                             <p className="text-[#A3A3B3] text-[15px] mb-6 max-w-[280px] leading-relaxed">
-                                We deploy 24/7 TRAI-compliant AI voice phone receptionists and automated lead qualification systems for Indian real estate brokers, coaching institutes, and healthcare clinics.
+                                We deploy 24/7 TRAI-compliant AI voice phone receptionists and automated lead qualification systems for Indian real estate brokers, D2C e-commerce brands, and insurance agencies.
                             </p>
                             <div className="inline-block px-3 py-1 bg-[#161622] border border-[#1C1C24] text-[10px] font-mono text-[#A3A3B3] rounded-sm mb-8">
                                 💼 GST-compliant invoicing available for Indian businesses

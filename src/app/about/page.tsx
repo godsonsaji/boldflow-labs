@@ -33,10 +33,10 @@ const philosophy = [
 ];
 
 const stackTools = [
-    { name: "Gemini / Claude Reasoning Core", desc: "Core language reasoning models trained on Indian real estate, coaching, and clinic script logic.", icon: <Cpu className="w-5 h-5 text-[#0047FF]" /> },
+    { name: "Gemini / Claude Reasoning Core", desc: "Core language reasoning models trained on Indian real estate, D2C order confirmation, and insurance renewal logic.", icon: <Cpu className="w-5 h-5 text-[#0047FF]" /> },
     { name: "Exotel & Plivo Telephony", desc: "TRAI-compliant Indian VoIP infrastructure handling native +91 phone numbers and SIP trunks.", icon: <Network className="w-5 h-5 text-[#FF5A1F]" /> },
     { name: "Native Indian Text-to-Speech", desc: "Sub-200ms real-time verbal interactions in Hindi, Tamil, Kannada, Telugu, Marathi, Bengali & Hinglish.", icon: <Code2 className="w-5 h-5 text-[#FFB020]" /> },
-    { name: "LeadSquared, Zoho & Practo API", desc: "Backend pipeline automation syncing call data into your CRM and triggering instant WhatsApp confirmations.", icon: <Layers className="w-5 h-5 text-[#0047FF]" /> }
+    { name: "LeadSquared, Shopify & Zoho API", desc: "Backend pipeline automation syncing call data into your CRM and triggering instant WhatsApp confirmations.", icon: <Layers className="w-5 h-5 text-[#0047FF]" /> }
 ];
 
 export default function AboutPage() {
@@ -70,7 +70,7 @@ export default function AboutPage() {
                         transition={{ delay: 0.2 }}
                         className="text-body-lg max-w-2xl"
                     >
-                        BoldFlow Labs is an independent AI automation agency focused on building 24/7 multilingual AI phone receptionists for Indian real estate brokers, coaching institutes, and healthcare clinics.
+                        BoldFlow Labs is an independent AI automation agency focused on building 24/7 multilingual AI phone receptionists for Indian real estate brokers, D2C e-commerce brands, and insurance agencies.
                     </motion.p>
                 </div>
             </section>
@@ -86,16 +86,16 @@ export default function AboutPage() {
                       </div>
                       <div className="lg:col-span-7 flex flex-col gap-6 text-[#A3A3B3] text-sm leading-relaxed">
                           <p>
-                              It started with a simple observation in Indian metro cities: coaching centers in Kota and Delhi spend lakhs on ad campaigns during May–July, only to let 40+ daily calls go unanswered during peak hours. Real estate brokers lose 58% of portal leads calling after 7 PM.
+                              It started with a simple observation in Indian business: real estate brokers lose 58% of portal leads calling after 7 PM, D2C brands bleed margin on unconfirmed COD returns, and insurance agencies let lapsed policies slip through without timely reminders.
                           </p>
                           <p>
-                              The reality of Indian SMB operations is brutal: if a prospective buyer or parent calls and gets a busy line or voicemail, they don't wait. They call the next broker on 99acres or another coaching institute down the street.
+                              The reality of Indian operations is brutal: if a prospective buyer or customer calls and gets a busy line or unanswered call, they don't wait. They buy from the next brand or broker down the road.
                           </p>
                           <p>
-                              I founded BoldFlow Labs to solve this missed call revenue leak once and for all. By building custom AI voice receptionists fluent in Hindi, Tamil, Kannada, Telugu, and English integrated with Exotel, LeadSquared, Zoho, and WhatsApp, we ensure that every single inbound call is answered in 10 seconds.
+                              I founded BoldFlow Labs to solve this operational revenue leak once and for all. By building custom AI voice receptionists fluent in Hindi, Tamil, Kannada, Telugu, and English integrated with Exotel, LeadSquared, Zoho, Shopify, and WhatsApp, we ensure that every single call or order is verified in minutes.
                           </p>
                           <p className="border-l border-[#0047FF] pl-6 py-2 mt-4 text-[#F5F6FA] font-medium font-sans">
-                              We don't sell generic "AI consulting." We deploy reliable, engineered voice phone agents that lock in site visits and counseling sessions before your competitors even see the notification.
+                              We don't sell generic "AI consulting." We deploy reliable, engineered voice phone agents that confirm orders, lock in site visits, and book policy renewals before your competitors even see the notification.
                           </p>
                       </div>
                   </div>

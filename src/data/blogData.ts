@@ -48,44 +48,56 @@ export const staticBlogPosts: BlogPost[] = [
     `
   },
   {
-    id: "static-coaching-admission-call-leak",
-    title: "The Real Cost of Missing Admission Calls: A Coaching Center's Hidden Leak",
-    slug: "real-cost-of-missing-coaching-admission-calls",
-    excerpt: "During May–July admission season, coaching institutes receive 80+ daily inquiry calls. Unanswered calls directly leak lakhs of rupees in student enrollments.",
-    coverImage: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
+    id: "static-d2c-cod-rto-reduction",
+    title: "How D2C Brands in India Cut RTO Rates With Instant COD Voice Confirmation",
+    slug: "how-d2c-brands-cut-rto-rates-with-cod-voice-confirmation",
+    excerpt: "Unconfirmed Cash-on-Delivery orders severely drain D2C margins through reverse shipping and repackaging. Automated AI voice confirmation calls eliminate fake orders before dispatch.",
+    coverImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
     createdAt: {
       toDate: () => new Date("2026-08-03T11:00:00Z")
     },
     readTime: "6M_READ",
     authorName: "Godson Saji",
-    tags: ["EDUCATION", "COACHING", "ZOHO CRM"],
+    tags: ["D2C", "E-COMMERCE", "RTO"],
     status: "published",
     content: `
-      <h2>The Admission Season Rush in Kota, Delhi & South Indian Hubs</h2>
-      <p>For JEE, NEET, UPSC, and Foundation coaching institutes across Kota, Delhi NCR, Hyderabad, and Bangalore, May to July represents 70% of annual enrollment revenue. Front-desk staff are overwhelmed by 80–100 phone calls per day.</p>
-      <p>Parents calling after work hours about batch timings, fee structures, and hostel options frequently encounter busy lines or unanswered phones.</p>
+      <h2>The RTO Margin Leak in Indian E-Commerce</h2>
+      <p>For Indian D2C brands on Shopify and WooCommerce, Cash-on-Delivery (COD) represents 60%–70% of order volume. However, unconfirmed COD orders result in high Return-to-Origin (RTO) rates, costing brands reverse logistics fees, repackaging charges, and tied-up inventory.</p>
 
-      <h2>How AI Receptionists Capture Every Parent Enquiry</h2>
-      <p>AI voice agents answer within 10 seconds, conversing naturally in Hindi, Tamil, Telugu, or English. The AI collects student details (Target Exam, Class, Preferred Batch), schedules a counseling slot, and pushes lead profiles directly into LeadSquared or Zoho CRM.</p>
+      <h2>Automating COD Verification Within Minutes of Checkout</h2>
+      <p>By deploying an AI voice agent like Ananya, every COD order triggers an instant phone call to the customer in Hindi, Hinglish, or English:</p>
+      <ul>
+        <li><strong>Address & Intent Verification:</strong> Verifies complete street address, pincode, and intent to pay cash at delivery.</li>
+        <li><strong>Risk Flagging:</strong> Unreachable, invalid, or canceled orders are flagged automatically in Shopify or Shiprocket before fulfillment.</li>
+        <li><strong>WhatsApp Confirmation:</strong> Dispatches verified dispatch status and tracking details over WhatsApp.</li>
+      </ul>
     `
   },
   {
-    id: "static-delhi-clinic-appointment-recovery",
-    title: "How a Delhi Dental Clinic Recovered ₹40,000/Month in Lost Appointments",
-    slug: "delhi-dental-clinic-recovered-lost-appointments",
-    excerpt: "Case study on how automated AI voice booking and WhatsApp confirmation reduced empty appointment slots for a multi-specialty dental practice in New Delhi.",
-    coverImage: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80",
+    id: "static-insurance-policy-renewal-reminder",
+    title: "Why Insurance Agencies Lose Expiring Policies (And How AI Reminders Save Them)",
+    slug: "why-insurance-agencies-lose-expiring-policies-ai-reminders",
+    excerpt: "Agencies managing thousands of expiring policies can't call every policyholder before lapse. Automated AI voice reminders protect recurring commissions.",
+    coverImage: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80",
     createdAt: {
       toDate: () => new Date("2026-08-05T14:30:00Z")
     },
-    readTime: "4M_READ",
+    readTime: "5M_READ",
     authorName: "Godson Saji",
-    tags: ["HEALTHCARE", "CLINIC", "PRACTO"],
-    status: "draft",
+    tags: ["INSURANCE", "RENEWAL", "TELEPHONY"],
+    status: "published",
     content: `
-      <h2>Overcoming Front-Desk Overload in Urban Clinics</h2>
-      <p>Clinics in metro cities handle dozens of routine patient appointment and fee calls every day. Reception staff putting callers on hold leads to dropped calls and empty doctor schedules.</p>
-      <p>By deploying an automated AI assistant integrated with Practo and Google Calendar, patient calls are answered instantly 24/7, booking appointments and sending automatic WhatsApp reminders.</p>
+      <h2>The Policy Lapse Challenge for Indian Insurance Brokers</h2>
+      <p>Insurance agencies managing large policy books face a persistent issue: during heavy renewal months, staff cannot physically call every policyholder before their policy lapses.</p>
+      <p>A single lapsed policy means losing that customer's annual recurring commission entirely, forcing agencies to constantly spend on acquiring replacement leads.</p>
+
+      <h2>Service-Oriented AI Renewal Reminders</h2>
+      <p>By deploying Suresh, an automated AI renewal voice assistant, agencies reach 100% of policyholders 30 days and 7 days prior to lapse:</p>
+      <ul>
+        <li><strong>Multilingual Outreach:</strong> Calls in Tamil, Hindi, Kannada, Telugu, or English based on policyholder region.</li>
+        <li><strong>Advisor Callback Booking:</strong> If the client has policy questions or wants coverage changes, the AI books a callback directly with a licensed agent.</li>
+        <li><strong>IRDAI & DND Compliance:</strong> Calls are strictly framed as service renewal care, maintaining full compliance.</li>
+      </ul>
     `
   }
 ];

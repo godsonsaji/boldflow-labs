@@ -6,20 +6,20 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 
 const placeholders = [
     {
-        industry: "Coaching Institutes & Academies",
-        system: "Admission Season Call Triage & Counselor Booker",
-        status: "In Deployment",
-        date: "Kota & Delhi Cohort"
-    },
-    {
         industry: "Real Estate Brokers & Developers",
         system: "99acres After-Hours Lead Callback & Site Visit AI",
         status: "In Deployment",
         date: "Bangalore & Mumbai Cohort"
     },
     {
-        industry: "Multi-Specialty Clinics & Doctors",
-        system: "24/7 Practo & WhatsApp Appointment Voice AI",
+        industry: "D2C & E-Commerce Brands",
+        system: "Post-Checkout COD Confirmation & RTO Voice AI",
+        status: "In Deployment",
+        date: "Delhi NCR & Gurgaon Cohort"
+    },
+    {
+        industry: "Insurance Agencies",
+        system: "Expiring Policy Renewal Reminder & Advisor Callback AI",
         status: "In Deployment",
         date: "Chennai & Hyderabad Cohort"
     }
@@ -97,7 +97,7 @@ export default function WorkPage() {
                                   The Founding Indian Client Program
                               </h2>
                               <p className="text-sm text-[#A3A3B3] leading-relaxed mb-10 max-w-2xl font-sans">
-                                  Because we are building our case study portfolio in India, our founding clients receive senior engineering attention, free 48-hour pilots, and highly favorable pricing in exchange for documenting the operational results.
+                                  We are looking for 5 businesses across real estate, D2C/e-commerce, and insurance to turn into our first case studies. Our founding clients receive senior engineering attention, free 48-hour live pilots, and highly favorable pricing in exchange for documenting operational results.
                               </p>
                               
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
