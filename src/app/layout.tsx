@@ -30,20 +30,22 @@ const BASE_URL = "https://boldflowlabs.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Instant Enquiry Response & AI Voice Agents for Home Services & Real Estate | BoldFlow Labs",
+    default: "AI Phone Assistants & Voice Agents for Indian SMBs | BoldFlow Labs",
     template: "%s | BoldFlow Labs",
   },
   description:
-    "We deploy AI voice agents and messaging receptionists for HVAC, roofing, solar, real estate, pool builders, and med spas across the US, UK, UAE, Canada, and Australia that answer inbound leads and book appointments in under 60 seconds, 24/7.",
+    "24/7 TRAI-compliant AI voice agents answering business calls in Hindi, Tamil, Kannada, Telugu, Marathi, Gujarati & English. Built for Indian real estate brokers, coaching institutes, and clinics.",
   keywords: [
-    "AI voice agent for home services",
-    "AI receptionist for HVAC and roofing",
-    "appointment booking AI voice",
-    "AI voice agent for real estate brokers",
-    "60 second lead response AI",
-    "inbound lead qualification voice AI",
-    "instant lead callback",
-    "AI voice receptionist",
+    "AI voice agent for Indian real estate",
+    "multilingual AI receptionist India",
+    "coaching institute AI calling agent",
+    "Tamil AI receptionist Chennai",
+    "Kannada AI voice agent Bangalore",
+    "Hindi AI voice assistant Delhi",
+    "Telugu AI booking agent Hyderabad",
+    "TRAI compliant AI voice agent",
+    "Exotel Plivo Vobiz voice AI integration",
+    "LeadSquared Practo Zoho CRM voice AI",
   ],
   authors: [{ name: "BoldFlow Labs", url: BASE_URL }],
   creator: "BoldFlow Labs",
@@ -54,26 +56,26 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_IN",
     url: BASE_URL,
     siteName: "BoldFlow Labs",
-    title: "Instant Enquiry Response & AI Voice Agents for Home Services & Real Estate | BoldFlow Labs",
+    title: "AI Phone Assistants & Voice Agents for Indian SMBs | BoldFlow Labs",
     description:
-      "We deploy AI voice agents and messaging receptionists for HVAC, roofing, solar, real estate, pool builders, and med spas across the US, UK, UAE, Canada, and Australia that answer inbound leads and book appointments in under 60 seconds, 24/7.",
+      "24/7 TRAI-compliant AI phone receptionists in Hindi, Tamil, Kannada, Telugu & English for Indian real estate brokers, coaching institutes, and clinics.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "BoldFlow Labs — Instant Enquiry Response",
+        alt: "BoldFlow Labs — AI Voice Agents for Indian SMBs",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BoldFlow Labs — AI Automation Agency",
+    title: "BoldFlow Labs — AI Phone Assistants for Indian SMBs",
     description:
-      "We deploy AI voice agents and messaging receptionists for home services, real estate, and med spas.",
+      "Multilingual 24/7 AI voice agents for Indian real estate brokers, coaching centers, and clinics.",
     creator: "@boldflowlabs",
   },
   robots: {
@@ -136,12 +138,17 @@ export default function RootLayout({
               url: BASE_URL,
               logo: `${BASE_URL}/logo.png`,
               description:
-                "BoldFlow Labs is a specialist AI automation agency designing intelligent workflow systems that eliminate operational friction and drive measurable business growth.",
+                "BoldFlow Labs deploys multilingual 24/7 AI voice phone receptionists and automated lead qualification systems for Indian real estate brokers, coaching institutes, and healthcare clinics.",
+              address: {
+                "@type": "PostalAddress",
+                addressRegion: "Kerala",
+                addressCountry: "IN"
+              },
               contactPoint: {
                 "@type": "ContactPoint",
                 contactType: "sales",
                 email: "hello@boldflowlabs.com",
-                availableLanguage: "English",
+                availableLanguage: ["English", "Hindi", "Tamil", "Kannada", "Telugu", "Marathi", "Bengali"],
               },
               sameAs: [
                 "https://linkedin.com/company/boldflowlabs",

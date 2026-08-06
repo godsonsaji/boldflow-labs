@@ -5,109 +5,80 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { 
   ArrowRight, 
-  CheckCircle2, 
-  Activity, 
-  Phone, 
   Building2, 
-  TrendingUp, 
-  Cpu, 
-  Calendar, 
-  Layers, 
-  MessageSquare,
-  Wrench,
-  Sun,
-  Home,
+  GraduationCap,
+  Stethoscope,
+  Phone,
+  MessageCircle,
   Database
 } from "lucide-react";
 
 const useCases = [
   {
-    id: "hvac",
-    category: "Home Services",
-    industry: "HVAC & Mechanical Contractors",
-    title: "24/7 After-Hours Emergency Triage & Job Dispatcher",
-    tagline: "Answering missed calls after-hours, triaging AC/heating emergencies, and scheduling service jobs into ServiceTitan.",
-    description: "When an AC breaks down in July or a furnace stops in January, homeowners don't leave voicemails—they call the next contractor. Our AI receptionist answers within 2 rings 24/7/365, triages emergency urgency, collects customer details, and books service jobs directly into your dispatcher calendar.",
+    id: "realestate",
+    category: "Real Estate",
+    industry: "Real Estate Brokers & Developers",
+    title: "99acres & MagicBricks After-Hours AI Call Concierge",
+    tagline: "Calling back portal leads in under 60 seconds in Kannada, Tamil, Hindi, or Hinglish to book site visits.",
+    description: "58% of Indian property portal inquiries arrive after 7 PM. When a buyer calls your sales office at 8:30 PM, lines go unanswered. Our AI voice agent calls back in under 60 seconds, verifies budget, locality, and configuration (2 BHK / 3 BHK), and schedules a site visit on your calendar.",
     kpis: [
-      { label: "Enquiry Latency", value: "< 60 Secs" },
-      { label: "After-Hours Call Capture", value: "100%" },
-      { label: "CRM Sync", value: "ServiceTitan / Housecall Pro" }
+      { label: "Speed-to-Lead", value: "< 60 Secs" },
+      { label: "After-Hours Capture", value: "100%" },
+      { label: "CRM Sync", value: "LeadSquared / Zoho CRM" }
     ],
     flow: [
-      { step: "01", label: "Inbound Call / Form", desc: "Homeowner calls emergency line or submits online service request." },
-      { step: "02", label: "Emergency Triage", desc: "AI agent classifies heating/cooling urgency and collects job site details." },
-      { step: "03", label: "Dispatcher Slot Sync", desc: "Checks technician availability and open time windows in real-time." },
-      { step: "04", label: "Job Confirmation", desc: "Books appointment slot, sends SMS confirmation, and dispatches tech." }
+      { step: "01", label: "Portal Inquiry / Call", desc: "Buyer submits form on 99acres, MagicBricks, or Meta ad after office hours." },
+      { step: "02", label: "60s Outbound Callback", desc: "AI triggers call to buyer's phone speaking in caller's language." },
+      { step: "03", label: "Qualify Budget & Locality", desc: "Verifies move-in timeframe, pre-approval status, and site visit preference." },
+      { step: "04", label: "WhatsApp & Calendar Sync", desc: "Books site visit, sends WhatsApp pin drop, and pushes lead to LeadSquared." }
     ],
-    integration: "ServiceTitan / Housecall Pro / Jobber / Google Calendar",
+    integration: "LeadSquared / Zoho CRM / Google Calendar / WhatsApp API",
     badge: "Most Popular",
     color: "#0047FF"
   },
   {
-    id: "roofing",
-    category: "Home Services",
-    industry: "Roofing & Exterior Contracting",
-    title: "Storm Lead Callback & Inspection Booking Agent",
-    tagline: "Reaching out to hail and storm damage web leads in under 60 seconds to book inspection appointments.",
-    description: "During severe storm seasons, roof inspection lead volume spikes 10x. Speed-to-lead dictates who locks in the roof replacement. Our AI outbound agent rings web form submissions within 45 seconds, screens roof age and insurance status, and books inspection estimates for sales reps.",
+    id: "coaching",
+    category: "Education",
+    industry: "Coaching Institutes & Academies",
+    title: "Admission Season Parent Inquiry & Counseling Booker",
+    tagline: "Handling 80+ daily calls during JEE/NEET admission spikes across Kota, Delhi NCR, and South Indian hubs.",
+    description: "During peak admission season (May–July), coaching center staff are overwhelmed by 80–100 parent calls per day. Our AI receptionist answers in 10 seconds in Hindi, Tamil, Telugu, or English, captures student target exam details, and books counselor appointments.",
     kpis: [
-      { label: "Speed-to-Lead Interval", value: "< 60 Secs" },
-      { label: "Inspection Booking Rate", value: "84%" },
-      { label: "CRM Sync Latency", value: "Real-Time" }
+      { label: "Call Answer Latency", value: "< 10 Secs" },
+      { label: "Peak Capacity", value: "Unlimited Concurrent" },
+      { label: "Enrollment Yield", value: "40+ Extra Calls/Day" }
     ],
     flow: [
-      { step: "01", label: "Form Submission", desc: "Homeowner requests estimate via Facebook Ad, Google, or website form." },
-      { step: "02", label: "Immediate Outbound Call", desc: "AI triggers outbound phone call or SMS sequence in under 60 seconds." },
-      { step: "03", label: "Qualify Damage Intent", desc: "Confirms storm damage type, roof age, and insurance claim status." },
-      { step: "04", label: "Inspector Booking", desc: "Schedules free inspection with rep and writes full call transcript to CRM." }
+      { step: "01", label: "Parent Phone Call", desc: "Parent calls coaching center at 8:30 PM asking about batch timings." },
+      { step: "02", label: "Multilingual AI Triage", desc: "AI converses in Hindi/Tamil/Telugu, collecting class, exam target, and budget." },
+      { step: "03", label: "Counseling Slot Sync", desc: "Checks Google Calendar for open counselor slots and books appointment." },
+      { step: "04", label: "WhatsApp Confirmation", desc: "Sends fee structure PDF and appointment confirmation via WhatsApp." }
     ],
-    integration: "AccuLynx / HubSpot / Jobber / Salesforce",
+    integration: "LeadSquared / Zoho CRM / Excel / WhatsApp API",
     badge: "High Conversion",
     color: "#FF5A1F"
   },
   {
-    id: "realestate",
-    category: "Real Estate",
-    industry: "Real Estate Brokerages & Teams",
-    title: "Zillow & Web Lead Qualification Concierge",
-    tagline: "Reactivating cold CRM databases and qualifying buyer leads for real estate agents 24/7.",
-    description: "Real estate agents spend up to 4 hours a day chasing cold lead form submissions. Our AI real estate concierge reaches out to Zillow, Realtor.com, and website leads in under a minute, qualifies budget and timeframe, and schedules buyer consultation calls onto rep calendars.",
+    id: "clinic",
+    category: "Healthcare",
+    industry: "Clinics & Multi-Specialty Practices",
+    title: "Sunday & After-Hours Patient Appointment Booking Agent",
+    tagline: "Answering patient phone inquiries 24/7, reducing empty appointment slots for urban clinics.",
+    description: "Front-desk staff putting patients on hold leads to dropped calls and empty doctor schedules. Our AI phone assistant handles routine appointment bookings, screens patient consult requirements, and syncs directly with Practo and Google Calendar.",
     kpis: [
-      { label: "Database Reactivation", value: "3.8x Yield" },
-      { label: "Agent Time Saved", value: "15 Hrs/Wk" },
-      { label: "Response Latency", value: "Instant" }
+      { label: "Slot Recovery", value: "₹45,000 / Mo" },
+      { label: "Patient No-Show Drop", value: "-40%" },
+      { label: "Response Latency", value: "< 200ms" }
     ],
     flow: [
-      { step: "01", label: "Portal Enquiry", desc: "Buyer submits inquiry on Zillow, Realtor.com, or team website." },
-      { step: "02", label: "Instant Qualification", desc: "AI verifies pre-approval status, desired neighborhood, and move-in timeline." },
-      { step: "03", label: "Schedule Call", desc: "Matches available agent calendar slot and books 15-min discovery call." },
-      { step: "04", label: "Follow Up Boss Sync", desc: "Syncs buyer profile, notes, and call audio directly into Follow Up Boss." }
+      { step: "01", label: "Patient Call", desc: "Patient calls clinic line on Sunday or evening for dental/general consultation." },
+      { step: "02", label: "Natural Language Booking", desc: "AI verifies consult reason, doctor preference, and open time slots." },
+      { step: "03", label: "Practo / Calendar Write", desc: "Writes appointment directly into doctor's Practo or Google Calendar." },
+      { step: "04", label: "WhatsApp Reminder", desc: "Dispatches automated location pin and pre-appointment reminder." }
     ],
-    integration: "Follow Up Boss / KvCORE / Salesforce / HubSpot",
+    integration: "Practo / Google Calendar / WhatsApp Business API",
     badge: "Top ROI",
-    color: "#FFB020"
-  },
-  {
-    id: "solar",
-    category: "Clean Energy",
-    industry: "Solar Installers & Clean Energy",
-    title: "Solar Bill Qualification & Consultation Scheduler",
-    tagline: "Qualifying monthly electric bill thresholds and scheduling residential solar consultations.",
-    description: "Solar ad campaigns generate thousands of clicks, but only homeowners with $150+ monthly electric bills and owned roofs qualify. Our AI agent calls incoming leads instantly, verifies utility bill eligibility, and schedules solar design consultations.",
-    kpis: [
-      { label: "Call Answer Rate", value: "100%" },
-      { label: "Consultation Conversion", value: "76%" },
-      { label: "After-Hours Capture", value: "24/7" }
-    ],
-    flow: [
-      { step: "01", label: "Ad Lead Capture", desc: "Homeowner requests free solar quote via online quiz or ad." },
-      { step: "02", label: "Utility Verification", desc: "AI agent asks average electric bill amount and roof ownership." },
-      { step: "03", label: "Design Consultation", desc: "Schedules remote or on-site solar proposal presentation." },
-      { step: "04", label: "CRM Pipeline Update", desc: "Pushes qualified lead details and bill amount straight into CRM." }
-    ],
-    integration: "HubSpot / Salesforce / Sunbase / Google Calendar",
-    badge: "24/7 Qualification",
-    color: "#0047FF"
+    color: "#10B981"
   }
 ];
 
@@ -116,7 +87,7 @@ export default function UseCasesPage() {
 
   const filteredCases = activeTab === "all" 
     ? useCases 
-    : useCases.filter(c => c.id === activeTab || c.category === activeTab);
+    : useCases.filter(c => c.id === activeTab || c.category.toLowerCase().includes(activeTab));
 
   return (
     <div className="min-h-screen bg-[#0A0A0F] pt-40 pb-32">
@@ -126,23 +97,22 @@ export default function UseCasesPage() {
         
         {/* Header Block */}
         <header className="mb-20 max-w-4xl">
-          <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-4">{"//"} SYSTEM TEMPLATE LIBRARY</span>
+          <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-4">// INDIAN VERTICAL BLUEPRINTS</span>
           <h1 className="text-h1 text-[#F5F6FA] mb-6 tracking-tight">
             Vertical Use Cases
           </h1>
           <p className="text-body-lg">
-            Explore how we build specific, deterministic conversational pathways for healthcare clinics, education institutes, real estate developers, and diagnostic labs to stop lead leaks and drive bookings.
+            Explore how we deploy multilingual conversational voice agents tailored for Indian real estate brokers, coaching institutes, and healthcare clinics to capture missed calls and drive bookings.
           </p>
         </header>
 
         {/* Filter Navigation */}
         <div className="flex overflow-x-auto pb-4 sm:pb-6 gap-2 no-scrollbar border-b border-[#1C1C24] mb-16 sm:flex-wrap">
           {[
-            { id: "all", label: "All Use Cases" },
-            { id: "clinic", label: "Clinics & Hospitals" },
-            { id: "realestate", label: "Real Estate Developers" },
-            { id: "education", label: "Education Admissions" },
-            { id: "labs", label: "Diagnostic Labs" }
+            { id: "all", label: "All Solutions" },
+            { id: "realestate", label: "Real Estate Brokers" },
+            { id: "coaching", label: "Coaching Institutes" },
+            { id: "clinic", label: "Clinics & Doctors" }
           ].map(tab => (
             <button
               key={tab.id}
@@ -161,7 +131,7 @@ export default function UseCasesPage() {
         {/* Use Cases Grid */}
         <div className="flex flex-col gap-16">
           <AnimatePresence mode="wait">
-            {filteredCases.map((caseItem, idx) => (
+            {filteredCases.map((caseItem) => (
               <motion.div
                 key={caseItem.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -241,7 +211,7 @@ export default function UseCasesPage() {
                         href="/contact" 
                         className="py-4 w-full text-center text-xs font-mono font-bold uppercase tracking-wider btn-primary flex items-center justify-center gap-2 rounded-[4px]"
                       >
-                        Request {caseItem.industry} Setup Proposal <ArrowRight className="w-4 h-4" />
+                        Request {caseItem.industry} Solution Proposal <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
                   </div>

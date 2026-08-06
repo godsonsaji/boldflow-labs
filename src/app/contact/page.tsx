@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ArrowRight, Mail, Clock, CalendarRange } from "lucide-react";
+import { CheckCircle2, ArrowRight, Mail, Clock, CalendarRange, MessageCircle, Phone } from "lucide-react";
 
 const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
 
 const processSteps = [
-    { title: "Schedule a Discovery Call", desc: "Confirmed natively within 1 business day via our automated dispatch system." },
-    { title: "We Listen Before We Recommend", desc: "We map your specific business processes and operational friction points first." },
-    { title: "We Share What We See", desc: "Honest assessment of exactly where automation will drive immediate ROI." },
-    { title: "You Decide The Timeline", desc: "Zero hard closes. We propose the technical architecture, you set the pace." }
+    { title: "Schedule a Discovery Call or Pilot", desc: "Confirmed in under 1 business day or instant via WhatsApp." },
+    { title: "We Map Your Phone Bottlenecks", desc: "We review your peak call hours, target languages, and current CRM." },
+    { title: "We Build & Test Your AI Agent", desc: "Script writing, language tuning, Exotel/Plivo number setup, and CRM mapping." },
+    { title: "Go Live & Capture Missed Calls", desc: "Your 24/7 AI voice agent starts answering calls in under 10 seconds." }
 ];
 
 export default function ContactPage() {
@@ -21,7 +21,7 @@ export default function ContactPage() {
         name: "",
         email: "",
         company: "",
-        service: "lead_followup",
+        service: "pilot_request",
         message: "",
     });
 
@@ -55,7 +55,7 @@ export default function ContactPage() {
             }
 
             setIsSubmitted(true);
-            setFormData({ name: "", email: "", company: "", service: "lead_followup", message: "" });
+            setFormData({ name: "", email: "", company: "", service: "pilot_request", message: "" });
         } catch (err) {
             console.error("Webhook submission error:", err);
             setError(
@@ -80,7 +80,7 @@ export default function ContactPage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-[11px] tracking-wider text-[#0047FF] font-mono font-bold mb-6 uppercase"
                     >
-                        {"//"} Initialize Transmission
+                        {"//"} INITIALIZE CONTACT & PILOT
                     </motion.div>
 
                     <motion.h1
@@ -89,7 +89,7 @@ export default function ContactPage() {
                         transition={{ delay: 0.1 }}
                         className="text-h1 text-[#F5F6FA] mb-8 max-w-4xl tracking-tight"
                     >
-                        Let's Talk About Your Operations.
+                        Let's Talk About Your Call Volume.
                     </motion.h1>
 
                     <motion.p
@@ -98,7 +98,7 @@ export default function ContactPage() {
                         transition={{ delay: 0.2 }}
                         className="text-body-lg max-w-2xl"
                     >
-                        Real conversations. Zero corporate sales narrative. Secure your free 30-minute system diagnostic and discover if voice or text automation is right for you.
+                        Real conversations in your customer's language. Zero sales pressure. Book a free 30-minute diagnostic call or apply for a 48-hour free pilot on your phone line.
                     </motion.p>
                 </div>
             </section>
@@ -113,6 +113,15 @@ export default function ContactPage() {
                             <h3 className="text-lg font-bold font-space text-[#F5F6FA]">Direct Channels</h3>
                             <ul className="space-y-6">
                                 <li className="flex gap-4 items-start">
+                                    <div className="p-2.5 bg-[#111116] border border-[#1C1C24] rounded-sm text-[#25D366] shrink-0">
+                                        <MessageCircle className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <span className="text-[10px] text-[#626272] uppercase font-mono tracking-wider block mb-1">WhatsApp Instant:</span>
+                                        <a href="https://wa.me/919447178166?text=Hi%20BoldFlow%20Labs,%20I'd%20like%20to%20learn%20more%20about%20your%20AI%20voice%20agents." target="_blank" rel="noopener noreferrer" className="text-base sm:text-lg font-mono text-[#25D366] hover:underline font-bold">+91 9447178166</a>
+                                    </div>
+                                </li>
+                                <li className="pt-6 border-t border-[#1C1C24] flex gap-4 items-start">
                                     <div className="p-2.5 bg-[#111116] border border-[#1C1C24] rounded-sm text-[#0047FF] shrink-0">
                                         <Mail className="w-5 h-5" />
                                     </div>
@@ -163,34 +172,35 @@ export default function ContactPage() {
                         <div className="bg-[#0A0A0F] border border-[#1C1C24] p-8 md:p-12 relative group hover:border-[#0047FF]/20 transition-all duration-300 rounded-[8px] shadow-2xl">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_top_right,rgba(0,71,255,0.03),transparent_70%)]" />
 
-                            <h3 className="text-xl font-bold font-space text-white tracking-tight mb-8">Request a Diagnostic</h3>
+                            <h3 className="text-xl font-bold font-space text-white tracking-tight mb-8">Request Diagnostic or Free Pilot</h3>
 
                             {!isSubmitted ? (
                                 <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                         <div className="flex flex-col relative w-full">
                                             <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Full Name *</label>
-                                            <input required name="name" value={formData.name} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. John Doe" />
+                                            <input required name="name" value={formData.name} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. Rajesh Kumar" />
                                         </div>
                                         <div className="flex flex-col relative w-full">
-                                            <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Work Email *</label>
-                                            <input required name="email" value={formData.email} onChange={handleChange} type="email" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. name@company.com" />
+                                            <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Work Email / Phone *</label>
+                                            <input required name="email" value={formData.email} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. name@company.com or +91..." />
                                         </div>
                                     </div>
 
                                     <div className="flex flex-col relative w-full">
-                                        <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Company Name</label>
-                                        <input name="company" value={formData.company} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. Vance HVAC & Mechanical" />
+                                        <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Business / Institution Name</label>
+                                        <input name="company" value={formData.company} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. Apex Academy / Prime Realtors" />
                                     </div>
 
                                     <div className="flex flex-col relative w-full">
                                         <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">What do you need help with?</label>
                                         <div className="relative">
                                             <select name="service" value={formData.service} onChange={handleChange} className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors appearance-none cursor-pointer">
-                                                <option value="lead_followup">24/7 AI Inbound Receptionist</option>
-                                                <option value="outbound">60-Second Outbound Lead Callbacks</option>
-                                                <option value="scheduling">ServiceTitan / CRM Scheduling Sync</option>
-                                                <option value="custom_workflow">Stale Database Lead Reactivation</option>
+                                                <option value="pilot_request">Free 48-Hour Pilot Application (3 Spots)</option>
+                                                <option value="real_estate">Real Estate 99acres AI Voice Agent</option>
+                                                <option value="coaching">Coaching Institute Admission Voice AI</option>
+                                                <option value="clinic">Clinic Appointment Voice AI</option>
+                                                <option value="crm_sync">LeadSquared / Zoho / Practo Sync</option>
                                                 <option value="unsure">Not sure, I need guidance</option>
                                             </select>
                                             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#626272] text-[10px]">▼</div>
@@ -198,8 +208,8 @@ export default function ContactPage() {
                                     </div>
 
                                     <div className="flex flex-col relative w-full mb-4">
-                                        <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Tell us about your current bottlenecks (Optional)</label>
-                                        <textarea name="message" value={formData.message} onChange={handleChange} rows={4} className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors resize-none" placeholder="Provide context on your monthly call volume, current CRM, or where you're losing missed calls..." />
+                                        <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Tell us about your call volume & languages (Optional)</label>
+                                        <textarea name="message" value={formData.message} onChange={handleChange} rows={4} className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors resize-none" placeholder="Provide details on your monthly call volume, target cities/languages (Hindi, Tamil, Kannada, etc.), or current CRM..." />
                                     </div>
 
                                     {error && (
@@ -210,19 +220,18 @@ export default function ContactPage() {
                                         {isSubmitting ? (
                                             <span className="animate-pulse">Sending Request...</span>
                                         ) : (
-                                            <span className="flex items-center gap-2">Book My Free Strategy Call <ArrowRight className="w-4 h-4" /></span>
+                                            <span className="flex items-center gap-2">Submit Request <ArrowRight className="w-4 h-4" /></span>
                                         )}
                                     </button>
 
-                                    <div className="text-center pt-2">
+                                    <div className="text-center pt-2 flex items-center justify-center gap-4">
                                         <a
-                                            href="https://cal.com/boldflow-labs/30min"
+                                            href="https://wa.me/919447178166?text=Hi%20BoldFlow%20Labs,%20I'd%20like%20to%20learn%20more%20about%20your%20AI%20voice%20agents."
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-xs font-mono text-[#A3A3B3] hover:text-[#0047FF] transition-colors inline-flex items-center gap-1.5"
+                                            className="text-xs font-mono text-[#25D366] hover:underline inline-flex items-center gap-1.5 font-bold"
                                         >
-                                            <span>Or schedule directly on calendar</span>
-                                            <CalendarRange className="w-3.5 h-3.5 text-[#0047FF]" />
+                                            <MessageCircle className="w-3.5 h-3.5" /> Chat on WhatsApp
                                         </a>
                                     </div>
                                 </form>
@@ -235,7 +244,7 @@ export default function ContactPage() {
                                     <CheckCircle2 className="w-16 h-16 text-[#0047FF] mb-6" />
                                     <h4 className="text-xl font-bold font-space text-[#F5F6FA] mb-4">Request Received</h4>
                                     <p className="text-[#A3A3B3] text-sm leading-relaxed max-w-sm mb-6">
-                                        Thank you for reaching out. We will review your details and send you a link to book your strategy call within 1 business day.
+                                        Thank you for reaching out. We will review your details and send you a link to schedule your strategy call or set up your 48-hour pilot within 1 business day.
                                     </p>
                                     <a
                                         href="https://cal.com/boldflow-labs/30min"

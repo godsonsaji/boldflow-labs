@@ -8,77 +8,77 @@ const services = [
     {
         icon: "01",
         title: "24/7 AI Inbound Voice Receptionists",
-        subheadline: "Instant Call Answer · Triage & Booking · ServiceTitan & CRM Sync",
-        description: "We deploy custom-trained conversational voice agents that answer inbound calls on the second ring, 24/7/365. They handle caller interruptions, screen emergency urgency, answer FAQs, and book appointments directly on your team's calendar.",
+        subheadline: "Instant 10s Call Answer · Multilingual Triage · LeadSquared & Practo Sync",
+        description: "We deploy custom-trained conversational voice agents that answer inbound business calls on the second ring, 24/7/365. They converse naturally in Hindi, Tamil, Kannada, Telugu, Marathi, Bengali, Hinglish, and English, answering FAQs and booking appointments directly on your calendar.",
         whatsIncluded: [
-            "Sub-120ms voice response latency for natural, human-like caller experience",
-            "Emergency triage rules for HVAC, plumbing, roofing, and property enquiries",
-            "Direct calendar integration with ServiceTitan, Follow Up Boss, HubSpot & Jobber",
-            "Full call audio recordings, instant transcripts, and SMS confirmations to caller"
+            "Sub-200ms voice response latency over Exotel, Plivo, and Vobiz Indian VoIP trunks",
+            "Custom triage rules for coaching admissions, real estate site visits, and clinic consults",
+            "Direct calendar integration with LeadSquared, Zoho CRM, Practo, and Google Calendar",
+            "Instant WhatsApp confirmation messages sent to caller automatically"
         ],
-        outcome: "Zero missed calls after-hours or during peak dispatch hours — capturing 100% of high-intent leads"
+        outcome: "Zero missed calls after 7 PM or on Sundays — capturing 100% of high-intent portal and ad leads"
     },
     {
         icon: "02",
-        title: "60-Second Outbound Lead Callbacks",
-        subheadline: "Web Form Hook · Speed-to-Lead · Immediate Voice Qualification",
-        description: "Speed-to-lead dictates close rates. When a homeowner or buyer submits a form on Facebook, Google Ads, or your website, our system calls them back in under 60 seconds to qualify intent and book a consultation.",
+        title: "60-Second Outbound Portal & Ad Callbacks",
+        subheadline: "99acres / MagicBricks / Meta Hook · Instant Voice Qualification",
+        description: "Speed-to-lead dictates close rates. When a parent or property buyer submits a form on 99acres, MagicBricks, Meta Ads, or your website, our system calls them back in under 60 seconds to qualify intent and book a consultation.",
         whatsIncluded: [
-            "Automated webhook trigger initiating outbound calls within 45 seconds of form submit",
-            "Conversational screening verifying budget, project scope, and timeline",
-            "Live transfer capability to on-duty sales reps or instant calendar booking",
-            "Automated multi-step SMS retry sequences if the lead misses the initial call"
+            "Automated webhook trigger initiating outbound calls within 45 seconds of portal lead form submit",
+            "Conversational screening verifying budget, preferred location/batch, and move-in timeline",
+            "Live transfer capability to on-duty sales brokers or counselors",
+            "Automated multi-step WhatsApp text retry sequences if the lead misses the initial call"
         ],
-        outcome: "391% higher lead contact rate by locking in appointments before competitors respond"
+        outcome: "300%+ higher lead contact rate by locking in site visits before competitors even wake up"
     },
     {
         icon: "03",
-        title: "CRM & Field Dispatch Pipeline Automation",
-        subheadline: "ServiceTitan · Follow Up Boss · HubSpot · Jobber · Salesforce",
-        description: "We eliminate manual data entry by wiring deep bidirectional webhooks between your voice agents, ad platforms, and trade CRM software.",
+        title: "CRM & WhatsApp Pipeline Automation",
+        subheadline: "LeadSquared · Zoho CRM · Practo · WhatsApp Business API · Google Calendar",
+        description: "We eliminate manual data entry by wiring deep bidirectional webhooks between your voice agents, ad platforms, and CRM software.",
         whatsIncluded: [
-            "Instant lead enrichment and job creation in ServiceTitan, Follow Up Boss, or HubSpot",
-            "Automatic technician or real estate agent assignment based on zip code and schedule",
-            "Zero manual CRM data entry — call summaries, tags, and transcripts push instantly",
-            "Automated post-service follow-up sequences for reviews and referral requests"
+            "Instant lead enrichment and ticket creation in LeadSquared, Zoho CRM, or Practo",
+            "Automatic sales rep or counselor assignment based on city, course, and budget",
+            "Zero manual CRM entry — call audio summaries, tags, and transcripts push instantly",
+            "Automated post-call follow-up sequences via WhatsApp Business API"
         ],
-        outcome: "Clean, automated pipeline hygiene with zero sales rep overhead"
+        outcome: "Clean, automated pipeline hygiene with zero manual front-desk data entry"
     },
     {
         icon: "04",
         title: "Database Reactivation & Outbound AI Campaigns",
-        subheadline: "Stale Lead Reactivation · Seasonal Tune-Ups · Buyer Check-Ins",
-        description: "Turn cold leads sitting in your CRM into booked appointments. Our AI agents execute targeted outbound phone and SMS campaigns to reactivate past clients and past quotes.",
+        subheadline: "Stale Lead Reactivation · Admission Deadline Calls · EMI Due Reminders",
+        description: "Turn cold leads sitting in your CRM into booked revenue. Our AI agents execute targeted outbound phone and WhatsApp campaigns to reactivate past inquiries and remind clients of upcoming deadlines.",
         whatsIncluded: [
             "Automated outbound campaign triggers targeting leads older than 30-90 days",
-            "Conversational re-engagement pitching seasonal HVAC maintenance, roof checks, or new property listings",
-            "Real-time objection handling and calendar slot booking",
-            "Automatic opt-out compliance and DNC list filtering"
+            "Conversational re-engagement pitching upcoming batches, new property launches, or health checkups",
+            "Real-time objection handling and calendar slot booking in native languages",
+            "Automatic DND filter compliance according to TRAI guidelines"
         ],
-        outcome: "Recovered revenue from existing CRM assets without additional ad spend"
+        outcome: "Recovered revenue from existing CRM database without extra advertising spend"
     },
     {
         icon: "05",
-        title: "Multi-Channel SMS & Conversational Automation",
-        subheadline: "Instant Text Response · Web Chat Sync · 24/7 After-Hours Chat",
-        description: "Meet clients on their preferred channel. We deploy intelligent conversational bots that unite SMS text, web chat, and messaging under one unified dispatch engine.",
+        title: "Multi-Channel WhatsApp & Conversational Automation",
+        subheadline: "Instant Text Response · Web Chat Sync · 24/7 WhatsApp AI Assistant",
+        description: "Meet Indian consumers where they live: WhatsApp. We deploy intelligent conversational bots that unite phone calls, SMS text, and WhatsApp under one unified engine.",
         whatsIncluded: [
-            "Instant 2-way SMS text sequences following up on missed calls and web forms",
-            "Smart web chat widgets trained on your exact pricing policies, service area, and FAQs",
-            "Seamless handoff protocols to human dispatchers when complex issues arise",
-            "Automated appointment reminders and location pin drops sent via text"
+            "Instant 2-way WhatsApp text sequences following up on missed calls and web forms",
+            "Smart web chat widgets trained on your exact pricing policies, batch timings, and FAQs",
+            "Seamless handoff protocols to human staff when complex questions arise",
+            "Automated appointment reminders and location pin drops sent directly via WhatsApp"
         ],
-        outcome: "Faster response times, lower no-show rates, and 24/7 coverage on all text channels"
+        outcome: "Faster response times, lower no-show rates, and 24/7 coverage across WhatsApp"
     },
     {
         icon: "06",
         title: "Revenue Recovery & Voice Analytics Dashboards",
-        subheadline: "Real-Time Tracking · Call Outcomes · Missed Lead Analytics",
+        subheadline: "Real-Time Call Analytics · Lead Latency · Call Outcome Audits",
         description: "Ditch manual tracking spreadsheets. We build visual analytics panels mapping your call answer speed, appointment booking rate, and recaptured revenue.",
         whatsIncluded: [
-            "Custom dashboard mapping call volume, speed-to-lead latency, and close rates",
-            "Real-time call transcription analysis identifying top customer questions and objections",
-            "Weekly automated executive summaries delivered directly to your inbox",
+            "Custom dashboard mapping call volume, speed-to-lead latency, and conversion rates",
+            "Real-time call transcription analysis identifying top parent, buyer, and patient objections",
+            "Weekly automated executive summaries delivered directly to your email or WhatsApp",
             "Complete transparency on ROI and cost per booked appointment"
         ],
         outcome: "Decisions grounded in real-time operational data, not gut feeling"
@@ -99,7 +99,7 @@ export default function ServicesPage() {
                         transition={{ duration: 0.4 }}
                         className="text-[11px] tracking-wider text-[#0047FF] font-mono font-bold mb-6 uppercase"
                     >
-                        {"//"} WHAT WE BUILD
+                        {"//"} WHAT WE BUILD FOR INDIAN SMBS
                     </motion.div>
                     
                     <motion.h1 
@@ -108,7 +108,7 @@ export default function ServicesPage() {
                         transition={{ duration: 0.5, delay: 0.1 }}
                         className="text-h1 text-[#F5F6FA] mb-8 max-w-4xl tracking-tight"
                     >
-                        AI Systems That Work While You Sleep.
+                        AI Voice Systems Built for Indian Businesses.
                     </motion.h1>
 
                     <motion.p 
@@ -117,7 +117,7 @@ export default function ServicesPage() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="text-body-lg max-w-2xl leading-relaxed"
                     >
-                        We don't sell software templates. We engineer deterministic outcomes. Every solution BoldFlow Labs deploys is designed from first principles around your business — built to eliminate manual friction, compress sales cycles, and recover lost leads.
+                        We don't sell generic templates. Every voice assistant BoldFlow Labs deploys is built from first principles for Indian real estate, education, and healthcare operations — integrated with Exotel, Plivo, LeadSquared, Zoho, Practo, and WhatsApp.
                     </motion.p>
                 </div>
             </section>
@@ -125,7 +125,7 @@ export default function ServicesPage() {
             {/* ── SERVICES LIST ────────────────────────── */}
             <section className="py-24 lg:py-32 bg-[#111116] border-b border-[#1C1C24] relative">
                 <div className="max-w-[1000px] mx-auto px-6 flex flex-col space-y-24 md:space-y-32 relative z-10">
-                    {services.map((svc, index) => (
+                    {services.map((svc) => (
                         <motion.div
                             key={svc.icon}
                             id={svc.icon}
@@ -197,7 +197,7 @@ export default function ServicesPage() {
                     </h2>
                     
                     <p className="text-body-lg text-[#A3A3B3] mb-10 max-w-lg mx-auto leading-relaxed">
-                        Book a free call and we'll tell you honestly. We look at your current workflow and give you a straightforward recommendation on what to automate first.
+                        Book a free strategy call or test our 48-hour pilot. We look at your current call volume and tell you honestly what to automate first.
                     </p>
 
                     <div className="flex flex-col items-center gap-6">

@@ -4,21 +4,28 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot } from "lucide-react";
+import { MessageCircle, ChevronDown } from "lucide-react";
 
 const navLinks = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/use-cases", label: "Use Cases" },
-    { href: "/work", label: "Work" },
     { href: "/pricing", label: "Pricing" },
+    { href: "/work", label: "Work" },
     { href: "/about", label: "About" },
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" },
 ];
 
+const solutionLinks = [
+    { href: "/real-estate-ai-agent", label: "Real Estate Brokers" },
+    { href: "/coaching-institute-ai-agent", label: "Coaching Institutes" },
+    { href: "/clinic-ai-agent", label: "Clinics & Doctors" },
+];
+
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [solutionsOpen, setSolutionsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
 
@@ -33,6 +40,7 @@ export default function Navbar() {
     useEffect(() => {
         // eslint-disable-next-line
         setIsOpen(false);
+        setSolutionsOpen(false);
     }, [pathname]);
 
     useEffect(() => {
@@ -68,14 +76,14 @@ export default function Navbar() {
                         </Link>
 
                         {/* Desktop Nav */}
-                        <div className="hidden lg:flex items-center justify-center flex-1 gap-6">
+                        <div className="hidden lg:flex items-center justify-center flex-1 gap-5">
                             {navLinks.map((link) => {
                                 const isActive = pathname === link.href;
                                 return (
                                     <Link
                                         key={link.href}
                                         href={link.href}
-                                        className={`group relative text-[13px] uppercase tracking-wider font-semibold font-mono transition-colors duration-150 ${
+                                        className={`group relative text-[12px] uppercase tracking-wider font-semibold font-mono transition-colors duration-150 ${
                                             isActive ? "text-[#0047FF]" : "text-[#A3A3B3] hover:text-[#F5F6FA]"
                                         }`}
                                     >
@@ -83,15 +91,47 @@ export default function Navbar() {
                                     </Link>
                                 );
                             })}
+
+                            {/* Dropdown for Solutions */}
+                            <div className="relative group/dropdown">
+                                <button
+                                    onClick={() => setSolutionsOpen(!solutionsOpen)}
+                                    className="flex items-center gap-1 text-[12px] uppercase tracking-wider font-semibold font-mono text-[#A3A3B3] hover:text-[#F5F6FA] transition-colors py-2"
+                                >
+                                    <span>Solutions</span>
+                                    <ChevronDown className="w-3 h-3 text-[#0047FF]" />
+                                </button>
+
+                                <div className="absolute top-full left-0 hidden group-hover/dropdown:flex flex-col bg-[#111116] border border-[#1C1C24] p-3 rounded-[6px] shadow-2xl min-w-[210px] gap-2 z-50">
+                                    {solutionLinks.map((sLink) => (
+                                        <Link
+                                            key={sLink.href}
+                                            href={sLink.href}
+                                            className="text-[12px] font-mono text-[#A3A3B3] hover:text-white hover:bg-[#0047FF]/10 p-2 rounded transition-colors"
+                                        >
+                                            {sLink.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
 
-                        {/* CTA + Mobile Toggle */}
-                        <div className="flex items-center justify-end shrink-0 gap-4">
+                        {/* CTA + WhatsApp + Mobile Toggle */}
+                        <div className="flex items-center justify-end shrink-0 gap-3">
+                            <a
+                                href="https://wa.me/919447178166?text=Hi%20BoldFlow%20Labs,%20I'd%20like%20to%20learn%20more%20about%20your%20AI%20voice%20agents."
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hidden lg:inline-flex items-center gap-1.5 px-3.5 py-2 text-[11px] uppercase font-semibold font-mono tracking-wider bg-[#25D366]/10 text-[#25D366] border border-[#25D366]/30 hover:bg-[#25D366] hover:text-black rounded-[4px] transition-colors"
+                            >
+                                <MessageCircle className="w-3.5 h-3.5" /> Chat on WhatsApp
+                            </a>
+
                             <Link
                                 href="/contact"
-                                className="hidden lg:inline-flex px-5 py-2 text-[12px] uppercase font-semibold font-mono tracking-wider btn-primary"
+                                className="hidden lg:inline-flex px-4 py-2 text-[11px] uppercase font-semibold font-mono tracking-wider btn-primary rounded-[4px]"
                             >
-                                Book a Free Call
+                                Book Free Call
                             </Link>
 
                             <button
@@ -118,7 +158,7 @@ export default function Navbar() {
                         transition={{ duration: 0.15 }}
                         className="fixed inset-0 top-[80px] z-40 bg-[#0A0A0F] lg:hidden flex flex-col justify-start overflow-y-auto"
                     >
-                        <div className="px-6 py-12 flex flex-col gap-6">
+                        <div className="px-6 py-8 flex flex-col gap-5">
                             {navLinks.map((link, i) => {
                                 const isActive = pathname === link.href;
                                 return (
@@ -126,13 +166,13 @@ export default function Navbar() {
                                         key={link.href}
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
-                                        transition={{ duration: 0.2, delay: i * 0.05 }}
+                                        transition={{ duration: 0.2, delay: i * 0.03 }}
                                     >
                                         <Link
                                             href={link.href}
                                             onClick={() => setIsOpen(false)}
                                             style={{ fontFamily: "var(--font-space), 'Space Grotesk', sans-serif" }}
-                                            className={`text-[28px] font-bold tracking-tight flex items-center transition-colors ${
+                                            className={`text-[24px] font-bold tracking-tight flex items-center transition-colors ${
                                                 isActive ? "text-[#0047FF]" : "text-[#A3A3B3] hover:text-[#F5F6FA]"
                                             }`}
                                         >
@@ -141,17 +181,42 @@ export default function Navbar() {
                                     </motion.div>
                                 );
                             })}
+
+                            <div className="pt-4 border-t border-[#1C1C24]">
+                                <span className="text-[10px] font-mono text-[#0047FF] uppercase tracking-widest block mb-3 font-bold">Solutions</span>
+                                <div className="flex flex-col gap-3">
+                                    {solutionLinks.map((sLink) => (
+                                        <Link
+                                            key={sLink.href}
+                                            href={sLink.href}
+                                            onClick={() => setIsOpen(false)}
+                                            className="text-sm font-mono text-[#A3A3B3] hover:text-white"
+                                        >
+                                            → {sLink.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
                             
                             <motion.div 
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.2, delay: navLinks.length * 0.05 }}
-                                className="pt-8 mt-4 border-t border-[#1C1C24]"
+                                transition={{ duration: 0.2, delay: 0.3 }}
+                                className="pt-6 mt-2 border-t border-[#1C1C24] flex flex-col gap-3"
                             >
+                                <a
+                                    href="https://wa.me/919447178166?text=Hi%20BoldFlow%20Labs,%20I'd%20like%20to%20learn%20more%20about%20your%20AI%20voice%20agents."
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center w-full px-6 py-3.5 text-xs font-mono font-bold tracking-wider uppercase bg-[#25D366] text-black rounded-[4px] gap-2"
+                                >
+                                    <MessageCircle className="w-4 h-4" /> Chat on WhatsApp
+                                </a>
+
                                 <Link
                                     href="/contact"
                                     onClick={() => setIsOpen(false)}
-                                    className="flex items-center justify-center w-full px-6 py-4 text-xs font-mono font-bold tracking-wider uppercase btn-primary"
+                                    className="flex items-center justify-center w-full px-6 py-3.5 text-xs font-mono font-bold tracking-wider uppercase btn-primary rounded-[4px]"
                                 >
                                     Book a Free Call
                                 </Link>

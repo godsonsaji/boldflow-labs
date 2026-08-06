@@ -9,34 +9,34 @@ import founderImg from "@/img/founder_img.png";
 const traits = [
     {
         title: "Technical Depth",
-        desc: "We write production code and deploy robust architectures. We are not slide-deck consultants padding hours with theory."
+        desc: "We write production telephony code over Exotel and Plivo. We are not slide-deck consultants padding hours with theory."
     },
     {
         title: "Intentional Scale",
-        desc: "We maintain a deliberately small team and limited roster. You get direct access to the engineers architecting your systems."
+        desc: "We maintain a deliberately focused client roster. You get direct access to the engineer architecting your voice agents."
     },
     {
         title: "Outcome Focus",
-        desc: "KPIs are defined explicitly upfront. We hold ourselves absolutely accountable for deterministic results, not arbitrary billable hours."
+        desc: "KPIs are defined explicitly upfront: call answer speed under 10s, after-hours lead capture, and zero missed admission/site-visit calls."
     },
     {
         title: "Engineering Honesty",
-        desc: "If a simpler, cheaper solution works better than custom AI logic, we will tell you. We refuse to over-engineer."
+        desc: "If a simpler WhatsApp workflow works better than complex voice AI logic, we will tell you. We refuse to over-engineer."
     }
 ];
 
 const philosophy = [
-    { title: "Total Transparency", desc: "No vague status updates. Full visibility on build, cost, and progress." },
-    { title: "Engineering Integrity", desc: "No trendy tools for their own sake. The right solution over a massive engagement." },
-    { title: "Outcome-First Thinking", desc: "Every line of automation starts backwards from a clear business objective." },
-    { title: "Built for Partnership", desc: "Small roster equals faster responses, deeper context, and senior attention." },
+    { title: "Total Transparency", desc: "No vague status updates. Full visibility on build, cost, and Exotel/Plivo logs." },
+    { title: "Engineering Integrity", desc: "No trendy tools for their own sake. Native Indian language support and TRAI compliance." },
+    { title: "Outcome-First Thinking", desc: "Every line of voice automation starts backwards from capturing missed revenue." },
+    { title: "Built for Partnership", desc: "Direct developer access equals faster script updates and deeper operational context." },
 ];
 
 const stackTools = [
-    { name: "Claude 3.5 Sonnet / GPT-4o", desc: "Core language reasoning models trained on custom business context and scripts.", icon: <Cpu className="w-5 h-5 text-[#0047FF]" /> },
-    { name: "Telnyx Telephony", desc: "Low-latency carrier network to handle SIP trunks, inbound phone routing, and clean audio.", icon: <Network className="w-5 h-5 text-[#FF5A1F]" /> },
-    { name: "Gemini Live / LiveKit", desc: "Voice transport framework delivering sub-150ms real-time verbal interactions.", icon: <Code2 className="w-5 h-5 text-[#FFB020]" /> },
-    { name: "n8n & Custom Node API", desc: "Backend pipeline automation syncing call data into ServiceTitan and Follow Up Boss.", icon: <Layers className="w-5 h-5 text-[#0047FF]" /> }
+    { name: "Gemini / Claude Reasoning Core", desc: "Core language reasoning models trained on Indian real estate, coaching, and clinic script logic.", icon: <Cpu className="w-5 h-5 text-[#0047FF]" /> },
+    { name: "Exotel & Plivo Telephony", desc: "TRAI-compliant Indian VoIP infrastructure handling native +91 phone numbers and SIP trunks.", icon: <Network className="w-5 h-5 text-[#FF5A1F]" /> },
+    { name: "Native Indian Text-to-Speech", desc: "Sub-200ms real-time verbal interactions in Hindi, Tamil, Kannada, Telugu, Marathi, Bengali & Hinglish.", icon: <Code2 className="w-5 h-5 text-[#FFB020]" /> },
+    { name: "LeadSquared, Zoho & Practo API", desc: "Backend pipeline automation syncing call data into your CRM and triggering instant WhatsApp confirmations.", icon: <Layers className="w-5 h-5 text-[#0047FF]" /> }
 ];
 
 export default function AboutPage() {
@@ -52,7 +52,7 @@ export default function AboutPage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-label text-[#0047FF] mb-6 uppercase tracking-wider font-mono"
                     >
-                        {"//"} About Us
+                        {"//"} About BoldFlow Labs
                     </motion.div>
                     
                     <motion.h1 
@@ -61,7 +61,7 @@ export default function AboutPage() {
                         transition={{ delay: 0.1 }}
                         className="text-h1 text-[#F5F6FA] mb-8 max-w-4xl tracking-tight"
                     >
-                        We Build Systems Because We Hate Busywork.
+                        We Build AI Voice Agents That Capture Missed Revenue.
                     </motion.h1>
 
                     <motion.p 
@@ -70,7 +70,7 @@ export default function AboutPage() {
                         transition={{ delay: 0.2 }}
                         className="text-body-lg max-w-2xl"
                     >
-                        BoldFlow Labs is an independent AI automation agency focused entirely on delivering real operational results for home services, real estate, and med spa SMBs across the US, UK, UAE, Canada, and Australia.
+                        BoldFlow Labs is an independent AI automation agency focused on building 24/7 multilingual AI phone receptionists for Indian real estate brokers, coaching institutes, and healthcare clinics.
                     </motion.p>
                 </div>
             </section>
@@ -86,16 +86,16 @@ export default function AboutPage() {
                       </div>
                       <div className="lg:col-span-7 flex flex-col gap-6 text-[#A3A3B3] text-sm leading-relaxed">
                           <p>
-                              It started with a simple observation. I noticed that local HVAC contractors, roofers, and real estate agents were spending thousands of dollars on advertising, only to let half of their leads go cold. 
+                              It started with a simple observation in Indian metro cities: coaching centers in Kota and Delhi spend lakhs on ad campaigns during May–July, only to let 40+ daily calls go unanswered during peak hours. Real estate brokers lose 58% of portal leads calling after 7 PM.
                           </p>
                           <p>
-                              The reality of the home services industry is brutal: if you don’t respond to a new lead within 5 minutes, your chances of qualification drop by 80%. If you take longer than 30 minutes, they’ve already booked with a competitor. Most business owners are on job sites or managing teams—they simply can't answer the phone or text back in under a minute.
+                              The reality of Indian SMB operations is brutal: if a prospective buyer or parent calls and gets a busy line or voicemail, they don't wait. They call the next broker on 99acres or another coaching institute down the street.
                           </p>
                           <p>
-                              I founded BoldFlow Labs to solve this 60-second lead response problem once and for all. By building custom AI voice receptionists, smart SMS callback systems, and direct CRM integrations, we ensure that every single inbound lead gets a call or text response within 60 seconds, 24/7/365.
+                              I founded BoldFlow Labs to solve this missed call revenue leak once and for all. By building custom AI voice receptionists fluent in Hindi, Tamil, Kannada, Telugu, and English integrated with Exotel, LeadSquared, Zoho, and WhatsApp, we ensure that every single inbound call is answered in 10 seconds.
                           </p>
                           <p className="border-l border-[#0047FF] pl-6 py-2 mt-4 text-[#F5F6FA] font-medium font-sans">
-                              We don't sell generic "AI consulting." We deploy reliable, engineered voice and message systems that lock in jobs before your competitors even see the notification.
+                              We don't sell generic "AI consulting." We deploy reliable, engineered voice phone agents that lock in site visits and counseling sessions before your competitors even see the notification.
                           </p>
                       </div>
                   </div>
@@ -120,7 +120,7 @@ export default function AboutPage() {
                         <div className="lg:col-span-6 flex flex-col justify-center">
                             <span className="text-[11px] font-mono text-[#FF5A1F] uppercase tracking-wider block mb-3">{"//"} HOW WE WORK</span>
                             <h2 className="text-h2 text-[#F5F6FA] tracking-tight mb-8">
-                                How We Calculate Automation.
+                                How We Calculate Voice ROI.
                             </h2>
                             <ul className="space-y-8 flex flex-col items-start pt-4">
                                  {philosophy.map((item, i) => (
@@ -138,7 +138,7 @@ export default function AboutPage() {
                         {/* Stack Architecture Section */}
                         <div className="lg:col-span-6 bg-[#111116] border border-[#1C1C24] p-8 md:p-12 relative overflow-hidden flex flex-col justify-center rounded-[8px]">
                              <div className="relative z-10">
-                                 <div className="text-[10px] font-mono uppercase tracking-wider text-[#0047FF] mb-6">{"//"} STACK SPECIFICATIONS</div>
+                                 <div className="text-[10px] font-mono uppercase tracking-wider text-[#0047FF] mb-6">{"//"} INDIAN TELEPHONY STACK</div>
                                  <h3 className="text-[28px] font-bold font-space text-white tracking-tight leading-tight mb-8">Core Telephony & AI Pipeline</h3>
                                  <div className="flex flex-col gap-6">
                                      {stackTools.map((tool, idx) => (
@@ -163,15 +163,15 @@ export default function AboutPage() {
             <section className="py-32 bg-[#111116] border-b border-[#1C1C24] relative">
                 <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
                     <div className="lg:col-span-7 lg:order-2">
-                       <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">{"//"} FOUNDER & CEO</span>
+                       <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">{"//"} FOUNDER & CHIEF ARCHITECT</span>
                        <h2 className="text-h2 text-[#F5F6FA] tracking-tight mb-6">
-                           Founder & CEO.
+                           Godson Saji.
                        </h2>
                        <p className="text-[#A3A3B3] text-sm leading-relaxed mb-6">
-                           Godson Saji is a full-stack AI engineer focused on practical workflow pipelines and robust integrations. He works directly with every client, completely eliminating the "telephone game" typical of traditional agencies.
+                           Godson Saji is a full-stack AI engineer based in India, focused on practical telephony integrations and native Indian language voice pipelines. He works directly with every client, completely eliminating junior account managers.
                        </p>
                        <p className="text-[#A3A3B3] text-sm leading-relaxed">
-                           He built BoldFlow Labs explicitly to deliver high-impact, deterministic automation work that bloated larger agencies actively overlook or overcharge for.
+                           He built BoldFlow Labs explicitly to deliver high-impact voice automation work that bloated agencies actively overlook or overcharge for.
                        </p>
                     </div>
 
@@ -189,7 +189,7 @@ export default function AboutPage() {
                                 <div className="absolute bottom-4 left-4 right-4 p-3 bg-[#0A0A0F]/80 backdrop-blur-md border border-white/10 rounded-[6px] flex items-center justify-between">
                                     <div>
                                         <span className="text-xs font-bold font-space text-white block">Godson Saji</span>
-                                        <span className="text-[10px] font-mono text-[#0047FF] uppercase font-semibold">Founder & CEO</span>
+                                        <span className="text-[10px] font-mono text-[#0047FF] uppercase font-semibold">Founder & Chief Architect</span>
                                     </div>
                                     <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
                                 </div>
@@ -206,7 +206,7 @@ export default function AboutPage() {
                         Want to see if we're a good fit?
                     </h2>
                     <p className="text-body-lg text-[#A3A3B3] mb-10 max-w-lg mx-auto leading-relaxed">
-                        Let's have a quick, honest chat about your operations. No high-pressure sales, just an objective look at what automation could do for your business.
+                        Let's have a quick, honest chat about your operations or test a free 48-hour pilot on your phone line. No sales pressure.
                     </p>
                     <div className="flex flex-col items-center gap-6">
                         <Link href="/contact" className="px-10 py-5 btn-primary font-mono text-xs font-bold uppercase tracking-wider text-center w-full sm:w-auto min-w-[280px] rounded-[4px]">

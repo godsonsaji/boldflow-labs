@@ -23,6 +23,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
+            url: `${BASE_URL}/real-estate-ai-agent`,
+            lastModified: new Date(),
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/coaching-institute-ai-agent`,
+            lastModified: new Date(),
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/clinic-ai-agent`,
+            lastModified: new Date(),
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
+        {
             url: `${BASE_URL}/work`,
             lastModified: new Date(),
             changeFrequency: "weekly",
@@ -51,6 +69,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: new Date(),
             changeFrequency: "yearly",
             priority: 0.6,
+        },
+        {
+            url: `${BASE_URL}/privacy`,
+            lastModified: new Date(),
+            changeFrequency: "yearly",
+            priority: 0.3,
+        },
+        {
+            url: `${BASE_URL}/terms`,
+            lastModified: new Date(),
+            changeFrequency: "yearly",
+            priority: 0.3,
         },
     ];
 }
