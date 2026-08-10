@@ -10,6 +10,28 @@ interface LogoItem {
 
 const logoList: LogoItem[] = [
   {
+    id: "voicelink",
+    name: "Voice Link",
+    svg: (
+      <svg viewBox="0 0 150 32" className="h-6 md:h-8 w-auto" aria-hidden="true">
+        <text x="5" y="22" fontFamily="var(--font-space), system-ui, sans-serif" fontSize="18" fontWeight="800" fill="#0047FF" letterSpacing="-0.3">
+          Voice Link
+        </text>
+      </svg>
+    ),
+  },
+  {
+    id: "vobiz",
+    name: "Vobiz",
+    svg: (
+      <svg viewBox="0 0 110 32" className="h-6 md:h-8 w-auto" aria-hidden="true">
+        <text x="5" y="22" fontFamily="var(--font-space), system-ui, sans-serif" fontSize="19" fontWeight="800" fill="#FF5A1F" letterSpacing="-0.3">
+          Vobiz
+        </text>
+      </svg>
+    ),
+  },
+  {
     id: "exotel",
     name: "Exotel",
     svg: (

@@ -11,7 +11,7 @@ const services = [
         subheadline: "Instant 10s Call Answer · Multilingual Triage · LeadSquared & Practo Sync",
         description: "We deploy custom-trained conversational voice agents that answer inbound business calls on the second ring, 24/7/365. They converse naturally in Hindi, Tamil, Kannada, Telugu, Marathi, Bengali, Hinglish, and English, answering FAQs and booking appointments directly on your calendar.",
         whatsIncluded: [
-            "Sub-200ms voice response latency over Exotel, Plivo, and Vobiz Indian VoIP trunks",
+            "Sub-200ms voice response latency over Voice Link and Vobiz Indian trunks",
             "Custom triage rules for real estate site visits, D2C COD confirmation, and insurance renewals",
             "Direct calendar & system integration with LeadSquared, Zoho CRM, Shopify, and Google Calendar",
             "Instant WhatsApp confirmation messages sent to customer automatically"

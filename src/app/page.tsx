@@ -139,7 +139,7 @@ const faqData = [
   },
   {
     q: "Is calling TRAI compliant in India?",
-    a: "Yes. All our AI voice agents operate over TRAI-compliant VoIP and telephony infrastructure (Exotel, Plivo, Vobiz) with proper DND filtering for outbound calls."
+    a: "Yes. All our AI voice agents operate over TRAI-compliant Voice Link and Vobiz telephony infrastructure with proper DND filtering for outbound calls."
   }
 ];
 
@@ -255,7 +255,7 @@ export default function HomePage() {
                     {/* Telemetry info */}
                     <div className="border-t border-[#1C1C24] pt-4 font-mono text-[9px] text-[#626272] flex justify-between z-10">
                         <div className="flex flex-col">
-                            <span>TELEPHONY: EXOTEL_PLIVO_SIP</span>
+                            <span>TELEPHONY: VOICELINK_VOBIZ_SIP</span>
                             <span>CRM_SYNC: LEADSQUARED_ZOHO</span>
                         </div>
                         <div className="text-right flex flex-col">
@@ -280,8 +280,8 @@ export default function HomePage() {
                 <div className="p-4 bg-[#111116]/60 border border-[#1C1C24] rounded-[6px] flex items-center gap-3">
                     <Phone className="w-5 h-5 text-[#0047FF] shrink-0" />
                     <div>
-                        <span className="text-xs font-mono text-white font-bold block">Indian VoIP Ready</span>
-                        <span className="text-[10px] font-mono text-[#A3A3B3]">Exotel, Plivo & Vobiz integration</span>
+                        <span className="text-xs font-mono text-white font-bold block">Voice Link & Vobiz</span>
+                        <span className="text-[10px] font-mono text-[#A3A3B3]">Voice Link & Vobiz integration</span>
                     </div>
                 </div>
                 <div className="p-4 bg-[#111116]/60 border border-[#1C1C24] rounded-[6px] flex items-center gap-3">
@@ -312,7 +312,7 @@ export default function HomePage() {
               
               <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
                   <div className="px-4 py-2.5 bg-[#111116] border border-[#1C1C24] text-[#F5F6FA] rounded-[4px] flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#10B981]" /> Exotel & Plivo ready
+                      <span className="w-2 h-2 rounded-full bg-[#10B981]" /> Voice Link & Vobiz ready
                   </div>
                   <div className="px-4 py-2.5 bg-[#111116] border border-[#1C1C24] text-[#F5F6FA] rounded-[4px] flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-[#0047FF]" /> TRAI compliant

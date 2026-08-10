@@ -34,7 +34,7 @@ const philosophy = [
 
 const stackTools = [
     { name: "Gemini / Claude Reasoning Core", desc: "Core language reasoning models trained on Indian real estate, D2C order confirmation, and insurance renewal logic.", icon: <Cpu className="w-5 h-5 text-[#0047FF]" /> },
-    { name: "Exotel & Plivo Telephony", desc: "TRAI-compliant Indian VoIP infrastructure handling native +91 phone numbers and SIP trunks.", icon: <Network className="w-5 h-5 text-[#FF5A1F]" /> },
+    { name: "Voice Link & Vobiz Telephony", desc: "TRAI-compliant Indian telephony infrastructure handling native +91 phone numbers and SIP trunks.", icon: <Network className="w-5 h-5 text-[#FF5A1F]" /> },
     { name: "Native Indian Text-to-Speech", desc: "Sub-200ms real-time verbal interactions in Hindi, Tamil, Kannada, Telugu, Marathi, Bengali & Hinglish.", icon: <Code2 className="w-5 h-5 text-[#FFB020]" /> },
     { name: "LeadSquared, Shopify & Zoho API", desc: "Backend pipeline automation syncing call data into your CRM and triggering instant WhatsApp confirmations.", icon: <Layers className="w-5 h-5 text-[#0047FF]" /> }
 ];

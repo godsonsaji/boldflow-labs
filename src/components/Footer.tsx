@@ -41,7 +41,7 @@ export default function Footer() {
                     </div>
                     <div>
                         <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-1">{"//"} TELEPHONY & AI INFRA</span>
-                        <span className="text-xl font-bold font-space text-white leading-tight block">Exotel · Plivo · Vobiz · Gemini</span>
+                        <span className="text-xl font-bold font-space text-white leading-tight block">Voice Link · Vobiz · Gemini</span>
                         <span className="text-xs text-[#A3A3B3] block">TRAI-compliant low-latency Indian telephony</span>
                     </div>
                 </div>

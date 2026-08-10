@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     "Hindi AI voice assistant Delhi",
     "Telugu AI booking agent Hyderabad",
     "TRAI compliant AI voice agent",
-    "Exotel Plivo Vobiz voice AI integration",
+    "Voice Link Vobiz voice AI integration",
     "LeadSquared Practo Zoho CRM voice AI",
   ],
   authors: [{ name: "BoldFlow Labs", url: BASE_URL }],
