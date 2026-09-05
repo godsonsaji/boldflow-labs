@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { CheckCircle2, ArrowRight, Code2, ShieldAlert, Cpu, Network, Layers } from "lucide-react";
-import founderImg from "@/img/founder_img.png";
+import { Cpu, Network, Code2, Layers } from "lucide-react";
 
 const traits = [
     {
@@ -154,46 +152,6 @@ export default function AboutPage() {
                                      ))}
                                  </div>
                              </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ── THE TEAM / Godson Saji ───────────────── */}
-            <section className="py-32 bg-[#111116] border-b border-[#1C1C24] relative">
-                <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                    <div className="lg:col-span-7 lg:order-2">
-                       <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">{"//"} FOUNDER & CHIEF ARCHITECT</span>
-                       <h2 className="text-h2 text-[#F5F6FA] tracking-tight mb-6">
-                           Godson Saji.
-                       </h2>
-                       <p className="text-[#A3A3B3] text-sm leading-relaxed mb-6">
-                           Godson Saji is a full-stack AI engineer based in India, focused on practical telephony integrations and native Indian language voice pipelines. He works directly with every client, completely eliminating junior account managers.
-                       </p>
-                       <p className="text-[#A3A3B3] text-sm leading-relaxed">
-                           He built BoldFlow Labs explicitly to deliver high-impact voice automation work that bloated agencies actively overlook or overcharge for.
-                       </p>
-                    </div>
-
-                    <div className="lg:col-span-5 lg:order-1 flex justify-center lg:justify-start">
-                        <div className="w-[280px] md:w-[340px] aspect-[4/5] bg-[#111116] border border-[#0047FF]/30 p-3 rounded-[12px] relative group overflow-hidden shadow-[0_0_40px_rgba(0,71,255,0.15)] hover:border-[#0047FF] hover:shadow-[0_0_60px_rgba(0,71,255,0.3)] transition-all duration-500">
-                            <div className="w-full h-full relative overflow-hidden bg-[#0A0A0F] rounded-[8px]">
-                                <Image
-                                    src={founderImg}
-                                    alt="Godson Saji - Founder of BoldFlow Labs"
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                    priority
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/90 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
-                                <div className="absolute bottom-4 left-4 right-4 p-3 bg-[#0A0A0F]/80 backdrop-blur-md border border-white/10 rounded-[6px] flex items-center justify-between">
-                                    <div>
-                                        <span className="text-xs font-bold font-space text-white block">Godson Saji</span>
-                                        <span className="text-[10px] font-mono text-[#0047FF] uppercase font-semibold">Founder & Chief Architect</span>
-                                    </div>
-                                    <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
