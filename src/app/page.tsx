@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import Image from "next/image";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -28,7 +27,6 @@ import {
   Globe2,
   ShieldCheck
 } from "lucide-react";
-import founderImg from "@/img/founder_img.png";
 import LogoMarquee from "@/components/LogoMarquee";
 import Testimonials from "@/components/Testimonials";
 
@@ -645,47 +643,6 @@ export default function HomePage() {
                           </AnimatePresence>
                       </div>
                   ))}
-              </div>
-          </div>
-      </section>
-
-      {/* ── FOUNDER / ABOUT TEASER ─────────────────── */}
-      <section className="py-24 bg-[#111116] border-b border-[#1C1C24]">
-          <div className="max-w-[1000px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div className="flex justify-center md:justify-start">
-                  <div className="w-[280px] md:w-[340px] aspect-[4/5] bg-[#111116] border border-[#0047FF]/30 p-3 rounded-[12px] relative group overflow-hidden shadow-[0_0_40px_rgba(0,71,255,0.15)] hover:border-[#0047FF] hover:shadow-[0_0_60px_rgba(0,71,255,0.3)] transition-all duration-500">
-                      <div className="w-full h-full relative overflow-hidden bg-[#0A0A0F] rounded-[8px]">
-                          <Image
-                              src={founderImg}
-                              alt="Godson Saji - Founder of BoldFlow Labs"
-                              fill
-                              className="object-cover transition-transform duration-700 group-hover:scale-105"
-                              priority
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/90 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
-                          <div className="absolute bottom-4 left-4 right-4 p-3 bg-[#0A0A0F]/80 backdrop-blur-md border border-white/10 rounded-[6px] flex items-center justify-between">
-                              <div>
-                                  <span className="text-xs font-bold font-space text-white block">Godson Saji</span>
-                                  <span className="text-[10px] font-mono text-[#0047FF] uppercase font-semibold">Founder & Chief Architect</span>
-                              </div>
-                              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-              <div>
-                  <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">// FOUNDER & ARCHITECT</span>
-                  <h2 className="text-h2 text-white mb-4">Godson Saji</h2>
-                  <p className="text-body mb-6 leading-relaxed">
-                      "I founded BoldFlow Labs to solve a glaring bottleneck for Indian business owners: pouring money into digital ads and 99acres leads, only to lose sales because phone lines are busy after 7 PM or staff can't handle peak admission calls. We build AI agents that answer back in native Indian languages in under 10 seconds."
-                  </p>
-                  <p className="text-body mb-8">
-                      Godson writes the core telephony code, Exotel/Plivo triggers, and LeadSquared/Zoho/Practo integrations. You work directly with the builder from day one.
-                  </p>
-                  <Link href="/about" className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#FF5A1F] uppercase tracking-wider hover:gap-3 transition-all">
-                      Read Our Operating Philosophy <ArrowRight className="w-4 h-4" />
-                  </Link>
               </div>
           </div>
       </section>
