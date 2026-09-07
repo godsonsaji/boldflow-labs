@@ -133,7 +133,7 @@ export default function WhatToExpectPage() {
                         Book a free discovery call. We'll map your current workflow bottlenecks and tell you exactly what an automated system looks like for you.
                     </p>
                     <div className="flex flex-col items-center gap-6">
-                        <Link href="/contact" className="px-10 py-5 btn-primary font-mono text-xs font-bold uppercase tracking-wider text-center w-full sm:w-auto min-w-[280px] rounded-[4px]">
+                        <Link href="/contact" className="px-6 sm:px-10 py-5 btn-primary font-mono text-xs font-bold uppercase tracking-wider text-center w-full sm:w-auto sm:min-w-[280px] min-w-0 max-w-full rounded-[4px]">
                             Book a Free Strategy Call
                         </Link>
                     </div>

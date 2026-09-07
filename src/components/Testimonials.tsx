@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldCheck, TrendingUp, Building2, ShoppingBag, PhoneCall } from "lucide-react";
+import { ShieldCheck, TrendingUp, Building2, ShoppingBag } from "lucide-react";
 
 interface ExpectedResultCard {
   id: string;
@@ -10,7 +10,7 @@ interface ExpectedResultCard {
   metric: string;
   metricLabel: string;
   quote: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const expectedResults: ExpectedResultCard[] = [
@@ -84,7 +84,7 @@ function ResultCard({ res }: { res: ExpectedResultCard }) {
 
         {/* Detailed Quote */}
         <p className="text-[#A3A3B3] text-sm leading-relaxed mb-6">
-          "{res.quote}"
+          &ldquo;{res.quote}&rdquo;
         </p>
       </div>
 

@@ -17,14 +17,14 @@ export default function TermsPage() {
           <section>
             <h2 className="text-lg font-bold font-space text-white mb-3">1. Services Provided</h2>
             <p>
-              BoldFlow Labs provides custom AI voice phone receptionists, automated outbound callbacks, CRM sync services, and WhatsApp messaging integrations for businesses in India. Services operate on flat monthly retainer tiers (Starter ₹9,999/mo, Growth ₹19,999/mo, Scale ₹34,999/mo) with specified included call minutes.
+              BoldFlow Labs provides custom AI voice phone agents, automated outbound callbacks, CRM sync services, and WhatsApp messaging integrations for businesses in India. Services operate on monthly retainer tiers (Starter ₹9,999/mo, Growth ₹19,999/mo, Enterprise custom scalable plans) with specified included call minutes.
             </p>
           </section>
 
           <section>
             <h2 className="text-lg font-bold font-space text-white mb-3">2. Invoicing & GST Compliance</h2>
             <p>
-              All fees are billed in Indian Rupees (INR, ₹). Tax invoices compliant with Goods and Services Tax (GST) laws in India will be issued for each monthly billing cycle. Overage minutes beyond included package caps are billed at stated per-minute rates (₹6/min, ₹4/min, or ₹3/min).
+              All fees are billed in Indian Rupees (INR, ₹). Tax invoices compliant with Goods and Services Tax (GST) laws in India will be issued for each monthly billing cycle. Overage minutes beyond included package caps are billed at stated per-minute rates (₹6/min for Starter, ₹5/min for Growth, or agreed custom Enterprise rates).
             </p>
           </section>
 

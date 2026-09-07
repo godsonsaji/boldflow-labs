@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "AI Voice Agent Use Cases for Home Services & Real Estate | BoldFlow Labs",
-  description: "Explore how HVAC, roofing, solar, and real estate businesses deploy AI voice agents, receptionists, and smart SMS routing to capture missed calls and book appointments instantly.",
+  title: "AI Voice Agent Use Cases: Real Estate, D2C & Insurance | BoldFlow Labs",
+  description: "Discover how Indian real estate developers, D2C e-commerce brands, and insurance agencies deploy AI voice agents for instant lead callbacks, COD confirmations, and renewal reminders.",
 };
 
 export default function UseCasesLayout({

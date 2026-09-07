@@ -136,29 +136,45 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "BoldFlow Labs",
-              url: BASE_URL,
-              logo: `${BASE_URL}/logo.png`,
-              description:
-                "BoldFlow Labs deploys multilingual 24/7 AI voice phone receptionists and automated lead qualification systems for Indian real estate brokers, D2C e-commerce brands, and insurance agencies.",
-              address: {
-                "@type": "PostalAddress",
-                addressRegion: "Kerala",
-                addressCountry: "IN"
-              },
-              contactPoint: {
-                "@type": "ContactPoint",
-                contactType: "sales",
-                email: "hello@boldflowlabs.com",
-                availableLanguage: ["English", "Hindi", "Tamil", "Kannada", "Telugu", "Marathi", "Bengali"],
-              },
-              sameAs: [
-                "https://linkedin.com/company/boldflowlabs",
-                "https://x.com/boldflowlabs",
-                "https://facebook.com/boldflowlabs",
-                "https://instagram.com/boldflowlabs"
-              ],
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${BASE_URL}/#organization`,
+                  name: "BoldFlow Labs",
+                  url: BASE_URL,
+                  logo: `${BASE_URL}/logo.png`,
+                  description:
+                    "BoldFlow Labs deploys multilingual 24/7 AI voice phone receptionists and automated lead qualification systems for Indian real estate brokers, D2C e-commerce brands, and insurance agencies.",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressRegion: "Kerala",
+                    addressCountry: "IN"
+                  },
+                  contactPoint: {
+                    "@type": "ContactPoint",
+                    contactType: "sales",
+                    email: "hello@boldflowlabs.com",
+                    telephone: "+919447178166",
+                    availableLanguage: ["English", "Hindi", "Tamil", "Kannada", "Telugu", "Marathi", "Bengali", "Gujarati"],
+                  },
+                  sameAs: [
+                    "https://linkedin.com/company/boldflowlabs",
+                    "https://x.com/boldflowlabs",
+                    "https://facebook.com/boldflowlabs",
+                    "https://instagram.com/boldflowlabs"
+                  ],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${BASE_URL}/#website`,
+                  url: BASE_URL,
+                  name: "BoldFlow Labs",
+                  publisher: {
+                    "@id": `${BASE_URL}/#organization`
+                  },
+                  inLanguage: "en-IN"
+                }
+              ]
             }),
           }}
         />

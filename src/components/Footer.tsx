@@ -7,6 +7,7 @@ const footerLinks = {
         { href: "/services", label: "Services" },
         { href: "/use-cases", label: "Use Cases" },
         { href: "/pricing", label: "Pricing" },
+        { href: "/what-to-expect", label: "What to Expect" },
         { href: "/work", label: "Work" },
     ],
     Solutions: [

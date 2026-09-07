@@ -3,22 +3,21 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { CheckCircle2, ChevronDown, ChevronUp, TrendingUp, Calculator, ShieldCheck, IndianRupee } from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronUp } from "lucide-react";
 
 const tiers = [
     {
         name: "Starter",
-        subtitle: "For clinics, salons, and small brokers getting 30–50 calls/day",
-        target: "English + 1 language of your choice",
+        subtitle: "For emerging Real Estate brokers, D2C brands & boutique Insurance agencies",
+        target: "Single language of your choice",
         price: "₹9,999",
         period: "/month",
         subPrice: "1,000 mins/mo included (~33 min/day) · Overage: ₹6/min",
-        description: "Custom AI voice agent built for your business. Answers calls 24/7 in English plus your chosen regional language (Hindi, Tamil, Kannada, Telugu, Marathi, Bengali, Gujarati, or Hinglish).",
+        description: "Custom AI voice agent built for your business. Answers inbound calls 24/7 in a single language of your choice (English, Hindi, Tamil, Kannada, Telugu, Marathi, Bengali, Gujarati, or Hinglish).",
         features: [
             "Custom AI voice agent built for your business",
-            "24/7 call answering (inbound & outbound)",
-            "Appointment booking into your calendar",
-            "WhatsApp confirmation to customers",
+            "24/7 call answering (inbound only)",
+            "Appointment booking & lead capture into your calendar",
             "Weekly call summary report",
             "We handle setup, scripting, and changes — you don't touch anything"
         ],
@@ -29,17 +28,19 @@ const tiers = [
     {
         name: "Growth",
         isPopular: true,
-        subtitle: "Most Popular — For coaching institutes, real estate agencies & clinics",
-        target: "English + 2 languages of your choice",
+        subtitle: "Most Popular — For scaling Real Estate firms, high-growth D2C brands & Insurance brokerages",
+        target: "English + 1 Regional Language",
         price: "₹19,999",
         period: "/month",
-        subPrice: "3,000 mins/mo included (~100 min/day) · Overage: ₹4/min",
-        description: "Built for growing businesses with 2+ locations needing seamless CRM integration, automated outbound reminders, and peak-hour admission/portal spike scaling.",
+        subPrice: "3,000 mins/mo included (~100 min/day) · Overage: ₹5/min",
+        description: "Built for growing businesses needing 24/7 inbound and outbound handling, CRM integration, automated WhatsApp confirmations, and peak-hour scaling.",
         features: [
             "Everything in Starter, plus:",
-            "CRM integration (LeadSquared, Zoho, Practo)",
-            "Outbound reminder calls (appointments, EMI due, admission deadlines)",
-            "Peak-hour scaling (handles sudden spikes)",
+            "24/7 inbound & outbound call handling",
+            "WhatsApp confirmation to customers",
+            "CRM integration (LeadSquared, Zoho, HubSpot, Shopify)",
+            "Outbound reminder & follow-up calls (site visits, cart drops, renewals)",
+            "Peak-hour scaling (handles sudden traffic spikes)",
             "Call analytics dashboard",
             "Priority WhatsApp support"
         ],
@@ -48,22 +49,22 @@ const tiers = [
         style: "growth"
     },
     {
-        name: "Scale",
-        subtitle: "For multi-city chains, large brokerages & high-volume coaching centers",
-        target: "English + 4 languages of your choice",
-        price: "₹34,999",
-        period: "/month",
-        subPrice: "6,000 mins/mo included (~200 min/day) · Overage: ₹3/min",
-        description: "Enterprise-grade voice capacity with custom voice cloning, dedicated account manager, and same-day script modifications across high-volume campaigns.",
+        name: "Enterprise",
+        subtitle: "For large Real Estate developers, omnichannel D2C & national Insurance enterprises",
+        target: "Custom Multi-Language & Dialect Support",
+        price: "Custom",
+        period: "",
+        subPrice: "Custom Scalable Plans · Tailored Call Volume & SLA",
+        description: "Enterprise-grade voice infrastructure with custom scalable plans, dedicated account manager, advanced CRM/ERP workflows, and high-concurrency peak handling across Real Estate, D2C, and Insurance operations.",
         features: [
             "Everything in Growth, plus:",
-            "Custom voice cloning (sounds like your brand)",
-            "Advanced API integrations & webhooks",
-            "Dedicated account manager",
-            "Same-day script changes",
-            "Monthly strategy call & ROI audit"
+            "Custom scalable minutes & concurrent call capacity",
+            "Advanced API integrations & webhooks (Custom CRM, ERP, Shopify)",
+            "Dedicated account manager & SLA guarantee",
+            "Same-day script & campaign modifications",
+            "Monthly strategy call & conversion ROI audit"
         ],
-        ctaText: "Deploy Scale Plan",
+        ctaText: "Contact for Enterprise",
         ctaHref: "/contact",
         style: "authority"
     }
@@ -74,47 +75,53 @@ const comparisonData = [
         feature: "Included Call Minutes",
         starter: "1,000 mins/mo (~33 min/day)",
         growth: "3,000 mins/mo (~100 min/day)",
-        scale: "6,000 mins/mo (~200 min/day)",
+        enterprise: "Custom Scalable Volume",
     },
     {
         feature: "Supported Languages",
-        starter: "English + 1 Choice Language",
-        growth: "English + 2 Choice Languages",
-        scale: "English + 4 Choice Languages",
+        starter: "Single Language of your choice",
+        growth: "English + 1 Regional Language",
+        enterprise: "Custom Multi-Language",
+    },
+    {
+        feature: "Call Direction",
+        starter: "Inbound Only",
+        growth: "Inbound & Outbound",
+        enterprise: "Inbound & Outbound (High Concurrency)",
     },
     {
         feature: "Overage Per Minute Rate",
         starter: "₹6 / min",
-        growth: "₹4 / min",
-        scale: "₹3 / min",
+        growth: "₹5 / min",
+        enterprise: "Custom Volume Tiered Rates",
     },
     {
-        feature: "CRM & Calendar Sync",
+        feature: "CRM & Platform Sync",
         starter: "Google Calendar",
-        growth: "LeadSquared, Zoho, Practo",
-        scale: "Custom APIs & Deep Sync",
+        growth: "LeadSquared, Zoho, HubSpot, Shopify",
+        enterprise: "Custom APIs, ERPs & Webhooks",
     },
     {
-        feature: "Outbound Reminders & WhatsApp",
-        starter: "WhatsApp Confirmations",
-        growth: "WhatsApp + Voice Reminders",
-        scale: "Custom Campaigns + Voice Cloning",
+        feature: "Outbound & WhatsApp Automation",
+        starter: "Inbound Only (No Outbound/WhatsApp)",
+        growth: "WhatsApp Confirmations + Outbound Calls",
+        enterprise: "Omnichannel Workflows & Custom Triggers",
     },
     {
         feature: "Script Changes & Support",
         starter: "Weekly updates",
         growth: "Priority WhatsApp Support",
-        scale: "Same-Day Changes + Dedicated Mgr",
+        enterprise: "Same-Day Changes + Dedicated Mgr",
     },
 ];
 
 const faqs = [
-    { q: "How much does this cost?", a: "Our plans are flat monthly retainers with included minutes: Starter at ₹9,999/month (1,000 mins), Growth at ₹19,999/month (3,000 mins), and Scale at ₹34,999/month (6,000 mins). Overage minutes are billed transparently at ₹6, ₹4, or ₹3 per minute." },
+    { q: "How much does this cost?", a: "Our plans offer predictable monthly retainers: Starter at ₹9,999/month (1,000 mins, single language, inbound only) and Growth at ₹19,999/month (3,000 mins, English + 1 Regional Language, inbound & outbound with WhatsApp confirmation). For higher volumes and custom workflows, our Enterprise tier offers custom scalable plans. Overage minutes are billed transparently at ₹6/min for Starter or ₹5/min for Growth." },
     { q: "Do I get GST invoices?", a: "Yes. All plans are GST-compliant with tax invoices provided for Indian registered entities." },
-    { q: "Can I choose my regional languages?", a: "Yes. You pick your preferred languages from Hindi, Tamil, Kannada, Telugu, Marathi, Bengali, Gujarati, or Hinglish. English is included across all plans. A Chennai clinic on Starter gets Tamil + English; a Bangalore broker gets Kannada + English." },
-    { q: "Do I need to manage any software?", a: "No. We handle full setup, script writing, Exotel/Plivo voice triggers, calendar mapping, and ongoing maintenance. You don't touch anything." },
+    { q: "Can I choose my regional languages?", a: "Yes. You pick your preferred languages from Hindi, Tamil, Kannada, Telugu, Marathi, Bengali, Gujarati, or Hinglish. Starter includes a single language of your choice, Growth includes English + 1 regional language, and Enterprise offers fully custom multi-language deployments." },
+    { q: "Do I need to manage any software?", a: "No. We handle full setup, script writing, Exotel/Plivo voice triggers, calendar/CRM mapping, and ongoing maintenance. You don't touch anything." },
     { q: "How long does setup take?", a: "Your custom AI voice agent is configured, tested on Indian phone lines, and live within 5 to 10 business days." },
-    { q: "What happens if call volume spikes?", a: "Our telephony pipeline on Exotel & Plivo scales seamlessly to handle dozens of concurrent calls during peak admission seasons or property launches without busy signals." }
+    { q: "What happens if call volume spikes?", a: "Our telephony pipeline on Exotel & Plivo scales seamlessly to handle dozens of concurrent calls during property launches, flash sales, festive e-commerce rushes, or policy renewal deadlines without busy signals." }
 ];
 
 export default function PricingPage() {
@@ -164,20 +171,20 @@ export default function PricingPage() {
                         transition={{ delay: 0.1 }}
                         className="text-body-lg max-w-3xl mb-8 mx-auto"
                     >
-                        Choose the tier that matches your monthly call volume. From single-location clinics to multi-city real estate brokerages and coaching hubs. GST invoices provided.
+                        Choose the tier that matches your monthly call volume. Purpose-built for Real Estate brokerages & developers, fast-growing D2C & E-commerce brands, and Insurance agencies. GST invoices provided.
                     </motion.p>
 
-                    {/* Receptionist Cost Comparison Banner */}
+                    {/* Cost Comparison Banner */}
                     <div className="p-6 bg-[#111116] border border-[#0047FF]/30 rounded-[6px] max-w-2xl text-left flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div>
                             <span className="text-[10px] font-mono text-[#FF5A1F] uppercase font-bold tracking-widest block mb-1">COST COMPARISON</span>
                             <p className="text-xs text-[#A3A3B3] leading-relaxed">
-                                <strong className="text-white">Hiring a receptionist:</strong> ₹18,000/month + PF + leaves + only works 9 AM–6 PM.<br />
-                                <strong className="text-[#0047FF]">BoldFlow Starter Plan:</strong> ₹9,999/month, works 24/7/365, never takes leave.
+                                <strong className="text-white">Hiring in-house telecallers & support:</strong> ₹20,000+/month per rep + PF + training + 9 AM–6 PM limits.<br />
+                                <strong className="text-[#0047FF]">BoldFlow AI Voice Agents:</strong> From ₹9,999/month. 24/7 instant lead qualification & booking for Real Estate, D2C & Insurance.
                             </p>
                         </div>
                         <span className="shrink-0 text-xl font-bold font-space text-[#10B981] bg-[#10B981]/10 px-3 py-1.5 rounded border border-[#10B981]/20">
-                            Save 45%+
+                            Save 50%+
                         </span>
                     </div>
                 </div>
@@ -214,7 +221,7 @@ export default function PricingPage() {
 
                             <div>
                                 <div className="flex justify-between items-center mb-3">
-                                    <span className="text-sm font-bold font-space text-white">Average Deal / Enrollment Value</span>
+                                    <span className="text-sm font-bold font-space text-white">Average Deal / Order / Policy Value</span>
                                     <span className="font-mono text-sm text-[#0047FF] font-bold">₹{ticketValue.toLocaleString("en-IN")}</span>
                                 </div>
                                 <input 
@@ -282,7 +289,7 @@ export default function PricingPage() {
                         <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">{"//"} THREE CLEAR PLANS</span>
                         <h2 className="text-h2 text-white mb-4">Flat Retainers. GST Compliant.</h2>
                         <p className="text-[#A3A3B3] leading-relaxed">
-                            Language counts scale by tier (1 → 2 → 4). You pick which languages from the list — Hindi is never hardcoded. A Chennai clinic on Starter gets Tamil + English.
+                            Tailored for Real Estate, D2C & E-commerce, and Insurance businesses. Scale effortlessly from a single language inbound agent to omnichannel enterprise automation.
                         </p>
                     </div>
 
@@ -354,29 +361,31 @@ export default function PricingPage() {
 
             {/* ── COMPARISON TABLE ─────────────────────── */}
             <section className="py-24 bg-[#0A0A0F] border-b border-[#1C1C24]">
-                <div className="max-w-[1000px] mx-auto px-6 overflow-x-auto">
+                <div className="max-w-[1000px] mx-auto px-6">
                     <h2 className="text-2xl font-bold font-space text-[#F5F6FA] mb-12 text-center md:text-left">Compare Plans</h2>
                     
-                    <table className="w-full text-left border-collapse min-w-[600px] border border-[#1C1C24]">
-                        <thead>
-                            <tr className="border-b border-[#1C1C24] bg-[#111116]">
-                                <th className="py-4 px-6 font-mono text-[11px] uppercase tracking-wider text-[#A3A3B3] w-2/5">Features</th>
-                                <th className="py-4 px-6 font-mono text-[11px] uppercase tracking-wider text-[#A3A3B3] w-1/5">Starter (₹9,999)</th>
-                                <th className="py-4 px-6 font-mono text-[11px] uppercase tracking-wider text-[#FF5A1F] w-1/5">Growth (₹19,999)</th>
-                                <th className="py-4 px-6 font-mono text-[11px] uppercase tracking-wider text-[#A3A3B3] w-1/5">Scale (₹34,999)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {comparisonData.map((row, i) => (
-                                <tr key={i} className="border-b border-[#1C1C24] hover:bg-[#111116]/50 transition-colors">
-                                    <td className="py-5 px-6 text-[#A3A3B3] text-sm font-semibold">{row.feature}</td>
-                                    <td className="py-5 px-6 text-[#F5F6FA] text-sm">{row.starter}</td>
-                                    <td className="py-5 px-6 text-[#FF5A1F] text-sm font-bold">{row.growth}</td>
-                                    <td className="py-5 px-6 text-[#F5F6FA] text-sm">{row.scale}</td>
+                    <div className="overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0">
+                        <table className="w-full text-left border-collapse min-w-[600px] border border-[#1C1C24]">
+                            <thead>
+                                <tr className="border-b border-[#1C1C24] bg-[#111116]">
+                                    <th className="py-4 px-6 font-mono text-[11px] uppercase tracking-wider text-[#A3A3B3] w-2/5">Features</th>
+                                    <th className="py-4 px-6 font-mono text-[11px] uppercase tracking-wider text-[#A3A3B3] w-1/5">Starter (₹9,999)</th>
+                                    <th className="py-4 px-6 font-mono text-[11px] uppercase tracking-wider text-[#FF5A1F] w-1/5">Growth (₹19,999)</th>
+                                    <th className="py-4 px-6 font-mono text-[11px] uppercase tracking-wider text-[#A3A3B3] w-1/5">Enterprise (Custom)</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {comparisonData.map((row, i) => (
+                                    <tr key={i} className="border-b border-[#1C1C24] hover:bg-[#111116]/50 transition-colors">
+                                        <td className="py-5 px-6 text-[#A3A3B3] text-sm font-semibold">{row.feature}</td>
+                                        <td className="py-5 px-6 text-[#F5F6FA] text-sm">{row.starter}</td>
+                                        <td className="py-5 px-6 text-[#FF5A1F] text-sm font-bold">{row.growth}</td>
+                                        <td className="py-5 px-6 text-[#F5F6FA] text-sm">{row.enterprise}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
 
@@ -430,7 +439,7 @@ export default function PricingPage() {
                         We'll scope your call volume, recommend the right plan, and set up your 48-hour pilot — no pressure, no sales gimmicks.
                     </p>
                     <div className="flex flex-col items-center gap-6">
-                        <Link href="/contact" className="px-10 py-5 btn-primary font-mono text-xs font-bold uppercase tracking-wider text-center w-full sm:w-auto min-w-[280px] rounded-[4px]">
+                        <Link href="/contact" className="px-6 sm:px-10 py-5 btn-primary font-mono text-xs font-bold uppercase tracking-wider text-center w-full sm:w-auto sm:min-w-[280px] min-w-0 max-w-full rounded-[4px]">
                             Book a Free Strategy Call
                         </Link>
                     </div>

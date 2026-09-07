@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Case Studies & Founding Roster | BoldFlow Labs",
-  description: "See how we help service-based SMBs eliminate manual work and secure bookings instantly. Read about our Founding Client Program.",
+  title: "Case Studies & Production Deployments | BoldFlow Labs",
+  description: "Explore real-world results from BoldFlow Labs' AI voice agents across Indian real estate brokerages, high-growth D2C brands, and insurance agencies.",
 };
 
 export default function WorkLayout({

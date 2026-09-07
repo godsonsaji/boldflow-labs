@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 import { FadeUp, AnimatePresenceWrapper } from "@/components/AnimationWrappers";
 import { motion } from "framer-motion";
 

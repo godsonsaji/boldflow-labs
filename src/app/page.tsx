@@ -117,7 +117,7 @@ const demoAgents = [
 const faqData = [
   {
     q: "How much does this cost?",
-    a: "We deploy full-service AI phone assistants tailored for your business. Starter Plan starts at ₹9,999/month (1,000 mins included, English + 1 native language), Growth Plan is ₹19,999/month (3,000 mins included, 2 native languages), and Scale Plan is ₹34,999/month (6,000 mins included, 4 native languages)."
+    a: "We deploy full-service AI phone assistants tailored for your business. Starter Plan starts at ₹9,999/month (1,000 mins included, single language of your choice, inbound only), Growth Plan is ₹19,999/month (3,000 mins included, English + 1 regional language, inbound & outbound with WhatsApp confirmation), and Enterprise Plan offers custom scalable plans for high-volume requirements."
   },
   {
     q: "Will it sound like a robot?",
