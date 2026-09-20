@@ -1,8 +1,11 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Privacy Policy | BoldFlow Labs",
+  title: "Privacy Policy",
   description: "Privacy Policy for BoldFlow Labs AI automation and telephony services in India.",
+  alternates: {
+    canonical: "https://www.boldflowlabs.com/privacy",
+  },
 };
 
 export default function PrivacyPage() {

@@ -11,21 +11,19 @@ import {
   ChevronUp, 
   Activity,
   Phone, 
-  MessageSquare,
+  MessageSquare, 
   Sparkles, 
-  Database,
-  ArrowUpRight,
-  TrendingUp,
-  Cpu,
-  Layers,
-  Wrench,
-  Building,
-  Volume2,
-  Play,
-  Pause,
-  MessageCircle,
-  Globe2,
-  ShieldCheck
+  Database, 
+  ArrowUpRight, 
+  TrendingUp, 
+  Cpu, 
+  Layers, 
+  Wrench, 
+  Building, 
+  MessageCircle, 
+  Globe2, 
+  ShieldCheck,
+  Calculator
 } from "lucide-react";
 import LogoMarquee from "@/components/LogoMarquee";
 import Testimonials from "@/components/Testimonials";
@@ -87,7 +85,7 @@ const demoAgents = [
     specialty: "COD Verification / Address & Payment Triage",
     scenario: "Confirms COD orders within minutes of checkout, verifies address and payment mode, flags unreachable orders for manual review.",
     badge: "Interactive Demo Available",
-    audioPreviewText: "“Namaste! BoldFlow Brands se Ananya bol rahi hoon. Order #4821 ke COD confirmation ke liye call kiya hai. Delivery address D-14 South Ext Delhi confirm kar dein?”",
+    audioPreviewText: "“Namaste! Main BoldFlow Brands se Ananya bol rahi hoon. Order #4821 ke Cash-on-Delivery confirmation ke liye call kiya hai. Delivery address D-14 South Extension confirm kar dein?”",
     status: "active"
   },
   {
@@ -98,7 +96,7 @@ const demoAgents = [
     specialty: "99acres & Portal Lead Callbacks / Site Visits",
     scenario: "Calls back 99acres and MagicBricks leads within 45s, verifies budget and 2/3 BHK requirement in Kannada/English, books site visits.",
     badge: "Interactive Demo Available",
-    audioPreviewText: "“Namaskara! BoldFlow Builders inda Rahul mathadthidini. Namma Indiranagar 3BHK project nodoke site visit book madla?”",
+    audioPreviewText: "“Namaskara! BoldFlow Builders inda Rahul mathadthidini. Namma Indiranagar 3BHK luxury project nodoke site visit book madla? Saturday 11 AM confirm madla?”",
     status: "active"
   },
   {
@@ -116,42 +114,41 @@ const demoAgents = [
 
 const faqData = [
   {
-    q: "How much does this cost?",
-    a: "We deploy full-service AI phone assistants tailored for your business. Starter Plan starts at ₹9,999/month (1,000 mins included, single language of your choice, inbound only), Growth Plan is ₹19,999/month (3,000 mins included, English + 1 regional language, inbound & outbound with WhatsApp confirmation), and Enterprise Plan offers custom scalable plans for high-volume requirements."
+    q: "Will our automated calls get flagged as spam or telemarketing on Truecaller?",
+    a: "No. We configure verified corporate caller IDs registered under your company entity on Truecaller, integrated with TRAI DLT-approved transactional headers. Because our voice agents only execute warm callbacks to high-intent portal inquiries, post-checkout order verifications, or existing client service reminders, your spam score remains 0%."
   },
   {
-    q: "Will it sound like a robot?",
-    a: "No. We build on low-latency Indian telephony pipelines (Exotel, Plivo, Vobiz) integrated with natural speech engines. Our AI speaks naturally, handles interruptions, and responds in under 200ms in native Indian accents and code-switched dialogues (Hinglish, Tanglish, etc.)."
+    q: "Do we need to buy expensive PBX hardware or change our existing phone numbers?",
+    a: "Zero hardware required. You keep your existing mobile numbers, landlines, or office SIM cards (Airtel, Jio, Vi, BSNL). You simply enable standard conditional call forwarding (*61* or *67*) on busy or unanswered calls (after 15 seconds) to our virtual DID. Your customers continue calling your normal advertised phone number, and BoldFlow seamlessly catches the calls you would have otherwise missed."
   },
   {
-    q: "How long does it take to go live?",
-    a: "Our typical setup workflow takes between 5 and 10 days. This covers script customization, language model tuning, calendar mapping, Exotel/Plivo number setup, and CRM integration testing."
+    q: "How does code-mixing (Hinglish, Tanglish, Kanglish) work when callers switch languages?",
+    a: "Indian consumers naturally switch languages mid-call (e.g., starting in English and transitioning into Hindi or Kannada). Our conversational engine utilizes continuous real-time language detection. It identifies code-switched vocabulary ('Site visit Saturday 11 AM book kar dein?') and dialect nuances without conversational lag or asking the user to press phone keypad buttons."
   },
   {
-    q: "Does it work with my CRM?",
-    a: "Yes. We integrate directly with Indian CRMs and calendar tools including LeadSquared, Zoho CRM, Practo, WhatsApp Business API, Google Calendar, and Excel."
+    q: "Are automated outbound calls compliant with TRAI and DND regulations in India?",
+    a: "Yes, 100% TRAI & TCCCPR compliant. For outbound callback campaigns (such as D2C COD order verification or portal inquiry callbacks), our telephony gateway automatically scrubs numbers against the National Do Not Call (NDNC/DND) registry in real-time. Calls operate exclusively during permissible TRAI hours (9 AM to 9 PM) with verified transactional routing."
   },
   {
-    q: "What happens to leads after hours?",
-    a: "Our AI agents function 24/7/365. They answer 8:30 PM parent calls, Sunday clinic requests, and midnight property portal inquiries instantly while your competitors are asleep."
+    q: "How do webhooks and CRM data flow back into LeadSquared, Zoho, or our database?",
+    a: "Immediately after each call terminates (under 30 seconds), BoldFlow dispatches a JSON webhook payload containing caller phone number, call duration, full audio recording URL, speaker-diarized transcript, and structured extraction fields (e.g., budget, property type, delivery address confirmation, appointment timestamp). We provide direct pre-built integrations for LeadSquared, Zoho CRM, Practo, Google Calendar, Shopify, and WhatsApp Business API."
   },
   {
-    q: "Is calling TRAI compliant in India?",
-    a: "Yes. All our AI voice agents operate over TRAI-compliant Voice Link and Vobiz telephony infrastructure with proper DND filtering for outbound calls."
+    q: "Can callers naturally interrupt the AI bot during the conversation?",
+    a: "Yes. Unlike legacy IVR phone trees that force users to listen to long pre-recorded options, our voice pipeline operates on sub-180ms streaming full-duplex audio with instant acoustic barge-in. The moment the caller begins speaking, the AI stops speaking, listens, and responds naturally to their question."
+  },
+  {
+    q: "How much does an AI phone assistant cost per month in India?",
+    a: "We operate on transparent, predictable monthly retainers with included call minutes:\n• Starter Plan: ₹9,999/month (1,000 minutes included, 1 language, inbound reception, standard CRM sync).\n• Growth Plan: ₹19,999/month (3,000 minutes included, English + 1 regional language, inbound & outbound callbacks, instant WhatsApp confirmation).\n• Enterprise Plan: Custom high-volume minutes, all 8 regional Indian languages, dedicated SIP trunking, and custom ERP integration."
+  },
+  {
+    q: "How quickly can we go live with a custom AI phone assistant?",
+    a: "Our engineering sprint takes 5 to 10 days from handshake to live production calls. We draft and calibrate your industry-specific dialogue trees, configure your virtual DID routing, conduct rigorous telephony audio testing across local carriers, and test CRM webhooks with your team."
   }
 ];
 
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [playingAudioId, setPlayingAudioId] = useState<string | null>(null);
-
-  const toggleAudioDemo = (agentId: string) => {
-    if (playingAudioId === agentId) {
-      setPlayingAudioId(null);
-    } else {
-      setPlayingAudioId(agentId);
-    }
-  };
 
   return (
     <>
@@ -176,8 +173,13 @@ export default function HomePage() {
                     </span>
                 </motion.div>
                 
+                {/* Eyebrow Hook */}
+                <div className="mb-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider font-semibold text-[#A3A3B3]">
+                  <span className="text-[#FF5A1F]">●</span> Missed Call = <span className="text-white underline decoration-[#0047FF]/60 underline-offset-4">Missed Revenue</span>
+                </div>
+
                 <h1 className="text-hero text-[#F5F6FA] mb-6 tracking-tight leading-[1.1]">
-                  Missed Call = <span className="text-[#0047FF] underline decoration-[#0047FF]/40 underline-offset-8">Missed Revenue</span>
+                  Multilingual AI Phone Assistants &amp; Voice Agents for <span className="text-[#0047FF]">Indian Businesses</span>
                 </h1>
 
                 <p className="text-body-lg mb-6 leading-relaxed">
@@ -198,7 +200,7 @@ export default function HomePage() {
                 </div>
             </div>
 
-            {/* Right Col - Audio Waveform Panel */}
+            {/* Right Col - Visual Waveform Panel */}
             <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -221,7 +223,7 @@ export default function HomePage() {
                     <div className="py-6 z-10 text-center">
                         <span className="text-[10px] font-mono text-[#0047FF] uppercase tracking-widest block mb-2 font-bold">MULTILINGUAL CONVERSATION ENGINE</span>
                         <div className="bg-[#0A0A0F] border border-[#1C1C24] p-4 rounded-[4px] text-xs font-sans text-[#F5F6FA] leading-relaxed">
-                          "Namaste! Real Estate Inquiry ke liye connect kiya hai. Kya aap Bangalore Indiranagar project me 3BHK visit schedule karna chahte hain?"
+                          &quot;Namaste! Real Estate Inquiry ke liye connect kiya hai. Kya aap Bangalore Indiranagar project me 3BHK visit schedule karna chahte hain?&quot;
                         </div>
                     </div>
 
@@ -239,7 +241,7 @@ export default function HomePage() {
                                         height: [12, height * 0.6, 12],
                                     }}
                                     transition={{
-                                        duration: 1.4,
+                                        duration: 1.8,
                                         repeat: Infinity,
                                         ease: "easeInOut",
                                         delay: parseFloat(delay),
@@ -298,6 +300,28 @@ export default function HomePage() {
                 </div>
             </div>
         </div>
+
+        {/* ── GEO CITABLE DEFINITION BLOCK ── */}
+        <div className="w-full max-w-[1280px] mx-auto px-6 mt-8">
+          <div className="p-6 sm:p-7 bg-[#0E0E14] border-l-2 border-l-[#0047FF] border-y border-r border-[#1C1C24] rounded-r-[6px] relative overflow-hidden">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3">
+              <div className="flex items-center gap-2 font-mono text-[10px] text-[#0047FF] uppercase tracking-wider font-bold">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>// Architecture Overview · AI Search Citation Standard</span>
+              </div>
+              <Link 
+                href="/tools/missed-call-roi-calculator"
+                className="inline-flex items-center gap-1.5 font-mono text-[11px] text-[#10B981] hover:text-white transition-colors bg-[#10B981]/10 px-2.5 py-1 rounded border border-[#10B981]/30"
+              >
+                <Calculator className="w-3 h-3" />
+                <span>Calculate Your Missed Call Revenue Loss &rarr;</span>
+              </Link>
+            </div>
+            <p className="text-xs sm:text-sm text-[#A3A3B3] leading-relaxed">
+              <strong className="text-white font-semibold">BoldFlow Labs is an Indian AI telephony automation agency that deploys 24/7 multilingual AI phone receptionists and voice agents for businesses.</strong> Designed specifically for the Indian telecom ecosystem, BoldFlow Labs integrates with providers like Exotel, Vobiz, and Voice Link to deliver natural-sounding phone conversations with ultra-low latency under 180 milliseconds. The system answers inbound calls and initiates instant outbound callbacks in Hindi, Tamil, Kannada, Telugu, Marathi, Bengali, Gujarati, and English, including code-switching dialects like Hinglish and Tanglish. Built primarily for real estate brokerages, D2C e-commerce brands, and insurance agencies, BoldFlow Labs automates after-hours lead qualification, site visit bookings, Cash-on-Delivery (COD) order confirmations, and policy renewal follow-ups. All deployments are fully compliant with Telecom Regulatory Authority of India (TRAI) Do-Not-Disturb (DND) regulations and synchronize conversation logs directly into CRMs including LeadSquared, Zoho, and WhatsApp Business.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* ── "BUILT FOR INDIAN TELEPHONY" STRIP ───────────────── */}
@@ -305,7 +329,7 @@ export default function HomePage() {
           <div className="max-w-[1280px] w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="text-center md:text-left">
                   <span className="text-[10px] font-mono text-[#0047FF] uppercase tracking-widest font-bold block mb-1">TELEPHONY INTEGRATION</span>
-                  <h3 className="text-base font-bold font-space text-white">Built for Indian Telephony</h3>
+                  <h2 className="text-base font-bold font-space text-white">Built for Indian Telephony</h2>
               </div>
               
               <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
@@ -378,6 +402,77 @@ export default function HomePage() {
                 </Link>
             </div>
         </div>
+      </section>
+
+      {/* ── ZERO-HARDWARE TELEPHONY ARCHITECTURE ─────────── */}
+      <section className="py-24 lg:py-28 border-b border-[#1C1C24] bg-[#0A0A0F] relative">
+          <div className="max-w-[1280px] mx-auto px-6">
+              <div className="text-center mb-16">
+                  <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3 font-bold">// ZERO HARDWARE TELEPHONY ARCHITECTURE</span>
+                  <h2 className="text-h2 text-[#F5F6FA] mb-4">
+                      Keep Your Number. Zero Hardware. Live in 5 Days.
+                  </h2>
+                  <p className="text-body max-w-2xl mx-auto">
+                      You don't need new SIM cards, expensive PBX boxes, or complicated telecom software. BoldFlow connects directly to your existing business phone numbers in 3 simple steps.
+                  </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                  {/* Step 1 */}
+                  <div className="p-8 bg-[#111116] border border-[#1C1C24] hover:border-[#0047FF]/40 rounded-[6px] transition-all relative flex flex-col justify-between">
+                      <div>
+                          <div className="flex items-center justify-between mb-6">
+                              <span className="px-3 py-1 bg-[#0047FF]/10 text-[#0047FF] border border-[#0047FF]/20 font-mono text-xs font-bold rounded-sm">STEP 01</span>
+                              <span className="text-[10px] font-mono text-[#10B981] font-bold">ZERO PORTING</span>
+                          </div>
+                          <h3 className="text-lg font-bold font-space text-white mb-3">Keep Your Existing Phone Number</h3>
+                          <p className="text-sm text-[#A3A3B3] leading-relaxed mb-6">
+                              No need to change marketing materials or SIM cards. Simply turn on standard conditional call forwarding (<code className="text-white bg-[#0A0A0F] px-1.5 py-0.5 rounded border border-[#1C1C24] font-mono text-xs">*61*</code> on busy, or after 15 seconds unanswered) on your existing Jio, Airtel, Vi, or BSNL line.
+                          </p>
+                      </div>
+                      <div className="pt-4 border-t border-[#1C1C24] flex items-center justify-between font-mono text-[10px] text-[#626272]">
+                          <span>COMPATIBILITY: ALL TELCOS</span>
+                          <span>SETUP: 2 MINUTES</span>
+                      </div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className="p-8 bg-[#111116] border border-[#0047FF]/30 hover:border-[#0047FF] rounded-[6px] transition-all relative flex flex-col justify-between shadow-[0_0_30px_rgba(0,71,255,0.05)]">
+                      <div>
+                          <div className="flex items-center justify-between mb-6">
+                              <span className="px-3 py-1 bg-[#0047FF] text-white font-mono text-xs font-bold rounded-sm">STEP 02</span>
+                              <span className="text-[10px] font-mono text-[#FF5A1F] font-bold">&lt;180MS STREAM</span>
+                          </div>
+                          <h3 className="text-lg font-bold font-space text-white mb-3">AI Answers in Under 2 Rings</h3>
+                          <p className="text-sm text-[#A3A3B3] leading-relaxed mb-6">
+                              Unanswered calls route seamlessly to BoldFlow's TRAI-compliant virtual DID. The AI greets callers in their regional dialect (Hindi, Tamil, Kannada, Telugu, English), pre-qualifies their requirement, and answers FAQs.
+                          </p>
+                      </div>
+                      <div className="pt-4 border-t border-[#1C1C24] flex items-center justify-between font-mono text-[10px] text-[#0047FF]">
+                          <span>LATENCY: &lt;180MS</span>
+                          <span>BARGE-IN: FULL DUPLEX</span>
+                      </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="p-8 bg-[#111116] border border-[#1C1C24] hover:border-[#0047FF]/40 rounded-[6px] transition-all relative flex flex-col justify-between">
+                      <div>
+                          <div className="flex items-center justify-between mb-6">
+                              <span className="px-3 py-1 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/20 font-mono text-xs font-bold rounded-sm">STEP 03</span>
+                              <span className="text-[10px] font-mono text-[#10B981] font-bold">INSTANT SYNC</span>
+                          </div>
+                          <h3 className="text-lg font-bold font-space text-white mb-3">Instant WhatsApp &amp; CRM Dispatch</h3>
+                          <p className="text-sm text-[#A3A3B3] leading-relaxed mb-6">
+                              Within 30 seconds of the call ending, full audio recordings, diarist transcripts, customer qualification scores, and booked calendar slots are pushed into WhatsApp and your CRM.
+                          </p>
+                      </div>
+                      <div className="pt-4 border-t border-[#1C1C24] flex items-center justify-between font-mono text-[10px] text-[#626272]">
+                          <span>LEADSQUARED · ZOHO</span>
+                          <span>WHATSAPP DISPATCH</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </section>
 
       {/* ── HOW IT WORKS ─────────────────────────────── */}
@@ -507,24 +602,12 @@ export default function HomePage() {
                               </div>
                           </div>
 
-                          <button 
-                              onClick={() => toggleAudioDemo(agent.id)}
-                              className={`w-full py-3 border font-mono text-[11px] uppercase tracking-wider font-bold text-center flex items-center justify-center gap-2 transition-all rounded-[4px] ${
-                                playingAudioId === agent.id 
-                                  ? "bg-[#0047FF] text-white border-[#0047FF]" 
-                                  : "border-[#1C1C24] text-white hover:border-[#0047FF] bg-[#0A0A0F]"
-                              }`}
+                          <Link 
+                              href="/contact"
+                              className="w-full py-3 border border-[#1C1C24] text-white hover:border-[#0047FF] hover:bg-[#0047FF]/10 font-mono text-[11px] uppercase tracking-wider font-bold text-center flex items-center justify-center gap-2 transition-all rounded-[4px] bg-[#0A0A0F]"
                           >
-                              {playingAudioId === agent.id ? (
-                                <>
-                                  <Pause className="w-3.5 h-3.5 text-white" /> Audio Preview Playing... (Click to Pause)
-                                </>
-                              ) : (
-                                <>
-                                  <Play className="w-3.5 h-3.5 text-[#0047FF]" /> Listen to Voice Sample Preview
-                                </>
-                              )}
-                          </button>
+                              Request Custom Voice Agent Demo <ArrowRight className="w-3.5 h-3.5 text-[#0047FF]" />
+                          </Link>
                       </div>
                   ))}
               </div>
@@ -635,7 +718,7 @@ export default function HomePage() {
                                       transition={{ duration: 0.2, ease: "easeInOut" }}
                                       className="overflow-hidden"
                                   >
-                                      <div className="px-6 pb-6 text-[#A3A3B3] text-sm leading-relaxed border-t border-[#1C1C24] pt-4 mt-2 font-sans">
+                                      <div className="px-6 pb-6 text-[#A3A3B3] text-sm leading-relaxed border-t border-[#1C1C24] pt-4 mt-2 font-sans whitespace-pre-line">
                                           {faq.a}
                                       </div>
                                   </motion.div>

@@ -1,0 +1,79 @@
+# BoldFlow Labs
+> 24/7 TRAI-Compliant Multilingual AI Phone Assistants & Voice Agents for Indian Businesses
+
+BoldFlow Labs (https://www.boldflowlabs.com) is an AI telephony automation agency based in Kerala, India, specializing in low-latency (<180ms) multilingual conversational AI voice receptionists and outbound callback systems. We eliminate missed revenue leaks for Indian high-growth enterprises by responding to inquiries in seconds in native Indian languages.
+
+## Core Services & Solutions
+
+### 1. 24/7 AI Phone Receptionists
+- Answers inbound calls in under 10 seconds 24/7/365.
+- Native fluency in Hindi, Tamil, Kannada, Telugu, Marathi, Gujarati, Bengali, Hinglish, and Indian English.
+- Pre-qualifies caller intent, collects key requirements, answers FAQs, and books meetings directly into calendars or CRMs.
+
+### 2. Instant Outbound Lead Callbacks (Speed-to-Lead)
+- Triggers automated phone callbacks within 60 seconds of a portal lead submission (99acres, MagicBricks, Meta Ads, Google Ads, website forms).
+- Delivers up to 7x higher lead conversion compared to delayed manual callbacks.
+
+### 3. E-Commerce COD Confirmation & RTO Reduction
+- Calls shoppers within minutes of Cash-on-Delivery (COD) checkout to confirm shipping address and intent to pay.
+- Reduces Return-to-Origin (RTO) courier losses by up to 35% for Indian D2C brands.
+
+### 4. Policy Renewal & Lapse Prevention Voice Agents
+- Conducts automated reminder calls to policyholders 30 days and 7 days prior to policy lapse.
+- Books advisor callbacks for policy modifications, protecting annual renewal commissions.
+
+## Indian Telephony & Regulatory Compliance
+- Telephony Infrastructure: Voice Link, Vobiz, Exotel, and Plivo SIP trunks with native +91 virtual numbers.
+- Regulatory Adherence: Fully compliant with Telecom Regulatory Authority of India (TRAI) directives and National Do Not Call (NDNC/DND) registry filtering.
+- Latency Benchmark: Sub-180ms audio roundtrip with streaming speech synthesis for natural conversational interruption and human pacing.
+
+## Software & CRM Integrations
+- CRMs: LeadSquared, Zoho CRM, Salesforce, HubSpot, Google Calendar, Excel / Google Sheets.
+- Messaging: WhatsApp Business API (instant dispatch of brochures, address pins, booking confirmations).
+- E-Commerce: Shopify, WooCommerce, Shiprocket, ClickPost.
+
+## Transparent Pricing Tiers
+
+1. Starter Plan — ₹9,999 / month
+   - 1,000 call minutes included (~33 mins/day)
+   - Inbound call reception
+   - 1 regional Indian language or English
+   - Standard CRM webhook sync
+   - 99.5% uptime SLA
+
+2. Growth Plan — ₹19,999 / month (Most Popular)
+   - 3,000 call minutes included (~100 mins/day)
+   - Inbound reception + outbound lead callbacks
+   - English + 1 regional Indian language
+   - Instant WhatsApp confirmation automation
+   - LeadSquared / Zoho 2-way CRM sync
+   - Priority SLA support
+
+3. Enterprise Plan — Custom Pricing
+   - High-volume scalable minutes
+   - All 8+ supported regional Indian languages
+   - Custom SIP trunking & dedicated telephony carrier routes
+   - Custom on-premise or ERP integrations
+   - Dedicated voice solutions architect
+
+## Key Pages & Documentation
+- Homepage: https://www.boldflowlabs.com/
+- Services & Telephony: https://www.boldflowlabs.com/services
+- Vertical Use Cases: https://www.boldflowlabs.com/use-cases
+- Real Estate Voice Agent: https://www.boldflowlabs.com/real-estate-ai-agent
+- D2C E-Commerce Voice Agent: https://www.boldflowlabs.com/d2c-ai-agent
+- Insurance Voice Agent: https://www.boldflowlabs.com/insurance-ai-agent
+- Pricing Plans: https://www.boldflowlabs.com/pricing
+- Technical Case Studies: https://www.boldflowlabs.com/work
+- 4-Step Deployment Roadmap: https://www.boldflowlabs.com/what-to-expect
+- Engineering Blog: https://www.boldflowlabs.com/blog
+- About & Team: https://www.boldflowlabs.com/about
+- Book a Strategy Call / Free Pilot: https://www.boldflowlabs.com/contact
+
+## Founder & Entity Information
+- Founder & Principal AI Architect: Godson Saji
+- LinkedIn: https://www.linkedin.com/in/godson-saji
+- Company LinkedIn: https://www.linkedin.com/company/boldflowlabs
+- Email: hello@boldflowlabs.com
+- Phone: +91 94471 78166
+- Headquarters: Kerala, India

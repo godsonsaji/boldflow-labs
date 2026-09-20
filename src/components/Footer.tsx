@@ -2,20 +2,26 @@ import Link from "next/link";
 import { MessageCircle, Phone, Mail } from "lucide-react";
 
 const footerLinks = {
-    Main: [
-        { href: "/", label: "Home" },
-        { href: "/services", label: "Services" },
-        { href: "/use-cases", label: "Use Cases" },
-        { href: "/pricing", label: "Pricing" },
-        { href: "/what-to-expect", label: "What to Expect" },
-        { href: "/work", label: "Work" },
-    ],
     Solutions: [
         { href: "/real-estate-ai-agent", label: "Real Estate Brokers" },
         { href: "/d2c-ai-agent", label: "D2C & E-Commerce" },
         { href: "/insurance-ai-agent", label: "Insurance Agencies" },
-        { href: "/about", label: "About" },
-        { href: "/blog", label: "Blog" },
+        { href: "/clinic-ai-agent", label: "Clinics & Doctors" },
+        { href: "/coaching-institute-ai-agent", label: "Coaching Institutes" },
+    ],
+    "Tools & Compare": [
+        { href: "/tools/missed-call-roi-calculator", label: "ROI Calculator" },
+        { href: "/compare/boldflow-vs-traditional-call-centers", label: "vs. Call Centers" },
+        { href: "/compare/boldflow-vs-myoperator", label: "vs. MyOperator" },
+        { href: "/llms.txt", label: "llms.txt Protocol" },
+    ],
+    Company: [
+        { href: "/", label: "Home" },
+        { href: "/services", label: "Services" },
+        { href: "/pricing", label: "Pricing" },
+        { href: "/about", label: "About Us" },
+        { href: "/work", label: "Case Studies" },
+        { href: "/blog", label: "Blog Blueprints" },
     ],
 };
 
@@ -47,16 +53,16 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
                     {/* Brand Core - Column 1 */}
-                    <div className="py-12 md:pr-12 md:border-r border-[#1C1C24] flex flex-col justify-between h-full">
+                    <div className="lg:col-span-4 py-12 lg:pr-10 lg:border-r border-[#1C1C24] flex flex-col justify-between h-full">
                         <div>
                             <Link href="/" className="flex items-center mb-6">
                                 <span style={{ fontFamily: "var(--font-space), 'Space Grotesk', sans-serif" }} className="text-2xl font-bold text-white tracking-tight">
                                     Bold<span className="text-[#0047FF]">Flow</span>
                                 </span>
                             </Link>
-                            <p className="text-[#A3A3B3] text-[15px] mb-6 max-w-[280px] leading-relaxed">
+                            <p className="text-[#A3A3B3] text-[14px] mb-6 max-w-[300px] leading-relaxed">
                                 We deploy 24/7 TRAI-compliant AI voice phone receptionists and automated lead qualification systems for Indian real estate brokers, D2C e-commerce brands, and insurance agencies.
                             </p>
                             <div className="inline-block px-3 py-1 bg-[#161622] border border-[#1C1C24] text-[10px] font-mono text-[#A3A3B3] rounded-sm mb-8">
@@ -72,18 +78,18 @@ export default function Footer() {
                     </div>
 
                     {/* Directory Links - Column 2 */}
-                    <div className="py-12 md:px-12 md:border-r border-[#1C1C24] grid grid-cols-2 gap-8">
+                    <div className="lg:col-span-5 py-12 lg:px-8 lg:border-r border-[#1C1C24] grid grid-cols-2 sm:grid-cols-3 gap-6">
                         {Object.entries(footerLinks).map(([title, links]) => (
                             <div key={title}>
-                                <h3 className="text-label text-[#71717A] mb-6 font-semibold uppercase tracking-wider">
+                                <h3 className="text-label text-[#71717A] mb-4 font-semibold uppercase tracking-wider text-[11px] font-mono">
                                     {title}
                                 </h3>
-                                <ul className="space-y-4">
+                                <ul className="space-y-3">
                                     {links.map((link, i) => (
                                         <li key={i}>
                                             <Link
                                                 href={link.href}
-                                                className="text-[#A3A3B3] hover:text-[#0047FF] text-[14px] transition-colors duration-150"
+                                                className="text-[#A3A3B3] hover:text-[#0047FF] text-[13px] transition-colors duration-150"
                                             >
                                                 {link.label}
                                             </Link>
@@ -95,9 +101,9 @@ export default function Footer() {
                     </div>
 
                     {/* Transmit - Column 3 */}
-                    <div className="py-12 md:pl-12 flex flex-col">
+                    <div className="lg:col-span-3 py-12 lg:pl-8 flex flex-col">
                         <div className="flex justify-between items-start mb-6">
-                            <h3 className="text-label text-[#71717A] font-semibold uppercase tracking-wider">
+                            <h3 className="text-label text-[#71717A] font-semibold uppercase tracking-wider text-[11px] font-mono">
                                 Contact & WhatsApp
                             </h3>
                         </div>

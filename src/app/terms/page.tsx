@@ -1,8 +1,11 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Terms of Service | BoldFlow Labs",
+  title: "Terms of Service",
   description: "Terms of Service for BoldFlow Labs AI voice agents and telephony services in India.",
+  alternates: {
+    canonical: "https://www.boldflowlabs.com/terms",
+  },
 };
 
 export default function TermsPage() {

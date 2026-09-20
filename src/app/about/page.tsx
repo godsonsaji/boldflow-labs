@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Cpu, Network, Code2, Layers } from "lucide-react";
+import { Cpu, Network, Code2, Layers, Linkedin, ExternalLink } from "lucide-react";
+import founderImg from "@/img/founder_img.png";
 
 const traits = [
     {
@@ -98,6 +100,57 @@ export default function AboutPage() {
                       </div>
                   </div>
              </section>
+
+            {/* ── FOUNDER & LEADERSHIP ─────────────────── */}
+            <section className="py-24 bg-[#0A0A0F] border-b border-[#1C1C24] relative">
+                <div className="max-w-[1280px] mx-auto px-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div className="lg:col-span-4 flex justify-center">
+                            <div className="relative group">
+                                <div className="absolute -inset-1 bg-gradient-to-r from-[#0047FF] to-[#00D2FF] rounded-[12px] blur-md opacity-25 group-hover:opacity-40 transition duration-300" />
+                                <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-[10px] overflow-hidden border border-[#1C1C24] bg-[#111116]">
+                                    <Image
+                                        src={founderImg}
+                                        alt="Godson Saji — Founder & AI Systems Architect at BoldFlow Labs"
+                                        fill
+                                        sizes="(max-width: 768px) 256px, 288px"
+                                        className="object-cover object-center"
+                                        priority
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="lg:col-span-8 flex flex-col gap-5">
+                            <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block font-bold">// FOUNDER &amp; ARCHITECT</span>
+                            <h2 className="text-h2 text-white tracking-tight leading-tight">
+                                Built &amp; Architected by Godson Saji.
+                            </h2>
+                            <p className="text-body text-[#A3A3B3] leading-relaxed">
+                                Godson Saji is the founder and principal AI systems architect at BoldFlow Labs, based in Kerala, India. With deep background in conversational voice AI, latency optimization (&lt;180ms roundtrips), and regional Indian telephony protocols (TRAI compliance, Exotel/Vobiz SIP integration), he designs custom voice agents that feel indistinguishable from human operators.
+                            </p>
+                            <p className="text-sm text-[#A3A3B3] leading-relaxed">
+                                Unlike traditional marketing agencies that outsource development, every client deployment at BoldFlow Labs is architected directly by Godson from dialogue flow design and CRM webhooks to telephony carrier routing.
+                            </p>
+                            <div className="flex flex-wrap items-center gap-4 pt-2">
+                                <a
+                                    href="https://www.linkedin.com/in/godson-saji"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#111116] border border-[#1C1C24] hover:border-[#0047FF] text-[#F5F6FA] hover:text-white rounded-[4px] font-mono text-xs uppercase tracking-wider transition-colors"
+                                >
+                                    <Linkedin className="w-4 h-4 text-[#0047FF]" />
+                                    <span>Connect on LinkedIn</span>
+                                    <ExternalLink className="w-3 h-3 text-[#A3A3B3]" />
+                                </a>
+                                <span className="text-xs font-mono text-[#10B981] flex items-center gap-1.5">
+                                    <span className="w-2 h-2 rounded-full bg-[#10B981]" /> Verified Founder Entity
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* ── TRAITS & PHILOSOPHY ──────────────────── */}
             <section className="py-32 bg-[#0A0A0F] border-b border-[#1C1C24]">

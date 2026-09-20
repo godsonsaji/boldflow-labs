@@ -9,8 +9,8 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Search, Filter } from "lucide-react";
 
 export default function BlogPage() {
-    const [posts, setPosts] = useState<BlogPost[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [posts, setPosts] = useState<BlogPost[]>(staticBlogPosts);
+    const [loading, setLoading] = useState(false);
     const [selectedTag, setSelectedTag] = useState<string>("ALL");
     const [searchQuery, setSearchQuery] = useState("");
     const [email, setEmail] = useState("");

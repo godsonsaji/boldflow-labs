@@ -12,9 +12,10 @@ import { ChevronLeft } from "lucide-react";
 
 export default function BlogPostPage() {
     const { slug } = useParams();
+    const staticInitial = typeof slug === "string" ? staticBlogPosts.find(p => p.slug === slug) : null;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [post, setPost] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
+    const [post, setPost] = useState<any>(staticInitial || null);
+    const [loading, setLoading] = useState(!staticInitial);
 
     useEffect(() => {
         const fetchPost = async () => {
