@@ -68,7 +68,7 @@ export default function BlogPostPage() {
                 <h1 className="text-h2 font-medium text-[#F5F5F5] uppercase mb-6 mt-4">RECORD NOT FOUND</h1>
                 <p className="text-[#A3A3A3] mb-12 max-w-md">The requested telemetry log could not be located in the current database architecture.</p>
                 <Link href="/blog" className="px-8 py-4 btn-ghost font-mono text-[13px] tracking-wider uppercase">
-                    [ RETURN_TO_LOGS ]
+                    ← Return to All Articles
                 </Link>
             </div>
         );
@@ -83,9 +83,9 @@ export default function BlogPostPage() {
 
             <div className="max-w-[800px] mx-auto relative z-10">
                 {/* Back Link */}
-                <Link href="/blog" className="inline-flex items-center text-label font-mono text-[#525252] hover:text-[#0066ff] mb-16 transition-colors">
+                <Link href="/blog" className="inline-flex items-center text-label font-mono text-[#737373] hover:text-[#0066ff] mb-12 transition-colors">
                     <ChevronLeft className="w-4 h-4 mr-1 relative -top-px" />
-                    [ RETRIEVE_LOGS ]
+                    ← Back to All Articles
                 </Link>
 
                 {/* Header */}
@@ -109,14 +109,19 @@ export default function BlogPostPage() {
                     <div className="flex flex-wrap items-center gap-y-4 gap-x-6 text-caption text-[#A3A3A3] font-mono border-y border-[#1A1A1A] py-6">
                         {post.authorName && (
                             <div className="flex items-center gap-3 pr-6 border-r border-[#1A1A1A]">
-                                <div className="w-6 h-6 border border-[#333] bg-[#111] overflow-hidden">
+                                <div className="w-7 h-7 rounded-full border border-[#333] bg-[#111] overflow-hidden shrink-0">
                                     <img
-                                        src={post.authorImage || "https://ui-avatars.com/api/?name=" + post.authorName + "&background=111&color=fff"}
+                                        src={post.authorImage || "/founder.png"}
                                         alt={post.authorName}
-                                        className="w-full h-full object-cover grayscale"
+                                        className="w-full h-full object-cover"
                                     />
                                 </div>
-                                <span className="uppercase tracking-wider">{post.authorName}</span>
+                                <div>
+                                    <Link href="/about" className="uppercase tracking-wider text-[#F5F5F5] hover:text-[#0066ff] transition-colors block font-medium">
+                                        {post.authorName}
+                                    </Link>
+                                    <span className="text-[10px] text-[#71717A] tracking-wider block">Systems Architect</span>
+                                </div>
                             </div>
                         )}
                         <div className="flex items-center gap-2 uppercase tracking-widest text-[#71717A]">
@@ -183,15 +188,43 @@ export default function BlogPostPage() {
                         </div>
                     )}
 
-                    <div className="bg-[#0A0A0A] border border-[#1A1A1A] p-12 text-center relative group">
+                    {/* Author Bio Box for E-E-A-T */}
+                    <div className="p-6 sm:p-8 bg-[#0A0A0A] border border-[#1A1A1A] rounded-xl mb-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                        <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#0066ff] shrink-0">
+                            <img
+                                src="/founder.png"
+                                alt="Godson Saji — Founder & Systems Architect"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div className="space-y-1.5 flex-1">
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm font-bold text-[#F5F5F5] uppercase tracking-wide">Written by Godson Saji</span>
+                                <span className="text-[10px] font-mono text-[#0066ff] bg-[#0066ff]/10 px-2 py-0.5 rounded border border-[#0066ff]/20">FOUNDER</span>
+                            </div>
+                            <p className="text-xs text-[#A3A3A3] leading-relaxed">
+                                Principal Systems Architect at BoldFlow Labs. Specializing in official Meta WhatsApp Business Cloud API workflows, Jamstack performance engineering, and closed-loop CRM attribution.
+                            </p>
+                            <div className="pt-1 flex items-center gap-4 text-xs font-mono">
+                                <Link href="/about" className="text-[#0066ff] hover:underline flex items-center gap-1">
+                                    About the Founder →
+                                </Link>
+                                <a href="https://www.linkedin.com/in/godson-saji" target="_blank" rel="noopener noreferrer" className="text-[#71717A] hover:text-[#F5F5F5] transition-colors">
+                                    LinkedIn Profile ↗
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-[#0A0A0A] border border-[#1A1A1A] p-10 sm:p-12 text-center relative group rounded-xl">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,102,255,0.05),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                         <div className="target-hex target-hex-left-top" />
                         <div className="target-hex target-hex-right-bottom" />
                         
-                        <h3 className="text-[24px] font-medium text-[#F5F5F5] uppercase mb-6">Want to deploy systems like this?</h3>
-                        <p className="text-[#A3A3A3] mb-10 max-w-md mx-auto">We architect bespoke AI automation pipelines that eliminate manual work completely. Request an infrastructure diagnostic.</p>
-                        <Link href="/contact" className="px-10 py-5 btn-primary font-medium text-sm text-center tracking-wide inline-block">
-                            INITIALIZE TRANSMISSION
+                        <h3 className="text-[22px] sm:text-[26px] font-medium text-[#F5F5F5] uppercase mb-4">Want to deploy systems like this?</h3>
+                        <p className="text-[#A3A3A3] mb-8 max-w-lg mx-auto text-sm sm:text-base leading-relaxed">We architect bespoke AI automation pipelines, official WhatsApp workflows, and high-performance websites that eliminate manual bottlenecks.</p>
+                        <Link href="/contact" className="px-8 py-4 btn-primary font-medium text-sm text-center tracking-wide inline-block">
+                            Request an Architecture Diagnostic →
                         </Link>
                     </div>
                 </div>

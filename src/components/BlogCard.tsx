@@ -33,7 +33,7 @@ export default function BlogCard({ post }: BlogCardProps) {
                 <div className="flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 bg-[#525252] group-hover:bg-[#0066ff] transition-colors" />
                     <span className="text-[10px] font-mono uppercase tracking-widest text-[#525252] group-hover:text-[#A3A3A3] transition-colors">
-                        TLM_LOG
+                        SYSTEM BLUEPRINT
                     </span>
                 </div>
                 <div className="flex items-center text-[10px] font-mono text-[#525252]">
@@ -70,11 +70,11 @@ export default function BlogCard({ post }: BlogCardProps) {
                 <div className="flex items-center justify-between pt-6 border-t border-[#1A1A1A] mt-auto">
                     {post.authorName ? (
                         <div className="flex items-center gap-3">
-                            <div className="w-6 h-6 border border-[#1A1A1A] bg-[#111] overflow-hidden">
+                            <div className="w-6 h-6 rounded-full border border-[#333] overflow-hidden shrink-0">
                                 <img
-                                    src={post.authorImage || "https://ui-avatars.com/api/?name=" + post.authorName + "&background=111&color=fff"}
+                                    src={post.authorImage || "/founder.png"}
                                     alt={post.authorName}
-                                    className="w-full h-full object-cover grayscale"
+                                    className="w-full h-full object-cover"
                                 />
                             </div>
                             <span className="text-caption text-[#F5F5F5] uppercase tracking-wider">{post.authorName}</span>
@@ -84,7 +84,7 @@ export default function BlogCard({ post }: BlogCardProps) {
                     )}
 
                     <div className="flex items-center text-label text-[#525252] group-hover:text-[#F5F5F5] font-mono transition-colors">
-                        [ READ ]
+                        Read Guide →
                     </div>
                 </div>
             </div>

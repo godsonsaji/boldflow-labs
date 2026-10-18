@@ -8,6 +8,19 @@ export default function robots(): MetadataRoute.Robots {
                 allow: "/",
                 disallow: ["/admin/", "/api/"],
             },
+            {
+                userAgent: [
+                    "GPTBot",
+                    "ClaudeBot",
+                    "PerplexityBot",
+                    "Google-Extended",
+                    "Applebot-Extended",
+                    "OAI-SearchBot",
+                    "CCBot",
+                ],
+                allow: "/",
+                disallow: ["/admin/", "/api/"],
+            },
         ],
         sitemap: "https://www.boldflowlabs.com/sitemap.xml",
     };

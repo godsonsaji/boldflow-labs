@@ -45,7 +45,7 @@ export default function Footer() {
 
             <div className="mt-8 pt-6 border-t border-slate-100 text-xs font-mono text-slate-500">
               <span className="block text-slate-800 font-semibold mb-0.5">LOCATION</span>
-              <span>Kerala, India · Serving Clients Globally</span>
+              <span>Kochi, Kerala, India · Serving Clients Globally</span>
             </div>
           </div>
 

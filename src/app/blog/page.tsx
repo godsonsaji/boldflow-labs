@@ -128,7 +128,7 @@ const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
                         transition={{ delay: 0.1 }}
                         className="text-h1 text-[#F5F6FA] mb-8 tracking-tight"
                     >
-                        Thoughts & Teardowns.
+                        Engineering & Growth Blueprints: Automation, Technical SEO & Systems Architecture
                     </motion.h1>
 
                     <motion.p 
@@ -137,7 +137,7 @@ const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
                         transition={{ delay: 0.2 }}
                         className="text-body-lg"
                     >
-                        Read our technical specifications, speed-to-lead breakdowns, and operational blueprints for trade automation systems.
+                        In-depth architectural breakdowns, speed-to-lead benchmarks, official WhatsApp Cloud API workflows, and technical SEO guides for modern businesses.
                     </motion.p>
                 </header>
 

@@ -198,12 +198,12 @@ export default function HomePage() {
             <h1 className="text-hero text-[#0B1020] tracking-tight">
               Build Smarter Systems. <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] via-[#0284C7] to-[#0891B2]">
-                Grow Your Business.
+                WhatsApp Automation & CRM Systems for Growing Businesses
               </span>
             </h1>
 
             <p className="mt-6 text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
-              BoldFlow Labs helps businesses streamline operations, automate lead follow-ups, improve their digital presence, and build practical systems for sustainable growth.
+              BoldFlow Labs builds official WhatsApp automations, CRM pipelines, performance marketing, and high-performance websites that eliminate manual bottlenecks and accelerate growth.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -602,57 +602,61 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Active Blueprint Card */}
-        {(() => {
-          const bp = sampleBlueprints[activeBlueprint];
-          return (
-            <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-md">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 mb-6 gap-2">
-                <div>
-                  <span className="text-[11px] font-mono text-[#0891B2] uppercase tracking-wider font-semibold block mb-1">
-                    {bp.category} · {bp.badge}
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900">{bp.title}</h3>
-                </div>
-                <div className="text-xs font-mono text-slate-600 bg-slate-50 px-3 py-1.5 rounded border border-slate-200 shrink-0">
-                  Label: Demonstration Model
-                </div>
-              </div>
-
-              <p className="text-sm text-slate-600 leading-relaxed mb-8 max-w-3xl">
-                {bp.description}
-              </p>
-
-              {/* Multi-node flow */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                {bp.nodes.map((node, idx) => (
-                  <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                    <div className="text-[10px] font-mono font-bold text-[#2563FF] uppercase mb-1">
-                      {node.step}
-                    </div>
-                    <h4 className="text-xs font-bold text-slate-900 mb-1">{node.title}</h4>
-                    <span className="text-[11px] text-slate-500 block">{node.meta}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Technologies in blueprint */}
-              <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2">
-                <span className="text-xs font-mono text-slate-500 uppercase tracking-wider mr-2">
-                  Engineered With:
+        {/* Sample Blueprints Rendered in HTML for Crawlers */}
+        {sampleBlueprints.map((bp, i) => (
+          <div
+            key={bp.id}
+            id={`sample-blueprint-${bp.id}`}
+            role="tabpanel"
+            className={`p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-md ${
+              activeBlueprint === i ? "block" : "hidden"
+            }`}
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 mb-6 gap-2">
+              <div>
+                <span className="text-[11px] font-mono text-[#0891B2] uppercase tracking-wider font-semibold block mb-1">
+                  {bp.category} · {bp.badge}
                 </span>
-                {bp.techStack.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-2.5 py-1 rounded bg-slate-50 border border-slate-200 text-xs text-slate-700 font-mono"
-                  >
-                    {tech}
-                  </span>
-                ))}
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">{bp.title}</h3>
+              </div>
+              <div className="text-xs font-mono text-slate-600 bg-slate-50 px-3 py-1.5 rounded border border-slate-200 shrink-0">
+                Label: Demonstration Model
               </div>
             </div>
-          );
-        })()}
+
+            <p className="text-sm text-slate-600 leading-relaxed mb-8 max-w-3xl">
+              {bp.description}
+            </p>
+
+            {/* Multi-node flow */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              {bp.nodes.map((node, idx) => (
+                <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="text-[10px] font-mono font-bold text-[#2563FF] uppercase mb-1">
+                    {node.step}
+                  </div>
+                  <h4 className="text-xs font-bold text-slate-900 mb-1">{node.title}</h4>
+                  <span className="text-[11px] text-slate-500 block">{node.meta}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Technologies in blueprint */}
+            <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2">
+              <span className="text-xs font-mono text-slate-500 uppercase tracking-wider mr-2">
+                Engineered With:
+              </span>
+              {bp.techStack.map((tech, tidx) => (
+                <span
+                  key={tidx}
+                  className="px-2.5 py-1 rounded bg-slate-50 border border-slate-200 text-xs text-slate-700 font-mono"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
 
       {/* ── 9. WHY WORK WITH BOLDFLOW LABS (TRUTHFUL) ───── */}
@@ -748,19 +752,24 @@ export default function HomePage() {
               <button
                 onClick={() => toggleFaq(i)}
                 className="w-full flex items-center justify-between text-left text-sm sm:text-base font-bold text-slate-900 hover:text-[#2563FF] transition-colors cursor-pointer"
+                aria-expanded={openFaq === i}
+                aria-controls={`faq-answer-${i}`}
               >
-                <span>{faq.q}</span>
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 pr-4">{faq.q}</h3>
                 {openFaq === i ? (
-                  <ChevronUp className="w-5 h-5 text-[#2563FF] shrink-0 ml-4" />
+                  <ChevronUp className="w-5 h-5 text-[#2563FF] shrink-0" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-slate-400 shrink-0 ml-4" />
+                  <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
                 )}
               </button>
-              {openFaq === i && (
-                <p className="mt-4 text-xs sm:text-sm text-slate-600 leading-relaxed pt-3 border-t border-slate-100">
-                  {faq.a}
-                </p>
-              )}
+              <div
+                id={`faq-answer-${i}`}
+                className={`mt-4 text-xs sm:text-sm text-slate-600 leading-relaxed pt-3 border-t border-slate-100 ${
+                  openFaq === i ? "block" : "hidden"
+                }`}
+              >
+                <p>{faq.a}</p>
+              </div>
             </div>
           ))}
         </div>

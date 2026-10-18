@@ -28,18 +28,7 @@ export const metadata: Metadata = {
     template: "%s | BoldFlow Labs",
   },
   description:
-    "BoldFlow Labs builds modern business systems, official WhatsApp automations, CRM pipelines, performance marketing, and high-performance websites for sustainable growth.",
-  keywords: [
-    "AI automation agency",
-    "WhatsApp automation for business",
-    "business systems and CRM",
-    "performance marketing Google Ads Meta Ads",
-    "technical SEO services",
-    "high-performance website development",
-    "Google Business Profile optimization",
-    "lead workflow automation",
-    "BoldFlow Labs",
-  ],
+    "BoldFlow Labs builds official WhatsApp automations, CRM pipelines, performance marketing, and high-performance websites. Schedule your project consultation.",
   authors: [{ name: "BoldFlow Labs", url: BASE_URL }],
   creator: "BoldFlow Labs",
   publisher: "BoldFlow Labs",
@@ -54,7 +43,7 @@ export const metadata: Metadata = {
     siteName: "BoldFlow Labs",
     title: "BoldFlow Labs | AI Automation, Business Systems & Digital Growth",
     description:
-      "We help businesses streamline operations, automate lead follow-ups, improve their digital presence, and build practical systems for sustainable growth.",
+      "BoldFlow Labs builds official WhatsApp automations, CRM pipelines, performance marketing, and high-performance websites. Schedule your project consultation.",
     images: [
       {
         url: "/og-image.png",
@@ -68,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BoldFlow Labs | AI Automation, Business Systems & Digital Growth",
     description:
-      "We help businesses streamline operations, automate lead follow-ups, and build practical systems for sustainable growth.",
+      "BoldFlow Labs builds official WhatsApp automations, CRM pipelines, performance marketing, and high-performance websites. Schedule your project consultation.",
     creator: "@boldflowlabs",
   },
   robots: {
@@ -130,7 +119,7 @@ export default function RootLayout({
             gtag('config', 'G-E8407JPD5S');
           `}
         </Script>
-        {/* Organization & Core Services JSON-LD Schema */}
+        {/* Organization, LocalBusiness & Core Services JSON-LD Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -138,36 +127,81 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@graph": [
                 {
-                  "@type": "Organization",
+                  "@type": ["Organization", "ProfessionalService"],
                   "@id": `${BASE_URL}/#organization`,
                   name: "BoldFlow Labs",
                   url: BASE_URL,
                   logo: `${BASE_URL}/logo.png`,
+                  image: `${BASE_URL}/og-image.png`,
+                  priceRange: "$$",
                   description:
-                    "BoldFlow Labs is a digital growth and business systems agency helping companies streamline operations, automate WhatsApp follow-ups, and scale acquisition.",
+                    "BoldFlow Labs is a digital growth and business systems engineering agency specializing in official WhatsApp automations, CRM pipelines, and technical web development.",
                   founder: {
                     "@type": "Person",
                     "@id": `${BASE_URL}/#founder`,
                     name: "Godson Saji",
                     jobTitle: "Founder & Systems Architect",
+                    image: `${BASE_URL}/founder.png`,
+                    url: `${BASE_URL}/about`,
                     sameAs: "https://www.linkedin.com/in/godson-saji",
                   },
                   address: {
                     "@type": "PostalAddress",
+                    addressLocality: "Kochi",
                     addressRegion: "Kerala",
+                    postalCode: "682001",
                     addressCountry: "IN",
                   },
+                  geo: {
+                    "@type": "GeoCoordinates",
+                    latitude: 9.9312,
+                    longitude: 76.2673,
+                  },
+                  areaServed: [
+                    {
+                      "@type": "Country",
+                      name: "India",
+                    },
+                    {
+                      "@type": "AdministrativeArea",
+                      name: "Kerala",
+                    },
+                    {
+                      "@type": "GeoCircle",
+                      geoMidpoint: {
+                        "@type": "GeoCoordinates",
+                        latitude: 9.9312,
+                        longitude: 76.2673,
+                      },
+                      geoRadius: "Global Remote Services",
+                    },
+                  ],
+                  openingHoursSpecification: [
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      dayOfWeek: [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                      ],
+                      opens: "09:00",
+                      closes: "18:00",
+                    },
+                  ],
                   contactPoint: {
                     "@type": "ContactPoint",
                     contactType: "Customer Service",
                     email: "hello@boldflowlabs.com",
                     telephone: "+919447178166",
+                    availableLanguage: ["English", "Malayalam", "Hindi"],
                   },
                   sameAs: [
-                    "https://linkedin.com/company/boldflowlabs",
+                    "https://www.linkedin.com/company/boldflowlabs",
                     "https://x.com/boldflowlabs",
-                    "https://facebook.com/boldflowlabs",
-                    "https://instagram.com/boldflowlabs",
+                    "https://www.facebook.com/boldflowlabs",
+                    "https://www.instagram.com/boldflowlabs",
                   ],
                   hasOfferCatalog: {
                     "@type": "OfferCatalog",
@@ -232,6 +266,60 @@ export default function RootLayout({
                   publisher: {
                     "@id": `${BASE_URL}/#organization`,
                   },
+                },
+                {
+                  "@type": "FAQPage",
+                  "@id": `${BASE_URL}/#faq`,
+                  mainEntity: [
+                    {
+                      "@type": "Question",
+                      name: "How does BoldFlow Labs deliver projects?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "We operate a focused boutique agency model. Founder Godson Saji leads client strategy, requirements scoping, and technical architecture directly. For specialized execution, we collaborate with vetted technical delivery specialists.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "Do you guarantee return on ad spend (ROAS) or #1 Google rankings?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "No, and we never will. Guarantees of #1 rankings or fixed ROAS are deceptive marketing tactics. What we guarantee is rigorous technical execution, clean tracking foundations, transparent reporting, and systems built according to official platform standards.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "Who owns the accounts, code, and automations after the project?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "You do—100%. We believe in zero vendor lock-in. All ad accounts, CRM environments, code repositories, domains, and automation accounts belong to your business.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "How long does a typical system implementation take?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Most single-system implementations take 2 to 4 weeks from kickoff to production testing. Multi-system transformations are planned in structured, sequential milestones.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "What tools and platforms do you support?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "We work with modern, industry-standard tools including Next.js, React, TypeScript, the official Meta WhatsApp Cloud API, Google Ads, Meta Ads, Google Tag Manager, GA4, HubSpot, Zoho CRM, LeadSquared, n8n, Make.com, and Zapier.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "How do we get started?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "You can submit an enquiry through our contact form or book an introductory 30-minute discovery session with founder Godson Saji to assess project feasibility.",
+                      },
+                    },
+                  ],
                 },
               ],
             }),

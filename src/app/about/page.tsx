@@ -91,11 +91,26 @@ export default function AboutPage() {
                 Architected by Godson Saji
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Godson Saji is the founder and principal systems architect at BoldFlow Labs, based in Kerala, India. With a technical background in full-stack web engineering, API automation, and digital conversion systems, Godson personally oversees project strategy and architectural design for every client engagement.
+                Godson Saji is the founder and principal systems architect at BoldFlow Labs, based in Kochi, Kerala, India. With 6+ years of specialized engineering experience in full-stack web engineering, Next.js architecture, Meta Cloud API integrations, and closed-loop CRM systems, Godson personally oversees project strategy and architectural design for every client engagement.
               </p>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Rather than delegating your initial consultation to non-technical sales representatives, you collaborate directly with an engineer who understands data flows, webhook latencies, API rate limits, and conversion optimization firsthand.
+                Rather than delegating your initial consultation to non-technical sales representatives, you collaborate directly with an engineer who understands webhook latencies, API rate limits, database schemas, and conversion optimization firsthand.
               </p>
+
+              <div className="flex flex-wrap gap-2 pt-1 pb-2">
+                <span className="px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-xs font-mono text-slate-700">
+                  6+ Years Engineering Experience
+                </span>
+                <span className="px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-xs font-mono text-slate-700">
+                  Official WhatsApp Cloud API
+                </span>
+                <span className="px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-xs font-mono text-slate-700">
+                  Next.js & Jamstack
+                </span>
+                <span className="px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-xs font-mono text-slate-700">
+                  Meta CAPI & GA4 Server Tracking
+                </span>
+              </div>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <a
@@ -109,7 +124,7 @@ export default function AboutPage() {
                   <ExternalLink className="w-3 h-3 text-slate-500" />
                 </a>
                 <span className="text-xs font-mono text-emerald-700 flex items-center gap-1.5 font-semibold">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" /> Verified Founder Entity
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" /> Verified Founder Entity · Kochi, Kerala
                 </span>
               </div>
             </div>

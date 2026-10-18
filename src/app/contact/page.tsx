@@ -110,8 +110,9 @@ export default function ContactPage() {
                 <li className="flex items-start gap-3">
                   <MapPin className="w-4 h-4 text-[#0891B2] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-slate-400 block text-[10px] uppercase">Location</span>
-                    <span className="text-slate-900 font-medium">Kerala, India (Global Remote Delivery)</span>
+                    <span className="text-slate-400 block text-[10px] uppercase">Headquarters &amp; Service Area</span>
+                    <span className="text-slate-900 font-medium block">Kochi, Kerala, India (PIN: 682001)</span>
+                    <span className="text-slate-500 text-[11px] block mt-0.5">Hours: Mon–Fri, 9:00 AM – 6:00 PM IST · Global Remote Delivery</span>
                   </div>
                 </li>
               </ul>

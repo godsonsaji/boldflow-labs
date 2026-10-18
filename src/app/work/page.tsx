@@ -174,107 +174,115 @@ export default function WorkPage() {
           ))}
         </div>
 
-        {/* Selected Blueprint Detail Card */}
-        <div className="p-6 sm:p-10 rounded-2xl bg-white border border-slate-200 shadow-md">
-          
-          <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-100 gap-4 mb-8">
-            <div>
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-blue-50 border border-blue-200 text-[11px] font-mono text-[#2563FF] font-semibold uppercase mb-2">
-                <span>{bp.category}</span>
-                <span>·</span>
-                <span>Demonstration Blueprint</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-                {bp.title}
-              </h2>
-              <p className="text-xs sm:text-sm font-mono text-slate-500 mt-1">
-                {bp.tagline}
-              </p>
-            </div>
-            
-            <Link
-              href="/contact"
-              className="btn-primary px-5 py-2.5 text-xs font-semibold shrink-0"
-            >
-              Deploy This System →
-            </Link>
-          </div>
-
-          {/* Problem & Solution Breakdown */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-            <div className="p-5 rounded-xl bg-slate-50 border border-slate-200">
-              <span className="text-xs font-mono text-rose-600 uppercase tracking-wider block font-semibold mb-2">
-                Operational Problem:
-              </span>
-              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                {bp.problem}
-              </p>
-            </div>
-
-            <div className="p-5 rounded-xl bg-slate-50 border border-slate-200">
-              <span className="text-xs font-mono text-[#0891B2] uppercase tracking-wider block font-semibold mb-2">
-                Architectural Solution:
-              </span>
-              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                {bp.architecture}
-              </p>
-            </div>
-          </div>
-
-          {/* Step-by-Step Data Flow Diagram */}
-          <div className="mb-10">
-            <h3 className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-4">
-              Step-by-Step Data & Interaction Flow
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
-              {bp.flow.map((node) => (
-                <div key={node.step} className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                  <div className="text-[10px] font-mono font-bold text-[#2563FF] uppercase mb-1">
-                    Step {node.step}
-                  </div>
-                  <h4 className="text-xs font-bold text-slate-900 mb-1.5">{node.name}</h4>
-                  <p className="text-[11px] text-slate-600 leading-relaxed">
-                    {node.detail}
-                  </p>
+        {/* All Blueprint Cards Rendered in HTML for Crawlers */}
+        {blueprints.map((bp, idx) => (
+          <div
+            key={bp.id}
+            id={`blueprint-panel-${bp.id}`}
+            role="tabpanel"
+            className={`p-6 sm:p-10 rounded-2xl bg-white border border-slate-200 shadow-md ${
+              selectedBlueprint === idx ? "block" : "hidden"
+            }`}
+          >
+            <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-100 gap-4 mb-8">
+              <div>
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-blue-50 border border-blue-200 text-[11px] font-mono text-[#2563FF] font-semibold uppercase mb-2">
+                  <span>{bp.category}</span>
+                  <span>·</span>
+                  <span>Demonstration Blueprint</span>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Deliverables & Stack */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
-            <div>
-              <h4 className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-3">
-                Key Deliverables in This Setup
-              </h4>
-              <ul className="space-y-2">
-                {bp.deliverables.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-xs text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#2563FF] shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+                  {bp.title}
+                </h2>
+                <p className="text-xs sm:text-sm font-mono text-slate-500 mt-1">
+                  {bp.tagline}
+                </p>
+              </div>
+              
+              <Link
+                href="/contact"
+                className="btn-primary px-5 py-2.5 text-xs font-semibold shrink-0"
+              >
+                Deploy This System →
+              </Link>
             </div>
 
-            <div>
-              <h4 className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-3">
-                Technologies & APIs Used
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {bp.techStack.map((tech, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 rounded bg-slate-100 border border-slate-200 text-xs font-mono text-slate-800"
-                  >
-                    {tech}
-                  </span>
+            {/* Problem & Solution Breakdown */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+              <div className="p-5 rounded-xl bg-slate-50 border border-slate-200">
+                <span className="text-xs font-mono text-rose-600 uppercase tracking-wider block font-semibold mb-2">
+                  Operational Problem:
+                </span>
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  {bp.problem}
+                </p>
+              </div>
+
+              <div className="p-5 rounded-xl bg-slate-50 border border-slate-200">
+                <span className="text-xs font-mono text-[#0891B2] uppercase tracking-wider block font-semibold mb-2">
+                  Architectural Solution:
+                </span>
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  {bp.architecture}
+                </p>
+              </div>
+            </div>
+
+            {/* Step-by-Step Data Flow Diagram */}
+            <div className="mb-10">
+              <h3 className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-4">
+                Step-by-Step Data & Interaction Flow
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+                {bp.flow.map((node) => (
+                  <div key={node.step} className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div className="text-[10px] font-mono font-bold text-[#2563FF] uppercase mb-1">
+                      Step {node.step}
+                    </div>
+                    <h4 className="text-xs font-bold text-slate-900 mb-1.5">{node.name}</h4>
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      {node.detail}
+                    </p>
+                  </div>
                 ))}
               </div>
             </div>
-          </div>
 
-        </div>
+            {/* Deliverables & Stack */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
+              <div>
+                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-3">
+                  Key Deliverables in This Setup
+                </h4>
+                <ul className="space-y-2">
+                  {bp.deliverables.map((item, dIdx) => (
+                    <li key={dIdx} className="flex items-start gap-2 text-xs text-slate-700">
+                      <CheckCircle2 className="w-4 h-4 text-[#2563FF] shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-3">
+                  Technologies & APIs Used
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {bp.techStack.map((tech, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="px-3 py-1 rounded bg-slate-100 border border-slate-200 text-xs font-mono text-slate-800"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        ))}
 
       </section>
 

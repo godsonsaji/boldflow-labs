@@ -35,13 +35,20 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
       description: post.excerpt,
       url,
       type: "article",
-      images: post.coverImage ? [{ url: post.coverImage }] : undefined,
+      images: [
+        {
+          url: post.coverImage || "https://www.boldflowlabs.com/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${post.title} | BoldFlow Labs`,
       description: post.excerpt,
-      images: post.coverImage ? [post.coverImage] : undefined,
+      images: [post.coverImage || "https://www.boldflowlabs.com/og-image.png"],
     },
   };
 }
@@ -79,18 +86,26 @@ export default async function BlogPostLayout({ children, params }: LayoutProps) 
           },
           {
             "@type": "BlogPosting",
+            "@id": `https://www.boldflowlabs.com/blog/${post.slug}#article`,
             headline: post.title,
             description: post.excerpt,
-            image: post.coverImage,
-            datePublished: post.createdAt?.toDate ? post.createdAt.toDate().toISOString() : undefined,
+            image: post.coverImage || "https://www.boldflowlabs.com/og-image.png",
+            datePublished: post.createdAt?.toDate ? post.createdAt.toDate().toISOString() : "2026-09-15T00:00:00Z",
+            dateModified: new Date().toISOString(),
             author: {
               "@type": "Person",
+              "@id": "https://www.boldflowlabs.com/#founder",
               name: post.authorName || "Godson Saji",
-              url: "https://www.linkedin.com/in/godson-saji",
+              jobTitle: "Founder & Systems Architect",
+              url: "https://www.boldflowlabs.com/about",
+              image: "https://www.boldflowlabs.com/founder.png",
+              sameAs: "https://www.linkedin.com/in/godson-saji",
             },
             publisher: {
               "@type": "Organization",
+              "@id": "https://www.boldflowlabs.com/#organization",
               name: "BoldFlow Labs",
+              url: "https://www.boldflowlabs.com",
               logo: "https://www.boldflowlabs.com/logo.png",
             },
             mainEntityOfPage: {

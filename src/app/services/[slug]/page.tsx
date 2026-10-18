@@ -39,14 +39,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const url = `https://www.boldflowlabs.com/services/${service.slug}`;
 
+  const pageTitle = service.title.toLowerCase().endsWith("services")
+    ? service.title
+    : `${service.title} Services`;
+  const fullTitle = `${pageTitle} | BoldFlow Labs`;
+
   return {
-    title: `${service.title} Services`,
+    title: fullTitle,
     description: service.shortDescription,
     alternates: {
       canonical: url,
     },
     openGraph: {
-      title: `${service.title} Services | BoldFlow Labs`,
+      title: fullTitle,
       description: service.shortDescription,
       url,
       type: "website",
@@ -55,13 +60,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: `${service.title} — BoldFlow Labs`,
+          alt: `${pageTitle} — BoldFlow Labs`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${service.title} Services | BoldFlow Labs`,
+      title: fullTitle,
       description: service.shortDescription,
       images: ["/og-image.png"],
     },
@@ -351,7 +356,7 @@ export default async function IndividualServicePage({ params }: PageProps) {
             Who This Service Is Built For
           </h2>
           <p className="mt-2 text-slate-600 text-sm">
-            We focus exclusively on businesses where this architecture creates demonstrable operational leverage.
+            {service.suitableForIntro || "We focus exclusively on businesses where this architecture creates demonstrable operational leverage."}
           </p>
         </div>
 
@@ -471,6 +476,34 @@ export default async function IndividualServicePage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* ── RELATED TECHNICAL GUIDE / INTERNAL LINKING ── */}
+      {service.relatedArticleSlug && (
+        <section className="py-12 bg-slate-50 border-t border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="max-w-2xl">
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-1">
+                  IN-DEPTH ARCHITECTURE GUIDE
+                </span>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2">
+                  {service.relatedArticleTitle || "Explore our technical architecture guide"}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Read our practical breakdown covering real-world benchmarks, operational trade-offs, and implementation strategies for this system.
+                </p>
+              </div>
+              <Link
+                href={`/blog/${service.relatedArticleSlug}`}
+                className="btn-primary px-6 py-3 text-xs font-semibold shrink-0 inline-flex items-center gap-2"
+              >
+                <span>Read the Complete Guide</span>
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── FINAL SERVICE ENQUIRY CTA ───────────────────── */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

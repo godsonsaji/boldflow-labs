@@ -166,6 +166,15 @@ export default function Navbar() {
               </Link>
 
               <Link
+                href="/blog"
+                className={`px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${
+                  pathname.startsWith("/blog") ? "text-[#2563FF] bg-blue-50 font-semibold" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
+                }`}
+              >
+                Blog
+              </Link>
+
+              <Link
                 href="/about"
                 className={`px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${
                   pathname === "/about" ? "text-[#2563FF] bg-blue-50 font-semibold" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
@@ -250,6 +259,13 @@ export default function Navbar() {
                 className="block px-3 py-2.5 text-base font-medium rounded-lg text-slate-800 hover:text-slate-900 hover:bg-slate-50"
               >
                 Demonstrations & Blueprints
+              </Link>
+
+              <Link
+                href="/blog"
+                className="block px-3 py-2.5 text-base font-medium rounded-lg text-slate-800 hover:text-slate-900 hover:bg-slate-50"
+              >
+                Blog & Insights
               </Link>
 
               <Link

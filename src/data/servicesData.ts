@@ -45,12 +45,15 @@ export interface ServiceItem {
   };
   deliverables: Deliverable[];
   howItWorks: ProcessStep[];
+  suitableForIntro: string;
   suitableFor: SuitableCustomer[];
   demonstration: ServiceDemonstration;
   faqs: ServiceFAQ[];
   disclaimer: string;
   category: "Growth" | "Automation" | "Web & SEO";
   accentColor: string;
+  relatedArticleSlug?: string;
+  relatedArticleTitle?: string;
 }
 
 export const servicesData: ServiceItem[] = [
@@ -60,7 +63,7 @@ export const servicesData: ServiceItem[] = [
     title: "Performance Marketing",
     tagline: "High-Intent Google & Meta Ad Campaigns",
     heroHeadline: "Data-Driven Google & Meta Ads Built for Measurable Lead Generation",
-    shortDescription: "Strategic campaign setup, conversion tracking, audience targeting, and budget monitoring across Google Ads and Meta platforms.",
+    shortDescription: "Scale high-intent customer acquisition with data-backed Google Ads & Meta campaigns wired directly to CRM revenue. Book your growth strategy consultation.",
     longDescription: "We structure, manage, and optimize paid acquisition campaigns across Google Search, Performance Max, and Meta Ads. Every campaign is wired directly to verified conversion events, transparent analytics, and daily budget oversight to eliminate wasted ad spend.",
     customerProblem: {
       headline: "Why most businesses burn money on paid advertising",
@@ -131,6 +134,7 @@ export const servicesData: ServiceItem[] = [
         description: "We scale budget toward proven keywords and ad variants while introducing fresh hooks to prevent ad fatigue."
       }
     ],
+    suitableForIntro: "We structure paid acquisition funnels for growth-stage businesses, professional practices, and D2C brands where high-intent search and conversion tracking produce immediate customer acquisition leverage.",
     suitableFor: [
       {
         title: "B2B Service Providers & Consultancies",
@@ -184,7 +188,9 @@ export const servicesData: ServiceItem[] = [
     ],
     disclaimer: "Advertising results vary based on market conditions, product viability, target location, and your sales follow-up velocity. BoldFlow Labs does not guarantee specific revenue, return on ad spend (ROAS), or lead volumes.",
     category: "Growth",
-    accentColor: "#2563FF"
+    accentColor: "#2563FF",
+    relatedArticleSlug: "closed-loop-attribution-ads-crm-guide",
+    relatedArticleTitle: "Closed-Loop Attribution: Connecting Google & Meta Ads to Real CRM Deal Revenue"
   },
   {
     id: "whatsapp-automation",
@@ -192,7 +198,7 @@ export const servicesData: ServiceItem[] = [
     title: "WhatsApp Automation",
     tagline: "Official WhatsApp Business Platform Systems",
     heroHeadline: "Convert Inquiries Instantly With Compliant WhatsApp Workflows",
-    shortDescription: "Official WhatsApp Business API integration for automated lead qualification, instant enquiry response, and scheduled appointment reminders.",
+    shortDescription: "Capture, qualify, and book leads in under 60 seconds using official WhatsApp Business API workflows and CRM sync. Explore our architecture and request a demo.",
     longDescription: "Engage prospective clients on their preferred messaging channel without manual chaos. We build official WhatsApp Business Platform automations that greet new leads within seconds, qualify their needs, route hot leads to your team, and send transactional updates.",
     customerProblem: {
       headline: "The cost of slow, manual customer communication",
@@ -263,6 +269,7 @@ export const servicesData: ServiceItem[] = [
         description: "We simulate incoming leads, verify mobile formatting, test fallback triggers, and launch the workflow live."
       }
     ],
+    suitableForIntro: "We tailor conversational WhatsApp workflows for high-inquiry businesses, clinics, and D2C brands where answering leads under 60 seconds directly prevents drop-off.",
     suitableFor: [
       {
         title: "High-Volume Service Companies",
@@ -302,8 +309,8 @@ export const servicesData: ServiceItem[] = [
         answer: "Never. Unofficial tools risk having your business number permanently banned by Meta. BoldFlow Labs exclusively builds on the official WhatsApp Business Platform (Cloud API), ensuring reliable delivery, verified business branding, and complete compliance."
       },
       {
-        question: "Are there additional costs for WhatsApp messages?",
-        answer: "Yes. Meta charges per conversation based on category (Utility, Authentication, Service, Marketing). Service conversations (replies to user-initiated messages within 24 hours) are free up to 1,000 conversations/month, with minimal regional rates thereafter. We help you design efficient flows to keep messaging costs as low as possible."
+        question: "How does Meta charge for the WhatsApp Business API?",
+        answer: "Meta operates on an official per-message pricing model for business-initiated template messages, categorized by intent: Marketing, Utility, and Authentication. Each delivered template has a transparent per-message regional rate. Crucially, customer-initiated service messages within the 24-hour customer care window incur zero conversation session charges from Meta. We engineer lean, event-driven workflows that eliminate redundant messages and keep your monthly platform spend minimal."
       },
       {
         question: "Can multiple team members reply to WhatsApp chats?",
@@ -316,7 +323,9 @@ export const servicesData: ServiceItem[] = [
     ],
     disclaimer: "All WhatsApp automations require an active WhatsApp Business API account subject to Meta's Business Messaging Policies, template approvals, and conversation fees. We do not provide cold unsolicited mass-messaging tools.",
     category: "Automation",
-    accentColor: "#06B6D4"
+    accentColor: "#06B6D4",
+    relatedArticleSlug: "speed-to-lead-whatsapp-automation-guide",
+    relatedArticleTitle: "Why Speed-to-Lead Matters: How WhatsApp Automation Captures Leads in Under 60 Seconds"
   },
   {
     id: "seo-services",
@@ -324,7 +333,7 @@ export const servicesData: ServiceItem[] = [
     title: "SEO Services",
     tagline: "Technical, On-Page & Content Optimization",
     heroHeadline: "Build Organic Search Visibility Through Clean Technical Foundations",
-    shortDescription: "Technical SEO audits, keyword research, on-page optimization, site architecture refinement, and transparent search reporting.",
+    shortDescription: "Dominate search rankings with technical Core Web Vitals optimization, Schema.org markup, and high-intent keyword strategy. Request your technical SEO audit.",
     longDescription: "Earn durable organic search visibility from prospective buyers looking for your exact services. We audit and rebuild technical site foundations, optimize semantic on-page elements, fix crawlability roadblocks, and structure content clusters designed to rank over time.",
     customerProblem: {
       headline: "Why commercial websites fail to rank on search engines",
@@ -395,6 +404,7 @@ export const servicesData: ServiceItem[] = [
         description: "We monitor Google Search Console metrics, address new crawl errors, and iteratively refine underperforming pages."
       }
     ],
+    suitableForIntro: "We design technical SEO architecture for B2B firms, specialized consultants, and local brands needing durable organic visibility without paying continuous ad toll fees.",
     suitableFor: [
       {
         title: "Professional Service Agencies",
@@ -448,7 +458,9 @@ export const servicesData: ServiceItem[] = [
     ],
     disclaimer: "SEO is an ongoing process. BoldFlow Labs does not guarantee specific rankings, positions, or traffic volumes. All strategies adhere to Google's Search Essentials guidelines.",
     category: "Web & SEO",
-    accentColor: "#2563FF"
+    accentColor: "#2563FF",
+    relatedArticleSlug: "technical-seo-core-web-vitals-guide",
+    relatedArticleTitle: "Technical SEO Foundations: Why Core Web Vitals Dictate Modern Business Rankings"
   },
   {
     id: "website-development",
@@ -456,7 +468,7 @@ export const servicesData: ServiceItem[] = [
     title: "Website Development",
     tagline: "High-Performance Modern Web Engineering",
     heroHeadline: "Bespoke, Fast, Conversion-Focused Websites Engineered for Real Business",
-    shortDescription: "Custom business websites and landing pages built with clean code, responsive layouts, rapid load times, and built-in technical SEO.",
+    shortDescription: "Build ultra-fast Next.js websites engineered for 95+ Lighthouse scores, zero layout shifts, and seamless lead conversion. Explore our builds and get a quote.",
     longDescription: "Your website is your primary business asset. We design and build modern websites using Next.js, TypeScript, and clean CSS that load instantly, display flawlessly on mobile devices, and guide qualified visitors directly into submitting enquiries.",
     customerProblem: {
       headline: "The hidden business cost of slow, outdated websites",
@@ -504,7 +516,7 @@ export const servicesData: ServiceItem[] = [
       {
         step: "01",
         title: "Strategy & Information Architecture",
-        description: "We map out your core offerings, primary customer journeys, wireframes, and conversion conversion triggers."
+        description: "We map out your core offerings, primary customer journeys, wireframes, and conversion triggers."
       },
       {
         step: "02",
@@ -527,6 +539,7 @@ export const servicesData: ServiceItem[] = [
         description: "We test across Chrome, Safari, iOS, and Android, verify Core Web Vitals, configure custom domains, and deploy to production."
       }
     ],
+    suitableForIntro: "We engineer custom Jamstack websites for high-expectation brands where sub-second page loads, Lighthouse 95+ performance, and seamless lead capture are non-negotiable.",
     suitableFor: [
       {
         title: "Growing Businesses & Agencies",
@@ -580,7 +593,9 @@ export const servicesData: ServiceItem[] = [
     ],
     disclaimer: "Website timelines depend on timely provision of brand assets, copy reviews, and domain access. Hosting and domain registration fees are paid directly to your chosen provider.",
     category: "Web & SEO",
-    accentColor: "#2563FF"
+    accentColor: "#2563FF",
+    relatedArticleSlug: "technical-seo-core-web-vitals-guide",
+    relatedArticleTitle: "Technical SEO Foundations: Why Core Web Vitals Dictate Modern Business Rankings"
   },
   {
     id: "local-seo",
@@ -588,7 +603,7 @@ export const servicesData: ServiceItem[] = [
     title: "Google Business Profile & Local SEO",
     tagline: "Local Search Visibility & Review Management",
     heroHeadline: "Dominate Local Search & Win Nearby Customers When They Need You Most",
-    shortDescription: "Complete Google Business Profile optimization, local citation consistency, geo-targeted search presence, and review generation systems.",
+    shortDescription: "Rank in the Google Local 3-Pack with Google Business Profile optimization, localized Schema markup, and automated review systems. Claim your local audit.",
     longDescription: "When local prospects search for services near them, your business needs to show up prominently with accurate information and compelling reviews. We optimize your Google Business Profile, align NAP citations across directories, and implement systematic review collection workflows.",
     customerProblem: {
       headline: "Why local businesses lose customers to competitors down the street",
@@ -659,6 +674,7 @@ export const servicesData: ServiceItem[] = [
         description: "We guide regular Google updates, respond professionally to customer reviews, and monitor monthly call/click metrics."
       }
     ],
+    suitableForIntro: "We execute local search and reputation infrastructure for physical storefronts, multi-location practices, and regional service providers competing for nearby map pack rankings.",
     suitableFor: [
       {
         title: "Regional Service Contractors",
@@ -712,7 +728,9 @@ export const servicesData: ServiceItem[] = [
     ],
     disclaimer: "Google Maps and local search positions depend on Google's proprietary algorithms, searcher location, and competition. BoldFlow Labs does not guarantee specific map pack rankings.",
     category: "Web & SEO",
-    accentColor: "#06B6D4"
+    accentColor: "#06B6D4",
+    relatedArticleSlug: "how-d2c-brands-cut-rto-rates-whatsapp-verification",
+    relatedArticleTitle: "How D2C Brands Cut Return-to-Origin (RTO) with Instant WhatsApp Verification"
   },
   {
     id: "business-automation-crm",
@@ -720,7 +738,7 @@ export const servicesData: ServiceItem[] = [
     title: "Business Automation & CRM",
     tagline: "Streamline Lead Management & Repetitive Workflows",
     heroHeadline: "Connect Your Tools, Automate Follow-Ups, and Eliminate Manual Chaos",
-    shortDescription: "Custom CRM setup, pipeline configuration, webhook integrations, and automated lead routing between your sales, marketing, and operational tools.",
+    shortDescription: "Eliminate manual data entry and disconnected tools with custom n8n webhook pipelines, CRM sync, and automated lead routing. Schedule an architecture review.",
     longDescription: "Stop losing leads in messy spreadsheets and manual email handoffs. We build connected business backends using modern CRM platforms and automation tools that instantly capture inquiries, route tasks to your team, trigger follow-ups, and keep pipelines clean.",
     customerProblem: {
       headline: "The operational drag of disconnected tools and manual work",
@@ -783,7 +801,7 @@ export const servicesData: ServiceItem[] = [
       {
         step: "04",
         title: "End-to-End Stress Testing",
-        description: "We test test leads through every scenario: missing data, duplicate submissions, edge cases, and notification triggers."
+        description: "We test leads through every scenario: missing data, duplicate submissions, edge cases, and notification triggers."
       },
       {
         step: "05",
@@ -791,6 +809,7 @@ export const servicesData: ServiceItem[] = [
         description: "We document the workflows and train your team on pipeline hygiene so everyone follows the same efficient process."
       }
     ],
+    suitableForIntro: "We deploy unified CRM data pipelines and automated workflows for founder-led operations and sales teams losing productive hours to fragmented spreadsheets.",
     suitableFor: [
       {
         title: "B2B Sales & Consulting Teams",
@@ -844,7 +863,9 @@ export const servicesData: ServiceItem[] = [
     ],
     disclaimer: "Automation reliability depends on third-party API availability, rate limits, and plan tier limits of the integrated software tools.",
     category: "Automation",
-    accentColor: "#2563FF"
+    accentColor: "#2563FF",
+    relatedArticleSlug: "closed-loop-attribution-ads-crm-guide",
+    relatedArticleTitle: "Closed-Loop Attribution: Connecting Google & Meta Ads to Real CRM Deal Revenue"
   }
 ];
 
