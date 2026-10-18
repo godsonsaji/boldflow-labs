@@ -1,268 +1,156 @@
-"use client";
-
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ArrowRight, Mail, Clock, CalendarRange, MessageCircle, Phone } from "lucide-react";
-
-const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
-
-const processSteps = [
-    { title: "Schedule a Discovery Call or Pilot", desc: "Confirmed in under 1 business day or instant via WhatsApp." },
-    { title: "We Map Your Phone Bottlenecks", desc: "We review your peak call hours, target languages, and current CRM." },
-    { title: "We Build & Test Your AI Agent", desc: "Script writing, language tuning, Exotel/Plivo number setup, and CRM mapping." },
-    { title: "Go Live & Capture Missed Calls", desc: "Your 24/7 AI voice agent starts answering calls in under 10 seconds." }
-];
+import { 
+  Mail, 
+  MessageSquare, 
+  Phone, 
+  Calendar, 
+  MapPin, 
+  ExternalLink
+} from "lucide-react";
+import ContactForm from "@/components/ContactForm";
 
 export default function ContactPage() {
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [error, setError] = useState("");
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        company: "",
-        service: "pilot_request",
-        message: "",
-    });
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setFormData(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }));
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setError("");
-
-        const payload = {
-            ...formData,
-            source: "contact_page",
-            submittedAt: new Date().toISOString(),
-        };
-
-        try {
-            const response = await fetch(WEBHOOK_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
-            });
-
-            if (!response.ok) {
-                throw new Error("Failed to send message. Please try again.");
-            }
-
-            setIsSubmitted(true);
-            setFormData({ name: "", email: "", company: "", service: "pilot_request", message: "" });
-        } catch (err) {
-            console.error("Webhook submission error:", err);
-            setError(
-                err instanceof Error
-                    ? err.message
-                    : "Something went wrong. Please try again or email us directly at hello@boldflowlabs.com"
-            );
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
-
-    return (
-        <div className="bg-[#0A0A0F] min-h-screen">
-            <div className="absolute inset-0 grid-overlay opacity-5 pointer-events-none z-0" />
-
-            {/* ── HERO ─────────────────────────────────── */}
-            <section className="relative pt-40 pb-24 border-b border-[#1C1C24] overflow-hidden">
-                <div className="max-w-[1280px] w-full mx-auto px-6 relative z-10 flex flex-col justify-center text-center items-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-[11px] tracking-wider text-[#0047FF] font-mono font-bold mb-6 uppercase"
-                    >
-                        {"//"} INITIALIZE CONTACT & PILOT
-                    </motion.div>
-
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-h1 text-[#F5F6FA] mb-8 max-w-4xl tracking-tight"
-                    >
-                        Let's Talk About Your Call Volume.
-                    </motion.h1>
-
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-body-lg max-w-2xl"
-                    >
-                        Real conversations in your customer's language. Zero sales pressure. Book a free 30-minute diagnostic call or apply for a 48-hour free pilot on your phone line.
-                    </motion.p>
-                </div>
-            </section>
-
-            {/* ── MAIN LAYOUT ──────────────────────────── */}
-            <section className="py-24 bg-[#111116] border-b border-[#1C1C24] relative">
-                <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 relative z-10">
-
-                    {/* Left: Info & Process */}
-                    <div className="flex flex-col gap-12">
-                        <div className="bg-[#0A0A0F] border border-[#1C1C24] p-8 md:p-10 relative flex flex-col gap-6 rounded-[6px]">
-                            <h3 className="text-lg font-bold font-space text-[#F5F6FA]">Direct Channels</h3>
-                            <ul className="space-y-6">
-                                <li className="flex gap-4 items-start">
-                                    <div className="p-2.5 bg-[#111116] border border-[#1C1C24] rounded-sm text-[#25D366] shrink-0">
-                                        <MessageCircle className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <span className="text-[10px] text-[#626272] uppercase font-mono tracking-wider block mb-1">WhatsApp Instant:</span>
-                                        <a href="https://wa.me/919447178166?text=Hi%20BoldFlow%20Labs,%20I'd%20like%20to%20learn%20more%20about%20your%20AI%20voice%20agents." target="_blank" rel="noopener noreferrer" className="text-base sm:text-lg font-mono text-[#25D366] hover:underline font-bold">+91 9447178166</a>
-                                    </div>
-                                </li>
-                                <li className="pt-6 border-t border-[#1C1C24] flex gap-4 items-start">
-                                    <div className="p-2.5 bg-[#111116] border border-[#1C1C24] rounded-sm text-[#0047FF] shrink-0">
-                                        <Mail className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <span className="text-[10px] text-[#626272] uppercase font-mono tracking-wider block mb-1">Email:</span>
-                                        <a href="mailto:hello@boldflowlabs.com" className="text-base sm:text-lg font-mono text-[#F5F6FA] hover:text-[#0047FF] transition-colors break-all sm:break-normal">hello@boldflowlabs.com</a>
-                                    </div>
-                                </li>
-                                <li className="pt-6 border-t border-[#1C1C24] flex gap-4 items-start">
-                                    <div className="p-2.5 bg-[#111116] border border-[#1C1C24] rounded-sm text-[#FF5A1F] shrink-0">
-                                        <Clock className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <span className="text-[10px] text-[#626272] uppercase font-mono tracking-wider block mb-1">Response Time:</span>
-                                        <span className="text-sm font-space text-white block">Confirmed in under 1 business day</span>
-                                    </div>
-                                </li>
-                                <li className="pt-6 border-t border-[#1C1C24] flex gap-4 items-start">
-                                    <div className="p-2.5 bg-[#111116] border border-[#1C1C24] rounded-sm text-[#0047FF] shrink-0">
-                                        <CalendarRange className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <span className="text-[10px] text-[#626272] uppercase font-mono tracking-wider block mb-1">Instant Calendar Booking:</span>
-                                        <a href="https://cal.com/boldflow-labs/30min" target="_blank" rel="noopener noreferrer" className="text-sm font-mono text-[#0047FF] hover:text-white transition-colors underline font-bold flex items-center gap-1 mt-1">
-                                            Book 30-Min Call on Cal.com <ArrowRight className="w-3 h-3" />
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h3 className="text-lg font-bold font-space text-[#F5F6FA] mb-8">What happens next?</h3>
-                            <div className="relative pl-8 border-l border-[#1C1C24] space-y-10 py-2">
-                                {processSteps.map((p, i) => (
-                                    <div key={i} className="relative">
-                                        <div className="absolute left-[-37px] top-1.5 w-2 h-2 rounded-full bg-[#0047FF] ring-4 ring-[#111116]" />
-                                        <span className="text-white font-bold font-space mb-2 block">{i + 1}. {p.title}</span>
-                                        <p className="text-xs text-[#A3A3B3] leading-relaxed max-w-md">{p.desc}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right: The Form */}
-                    <div>
-                        <div className="bg-[#0A0A0F] border border-[#1C1C24] p-8 md:p-12 relative group hover:border-[#0047FF]/20 transition-all duration-300 rounded-[8px] shadow-2xl">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_top_right,rgba(0,71,255,0.03),transparent_70%)]" />
-
-                            <h3 className="text-xl font-bold font-space text-white tracking-tight mb-8">Request Diagnostic or Free Pilot</h3>
-
-                            {!isSubmitted ? (
-                                <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                        <div className="flex flex-col relative w-full">
-                                            <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Full Name *</label>
-                                            <input required name="name" value={formData.name} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. Rajesh Kumar" />
-                                        </div>
-                                        <div className="flex flex-col relative w-full">
-                                            <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Work Email / Phone *</label>
-                                            <input required name="email" value={formData.email} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. name@company.com or +91..." />
-                                        </div>
-                                    </div>
-
-                                    <div className="flex flex-col relative w-full">
-                                        <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Business / Institution Name</label>
-                                        <input name="company" value={formData.company} onChange={handleChange} type="text" className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors" placeholder="e.g. Apex Academy / Prime Realtors" />
-                                    </div>
-
-                                    <div className="flex flex-col relative w-full">
-                                        <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">What do you need help with?</label>
-                                        <div className="relative">
-                                            <select name="service" value={formData.service} onChange={handleChange} className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors appearance-none cursor-pointer">
-                                                <option value="pilot_request">Free 48-Hour Pilot Application (3 Spots)</option>
-                                                <option value="real_estate">Real Estate 99acres AI Voice Agent</option>
-                                                <option value="coaching">Coaching Institute Admission Voice AI</option>
-                                                <option value="clinic">Clinic Appointment Voice AI</option>
-                                                <option value="crm_sync">LeadSquared / Zoho / Practo Sync</option>
-                                                <option value="unsure">Not sure, I need guidance</option>
-                                            </select>
-                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#626272] text-[10px]">▼</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex flex-col relative w-full mb-4">
-                                        <label className="text-xs font-mono text-[#626272] uppercase mb-2 pointer-events-none">Tell us about your call volume & languages (Optional)</label>
-                                        <textarea name="message" value={formData.message} onChange={handleChange} rows={4} className="w-full bg-[#111116] border border-[#1C1C24] p-4 text-[#F5F6FA] text-sm rounded-sm focus:outline-none focus:border-[#0047FF] transition-colors resize-none" placeholder="Provide details on your monthly call volume, target cities/languages (Hindi, Tamil, Kannada, etc.), or current CRM..." />
-                                    </div>
-
-                                    {error && (
-                                        <p className="text-red-400 text-xs font-mono">{error}</p>
-                                    )}
-
-                                    <button type="submit" disabled={isSubmitting} className="w-full py-5 bg-[#0047FF] hover:bg-[#1E5CFF] text-white font-mono text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center transition-colors rounded-[4px] shadow-lg">
-                                        {isSubmitting ? (
-                                            <span className="animate-pulse">Sending Request...</span>
-                                        ) : (
-                                            <span className="flex items-center gap-2">Submit Request <ArrowRight className="w-4 h-4" /></span>
-                                        )}
-                                    </button>
-
-                                    <div className="text-center pt-2 flex items-center justify-center gap-4">
-                                        <a
-                                            href="https://wa.me/919447178166?text=Hi%20BoldFlow%20Labs,%20I'd%20like%20to%20learn%20more%20about%20your%20AI%20voice%20agents."
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-xs font-mono text-[#25D366] hover:underline inline-flex items-center gap-1.5 font-bold"
-                                        >
-                                            <MessageCircle className="w-3.5 h-3.5" /> Chat on WhatsApp
-                                        </a>
-                                    </div>
-                                </form>
-                            ) : (
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.95 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="flex flex-col items-center justify-center py-16 text-center"
-                                >
-                                    <CheckCircle2 className="w-16 h-16 text-[#0047FF] mb-6" />
-                                    <h4 className="text-xl font-bold font-space text-[#F5F6FA] mb-4">Request Received</h4>
-                                    <p className="text-[#A3A3B3] text-sm leading-relaxed max-w-sm mb-6">
-                                        Thank you for reaching out. We will review your details and send you a link to schedule your strategy call or set up your 48-hour pilot within 1 business day.
-                                    </p>
-                                    <a
-                                        href="https://cal.com/boldflow-labs/30min"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="mb-8 px-6 py-4 bg-[#0047FF] hover:bg-[#1E5CFF] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-[4px] inline-flex items-center gap-2 transition-colors shadow-lg"
-                                    >
-                                        <CalendarRange className="w-4 h-4" /> Pick a Time directly on Cal.com <ArrowRight className="w-4 h-4" />
-                                    </a>
-                                    <button onClick={() => setIsSubmitted(false)} className="text-[#FF5A1F] font-mono text-xs uppercase tracking-wider font-bold hover:underline">
-                                        Submit another request
-                                    </button>
-                                </motion.div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </section>
+  return (
+    <div className="bg-[#F8FAFC] min-h-screen pt-28 pb-20 text-slate-900">
+      
+      {/* ── HEADER ───────────────────────────────────────── */}
+      <section className="relative py-12 md:py-20 border-b border-slate-200 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#F8FAFC]">
+        <div className="absolute inset-0 bg-grid-subtle opacity-50 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#2563FF] text-xs font-mono font-semibold uppercase tracking-wider mb-4">
+              Get in Touch
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B1020] tracking-tight leading-tight">
+              Start Your Project Consultation
+            </h1>
+            <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+              Have an operational bottleneck, need a reliable WhatsApp automation workflow, or ready to launch a high-performance web asset? Let&apos;s evaluate your current setup.
+            </p>
+          </div>
         </div>
-    );
+      </section>
+
+      {/* ── FORM & VERIFIED CONTACT DETAILS ──────────────── */}
+      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Main Enquiry Form Column */}
+          <div className="lg:col-span-7">
+            <ContactForm />
+          </div>
+
+          {/* Verified Contacts & Process Column */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Quick Strategy Call Box */}
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-md">
+              <div className="flex items-center gap-2 text-xs font-mono text-[#2563FF] font-semibold uppercase tracking-wider mb-2">
+                <Calendar className="w-4 h-4" />
+                <span>Prefer a Direct Conversation?</span>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">
+                Book a 30-Minute Systems Strategy Call
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                Schedule a focused 1-on-1 strategy session directly with founder Godson Saji to discuss your workflows, conversion bottlenecks, and project timeline.
+              </p>
+              <a
+                href="https://cal.com/boldflow-labs/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary w-full py-2.5 text-xs font-semibold flex items-center justify-center gap-2"
+              >
+                <span>Select a Time on Cal.com</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+
+            {/* Verified Contact Details Card */}
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <h3 className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-4">
+                Verified Business Contacts
+              </h3>
+              
+              <ul className="space-y-4 text-xs font-mono">
+                <li className="flex items-start gap-3">
+                  <Mail className="w-4 h-4 text-[#2563FF] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-400 block text-[10px] uppercase">Direct Email</span>
+                    <a href="mailto:hello@boldflowlabs.com" className="text-slate-900 hover:text-[#2563FF] transition-colors font-medium">
+                      hello@boldflowlabs.com
+                    </a>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <MessageSquare className="w-4 h-4 text-[#0891B2] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-400 block text-[10px] uppercase">WhatsApp Business</span>
+                    <a
+                      href="https://wa.me/919447178166?text=Hi%20BoldFlow%20Labs,%20I'd%20like%20to%20discuss%20a%20project."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-900 hover:text-[#2563FF] transition-colors font-medium"
+                    >
+                      +91 9447178166
+                    </a>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <Phone className="w-4 h-4 text-[#2563FF] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-400 block text-[10px] uppercase">Telephone</span>
+                    <a href="tel:+919447178166" className="text-slate-900 hover:text-[#2563FF] transition-colors font-medium">
+                      +91 9447178166
+                    </a>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-[#0891B2] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-400 block text-[10px] uppercase">Location</span>
+                    <span className="text-slate-900 font-medium">Kerala, India (Global Remote Delivery)</span>
+                  </div>
+                </li>
+              </ul>
+
+              <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                <span className="text-[11px] font-mono">Response Time:</span>
+                <span className="text-emerald-700 font-mono font-semibold flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  Within 24 Hours
+                </span>
+              </div>
+            </div>
+
+            {/* What Happens Next Card */}
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs">
+              <h3 className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-3">
+                What Happens Next?
+              </h3>
+              <ol className="space-y-3 text-xs text-slate-600">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-[#2563FF] font-mono font-bold">1.</span>
+                  <span>We review your submission and examine your current tool stack & website.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-[#2563FF] font-mono font-bold">2.</span>
+                  <span>We reach out with preliminary questions or confirm a calendar session.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-[#2563FF] font-mono font-bold">3.</span>
+                  <span>You receive a clear scope of work with milestone timelines and deliverables.</span>
+                </li>
+              </ol>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  );
 }

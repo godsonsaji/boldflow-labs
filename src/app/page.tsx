@@ -1,757 +1,811 @@
 "use client";
 
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import Link from "next/link";
 import { 
   ArrowRight, 
   CheckCircle2, 
+  Target, 
+  MessageSquare, 
+  Search, 
+  Code2, 
+  MapPin, 
+  Cpu, 
+  ShieldCheck, 
+  Layers, 
+  Sparkles, 
   Clock, 
   ChevronDown, 
   ChevronUp, 
-  Activity,
-  Phone, 
-  MessageSquare, 
-  Sparkles, 
   Database, 
-  ArrowUpRight, 
-  TrendingUp, 
-  Cpu, 
-  Layers, 
-  Wrench, 
-  Building, 
-  MessageCircle, 
-  Globe2, 
-  ShieldCheck,
-  Calculator
+  Zap, 
+  Calendar
 } from "lucide-react";
-import LogoMarquee from "@/components/LogoMarquee";
-import Testimonials from "@/components/Testimonials";
+import { servicesData } from "@/data/servicesData";
 
-const homeServices = [
+const iconMap: Record<string, React.ReactNode> = {
+  "performance-marketing": <Target className="w-5 h-5 text-[#2563FF]" />,
+  "whatsapp-automation": <MessageSquare className="w-5 h-5 text-[#06B6D4]" />,
+  "seo-services": <Search className="w-5 h-5 text-[#2563FF]" />,
+  "website-development": <Code2 className="w-5 h-5 text-[#06B6D4]" />,
+  "local-seo": <MapPin className="w-5 h-5 text-[#2563FF]" />,
+  "business-automation-crm": <Cpu className="w-5 h-5 text-[#06B6D4]" />
+};
+
+const businessProblems = [
   {
-    icon: <Activity className="w-6 h-6 text-[#0047FF] mb-4" />,
-    title: "24/7 AI Phone Receptionists",
-    description: "Intelligent voice agents that answer calls in under 10 seconds in your customer's language, qualify inquiries, and book appointments 24/7.",
-    href: "/services#01"
+    num: "01",
+    title: "Leads Going Cold From Slow Responses",
+    desc: "When a prospective client submits a form, waiting even 30 minutes cuts conversion rates dramatically. Most businesses lack the systems to qualify enquiries instantly."
   },
   {
-    icon: <MessageSquare className="w-6 h-6 text-[#0047FF] mb-4" />,
-    title: "Instant Portal & Ad Callbacks",
-    description: "Automatically call back 99acres, MagicBricks, Meta, and website inquiries within 60 seconds. Never lose a lead to a faster competitor.",
-    href: "/services#02"
+    num: "02",
+    title: "Disconnected Tools & Manual Data Entry",
+    desc: "Inquiries sit in email, customer notes remain in personal WhatsApp chats, and sales teams waste 2+ hours daily copy-pasting into spreadsheets."
   },
   {
-    icon: <Database className="w-6 h-6 text-[#0047FF] mb-4" />,
-    title: "Indian CRM & WhatsApp Automation",
-    description: "Sync booked appointments and inquiry notes instantly into LeadSquared, Zoho CRM, Practo, WhatsApp Business API, Google Calendar, or Excel.",
-    href: "/services#03"
+    num: "03",
+    title: "Opaque Advertising Spend With No Attribution",
+    desc: "Running Google or Meta Ads without server-side tracking (CAPI) leaves you guessing which keywords or ad creatives generated real revenue."
+  },
+  {
+    num: "04",
+    title: "Outdated, Slow & Unresponsive Websites",
+    desc: "Bloated websites that take 4+ seconds to load bleed over 50% of mobile traffic before visitors even read your headline."
+  },
+  {
+    num: "05",
+    title: "Invisible Local Search & Map Presence",
+    desc: "Unclaimed or incomplete Google Business Profiles lose high-intent nearby customers to competitors with higher review velocity."
+  },
+  {
+    num: "06",
+    title: "Repetitive Administrative Workload",
+    desc: "Manual appointment confirmations, invoice reminders, and lead routing pull your highest-value people away from client delivery and sales."
   }
 ];
 
-const processPhases = [
+const processSteps = [
   {
-    step: "01",
-    title: "Enquiry or Order Arrives",
-    desc: "A buyer submits a property enquiry, places a COD order, or a policy nears renewal.",
-    timeline: "Instant"
+    phase: "01",
+    title: "Discover",
+    duration: "Day 1–3",
+    desc: "We analyze your existing workflows, customer touchpoints, tool stacks, and identify specific conversion and operational bottlenecks."
   },
   {
-    step: "02",
-    title: "AI Responds in Minutes",
-    desc: "Speaks in the customer's language (Hindi in Delhi/Gurgaon, Tamil in Chennai, Kannada in Bangalore). Confirms details, qualifies interest, or checks renewal intent.",
-    timeline: "Under 60 Secs"
+    phase: "02",
+    title: "Plan",
+    duration: "Day 4–7",
+    desc: "We design a comprehensive system blueprint: mapping data schemas, webhook flows, WhatsApp message templates, or landing page wireframes."
   },
   {
-    step: "03",
-    title: "Books or Confirms",
-    desc: "Schedules a site visit, confirms an order, or books an agent callback. Sends an instant WhatsApp confirmation message.",
-    timeline: "2 Minutes"
+    phase: "03",
+    title: "Build",
+    duration: "Week 2–3",
+    desc: "We construct the technical architecture: CRM configuration, automation pipelines, web development, or ad tracking infrastructure."
   },
   {
-    step: "04",
-    title: "Syncs to Your System",
-    desc: "Call transcript, verification notes, and callback requests drop directly into LeadSquared, Zoho CRM, Shopify, or Excel.",
-    timeline: "Real-time"
+    phase: "04",
+    title: "Test",
+    duration: "Week 3–4",
+    desc: "We stress-test edge cases: verifying payload delivery, simulating mobile viewports, testing webhook fallbacks, and checking form validation."
+  },
+  {
+    phase: "05",
+    title: "Improve",
+    duration: "Ongoing",
+    desc: "Post-launch iterative tuning: monitoring conversion rates, optimizing queries, refining automations, and reviewing performance reports."
   }
 ];
 
-const demoAgents = [
+const sampleBlueprints = [
   {
-    id: "ananya",
-    name: "Ananya",
-    role: "D2C Order Confirmation & RTO Agent",
-    cityLanguage: "Delhi / Gurgaon · Hindi / English",
-    specialty: "COD Verification / Address & Payment Triage",
-    scenario: "Confirms COD orders within minutes of checkout, verifies address and payment mode, flags unreachable orders for manual review.",
-    badge: "Interactive Demo Available",
-    audioPreviewText: "“Namaste! Main BoldFlow Brands se Ananya bol rahi hoon. Order #4821 ke Cash-on-Delivery confirmation ke liye call kiya hai. Delivery address D-14 South Extension confirm kar dein?”",
-    status: "active"
+    id: "whatsapp",
+    title: "WhatsApp Lead Qualification & Booking Engine",
+    category: "Automation Architecture",
+    badge: "Sample Architecture (Demonstration)",
+    description: "An automated conversational flow that ingests web form submissions, greets the customer via official WhatsApp API within 5 seconds, filters project budget and service requirements, and creates a qualified calendar meeting.",
+    nodes: [
+      { step: "Trigger", title: "Web / Ad Lead Form Submit", meta: "Instant Webhook (<500ms)" },
+      { step: "Triage", title: "Data Sanitization & Deduplication", meta: "Checked via n8n / Make" },
+      { step: "WhatsApp Message", title: "Automated Interactive Qualification", meta: "Official Meta Cloud API" },
+      { step: "CRM Sync", title: "Deal Created & Cal.com Slot Booked", meta: "HubSpot / Zoho CRM" }
+    ],
+    techStack: ["Official WhatsApp Cloud API", "n8n Webhook Engine", "HubSpot / Zoho CRM", "Cal.com"]
   },
   {
-    id: "rahul",
-    name: "Rahul",
-    role: "Real Estate Broker Assistant",
-    cityLanguage: "Bangalore · Kannada / English",
-    specialty: "99acres & Portal Lead Callbacks / Site Visits",
-    scenario: "Calls back 99acres and MagicBricks leads within 45s, verifies budget and 2/3 BHK requirement in Kannada/English, books site visits.",
-    badge: "Interactive Demo Available",
-    audioPreviewText: "“Namaskara! BoldFlow Builders inda Rahul mathadthidini. Namma Indiranagar 3BHK luxury project nodoke site visit book madla? Saturday 11 AM confirm madla?”",
-    status: "active"
+    id: "crm-ads",
+    title: "Closed-Loop Performance Ads & CRM Attribution",
+    category: "Acquisition Architecture",
+    badge: "Sample Architecture (Demonstration)",
+    description: "A tracking and lead management architecture linking Meta Ads and Google Search Ads directly to server-side conversion APIs and CRM pipeline deal stages, eliminating signal loss from browser ad-blockers.",
+    nodes: [
+      { step: "Ad Click", title: "Google Search / Meta Feed Impression", meta: "UTM Parameters Captured" },
+      { step: "Landing Page", title: "Fast-loading Edge Page (Next.js)", meta: "TTFB <100ms, Lighthouse 95+" },
+      { step: "Server Tracking", title: "Meta CAPI & Google Enhanced Events", meta: "Server-Side Event Dispatch" },
+      { step: "Attribution", title: "Deal Status Synchronized to Ad Manager", meta: "Optimizes Smart Bidding" }
+    ],
+    techStack: ["Next.js App Router", "Meta Conversions API (CAPI)", "Google Tag Manager", "GA4"]
   },
   {
-    id: "suresh",
-    name: "Suresh",
-    role: "Insurance Renewal Reminder Agent",
-    cityLanguage: "Chennai · Tamil / English",
-    specialty: "Policy Lapse Prevention & Agent Callback",
-    scenario: "Calls policyholders ahead of renewal, checks if they have questions, books a callback with their agent if interested.",
-    badge: "Active Agent",
-    audioPreviewText: "“Vanakkam! Main BoldFlow Insurance se Suresh pesuren. Ungaloda Health Insurance policy renewal next week due irukku. Agent callback book pannalaama?”",
-    status: "active"
+    id: "local-seo",
+    title: "Local Search Visibility & Review Engine",
+    category: "Local SEO Architecture",
+    badge: "Sample Architecture (Demonstration)",
+    description: "A local optimization framework synchronizing Google Business Profile data, LocalBusiness Schema.org markup, and post-service WhatsApp review invitation links to build genuine Google reviews.",
+    nodes: [
+      { step: "GBP Audit", title: "Primary Category & Service Radius Alignment", meta: "Verified Profile Optimization" },
+      { step: "Schema Embed", title: "LocalBusiness JSON-LD on Domain", meta: "Accurate Geo Coordinates" },
+      { step: "Job Complete", title: "Service Invoice Marked Complete", meta: "Automated Webhook Trigger" },
+      { step: "Review Link", title: "1-Click Direct Google Review Link Sent", meta: "Zero-Friction Review Flow" }
+    ],
+    techStack: ["Google Business Profile API", "Schema.org JSON-LD", "WhatsApp Cloud API", "Local SEO Checklists"]
   }
 ];
 
-const faqData = [
+const faqs = [
   {
-    q: "Will our automated calls get flagged as spam or telemarketing on Truecaller?",
-    a: "No. We configure verified corporate caller IDs registered under your company entity on Truecaller, integrated with TRAI DLT-approved transactional headers. Because our voice agents only execute warm callbacks to high-intent portal inquiries, post-checkout order verifications, or existing client service reminders, your spam score remains 0%."
+    q: "How does BoldFlow Labs deliver projects?",
+    a: "We operate a focused boutique agency model. Founder Godson Saji leads client strategy, requirements scoping, and technical architecture directly. For specialized execution (such as advanced media buying, custom development, or specific CRM integrations), we collaborate with vetted technical delivery specialists. This gives you senior-level strategy without paying for bloated agency overhead."
   },
   {
-    q: "Do we need to buy expensive PBX hardware or change our existing phone numbers?",
-    a: "Zero hardware required. You keep your existing mobile numbers, landlines, or office SIM cards (Airtel, Jio, Vi, BSNL). You simply enable standard conditional call forwarding (*61* or *67*) on busy or unanswered calls (after 15 seconds) to our virtual DID. Your customers continue calling your normal advertised phone number, and BoldFlow seamlessly catches the calls you would have otherwise missed."
+    q: "Do you guarantee return on ad spend (ROAS) or #1 Google rankings?",
+    a: "No, and we never will. Guarantees of #1 rankings or fixed ROAS are deceptive marketing tactics. What we guarantee is rigorous technical execution, clean tracking foundations, transparent reporting, and systems built according to official platform standards (Meta, Google, Schema.org)."
   },
   {
-    q: "How does code-mixing (Hinglish, Tanglish, Kanglish) work when callers switch languages?",
-    a: "Indian consumers naturally switch languages mid-call (e.g., starting in English and transitioning into Hindi or Kannada). Our conversational engine utilizes continuous real-time language detection. It identifies code-switched vocabulary ('Site visit Saturday 11 AM book kar dein?') and dialect nuances without conversational lag or asking the user to press phone keypad buttons."
+    q: "Who owns the accounts, code, and automations after the project?",
+    a: "You do—100%. We believe in zero vendor lock-in. All ad accounts, CRM environments, code repositories, domains, and automation accounts belong to your business. We set them up within your accounts or transfer full credentials upon completion."
   },
   {
-    q: "Are automated outbound calls compliant with TRAI and DND regulations in India?",
-    a: "Yes, 100% TRAI & TCCCPR compliant. For outbound callback campaigns (such as D2C COD order verification or portal inquiry callbacks), our telephony gateway automatically scrubs numbers against the National Do Not Call (NDNC/DND) registry in real-time. Calls operate exclusively during permissible TRAI hours (9 AM to 9 PM) with verified transactional routing."
+    q: "How long does a typical system implementation take?",
+    a: "Most single-system implementations (such as a WhatsApp automation flow, CRM setup, or high-performance landing page) take 2 to 4 weeks from kickoff to production testing. Multi-system transformations are planned in structured, sequential milestones."
   },
   {
-    q: "How do webhooks and CRM data flow back into LeadSquared, Zoho, or our database?",
-    a: "Immediately after each call terminates (under 30 seconds), BoldFlow dispatches a JSON webhook payload containing caller phone number, call duration, full audio recording URL, speaker-diarized transcript, and structured extraction fields (e.g., budget, property type, delivery address confirmation, appointment timestamp). We provide direct pre-built integrations for LeadSquared, Zoho CRM, Practo, Google Calendar, Shopify, and WhatsApp Business API."
+    q: "What tools and platforms do you support?",
+    a: "We work with modern, industry-standard tools including Next.js, React, TypeScript, the official Meta WhatsApp Cloud API, Google Ads, Meta Ads, Google Tag Manager, GA4, HubSpot, Zoho CRM, LeadSquared, n8n, Make.com, and Zapier."
   },
   {
-    q: "Can callers naturally interrupt the AI bot during the conversation?",
-    a: "Yes. Unlike legacy IVR phone trees that force users to listen to long pre-recorded options, our voice pipeline operates on sub-180ms streaming full-duplex audio with instant acoustic barge-in. The moment the caller begins speaking, the AI stops speaking, listens, and responds naturally to their question."
-  },
-  {
-    q: "How much does an AI phone assistant cost per month in India?",
-    a: "We operate on transparent, predictable monthly retainers with included call minutes:\n• Starter Plan: ₹9,999/month (1,000 minutes included, 1 language, inbound reception, standard CRM sync).\n• Growth Plan: ₹19,999/month (3,000 minutes included, English + 1 regional language, inbound & outbound callbacks, instant WhatsApp confirmation).\n• Enterprise Plan: Custom high-volume minutes, all 8 regional Indian languages, dedicated SIP trunking, and custom ERP integration."
-  },
-  {
-    q: "How quickly can we go live with a custom AI phone assistant?",
-    a: "Our engineering sprint takes 5 to 10 days from handshake to live production calls. We draft and calibrate your industry-specific dialogue trees, configure your virtual DID routing, conduct rigorous telephony audio testing across local carriers, and test CRM webhooks with your team."
+    q: "How do we get started?",
+    a: "You can submit an enquiry through our contact form or book an introductory 30-minute discovery session. We will discuss your current operational bottlenecks, assess feasibility, and provide a clear proposal with deliverables and timelines."
   }
 ];
 
 export default function HomePage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [activeBlueprint, setActiveBlueprint] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
 
   return (
-    <>
-      {/* ── HERO SECTION ──────────────────────────── */}
-      <section className="relative pt-32 pb-20 md:pt-44 md:pb-24 border-b border-[#1C1C24] overflow-hidden">
-        <div className="absolute inset-0 bg-[#0A0A0F] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#0047FF]/15 via-[#0A0A0F] to-[#0A0A0F] -z-10" />
-        <div className="absolute inset-0 grid-overlay opacity-10 -z-20" />
-        
-        <div className="max-w-[1280px] w-full mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 relative z-10 items-center">
-            {/* Left Col - Typography */}
-            <div className="flex flex-col justify-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center gap-2 mb-6 flex-wrap"
-                >
-                    <span className="px-3 py-1 text-[10px] font-mono font-bold tracking-widest bg-[#FF5A1F]/10 text-[#FF5A1F] uppercase border border-[#FF5A1F]/20 rounded-sm">
-                      Free 48-Hour Pilot Available
-                    </span>
-                    <span className="text-[11px] font-mono text-[#A3A3B3] uppercase tracking-wider">
-                      Hindi · Tamil · Kannada · Telugu · Marathi · Bengali · English
-                    </span>
-                </motion.div>
-                
-                {/* Eyebrow Hook */}
-                <div className="mb-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider font-semibold text-[#A3A3B3]">
-                  <span className="text-[#FF5A1F]">●</span> Missed Call = <span className="text-white underline decoration-[#0047FF]/60 underline-offset-4">Missed Revenue</span>
-                </div>
+    <div className="bg-[#F8FAFC] min-h-screen text-slate-900">
+      
+      {/* ── 2. HERO SECTION WITH CONNECTED SYSTEMS VISUAL ── */}
+      <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 border-b border-slate-200 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#F8FAFC]">
+        {/* Subtle background grid */}
+        <div className="absolute inset-0 bg-grid-subtle opacity-60 pointer-events-none" />
+        <div className="absolute inset-0 radial-glow pointer-events-none" />
 
-                <h1 className="text-hero text-[#F5F6FA] mb-6 tracking-tight leading-[1.1]">
-                  Multilingual AI Phone Assistants &amp; Voice Agents for <span className="text-[#0047FF]">Indian Businesses</span>
-                </h1>
-
-                <p className="text-body-lg mb-6 leading-relaxed">
-                  AI phone assistants that answer your business calls in your customers' language — <strong className="text-white">Hindi, Tamil, Kannada, Telugu & more, plus English — 24/7</strong>. Built for Indian real estate brokers, D2C brands, and insurance agencies.
-                </p>
-
-                <p className="text-sm text-[#A3A3B3] mb-8 leading-relaxed italic border-l-2 border-[#0047FF] pl-4">
-                  "Your 99acres leads call after 7 PM. Your D2C COD orders spike during flash sales. Your insurance policy renewals slip through without reminders. Who calls?"
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-center gap-4">
-                    <Link href="/contact" className="w-full sm:w-auto px-8 py-4.5 btn-primary font-mono text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2 rounded-[4px]">
-                        Book a Free Strategy Call <ArrowRight className="w-4 h-4" />
-                    </Link>
-                    <Link href="#demo" className="w-full sm:w-auto px-8 py-4.5 btn-ghost font-mono text-xs font-bold uppercase tracking-wider text-center rounded-[4px]">
-                        See a Live Demo
-                    </Link>
-                </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-[#2563FF] text-xs font-mono font-semibold uppercase tracking-wider mb-6 shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-[#06B6D4] animate-pulse" />
+              <span>AI Automation · Business Systems · Digital Growth</span>
             </div>
 
-            {/* Right Col - Visual Waveform Panel */}
-            <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex items-center justify-center lg:justify-end relative mt-6 lg:mt-0"
-            >
-                <div className="w-full max-w-[500px] bg-[#111116] border border-[#1C1C24] p-6 sm:p-8 relative flex flex-col justify-between overflow-hidden rounded-[8px] shadow-[0_0_50px_rgba(0,71,255,0.08)]">
-                    <div className="absolute inset-0 grid-overlay opacity-[0.03] pointer-events-none" />
-                    
-                    {/* Panel Header */}
-                    <div className="flex items-center justify-between border-b border-[#1C1C24] pb-4 z-10">
-                        <div className="flex items-center gap-2">
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
-                            <span className="text-[10px] font-mono text-[#F5F6FA] uppercase tracking-wider font-bold">EXOTEL_VOICE_STREAM_LIVE</span>
-                        </div>
-                        <span className="text-[10px] font-mono text-[#FF5A1F] font-bold">LATENCY: &lt;180MS</span>
-                    </div>
+            <h1 className="text-hero text-[#0B1020] tracking-tight">
+              Build Smarter Systems. <br className="hidden sm:inline" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] via-[#0284C7] to-[#0891B2]">
+                Grow Your Business.
+              </span>
+            </h1>
 
-                    {/* Speech Banner */}
-                    <div className="py-6 z-10 text-center">
-                        <span className="text-[10px] font-mono text-[#0047FF] uppercase tracking-widest block mb-2 font-bold">MULTILINGUAL CONVERSATION ENGINE</span>
-                        <div className="bg-[#0A0A0F] border border-[#1C1C24] p-4 rounded-[4px] text-xs font-sans text-[#F5F6FA] leading-relaxed">
-                          &quot;Namaste! Real Estate Inquiry ke liye connect kiya hai. Kya aap Bangalore Indiranagar project me 3BHK visit schedule karna chahte hain?&quot;
-                        </div>
-                    </div>
+            <p className="mt-6 text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+              BoldFlow Labs helps businesses streamline operations, automate lead follow-ups, improve their digital presence, and build practical systems for sustainable growth.
+            </p>
 
-                    {/* Waveform Visualization */}
-                    <div className="h-24 flex items-end justify-center gap-1.5 px-4 z-10 relative">
-                        {Array.from({ length: 24 }).map((_, i) => {
-                            const heights = [30, 55, 80, 60, 45, 95, 110, 75, 50, 85, 120, 90, 65, 80, 105, 55, 40, 70, 90, 45, 30, 60, 40, 30];
-                            const height = heights[i % heights.length];
-                            const delay = (i * 0.04).toFixed(2);
-                            return (
-                                <motion.div
-                                    key={i}
-                                    className="w-1.5 bg-[#0047FF] rounded-full opacity-80"
-                                    animate={{
-                                        height: [12, height * 0.6, 12],
-                                    }}
-                                    transition={{
-                                        duration: 1.8,
-                                        repeat: Infinity,
-                                        ease: "easeInOut",
-                                        delay: parseFloat(delay),
-                                    }}
-                                    style={{ height: 12 }}
-                                />
-                            );
-                        })}
-                    </div>
-
-                    {/* Telemetry info */}
-                    <div className="border-t border-[#1C1C24] pt-4 font-mono text-[9px] text-[#626272] flex justify-between z-10">
-                        <div className="flex flex-col">
-                            <span>TELEPHONY: VOICELINK_VOBIZ_SIP</span>
-                            <span>CRM_SYNC: LEADSQUARED_ZOHO</span>
-                        </div>
-                        <div className="text-right flex flex-col">
-                            <span>LANGUAGES: HINDI/TAMIL/KANNADA</span>
-                            <span>COMPLIANCE: TRAI_DND_CLEARED</span>
-                        </div>
-                    </div>
-                </div>
-            </motion.div>
-        </div>
-
-        {/* TRUST BAR CARDS UNDER HERO */}
-        <div className="w-full max-w-[1280px] mx-auto px-6 mt-16 pt-10 border-t border-[#1C1C24]">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="p-4 bg-[#111116]/60 border border-[#1C1C24] rounded-[6px] flex items-center gap-3">
-                    <ShieldCheck className="w-5 h-5 text-[#10B981] shrink-0" />
-                    <div>
-                        <span className="text-xs font-mono text-white font-bold block">TRAI-Compliant Calling</span>
-                        <span className="text-[10px] font-mono text-[#A3A3B3]">DND filtered & legal in India</span>
-                    </div>
-                </div>
-                <div className="p-4 bg-[#111116]/60 border border-[#1C1C24] rounded-[6px] flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-[#0047FF] shrink-0" />
-                    <div>
-                        <span className="text-xs font-mono text-white font-bold block">Voice Link & Vobiz</span>
-                        <span className="text-[10px] font-mono text-[#A3A3B3]">Voice Link & Vobiz integration</span>
-                    </div>
-                </div>
-                <div className="p-4 bg-[#111116]/60 border border-[#1C1C24] rounded-[6px] flex items-center gap-3">
-                    <Building className="w-5 h-5 text-[#FF5A1F] shrink-0" />
-                    <div>
-                        <span className="text-xs font-mono text-white font-bold block">Indian Phone Numbers</span>
-                        <span className="text-[10px] font-mono text-[#A3A3B3]">Native +91 virtual & mobile lines</span>
-                    </div>
-                </div>
-                <div className="p-4 bg-[#111116]/60 border border-[#1C1C24] rounded-[6px] flex items-center gap-3">
-                    <Globe2 className="w-5 h-5 text-[#0047FF] shrink-0" />
-                    <div>
-                        <span className="text-xs font-mono text-white font-bold block">Native Languages</span>
-                        <span className="text-[10px] font-mono text-[#A3A3B3]">Hindi, Tamil, Kannada, Telugu & more</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {/* ── GEO CITABLE DEFINITION BLOCK ── */}
-        <div className="w-full max-w-[1280px] mx-auto px-6 mt-8">
-          <div className="p-6 sm:p-7 bg-[#0E0E14] border-l-2 border-l-[#0047FF] border-y border-r border-[#1C1C24] rounded-r-[6px] relative overflow-hidden">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3">
-              <div className="flex items-center gap-2 font-mono text-[10px] text-[#0047FF] uppercase tracking-wider font-bold">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>// Architecture Overview · AI Search Citation Standard</span>
-              </div>
-              <Link 
-                href="/tools/missed-call-roi-calculator"
-                className="inline-flex items-center gap-1.5 font-mono text-[11px] text-[#10B981] hover:text-white transition-colors bg-[#10B981]/10 px-2.5 py-1 rounded border border-[#10B981]/30"
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/contact"
+                className="btn-primary w-full sm:w-auto px-8 py-3.5 text-sm font-semibold tracking-wide"
               >
-                <Calculator className="w-3 h-3" />
-                <span>Calculate Your Missed Call Revenue Loss &rarr;</span>
+                Discuss Your Project
+              </Link>
+              <Link
+                href="/services"
+                className="btn-secondary w-full sm:w-auto px-7 py-3.5 text-sm font-medium text-slate-700"
+              >
+                Explore Our Services →
               </Link>
             </div>
-            <p className="text-xs sm:text-sm text-[#A3A3B3] leading-relaxed">
-              <strong className="text-white font-semibold">BoldFlow Labs is an Indian AI telephony automation agency that deploys 24/7 multilingual AI phone receptionists and voice agents for businesses.</strong> Designed specifically for the Indian telecom ecosystem, BoldFlow Labs integrates with providers like Exotel, Vobiz, and Voice Link to deliver natural-sounding phone conversations with ultra-low latency under 180 milliseconds. The system answers inbound calls and initiates instant outbound callbacks in Hindi, Tamil, Kannada, Telugu, Marathi, Bengali, Gujarati, and English, including code-switching dialects like Hinglish and Tanglish. Built primarily for real estate brokerages, D2C e-commerce brands, and insurance agencies, BoldFlow Labs automates after-hours lead qualification, site visit bookings, Cash-on-Delivery (COD) order confirmations, and policy renewal follow-ups. All deployments are fully compliant with Telecom Regulatory Authority of India (TRAI) Do-Not-Disturb (DND) regulations and synchronize conversation logs directly into CRMs including LeadSquared, Zoho, and WhatsApp Business.
+
+          </div>
+
+          {/* Original Visual Treatment: Connected Business Systems Diagram (Light Theme) */}
+          <div className="mt-16 md:mt-20 max-w-5xl mx-auto">
+            <div className="p-6 md:p-8 rounded-2xl bg-white border border-slate-200 shadow-xl relative">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6 text-xs font-mono text-slate-500">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                  <span className="text-slate-900 font-bold uppercase tracking-wider">
+                    Connected Business Systems Architecture
+                  </span>
+                </div>
+                <span className="hidden sm:inline text-slate-400">Live Automation Flow Demonstration</span>
+              </div>
+
+              {/* 3-Column Interactive Architecture */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+                
+                {/* Column 1: Inbound Lead Channels */}
+                <div className="space-y-3">
+                  <div className="text-[11px] font-mono text-slate-500 uppercase tracking-wider font-semibold">
+                    1. Inbound Channels
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between shadow-xs">
+                    <div className="flex items-center gap-2.5">
+                      <Target className="w-4 h-4 text-[#2563FF]" />
+                      <span className="text-xs font-semibold text-slate-800">Google & Meta Ads</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold">UTMs</span>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between shadow-xs">
+                    <div className="flex items-center gap-2.5">
+                      <Code2 className="w-4 h-4 text-[#0891B2]" />
+                      <span className="text-xs font-semibold text-slate-800">Website & Forms</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-[#0369A1] bg-sky-50 border border-sky-200 px-1.5 py-0.5 rounded font-semibold">Webhooks</span>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between shadow-xs">
+                    <div className="flex items-center gap-2.5">
+                      <MapPin className="w-4 h-4 text-[#2563FF]" />
+                      <span className="text-xs font-semibold text-slate-800">Local Search & GBP</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-600 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">Inbound</span>
+                  </div>
+                </div>
+
+                {/* Column 2: Central Automation Engine */}
+                <div className="space-y-3 md:border-x border-slate-200 md:px-6">
+                  <div className="text-[11px] font-mono text-[#0284C7] uppercase tracking-wider font-semibold">
+                    2. Central Automation Engine
+                  </div>
+                  <div className="p-4 rounded-xl bg-gradient-to-br from-blue-50/70 via-sky-50/50 to-cyan-50/60 border border-blue-200 shadow-xs flex flex-col justify-between h-[162px]">
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                          <Zap className="w-3.5 h-3.5 text-[#2563FF]" />
+                          n8n / API Gateway
+                        </span>
+                        <span className="text-[10px] font-mono font-semibold text-[#2563FF] bg-blue-100/70 px-1.5 py-0.5 rounded">&lt; 3s Latency</span>
+                      </div>
+                      <p className="text-[11px] text-slate-600 leading-relaxed">
+                        Data cleaned, spam filtered via honeypots, priority tagged, and routed instantly without manual delays.
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-[10px] font-mono text-slate-500 pt-2 border-t border-blue-200/60">
+                      <span>STATUS:</span>
+                      <span className="text-emerald-600 font-bold">ACTIVE & OPERATIONAL</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Column 3: Output & Execution Layer */}
+                <div className="space-y-3">
+                  <div className="text-[11px] font-mono text-slate-500 uppercase tracking-wider font-semibold">
+                    3. Execution & Growth Layer
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between shadow-xs">
+                    <div className="flex items-center gap-2.5">
+                      <MessageSquare className="w-4 h-4 text-[#0891B2]" />
+                      <span className="text-xs font-semibold text-slate-800">WhatsApp Qualification</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-500 font-medium">Instant</span>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between shadow-xs">
+                    <div className="flex items-center gap-2.5">
+                      <Database className="w-4 h-4 text-[#2563FF]" />
+                      <span className="text-xs font-semibold text-slate-800">CRM Pipeline Sync</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-500 font-medium">Deal Stage</span>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between shadow-xs">
+                    <div className="flex items-center gap-2.5">
+                      <Sparkles className="w-4 h-4 text-[#0891B2]" />
+                      <span className="text-xs font-semibold text-slate-800">Attribution & Reporting</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-500 font-medium">Closed-Loop</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── 3. CONCISE CREDIBILITY & TECHNICAL STANDARDS ── */}
+      <section className="py-10 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-slate-100">
+            <div className="p-3">
+              <div className="text-base sm:text-lg font-bold text-slate-900 font-mono mb-1">
+                Official APIs
+              </div>
+              <div className="text-xs text-slate-500">
+                Meta WhatsApp Business Platform & Google APIs
+              </div>
+            </div>
+            <div className="p-3">
+              <div className="text-base sm:text-lg font-bold text-slate-900 font-mono mb-1">
+                Modern Jamstack
+              </div>
+              <div className="text-xs text-slate-500">
+                Next.js, TypeScript, and edge static rendering
+              </div>
+            </div>
+            <div className="p-3">
+              <div className="text-base sm:text-lg font-bold text-slate-900 font-mono mb-1">
+                100% Ownership
+              </div>
+              <div className="text-xs text-slate-500">
+                You retain full admin control of all accounts & code
+              </div>
+            </div>
+            <div className="p-3">
+              <div className="text-base sm:text-lg font-bold text-slate-900 font-mono mb-1">
+                Zero Gimmicks
+              </div>
+              <div className="text-xs text-slate-500">
+                Truthful, defensible statements with no fake claims
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. SERVICES OVERVIEW (6 INITIAL SERVICES) ────── */}
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16">
+          <div>
+            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-2">
+              OUR CORE SERVICES
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1020] tracking-tight">
+              Practical Systems for Sustainable Growth
+            </h2>
+            <p className="mt-2 text-slate-600 text-sm max-w-xl">
+              We focus on six foundational digital disciplines designed to improve lead capture, streamline operations, and drive revenue.
             </p>
           </div>
+          <Link
+            href="/services"
+            className="text-xs font-mono text-[#2563FF] hover:text-[#1D4ED8] flex items-center gap-1.5 font-semibold transition-colors shrink-0"
+          >
+            <span>View All Service Details</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
-      </section>
 
-      {/* ── "BUILT FOR INDIAN TELEPHONY" STRIP ───────────────── */}
-      <section className="border-b border-[#1C1C24] w-full flex items-center justify-center bg-[#0A0A0F] py-8 px-4">
-          <div className="max-w-[1280px] w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="text-center md:text-left">
-                  <span className="text-[10px] font-mono text-[#0047FF] uppercase tracking-widest font-bold block mb-1">TELEPHONY INTEGRATION</span>
-                  <h2 className="text-base font-bold font-space text-white">Built for Indian Telephony</h2>
-              </div>
-              
-              <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
-                  <div className="px-4 py-2.5 bg-[#111116] border border-[#1C1C24] text-[#F5F6FA] rounded-[4px] flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#10B981]" /> Voice Link & Vobiz ready
-                  </div>
-                  <div className="px-4 py-2.5 bg-[#111116] border border-[#1C1C24] text-[#F5F6FA] rounded-[4px] flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#0047FF]" /> TRAI compliant
-                  </div>
-                  <div className="px-4 py-2.5 bg-[#111116] border border-[#1C1C24] text-[#FF5A1F] font-bold rounded-[4px] flex items-center gap-2">
-                      ⚡ &lt;200ms voice latency
-                  </div>
-              </div>
-          </div>
-      </section>
-
-      {/* ── CRM & INTEGRATION MARQUEE ────────────── */}
-      <LogoMarquee />
-
-      {/* ── SOLUTIONS & CAPTURE SECTION ────────────────── */}
-      <section className="py-24 lg:py-32 border-b border-[#1C1C24] relative">
-        <div className="max-w-[1280px] mx-auto px-6">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-                <div>
-                   <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">// CAPTURING INDIAN INBOUND LEADS</span>
-                   <h2 className="text-h2 text-[#F5F6FA] mb-4">
-                       Capture Every Call, Book Every Slot
-                   </h2>
-                   <p className="text-body max-w-xl">
-                       We deploy custom lead-booking voice assistants for high-volume Indian businesses to eliminate unanswered calls during peak admission seasons and after-hours portal spikes.
-                   </p>
-                </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {homeServices.map((svc) => (
-                    <div
-                        key={svc.title}
-                        className="p-8 border border-[#1C1C24] bg-[#111116] hover:border-[#0047FF]/40 hover:shadow-[0_0_30px_rgba(0,71,255,0.03)] transition-all flex flex-col items-start rounded-[6px]"
-                    >
-                        {svc.icon}
-                        <h3 className="text-lg font-bold font-space text-[#F5F6FA] mb-3">{svc.title}</h3>
-                        <p className="text-[#A3A3B3] text-sm mb-8 leading-relaxed flex-1">{svc.description}</p>
-                        <Link href={svc.href} className="text-[#0047FF] font-mono text-xs uppercase tracking-wider font-bold flex items-center gap-2 hover:gap-3 transition-all mt-auto group">
-                            Learn more <ArrowRight className="w-4 h-4" />
-                        </Link>
-                    </div>
-                ))}
-            </div>
-            
-            {/* Quick Links to 3 Niche Landing Pages */}
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Link href="/real-estate-ai-agent" className="p-5 bg-[#0A0A0F] border border-[#1C1C24] hover:border-[#0047FF] rounded-[4px] flex justify-between items-center group transition-colors">
-                    <div>
-                        <span className="text-xs font-mono text-[#FF5A1F] uppercase block font-bold">Real Estate Solution</span>
-                        <span className="text-sm font-bold font-space text-white">99acres & Broker Voice AI →</span>
-                    </div>
-                </Link>
-                <Link href="/d2c-ai-agent" className="p-5 bg-[#0A0A0F] border border-[#1C1C24] hover:border-[#0047FF] rounded-[4px] flex justify-between items-center group transition-colors">
-                    <div>
-                        <span className="text-xs font-mono text-[#0047FF] uppercase block font-bold">D2C & E-Commerce Solution</span>
-                        <span className="text-sm font-bold font-space text-white">COD Confirmation & RTO Voice AI →</span>
-                    </div>
-                </Link>
-                <Link href="/insurance-ai-agent" className="p-5 bg-[#0A0A0F] border border-[#1C1C24] hover:border-[#0047FF] rounded-[4px] flex justify-between items-center group transition-colors">
-                    <div>
-                        <span className="text-xs font-mono text-[#10B981] uppercase block font-bold">Insurance Solution</span>
-                        <span className="text-sm font-bold font-space text-white">Policy Renewal Reminder Voice AI →</span>
-                    </div>
-                </Link>
-            </div>
-        </div>
-      </section>
-
-      {/* ── ZERO-HARDWARE TELEPHONY ARCHITECTURE ─────────── */}
-      <section className="py-24 lg:py-28 border-b border-[#1C1C24] bg-[#0A0A0F] relative">
-          <div className="max-w-[1280px] mx-auto px-6">
-              <div className="text-center mb-16">
-                  <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3 font-bold">// ZERO HARDWARE TELEPHONY ARCHITECTURE</span>
-                  <h2 className="text-h2 text-[#F5F6FA] mb-4">
-                      Keep Your Number. Zero Hardware. Live in 5 Days.
-                  </h2>
-                  <p className="text-body max-w-2xl mx-auto">
-                      You don't need new SIM cards, expensive PBX boxes, or complicated telecom software. BoldFlow connects directly to your existing business phone numbers in 3 simple steps.
-                  </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-                  {/* Step 1 */}
-                  <div className="p-8 bg-[#111116] border border-[#1C1C24] hover:border-[#0047FF]/40 rounded-[6px] transition-all relative flex flex-col justify-between">
-                      <div>
-                          <div className="flex items-center justify-between mb-6">
-                              <span className="px-3 py-1 bg-[#0047FF]/10 text-[#0047FF] border border-[#0047FF]/20 font-mono text-xs font-bold rounded-sm">STEP 01</span>
-                              <span className="text-[10px] font-mono text-[#10B981] font-bold">ZERO PORTING</span>
-                          </div>
-                          <h3 className="text-lg font-bold font-space text-white mb-3">Keep Your Existing Phone Number</h3>
-                          <p className="text-sm text-[#A3A3B3] leading-relaxed mb-6">
-                              No need to change marketing materials or SIM cards. Simply turn on standard conditional call forwarding (<code className="text-white bg-[#0A0A0F] px-1.5 py-0.5 rounded border border-[#1C1C24] font-mono text-xs">*61*</code> on busy, or after 15 seconds unanswered) on your existing Jio, Airtel, Vi, or BSNL line.
-                          </p>
-                      </div>
-                      <div className="pt-4 border-t border-[#1C1C24] flex items-center justify-between font-mono text-[10px] text-[#626272]">
-                          <span>COMPATIBILITY: ALL TELCOS</span>
-                          <span>SETUP: 2 MINUTES</span>
-                      </div>
-                  </div>
-
-                  {/* Step 2 */}
-                  <div className="p-8 bg-[#111116] border border-[#0047FF]/30 hover:border-[#0047FF] rounded-[6px] transition-all relative flex flex-col justify-between shadow-[0_0_30px_rgba(0,71,255,0.05)]">
-                      <div>
-                          <div className="flex items-center justify-between mb-6">
-                              <span className="px-3 py-1 bg-[#0047FF] text-white font-mono text-xs font-bold rounded-sm">STEP 02</span>
-                              <span className="text-[10px] font-mono text-[#FF5A1F] font-bold">&lt;180MS STREAM</span>
-                          </div>
-                          <h3 className="text-lg font-bold font-space text-white mb-3">AI Answers in Under 2 Rings</h3>
-                          <p className="text-sm text-[#A3A3B3] leading-relaxed mb-6">
-                              Unanswered calls route seamlessly to BoldFlow's TRAI-compliant virtual DID. The AI greets callers in their regional dialect (Hindi, Tamil, Kannada, Telugu, English), pre-qualifies their requirement, and answers FAQs.
-                          </p>
-                      </div>
-                      <div className="pt-4 border-t border-[#1C1C24] flex items-center justify-between font-mono text-[10px] text-[#0047FF]">
-                          <span>LATENCY: &lt;180MS</span>
-                          <span>BARGE-IN: FULL DUPLEX</span>
-                      </div>
-                  </div>
-
-                  {/* Step 3 */}
-                  <div className="p-8 bg-[#111116] border border-[#1C1C24] hover:border-[#0047FF]/40 rounded-[6px] transition-all relative flex flex-col justify-between">
-                      <div>
-                          <div className="flex items-center justify-between mb-6">
-                              <span className="px-3 py-1 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/20 font-mono text-xs font-bold rounded-sm">STEP 03</span>
-                              <span className="text-[10px] font-mono text-[#10B981] font-bold">INSTANT SYNC</span>
-                          </div>
-                          <h3 className="text-lg font-bold font-space text-white mb-3">Instant WhatsApp &amp; CRM Dispatch</h3>
-                          <p className="text-sm text-[#A3A3B3] leading-relaxed mb-6">
-                              Within 30 seconds of the call ending, full audio recordings, diarist transcripts, customer qualification scores, and booked calendar slots are pushed into WhatsApp and your CRM.
-                          </p>
-                      </div>
-                      <div className="pt-4 border-t border-[#1C1C24] flex items-center justify-between font-mono text-[10px] text-[#626272]">
-                          <span>LEADSQUARED · ZOHO</span>
-                          <span>WHATSAPP DISPATCH</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </section>
-
-      {/* ── HOW IT WORKS ─────────────────────────────── */}
-      <section id="process" className="py-24 lg:py-32 border-b border-[#1C1C24] bg-[#0A0A0F] relative">
-          <div className="max-w-[1280px] mx-auto px-6">
-              <div className="text-center mb-20">
-                  <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">// STREAMLINED WORKFLOW</span>
-                  <h2 className="text-h2 text-[#F5F6FA] mb-4">
-                      How It Works
-                  </h2>
-                  <p className="text-body max-w-xl mx-auto">
-                      From property enquiry, COD order, or policy renewal to confirmed booking on your system in under 2 minutes.
-                  </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-                  {processPhases.map((phase) => (
-                      <div 
-                        key={phase.step} 
-                        className="relative z-10 flex flex-col items-start p-8 bg-[#111116] border border-[#1C1C24] rounded-[6px] hover:border-[#0047FF]/20 transition-colors"
-                      >
-                          <div className="w-10 h-10 rounded-full bg-[#161622] border border-[#1C1C24] flex items-center justify-center text-[#0047FF] font-bold mb-6 text-sm font-mono">
-                              {phase.step}
-                          </div>
-                          <div className="text-[#FF5A1F] font-mono text-[10px] uppercase tracking-wider mb-2 font-bold">
-                              {phase.timeline}
-                          </div>
-                          <h3 className="text-lg font-bold font-space text-[#F5F6FA] mb-4">{phase.title}</h3>
-                          <p className="text-[#A3A3B3] text-sm leading-relaxed">
-                              {phase.desc}
-                          </p>
-                      </div>
-                  ))}
-              </div>
-          </div>
-      </section>
-
-      {/* ── NEW LANGUAGE SUPPORT SECTION ───────────────── */}
-      <section className="py-24 bg-[#111116] border-b border-[#1C1C24] relative overflow-hidden">
-          <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {servicesData.map((service, index) => (
+            <div
+              key={service.slug}
+              className="system-card p-6 sm:p-7 flex flex-col justify-between group"
+            >
               <div>
-                  <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3 font-bold">// LOCAL LANGUAGE MASTERY</span>
-                  <h2 className="text-h2 text-[#F5F6FA] mb-6">
-                      Speaks Your Customer's Language
-                  </h2>
-                  <p className="text-body-lg mb-6 leading-relaxed">
-                      Our AI agents converse naturally in: <strong className="text-white">Hindi, Tamil, Kannada, Telugu, Marathi, Bengali, and English</strong> — plus natural code-switching (<span className="text-[#FF5A1F]">Hinglish, Tanglish</span>, and how people actually speak in Indian cities).
-                  </p>
-                  
-                  <div className="p-6 bg-[#0A0A0F] border border-[#0047FF]/30 rounded-[6px] mb-8">
-                      <div className="text-3xl font-bold font-space text-[#0047FF] mb-2">75%</div>
-                      <p className="text-sm text-[#A3A3B3] leading-relaxed">
-                        of Indian consumers prefer communicating with businesses in their native language rather than English-only chatbots.
-                      </p>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="p-2.5 rounded-lg bg-blue-50 border border-blue-100">
+                    {iconMap[service.slug]}
                   </div>
+                  <span className="text-xs font-mono text-slate-400 font-semibold">
+                    0{index + 1}
+                  </span>
+                </div>
 
-                  <div className="flex flex-wrap gap-2 font-mono text-xs text-[#A3A3B3]">
-                      <span className="px-3 py-1 bg-[#161622] border border-[#1C1C24] rounded-sm text-white">Delhi / Kota (Hindi)</span>
-                      <span className="px-3 py-1 bg-[#161622] border border-[#1C1C24] rounded-sm text-white">Bangalore (Kannada)</span>
-                      <span className="px-3 py-1 bg-[#161622] border border-[#1C1C24] rounded-sm text-white">Chennai (Tamil)</span>
-                      <span className="px-3 py-1 bg-[#161622] border border-[#1C1C24] rounded-sm text-white">Hyderabad (Telugu)</span>
-                      <span className="px-3 py-1 bg-[#161622] border border-[#1C1C24] rounded-sm text-white">Mumbai (Hinglish)</span>
-                  </div>
-              </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-1.5 group-hover:text-[#2563FF] transition-colors">
+                  {service.title}
+                </h3>
+                <div className="text-xs font-mono text-[#0891B2] mb-3">
+                  {service.tagline}
+                </div>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                  {service.shortDescription}
+                </p>
 
-              <div className="bg-[#0A0A0F] border border-[#1C1C24] p-8 rounded-[8px] flex flex-col gap-4">
-                  <span className="text-[10px] font-mono text-[#626272] uppercase tracking-wider">// DYNAMIC DIALECT DETECTION</span>
-                  <h4 className="text-base font-bold font-space text-white">Code-Switching Capabilities</h4>
-                  <p className="text-xs text-[#A3A3B3] leading-relaxed">
-                      Callers in Bangalore might start in English and switch to Kannada. Callers in Delhi seamlessly mix Hindi and English. BoldFlow AI dynamically adapts without dropping the conversational thread.
-                  </p>
-                  <div className="pt-4 border-t border-[#1C1C24] flex items-center justify-between text-xs font-mono text-[#0047FF]">
-                      <span>LATENCY GAP: NONE</span>
-                      <span>CITY SWITCH: AUTOMATIC</span>
-                  </div>
-              </div>
-          </div>
-      </section>
-
-      {/* ── VOICE BOT SIMULATIONS SECTION ────────────── */}
-      <section id="demo" className="py-24 lg:py-32 border-b border-[#1C1C24] bg-[#0A0A0F] relative">
-          <div className="absolute inset-0 grid-overlay opacity-[0.02] pointer-events-none" />
-          <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-              {/* Left panel - text */}
-              <div className="flex flex-col justify-center">
-                  <span className="text-[11px] font-mono text-[#FF5A1F] uppercase tracking-wider block mb-3">// REGIONAL VOICE BOT SIMULATIONS</span>
-                  <h2 className="text-h2 text-[#F5F6FA] mb-6">
-                      Voice Bot Agent Roster
-                  </h2>
-                  <p className="text-body mb-8">
-                      Test our voice agents trained specifically for Indian coaching institutes, real estate brokerages, clinics, and automotive dealers across major metros.
-                  </p>
-                  
-                  <div className="p-6 bg-[#111116] border border-[#1C1C24] rounded-[4px] mb-8">
-                      <h4 className="text-sm font-bold font-space text-white mb-2">Want to test a live phone call?</h4>
-                      <p className="text-[#A3A3B3] text-xs leading-relaxed mb-4">
-                          Book a 15-min call and we'll trigger an instant live phone call to your mobile number in your preferred language.
-                      </p>
-                      <Link href="/contact" className="text-[#0047FF] text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1 hover:gap-2 transition-all">
-                          Request Live Outbound Test Call <ArrowUpRight className="w-4 h-4" />
-                      </Link>
-                  </div>
-              </div>
-
-              {/* Right panel - simulation cards */}
-              <div className="grid grid-cols-1 gap-6">
-                  {demoAgents.map((agent) => (
-                      <div key={agent.id} className="p-6 border border-[#1C1C24] bg-[#111116] rounded-[6px] relative flex flex-col justify-between hover:border-[#0047FF]/40 transition-colors">
-                          <div>
-                              <div className="flex justify-between items-start mb-3 border-b border-[#1C1C24] pb-3">
-                                  <div>
-                                      <h3 className="text-lg font-bold font-space text-[#F5F6FA] leading-none mb-1">{agent.name}</h3>
-                                      <span className="text-xs text-[#0047FF] font-mono font-bold">{agent.role}</span>
-                                  </div>
-                                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-sm bg-[#FF5A1F]/10 text-[#FF5A1F] border border-[#FF5A1F]/20 font-bold uppercase tracking-widest">
-                                      {agent.badge}
-                                  </span>
-                              </div>
-                              <div className="font-mono text-[10px] text-[#A3A3B3] mb-2 font-bold">{agent.cityLanguage}</div>
-                              <div className="font-mono text-[10px] text-[#626272] mb-3">INTEGRATION: {agent.specialty}</div>
-                              <p className="text-xs text-[#A3A3B3] leading-relaxed mb-4">{agent.scenario}</p>
-                              
-                              {/* Speech sample text box */}
-                              <div className="p-3 bg-[#0A0A0F] border border-[#1C1C24] rounded-sm mb-4">
-                                  <span className="text-[9px] font-mono text-[#626272] uppercase block mb-1">Sample Speech Audio Script:</span>
-                                  <p className="text-xs text-white italic">{agent.audioPreviewText}</p>
-                              </div>
-                          </div>
-
-                          <Link 
-                              href="/contact"
-                              className="w-full py-3 border border-[#1C1C24] text-white hover:border-[#0047FF] hover:bg-[#0047FF]/10 font-mono text-[11px] uppercase tracking-wider font-bold text-center flex items-center justify-center gap-2 transition-all rounded-[4px] bg-[#0A0A0F]"
-                          >
-                              Request Custom Voice Agent Demo <ArrowRight className="w-3.5 h-3.5 text-[#0047FF]" />
-                          </Link>
-                      </div>
+                <div className="space-y-1.5 pt-4 border-t border-slate-100 mb-6">
+                  {service.deliverables.slice(0, 2).map((deliv, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs text-slate-600">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#2563FF] shrink-0" />
+                      <span className="truncate">{deliv.title}</span>
+                    </div>
                   ))}
+                </div>
               </div>
-          </div>
+
+              <div className="pt-3 border-t border-slate-100">
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="flex items-center justify-between text-xs font-semibold text-slate-900 group-hover:text-[#2563FF] transition-colors"
+                >
+                  <span>Explore Service & Demo</span>
+                  <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
-      {/* ── ROI / REVENUE RECOVERY SECTION ─────────────── */}
-      <section className="py-24 lg:py-32 border-b border-[#1C1C24] bg-[#111116] relative">
-          <div className="max-w-[1000px] mx-auto px-6 text-center">
-              <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">// QUANTIFIABLE OPERATIONS</span>
-              <h2 className="text-h2 text-[#F5F6FA] mb-6">
-                  What Unanswered Calls Cost Indian SMBs
-              </h2>
-              <p className="text-body max-w-2xl mx-auto mb-12">
-                  Answering phone inquiries in 10 seconds vs calling back the next morning is the difference between locking in an admission or losing site visits to a competitor.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-                  <div className="p-8 bg-[#0A0A0F] border border-[#1C1C24] rounded-[6px]">
-                      <span className="text-[10px] font-mono text-[#626272] block mb-2 uppercase">REAL ESTATE LEAD RESPONSE</span>
-                      <strong className="text-3xl font-bold font-space text-[#FF5A1F] block mb-2">58%</strong>
-                      <span className="text-xs text-[#A3A3B3]">of 99acres and property portal leads call after 7 PM after office hours.</span>
-                  </div>
-                  <div className="p-8 bg-[#0A0A0F] border border-[#1C1C24] rounded-[6px]">
-                      <span className="text-[10px] font-mono text-[#626272] block mb-2 uppercase">D2C COD & RTO CONFIRMATION</span>
-                      <strong className="text-3xl font-bold font-space text-[#0047FF] block mb-2">Instant Call</strong>
-                      <span className="text-xs text-[#A3A3B3]">COD orders without a confirmation call see higher RTO rates. Our AI confirms every order within minutes of checkout.</span>
-                  </div>
-                  <div className="p-8 bg-[#0A0A0F] border border-[#1C1C24] rounded-[6px]">
-                      <span className="text-[10px] font-mono text-[#626272] block mb-2 uppercase">INSURANCE RENEWAL OUTREACH</span>
-                      <strong className="text-3xl font-bold font-space text-[#10B981] block mb-2">100% Reach</strong>
-                      <span className="text-xs text-[#A3A3B3]">Agencies with large expiring-policy books can't call every customer in time. Our AI reaches policyholders before renewal date.</span>
-                  </div>
-              </div>
-              
-              <Link href="/pricing" className="inline-flex px-8 py-4.5 btn-primary font-mono text-xs font-bold uppercase tracking-wider rounded-[4px]">
-                  Open Revenue ROI Calculator
-              </Link>
+      {/* ── 5. BUSINESS PROBLEMS WE SOLVE ────────────────── */}
+      <section className="py-20 bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-14">
+            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-rose-600 block mb-2">
+              SOLVING REAL FRICTION
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1020] tracking-tight">
+              Operational Revenue Leaks We Eliminate
+            </h2>
+            <p className="mt-2 text-slate-600 text-sm">
+              Most businesses lose high-intent clients not because of poor products, but because of broken handoffs and slow operational systems.
+            </p>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {businessProblems.map((prob) => (
+              <div key={prob.num} className="p-6 rounded-xl bg-slate-50 border border-slate-200 shadow-xs relative">
+                <div className="text-xl font-mono font-bold text-rose-500 mb-3">
+                  {prob.num}
+                </div>
+                <h3 className="text-base font-bold text-slate-900 mb-2 leading-snug">
+                  {prob.title}
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  {prob.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* ── CLIENT REVIEWS / BENCHMARKS ─────────────── */}
-      <Testimonials />
+      {/* ── 6. VISUAL EXPLANATION OF HOW AN AUTOMATION WORKS */}
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mb-14">
+          <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#0891B2] block mb-2">
+            SYSTEM BLUEPRINT
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1020] tracking-tight">
+            How a Practical Lead-to-Sale Automation Works
+          </h2>
+          <p className="mt-2 text-slate-600 text-sm">
+            Here is what happens in the background when an inquiry touches your digital ecosystem.
+          </p>
+        </div>
 
-      {/* ── NEW FREE PILOT CTA SECTION ───────────────── */}
-      <section className="py-24 bg-[#0A0A0F] border-b border-[#1C1C24] relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0047FF]/10 rounded-full blur-[120px] -z-10" />
-          
-          <div className="max-w-[1000px] mx-auto px-6 text-center">
-              <span className="px-3.5 py-1.5 text-[11px] font-mono font-bold tracking-widest bg-[#FF5A1F]/10 text-[#FF5A1F] uppercase border border-[#FF5A1F]/20 rounded-sm inline-block mb-6">
-                  LIMITED TIME OFFER
-              </span>
+        <div className="relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            
+            <div className="p-5 rounded-xl bg-white border border-slate-200 shadow-xs">
+              <div className="text-xs font-mono text-[#2563FF] font-semibold mb-2">STEP 01</div>
+              <h4 className="text-sm font-bold text-slate-900 mb-1.5">Capture & Ingestion</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Lead submits website form, clicks Meta Ad, or messages WhatsApp. Data captured with full UTM tags.
+              </p>
+            </div>
 
-              <h2 className="text-3xl md:text-5xl font-bold font-space text-white mb-6 tracking-tight">
-                  Free 48-Hour Pilot for 3 Businesses
-              </h2>
+            <div className="p-5 rounded-xl bg-white border border-slate-200 shadow-xs">
+              <div className="text-xs font-mono text-[#0891B2] font-semibold mb-2">STEP 02</div>
+              <h4 className="text-sm font-bold text-slate-900 mb-1.5">Sanitize & Validate</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Honeypot filters out bots, email is syntax-checked, phone number formatted, and duplicates merged.
+              </p>
+            </div>
 
-              <p className="text-body-lg text-[#A3A3B3] max-w-xl mx-auto mb-10 leading-relaxed">
-                  We'll set up an AI voice agent on your phone line for 2 days. You hear real customer interactions in Hindi, Tamil, Kannada, Telugu or English. Zero commitment.
+            <div className="p-5 rounded-xl bg-white border border-slate-200 shadow-xs">
+              <div className="text-xs font-mono text-[#2563FF] font-semibold mb-2">STEP 03</div>
+              <h4 className="text-sm font-bold text-slate-900 mb-1.5">Instant WhatsApp Reply</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Customer receives personalized confirmation message within 5 seconds with interactive options.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-xl bg-white border border-slate-200 shadow-xs">
+              <div className="text-xs font-mono text-[#0891B2] font-semibold mb-2">STEP 04</div>
+              <h4 className="text-sm font-bold text-slate-900 mb-1.5">CRM Pipeline Creation</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Contact pushed to HubSpot/Zoho with deal value, stage, source campaign, and scheduled task.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-xl bg-white border border-slate-200 shadow-xs">
+              <div className="text-xs font-mono text-[#2563FF] font-semibold mb-2">STEP 05</div>
+              <h4 className="text-sm font-bold text-slate-900 mb-1.5">Team Alert & Attribution</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Designated team member alerted via Slack/WhatsApp with full prospect context and meeting link.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── 7. OUR DELIVERY PROCESS ──────────────────────── */}
+      <section className="py-20 bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-2">
+              SYSTEMATIC EXECUTION
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1020] tracking-tight">
+              Our 5-Stage Delivery Process
+            </h2>
+            <p className="mt-2 text-slate-600 text-sm">
+              From initial operational audit to tested, production-ready systems.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+            {processSteps.map((step) => (
+              <div key={step.phase} className="p-6 rounded-xl bg-slate-50 border border-slate-200 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-2xl font-black font-mono text-[#2563FF]">{step.phase}</span>
+                    <span className="text-[10px] font-mono text-slate-600 bg-white px-2 py-0.5 rounded border border-slate-200">
+                      {step.duration}
+                    </span>
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 mb-2">{step.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 8. DEMONSTRATIONS / SAMPLE BLUEPRINTS ────────── */}
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-50 border border-blue-200 text-[#2563FF] text-xs font-mono font-bold uppercase tracking-wider mb-2">
+              <span>DEMONSTRATIONS & SYSTEM BLUEPRINTS</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1020] tracking-tight">
+              Sample System Implementations
+            </h2>
+            <p className="text-slate-600 text-sm mt-1 max-w-xl">
+              Inspect how we architect systems before scheduling your project. These are functional demonstrations clearly labelled as sample blueprints.
+            </p>
+          </div>
+
+          <div className="flex gap-2">
+            {sampleBlueprints.map((bp, i) => (
+              <button
+                key={bp.id}
+                onClick={() => setActiveBlueprint(i)}
+                className={`px-3.5 py-2 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
+                  activeBlueprint === i
+                    ? "bg-[#2563FF] text-white shadow-xs"
+                    : "bg-white text-slate-600 hover:text-slate-900 border border-slate-200"
+                }`}
+              >
+                Sample 0{i + 1}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Active Blueprint Card */}
+        {(() => {
+          const bp = sampleBlueprints[activeBlueprint];
+          return (
+            <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-md">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 mb-6 gap-2">
+                <div>
+                  <span className="text-[11px] font-mono text-[#0891B2] uppercase tracking-wider font-semibold block mb-1">
+                    {bp.category} · {bp.badge}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900">{bp.title}</h3>
+                </div>
+                <div className="text-xs font-mono text-slate-600 bg-slate-50 px-3 py-1.5 rounded border border-slate-200 shrink-0">
+                  Label: Demonstration Model
+                </div>
+              </div>
+
+              <p className="text-sm text-slate-600 leading-relaxed mb-8 max-w-3xl">
+                {bp.description}
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Link href="/contact" className="w-full sm:w-auto px-10 py-5 btn-primary font-mono text-xs font-bold uppercase tracking-wider rounded-[4px] shadow-xl">
-                      Apply for Pilot — Only 3 Spots
-                  </Link>
-                  <a
-                      href="https://wa.me/919447178166?text=Hi%20BoldFlow%20Labs,%20I'd%20like%20to%20apply%20for%20the%20Free%2048-Hour%20Pilot."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto px-8 py-5 bg-[#25D366]/10 text-[#25D366] border border-[#25D366]/30 hover:bg-[#25D366] hover:text-black font-mono text-xs font-bold uppercase tracking-wider rounded-[4px] transition-colors flex items-center justify-center gap-2"
+              {/* Multi-node flow */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                {bp.nodes.map((node, idx) => (
+                  <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div className="text-[10px] font-mono font-bold text-[#2563FF] uppercase mb-1">
+                      {node.step}
+                    </div>
+                    <h4 className="text-xs font-bold text-slate-900 mb-1">{node.title}</h4>
+                    <span className="text-[11px] text-slate-500 block">{node.meta}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Technologies in blueprint */}
+              <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2">
+                <span className="text-xs font-mono text-slate-500 uppercase tracking-wider mr-2">
+                  Engineered With:
+                </span>
+                {bp.techStack.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-2.5 py-1 rounded bg-slate-50 border border-slate-200 text-xs text-slate-700 font-mono"
                   >
-                      <MessageCircle className="w-4 h-4" /> Apply via WhatsApp
-                  </a>
+                    {tech}
+                  </span>
+                ))}
               </div>
-          </div>
+            </div>
+          );
+        })()}
       </section>
 
-      {/* ── FAQ SECTION ──────────────────────────────── */}
-      <section className="py-24 bg-[#0A0A0F] border-b border-[#1C1C24]">
-          <div className="max-w-[800px] mx-auto px-6">
-              <div className="text-center mb-16">
-                  <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">// FAQ OBJECTIONS</span>
-                  <h2 className="text-h3 font-medium text-white tracking-tight mb-4">Frequently Asked Questions</h2>
-                  <p className="text-xs text-[#626272] uppercase tracking-widest font-mono font-bold">INDIAN TELEPHONY & PRICING ANSWERS</p>
-              </div>
-              
-              <div className="flex flex-col gap-4">
-                  {faqData.map((faq, i) => (
-                      <div key={i} className="border border-[#1C1C24] bg-[#111116] hover:border-[#2E2E3E] transition-colors overflow-hidden rounded-[4px]">
-                          <button 
-                              onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                              className="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none"
-                          >
-                              <span className="text-[15px] font-bold font-space text-[#F5F6FA] pr-8">
-                                  {faq.q}
-                              </span>
-                              <span className="text-[#626272] shrink-0">
-                                  {openFaq === i ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
-                              </span>
-                          </button>
-                          
-                          <AnimatePresence initial={false}>
-                              {openFaq === i && (
-                                  <motion.div
-                                      initial={{ height: 0, opacity: 0 }}
-                                      animate={{ height: "auto", opacity: 1 }}
-                                      exit={{ height: 0, opacity: 0 }}
-                                      transition={{ duration: 0.2, ease: "easeInOut" }}
-                                      className="overflow-hidden"
-                                  >
-                                      <div className="px-6 pb-6 text-[#A3A3B3] text-sm leading-relaxed border-t border-[#1C1C24] pt-4 mt-2 font-sans whitespace-pre-line">
-                                          {faq.a}
-                                      </div>
-                                  </motion.div>
-                              )}
-                          </AnimatePresence>
-                      </div>
-                  ))}
-              </div>
-          </div>
-      </section>
-
-      {/* ── FINAL CTA BLOCK ─────────────────────────── */}
-      <section className="py-32 flex justify-center px-6 bg-[#0A0A0F] relative">
-          <div className="absolute inset-0 grid-overlay opacity-[0.02] pointer-events-none" />
-          <div className="w-full max-w-[800px] text-center relative z-10">
-              <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-4">// FREE TELEPHONY DIAGNOSTIC</span>
-              <h2 className="text-[36px] md:text-[48px] font-bold font-space text-[#F5F6FA] mb-6 tracking-tight leading-tight">
-                  Book Your Free Strategy Call
+      {/* ── 9. WHY WORK WITH BOLDFLOW LABS (TRUTHFUL) ───── */}
+      <section className="py-20 bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div className="lg:col-span-5">
+              <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-2">
+                WHY BOLDFLOW LABS
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1020] tracking-tight">
+                Senior Systems Architecture With Lean Overhead
               </h2>
-              <p className="text-body-lg text-[#A3A3B3] mb-10 max-w-lg mx-auto leading-relaxed">
-                  We'll analyze your current phone call leaks, recommend the right language models and Exotel/Plivo setup, and show you live demos.
+              <p className="mt-4 text-slate-600 text-sm leading-relaxed">
+                We are an early-stage agency built for founders who want real engineering and direct accountability—not twenty-person agency meetings with three junior account managers.
               </p>
               
-              <div className="flex flex-col items-center gap-6">
-                  <Link href="/contact" className="px-6 sm:px-10 py-5 btn-primary font-mono text-xs font-bold uppercase tracking-wider text-center w-full sm:w-auto sm:min-w-[280px] min-w-0 max-w-full rounded-[4px]">
-                      INITIALIZE FREE STRATEGY CALL
-                  </Link>
-                  <p className="text-[11px] font-mono text-[#626272] uppercase tracking-wider">
-                      PILOT COHORT CAPACITY LIMITS APPLY
+              <div className="mt-8 space-y-4">
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <h4 className="text-sm font-bold text-slate-900 mb-1">Direct Founder Governance</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Founder Godson Saji personalizes your systems architecture and oversees every webhook and campaign setup.
                   </p>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <h4 className="text-sm font-bold text-slate-900 mb-1">Specialist Delivery Partner Model</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    We match specific project requirements to vetted, specialist delivery partners while maintaining strict quality control.
+                  </p>
+                </div>
               </div>
+            </div>
+
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="p-6 rounded-xl bg-slate-50 border border-slate-200">
+                <ShieldCheck className="w-6 h-6 text-[#2563FF] mb-3" />
+                <h4 className="text-sm font-bold text-slate-900 mb-1.5">No Deceptive Guarantees</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  We refuse to make unsupportable promises regarding Google rankings or ROAS multipliers. We build proven, compliant systems and measure honest data.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-xl bg-slate-50 border border-slate-200">
+                <Layers className="w-6 h-6 text-[#0891B2] mb-3" />
+                <h4 className="text-sm font-bold text-slate-900 mb-1.5">Zero Proprietary Lock-In</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  You own your domain, code repositories, CRM data, Meta accounts, and API credentials. If you ever leave, everything is yours to keep.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-xl bg-slate-50 border border-slate-200">
+                <Clock className="w-6 h-6 text-[#2563FF] mb-3" />
+                <h4 className="text-sm font-bold text-slate-900 mb-1.5">Fast Communication & Sprints</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Direct communication via private WhatsApp/Slack and regular video screen recordings instead of 60-page PDF status decks.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-xl bg-slate-50 border border-slate-200">
+                <Target className="w-6 h-6 text-[#0891B2] mb-3" />
+                <h4 className="text-sm font-bold text-slate-900 mb-1.5">Affordable for Growing Teams</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Because we keep agency overhead minimal, you get senior-level systems engineering at a fraction of traditional enterprise agency rates.
+                </p>
+              </div>
+            </div>
+
           </div>
+        </div>
       </section>
-    </>
+
+      {/* ── 10. FREQUENTLY ASKED QUESTIONS ──────────────── */}
+      <section className="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-2">
+            FREQUENT QUESTIONS
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#0B1020] tracking-tight">
+            Clear Answers on How We Work
+          </h2>
+          <p className="mt-2 text-slate-600 text-sm">
+            Everything you need to know about our service models, technology choices, and project expectations.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              className="p-5 sm:p-6 rounded-xl bg-white border border-slate-200 shadow-xs transition-colors"
+            >
+              <button
+                onClick={() => toggleFaq(i)}
+                className="w-full flex items-center justify-between text-left text-sm sm:text-base font-bold text-slate-900 hover:text-[#2563FF] transition-colors cursor-pointer"
+              >
+                <span>{faq.q}</span>
+                {openFaq === i ? (
+                  <ChevronUp className="w-5 h-5 text-[#2563FF] shrink-0 ml-4" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-slate-400 shrink-0 ml-4" />
+                )}
+              </button>
+              {openFaq === i && (
+                <p className="mt-4 text-xs sm:text-sm text-slate-600 leading-relaxed pt-3 border-t border-slate-100">
+                  {faq.a}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 11. FINAL CONVERSION CTA ────────────────────── */}
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-br from-blue-50/80 via-white to-sky-50/60 border border-blue-200/80 text-center relative overflow-hidden shadow-xl shadow-blue-500/5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-[#2563FF] text-xs font-mono font-bold uppercase tracking-wider mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-[#2563FF]" />
+            <span>Ready to Take the Next Step?</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B1020] tracking-tight max-w-3xl mx-auto leading-tight">
+            Let&apos;s Build Systems That Generate Measurable Value.
+          </h2>
+
+          <p className="mt-4 text-slate-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            Schedule a focused 30-minute discovery conversation or submit your project details. We will assess your workflows and deliver an actionable implementation roadmap.
+          </p>
+
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="btn-primary w-full sm:w-auto px-8 py-3.5 text-sm font-semibold tracking-wide"
+            >
+              Discuss Your Project
+            </Link>
+            <a
+              href="https://cal.com/boldflow-labs/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary w-full sm:w-auto px-7 py-3.5 text-sm font-medium text-slate-800 hover:text-[#2563FF] border border-slate-300 rounded-lg flex items-center justify-center gap-2"
+            >
+              <Calendar className="w-4 h-4 text-[#2563FF]" />
+              <span>Book Strategy Call on Cal.com ↗</span>
+            </a>
+          </div>
+
+          <p className="mt-6 text-xs font-mono text-slate-500">
+            hello@boldflowlabs.com · WhatsApp: +91 9447178166 · Kerala, India
+          </p>
+        </div>
+      </section>
+
+    </div>
   );
 }

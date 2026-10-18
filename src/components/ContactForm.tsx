@@ -1,186 +1,307 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Send, CheckCircle2, Loader2, CalendarRange } from "lucide-react";
+import { CheckCircle2, Loader2, Calendar, AlertCircle, Send } from "lucide-react";
 
-const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
+interface ContactFormProps {
+  initialService?: string;
+  className?: string;
+}
 
-export default function ContactForm() {
-    const [submitted, setSubmitted] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+const serviceOptions = [
+  "Performance Marketing (Google & Meta Ads)",
+  "WhatsApp Automation & Workflows",
+  "SEO Services (Technical & On-Page)",
+  "Website Development & Landing Pages",
+  "Google Business Profile & Local SEO",
+  "Business Automation & CRM Setup",
+  "Multiple Systems / End-to-End Growth"
+];
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setLoading(true);
-        setError("");
+const budgetOptions = [
+  "Less than ₹25,000 / $300",
+  "₹25,000 - ₹50,000 / $300 - $600",
+  "₹50,000 - ₹1,50,000 / $600 - $1,800",
+  "₹1,50,000+ / $1,800+",
+  "Flexible / To be discussed"
+];
 
-        const form = e.currentTarget;
-        const formData = {
-            name: (form.elements.namedItem("contact-name") as HTMLInputElement).value,
-            email: (form.elements.namedItem("contact-email") as HTMLInputElement).value,
-            company: (form.elements.namedItem("contact-company") as HTMLInputElement).value,
-            service: (form.elements.namedItem("contact-service") as HTMLSelectElement).value,
-            message: (form.elements.namedItem("contact-message") as HTMLTextAreaElement).value,
-            source: "contact_form_component",
-            submittedAt: new Date().toISOString(),
-        };
+export default function ContactForm({ initialService = "", className = "" }: ContactFormProps) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    service: initialService || "Performance Marketing (Google & Meta Ads)",
+    budget: "Flexible / To be discussed",
+    message: "",
+    honeypot: "",
+  });
 
-        try {
-            const response = await fetch(WEBHOOK_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-            if (!response.ok) {
-                throw new Error("Failed to send message. Please try again.");
-            }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(null);
 
-            setSubmitted(true);
-        } catch (err) {
-            setError(
-                err instanceof Error
-                    ? err.message
-                    : "Something went wrong. Please try again or email us directly."
-            );
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    if (submitted) {
-        return (
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center h-full text-center py-20"
-            >
-                <div className="w-16 h-16 rounded-full bg-[#0066ff]/10 border border-[#00a2ff]/20 flex items-center justify-center mb-6 animate-glow-pulse">
-                    <CheckCircle2 className="w-8 h-8 text-[#00a2ff]" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-3">
-                    Message Sent!
-                </h3>
-                <p className="text-gray-300 text-sm max-w-sm mb-6">
-                    Thank you for reaching out. We&apos;ll get back to you
-                    within 24 hours with next steps.
-                </p>
-                <a
-                    href="https://cal.com/boldflow-labs/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mb-6 px-6 py-3 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-sm hover:shadow-lg transition-all duration-300 inline-flex items-center gap-2"
-                >
-                    <CalendarRange className="w-4 h-4" /> Pick a Time on Our Calendar
-                </a>
-                <button
-                    onClick={() => setSubmitted(false)}
-                    className="text-sm text-[#00a2ff] hover:text-white transition-colors"
-                >
-                    Send another message
-                </button>
-            </motion.div>
-        );
+    // Client-side quick checks
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      setError("Please enter your name.");
+      return;
     }
 
+    if (!formData.email.trim() || !formData.email.includes("@")) {
+      setError("Please enter a valid business email.");
+      return;
+    }
+
+    if (!formData.company.trim()) {
+      setError("Please enter your company or brand name.");
+      return;
+    }
+
+    if (!formData.message.trim() || formData.message.trim().length < 10) {
+      setError("Please share a brief project summary (at least 10 characters).");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to submit enquiry. Please try again.");
+      }
+
+      setSubmitted(true);
+    } catch (err: unknown) {
+      console.error("Form submit error:", err);
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please email us directly at hello@boldflowlabs.com";
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (submitted) {
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="space-y-8"
+      <div className={`p-8 md:p-10 rounded-2xl bg-white border border-slate-200 shadow-sm text-center ${className}`}>
+        <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-6 text-emerald-600">
+          <CheckCircle2 className="w-8 h-8" />
+        </div>
+        <h3 className="text-2xl font-bold text-slate-900 mb-2">Project Enquiry Received</h3>
+        <p className="text-slate-600 text-sm max-w-md mx-auto mb-6 leading-relaxed">
+          Thank you, <span className="text-slate-900 font-semibold">{formData.name}</span>. We have received your project details. We will review your requirements and reach out within 24 business hours.
+        </p>
+
+        <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 max-w-md mx-auto mb-6 text-left">
+          <div className="text-xs font-mono text-[#2563FF] uppercase tracking-wider mb-1 font-semibold">
+            Want to skip the inbox wait?
+          </div>
+          <p className="text-xs text-slate-600 mb-3">
+            Pick a convenient 30-minute introductory strategy session directly on our calendar:
+          </p>
+          <a
+            href="https://cal.com/boldflow-labs/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary w-full py-2.5 text-xs font-semibold flex items-center justify-center gap-2"
+          >
+            <Calendar className="w-4 h-4" />
+            <span>Select a Time on Cal.com ↗</span>
+          </a>
+        </div>
+
+        <button
+          onClick={() => {
+            setSubmitted(false);
+            setFormData({
+              name: "",
+              email: "",
+              company: "",
+              service: serviceOptions[0],
+              budget: budgetOptions[0],
+              message: "",
+              honeypot: "",
+            });
+          }}
+          className="text-xs text-slate-500 hover:text-slate-900 underline underline-offset-4"
         >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div>
-                    <label htmlFor="contact-name" className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mb-1 block">
-                        Name
-                    </label>
-                    <input
-                        id="contact-name"
-                        type="text"
-                        className="input-minimal text-base"
-                        placeholder="John Doe"
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="contact-email" className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mb-1 block">
-                        Email
-                    </label>
-                    <input
-                        id="contact-email"
-                        type="email"
-                        className="input-minimal text-base"
-                        placeholder="john@company.com"
-                        required
-                    />
-                </div>
-            </div>
-
-            <div>
-                <label htmlFor="contact-company" className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mb-1 block">
-                    Company
-                </label>
-                <input
-                    id="contact-company"
-                    type="text"
-                    className="input-minimal text-base"
-                    placeholder="Your company name"
-                />
-            </div>
-
-            <div>
-                <label htmlFor="contact-service" className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mb-1 block">
-                    Service Interested In
-                </label>
-                <select
-                    id="contact-service"
-                    className="input-minimal text-base appearance-none cursor-pointer"
-                    required
-                >
-                    <option value="" className="bg-black">Select a service</option>
-                    <option value="chatbots" className="bg-black">AI Chatbots &amp; Conversational Agents</option>
-                    <option value="workflow" className="bg-black">Intelligent Workflow Automation</option>
-                    <option value="analytics" className="bg-black">Predictive Analytics &amp; AI-Powered Insights</option>
-                    <option value="custom" className="bg-black">Custom AI Solutions &amp; Model Development</option>
-                    <option value="unsure" className="bg-black">Not Sure — Need Guidance</option>
-                </select>
-            </div>
-
-            <div>
-                <label htmlFor="contact-message" className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mb-1 block">
-                    Tell Us About Your Project
-                </label>
-                <textarea
-                    id="contact-message"
-                    rows={5}
-                    className="input-minimal text-base resize-none"
-                    placeholder="Describe your automation needs, current challenges, and goals..."
-                    required
-                />
-            </div>
-
-            {error && (
-                <p className="text-red-400 text-sm">{error}</p>
-            )}
-
-            <button
-                type="submit"
-                disabled={loading}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a2ff] text-white font-semibold text-base hover:shadow-2xl hover:shadow-[#0066ff]/30 transition-all duration-300 hover:scale-[1.02] btn-magnetic disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
-            >
-                {loading ? (
-                    <>
-                        Sending...
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                    </>
-                ) : (
-                    <>
-                        Send Message
-                        <Send className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </>
-                )}
-            </button>
-        </form>
+          Submit another inquiry
+        </button>
+      </div>
     );
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className={`p-6 sm:p-8 md:p-10 rounded-2xl bg-white border border-slate-200 shadow-sm ${className}`}
+      noValidate
+    >
+      <div className="mb-6">
+        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+          Discuss Your Project
+        </h3>
+        <p className="text-slate-600 text-xs sm:text-sm mt-1">
+          Tell us about your operational challenges and target growth milestones.
+        </p>
+      </div>
+
+      {error && (
+        <div className="mb-6 p-4 rounded-lg bg-rose-50 border border-rose-200 flex items-start gap-3 text-rose-700 text-xs sm:text-sm">
+          <AlertCircle className="w-5 h-5 shrink-0 text-rose-500" />
+          <span>{error}</span>
+        </div>
+      )}
+
+      {/* Honeypot field for anti-spam (hidden from users) */}
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="website_hp">Leave empty</label>
+        <input
+          id="website_hp"
+          type="text"
+          value={formData.honeypot}
+          onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
+      <div className="space-y-4 sm:space-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="form-name" className="block text-xs font-mono uppercase tracking-wider text-slate-700 mb-1.5 font-medium">
+              Your Name <span className="text-[#2563FF]">*</span>
+            </label>
+            <input
+              id="form-name"
+              type="text"
+              required
+              placeholder="e.g. Rahul Sharma"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#2563FF] focus:ring-1 focus:ring-[#2563FF] transition-colors"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="form-email" className="block text-xs font-mono uppercase tracking-wider text-slate-700 mb-1.5 font-medium">
+              Business Email <span className="text-[#2563FF]">*</span>
+            </label>
+            <input
+              id="form-email"
+              type="email"
+              required
+              placeholder="rahul@company.com"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#2563FF] focus:ring-1 focus:ring-[#2563FF] transition-colors"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="form-company" className="block text-xs font-mono uppercase tracking-wider text-slate-700 mb-1.5 font-medium">
+              Company / Brand Name <span className="text-[#2563FF]">*</span>
+            </label>
+            <input
+              id="form-company"
+              type="text"
+              required
+              placeholder="e.g. Apex Health Logistics"
+              value={formData.company}
+              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+              className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#2563FF] focus:ring-1 focus:ring-[#2563FF] transition-colors"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="form-service" className="block text-xs font-mono uppercase tracking-wider text-slate-700 mb-1.5 font-medium">
+              Primary Service of Interest <span className="text-[#2563FF]">*</span>
+            </label>
+            <select
+              id="form-service"
+              value={formData.service}
+              onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+              className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-[#2563FF] focus:ring-1 focus:ring-[#2563FF] transition-colors"
+            >
+              {serviceOptions.map((opt) => (
+                <option key={opt} value={opt} className="bg-white text-slate-900">
+                  {opt}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="form-budget" className="block text-xs font-mono uppercase tracking-wider text-slate-700 mb-1.5 font-medium">
+            Approximate Monthly / Project Budget
+          </label>
+          <select
+            id="form-budget"
+            value={formData.budget}
+            onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+            className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-[#2563FF] focus:ring-1 focus:ring-[#2563FF] transition-colors"
+          >
+            {budgetOptions.map((opt) => (
+              <option key={opt} value={opt} className="bg-white text-slate-900">
+                {opt}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="form-message" className="block text-xs font-mono uppercase tracking-wider text-slate-700 mb-1.5 font-medium">
+            Project Overview / Current Bottlenecks <span className="text-[#2563FF]">*</span>
+          </label>
+          <textarea
+            id="form-message"
+            required
+            rows={4}
+            placeholder="Tell us what you're trying to solve (e.g. leads taking too long to qualify, manual CRM data entry, poor landing page conversions, high-intent local search visibility)..."
+            value={formData.message}
+            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#2563FF] focus:ring-1 focus:ring-[#2563FF] transition-colors resize-y"
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="btn-primary w-full py-3.5 text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+        >
+          {loading ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              <span>Transmitting Enquiry...</span>
+            </>
+          ) : (
+            <>
+              <span>Submit Project Enquiry</span>
+              <Send className="w-4 h-4" />
+            </>
+          )}
+        </button>
+
+        <p className="text-center text-[11px] text-slate-500">
+          We respect your privacy. No spam or aggressive sales follow-ups. Responses provided within 24 business hours.
+        </p>
+      </div>
+    </form>
+  );
 }

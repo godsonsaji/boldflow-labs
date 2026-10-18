@@ -1,153 +1,196 @@
 import Link from "next/link";
-import { MessageCircle, Phone, Mail } from "lucide-react";
-
-const footerLinks = {
-    Solutions: [
-        { href: "/real-estate-ai-agent", label: "Real Estate Brokers" },
-        { href: "/d2c-ai-agent", label: "D2C & E-Commerce" },
-        { href: "/insurance-ai-agent", label: "Insurance Agencies" },
-        { href: "/clinic-ai-agent", label: "Clinics & Doctors" },
-        { href: "/coaching-institute-ai-agent", label: "Coaching Institutes" },
-    ],
-    "Tools & Compare": [
-        { href: "/tools/missed-call-roi-calculator", label: "ROI Calculator" },
-        { href: "/compare/boldflow-vs-traditional-call-centers", label: "vs. Call Centers" },
-        { href: "/compare/boldflow-vs-myoperator", label: "vs. MyOperator" },
-        { href: "/llms.txt", label: "llms.txt Protocol" },
-    ],
-    Company: [
-        { href: "/", label: "Home" },
-        { href: "/services", label: "Services" },
-        { href: "/pricing", label: "Pricing" },
-        { href: "/about", label: "About Us" },
-        { href: "/work", label: "Case Studies" },
-        { href: "/blog", label: "Blog Blueprints" },
-    ],
-};
+import Image from "next/image";
+import { MessageSquare, Phone, Mail, ArrowUpRight, ShieldCheck, CheckCircle } from "lucide-react";
+import { servicesData } from "@/data/servicesData";
 
 export default function Footer() {
-    return (
-        <footer aria-label="Footer" className="bg-[#0A0A0F] border-t border-[#1C1C24] pt-24 pb-0 relative">
-            <div className="max-w-[1280px] mx-auto px-6 mb-16">
-                <h2 className="text-4xl md:text-6xl lg:text-[72px] font-bold tracking-tighter text-[#F5F6FA] mb-16 leading-[1.1] uppercase w-full font-space">
-                    Reliable Systems.<br />
-                    Zero Friction.
-                </h2>
-
-                {/* Trust Stat Bar */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-[#1C1C24] pb-12 mb-16">
-                    <div>
-                        <span className="text-[11px] font-mono text-[#FF5A1F] uppercase tracking-wider block mb-1">{"//"} RESPONSE GUARANTEE</span>
-                        <span className="text-xl font-bold font-space text-white leading-tight block">Under 10 Seconds</span>
-                        <span className="text-xs text-[#A3A3B3] block">Instant voice callback & WhatsApp confirmation</span>
-                    </div>
-                    <div>
-                        <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-1">{"//"} VERTICALS SERVED</span>
-                        <span className="text-xl font-bold font-space text-white leading-tight block">Real Estate, D2C & Insurance</span>
-                        <span className="text-xs text-[#A3A3B3] block">Real estate brokers, D2C brands & insurance agencies</span>
-                    </div>
-                    <div>
-                        <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-1">{"//"} TELEPHONY & AI INFRA</span>
-                        <span className="text-xl font-bold font-space text-white leading-tight block">Voice Link · Vobiz · Gemini</span>
-                        <span className="text-xs text-[#A3A3B3] block">TRAI-compliant low-latency Indian telephony</span>
-                    </div>
+  return (
+    <footer aria-label="Footer" className="bg-white border-t border-slate-200 pt-16 pb-12 relative mt-auto text-slate-700">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Main Footer Directory */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-200">
+          
+          {/* Brand Core Column */}
+          <div className="lg:col-span-4 flex flex-col justify-between">
+            <div>
+              <Link 
+                href="/" 
+                className="inline-block mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563FF] rounded-lg transition-opacity hover:opacity-90"
+                aria-label="BoldFlow Labs Homepage"
+              >
+                <Image
+                  src="/brand/logo/svg/boldflow-horizontal-full.svg"
+                  alt="BoldFlow Labs"
+                  width={170}
+                  height={36}
+                  className="h-8 w-auto"
+                />
+              </Link>
+              <p className="text-slate-600 text-sm leading-relaxed mb-6 max-w-sm">
+                BoldFlow Labs helps businesses streamline operations, automate lead follow-ups, improve their digital presence, and build practical systems for sustainable growth.
+              </p>
+              
+              <div className="space-y-2 text-xs text-slate-700">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#0891B2]" />
+                  <span>Official WhatsApp Business Platform Integrations</span>
                 </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-                    {/* Brand Core - Column 1 */}
-                    <div className="lg:col-span-4 py-12 lg:pr-10 lg:border-r border-[#1C1C24] flex flex-col justify-between h-full">
-                        <div>
-                            <Link href="/" className="flex items-center mb-6">
-                                <span style={{ fontFamily: "var(--font-space), 'Space Grotesk', sans-serif" }} className="text-2xl font-bold text-white tracking-tight">
-                                    Bold<span className="text-[#0047FF]">Flow</span>
-                                </span>
-                            </Link>
-                            <p className="text-[#A3A3B3] text-[14px] mb-6 max-w-[300px] leading-relaxed">
-                                We deploy 24/7 TRAI-compliant AI voice phone receptionists and automated lead qualification systems for Indian real estate brokers, D2C e-commerce brands, and insurance agencies.
-                            </p>
-                            <div className="inline-block px-3 py-1 bg-[#161622] border border-[#1C1C24] text-[10px] font-mono text-[#A3A3B3] rounded-sm mb-8">
-                                💼 GST-compliant invoicing available for Indian businesses
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col gap-2 font-mono text-[11px] text-[#A3A3B3] mt-auto">
-                            <span className="uppercase tracking-widest text-[#F5F6FA] opacity-80">AI AUTOMATION AGENCY</span>
-                            <span className="uppercase tracking-widest text-[#F5F6FA] opacity-60">SERVING INDIAN BUSINESSES</span>
-                            <span className="text-[10px] text-[#626272] mt-1">Kerala, India</span>
-                        </div>
-                    </div>
-
-                    {/* Directory Links - Column 2 */}
-                    <div className="lg:col-span-5 py-12 lg:px-8 lg:border-r border-[#1C1C24] grid grid-cols-2 sm:grid-cols-3 gap-6">
-                        {Object.entries(footerLinks).map(([title, links]) => (
-                            <div key={title}>
-                                <h3 className="text-label text-[#71717A] mb-4 font-semibold uppercase tracking-wider text-[11px] font-mono">
-                                    {title}
-                                </h3>
-                                <ul className="space-y-3">
-                                    {links.map((link, i) => (
-                                        <li key={i}>
-                                            <Link
-                                                href={link.href}
-                                                className="text-[#A3A3B3] hover:text-[#0047FF] text-[13px] transition-colors duration-150"
-                                            >
-                                                {link.label}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Transmit - Column 3 */}
-                    <div className="lg:col-span-3 py-12 lg:pl-8 flex flex-col">
-                        <div className="flex justify-between items-start mb-6">
-                            <h3 className="text-label text-[#71717A] font-semibold uppercase tracking-wider text-[11px] font-mono">
-                                Contact & WhatsApp
-                            </h3>
-                        </div>
-
-                        <ul className="space-y-4 mb-auto">
-                            <li>
-                                <a href="mailto:hello@boldflowlabs.com" className="text-[#A3A3B3] hover:text-[#0047FF] text-[14px] transition-colors duration-150 block break-all font-mono flex items-center gap-2">
-                                    <Mail className="w-4 h-4 text-[#0047FF]" /> hello@boldflowlabs.com
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://wa.me/919447178166?text=Hi%20BoldFlow%20Labs,%20I'd%20like%20to%20learn%20more%20about%20your%20AI%20voice%20agents." target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:underline text-[13px] font-mono font-bold transition-colors duration-150 flex items-center gap-2">
-                                    <MessageCircle className="w-4 h-4" /> WhatsApp: +91 9447178166
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tel:+919447178166" className="text-[#A3A3B3] hover:text-white text-[13px] font-mono transition-colors duration-150 flex items-center gap-2">
-                                    <Phone className="w-4 h-4 text-[#0047FF]" /> Phone: +91 9447178166
-                                </a>
-                            </li>
-                            <li className="pt-2">
-                                <a href="https://cal.com/boldflow-labs/30min" target="_blank" rel="noopener noreferrer" className="text-[#0047FF] hover:text-white text-[13px] font-mono font-bold transition-colors duration-150 block">
-                                    Book 30-Min Strategy Call ↗
-                                </a>
-                            </li>
-                            <li className="pt-2 flex gap-4">
-                                <a href="https://linkedin.com/company/boldflowlabs" target="_blank" rel="noopener noreferrer" className="text-[14px] text-[#A3A3B3] hover:text-[#0047FF] transition-colors duration-150 font-medium">LinkedIn</a>
-                                <a href="https://x.com/boldflowlabs" target="_blank" rel="noopener noreferrer" className="text-[14px] text-[#A3A3B3] hover:text-[#0047FF] transition-colors duration-150 font-medium">X</a>
-                            </li>
-                        </ul>
-
-                        <div className="mt-12 flex justify-between items-end">
-                            <div className="flex gap-4 text-label text-[#525252]">
-                                <Link href="/privacy" className="hover:text-[#A3A3B3] transition-colors">Privacy</Link>
-                                <Link href="/terms" className="hover:text-[#A3A3B3] transition-colors">Terms</Link>
-                            </div>
-                            <span className="text-[12px] text-[#525252]">© {new Date().getFullYear()} BoldFlow Labs.</span>
-                        </div>
-                    </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#2563FF]" />
+                  <span>100% Client Asset Ownership & Zero Vendor Lock-In</span>
                 </div>
+              </div>
             </div>
 
-            {/* Solid Absolute Bottom Marker Element */}
-            <div className="w-full h-[4px] bg-[#0047FF]" />
-        </footer>
-    );
+            <div className="mt-8 pt-6 border-t border-slate-100 text-xs font-mono text-slate-500">
+              <span className="block text-slate-800 font-semibold mb-0.5">LOCATION</span>
+              <span>Kerala, India · Serving Clients Globally</span>
+            </div>
+          </div>
+
+          {/* Core Services Column */}
+          <div className="lg:col-span-4">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-4">
+              Core Initial Services
+            </h4>
+            <ul className="space-y-2.5">
+              {servicesData.map((svc) => (
+                <li key={svc.slug}>
+                  <Link
+                    href={`/services/${svc.slug}`}
+                    className="text-slate-600 hover:text-[#2563FF] text-sm transition-colors flex items-center justify-between group"
+                  >
+                    <span>{svc.title}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 text-[#2563FF] transition-opacity" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company & Verification Column */}
+          <div className="lg:col-span-2">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-4">
+              Navigation
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link href="/" className="text-slate-600 hover:text-[#2563FF] transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-slate-600 hover:text-[#2563FF] transition-colors">
+                  All Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/work" className="text-slate-600 hover:text-[#2563FF] transition-colors">
+                  Demonstrations
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-slate-600 hover:text-[#2563FF] transition-colors">
+                  About BoldFlow Labs
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-slate-600 hover:text-[#2563FF] transition-colors">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-slate-600 hover:text-[#2563FF] transition-colors">
+                  Blueprints & Articles
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Verified Contact Column */}
+          <div className="lg:col-span-2">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-4">
+              Verified Contacts
+            </h4>
+            <ul className="space-y-3 text-xs font-mono">
+              <li>
+                <a
+                  href="mailto:hello@boldflowlabs.com"
+                  className="text-slate-700 hover:text-[#2563FF] transition-colors flex items-center gap-2"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#2563FF] shrink-0" />
+                  <span className="truncate">hello@boldflowlabs.com</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/919447178166"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-700 hover:text-[#2563FF] transition-colors flex items-center gap-2"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-[#0891B2] shrink-0" />
+                  <span>+91 9447178166</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+919447178166"
+                  className="text-slate-700 hover:text-[#2563FF] transition-colors flex items-center gap-2"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#2563FF] shrink-0" />
+                  <span>+91 9447178166</span>
+                </a>
+              </li>
+              <li className="pt-2">
+                <a
+                  href="https://cal.com/boldflow-labs/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#2563FF] hover:underline font-semibold block"
+                >
+                  Book 30-Min Strategy Call ↗
+                </a>
+              </li>
+              <li className="pt-2 flex items-center gap-3 text-slate-500">
+                <a
+                  href="https://linkedin.com/company/boldflowlabs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#2563FF] transition-colors"
+                >
+                  LinkedIn
+                </a>
+                <span>·</span>
+                <a
+                  href="https://x.com/boldflowlabs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#2563FF] transition-colors"
+                >
+                  X (Twitter)
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        {/* Bottom Sub-Footer */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <p>© {new Date().getFullYear()} BoldFlow Labs. All rights reserved.</p>
+          <div className="flex items-center gap-6">
+            <Link href="/privacy" className="hover:text-slate-900 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-slate-900 transition-colors">
+              Terms of Service
+            </Link>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  );
 }

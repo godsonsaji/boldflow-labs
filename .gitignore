@@ -29,6 +29,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
+*error*.txt
+*err*.txt
+*lint*.txt
+*navlog*.txt
+*.out.json
+*scratch*
 
 # env files (can opt-in for committing if needed)
 .env*

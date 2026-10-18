@@ -1,0 +1,45 @@
+{
+  "primary": {
+    "name": "Electric Blue",
+    "hex": "#2563FF",
+    "rgb": [
+      37,
+      99,
+      255
+    ]
+  },
+  "secondary": {
+    "name": "Sky Blue",
+    "hex": "#06B6D4",
+    "rgb": [
+      6,
+      182,
+      212
+    ]
+  },
+  "text_dark": {
+    "name": "Navy",
+    "hex": "#0B1020",
+    "rgb": [
+      11,
+      16,
+      32
+    ]
+  },
+  "background": {
+    "name": "White",
+    "hex": "#FFFFFF",
+    "rgb": [
+      255,
+      255,
+      255
+    ]
+  },
+  "icon_gradient_stops": [
+    "#00F5FF",
+    "#1A7BFF",
+    "#1B5CFF",
+    "#0A52FF",
+    "#0A34E0"
+  ]
+}

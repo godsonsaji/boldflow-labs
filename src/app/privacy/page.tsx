@@ -2,59 +2,82 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Privacy Policy",
-  description: "Privacy Policy for BoldFlow Labs AI automation and telephony services in India.",
+  description: "Privacy Policy for BoldFlow Labs AI automation, business systems, and digital growth services.",
   alternates: {
     canonical: "https://www.boldflowlabs.com/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy | BoldFlow Labs",
+    description: "Privacy Policy for BoldFlow Labs AI automation, business systems, and digital growth services.",
+    url: "https://www.boldflowlabs.com/privacy",
   },
 };
 
 export default function PrivacyPage() {
   return (
-    <div className="bg-[#0A0A0F] min-h-screen pt-40 pb-32 text-white">
-      <div className="max-w-[900px] mx-auto px-6 font-sans">
-        <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-4">// LEGAL & DATA PROTECTION</span>
-        <h1 className="text-4xl font-bold font-space mb-8">Privacy Policy</h1>
-        <p className="text-xs font-mono text-[#626272] mb-12">LAST UPDATED: AUGUST 2026 · KERALA, INDIA</p>
+    <div className="bg-[#F8FAFC] min-h-screen pt-36 pb-24 text-slate-900">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 font-sans">
+        <span className="text-xs font-mono text-[#2563FF] uppercase tracking-wider block mb-3 font-semibold">
+          LEGAL & DATA PROTECTION
+        </span>
+        <h1 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight text-[#0B1020]">Privacy Policy</h1>
+        <p className="text-xs font-mono text-slate-500 mb-10">
+          LAST UPDATED: OCTOBER 2026 · KERALA, INDIA
+        </p>
 
-        <div className="space-y-8 text-sm text-[#A3A3B3] leading-relaxed">
+        <div className="space-y-8 text-sm text-slate-700 leading-relaxed p-8 rounded-2xl bg-white border border-slate-200 shadow-xs">
           <section>
-            <h2 className="text-lg font-bold font-space text-white mb-3">1. Information We Collect</h2>
+            <h2 className="text-lg font-bold text-slate-900 mb-2">1. Information We Collect</h2>
             <p>
-              BoldFlow Labs ("we", "our", "us") collects business contact details, phone numbers, email addresses, and voice call audio metadata when you request a diagnostic, apply for a pilot, or use our AI phone receptionists and voice agents.
+              BoldFlow Labs (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;) collects business contact details, company name, phone numbers, email addresses, and project requirement details when you request a diagnostic, submit an enquiry form, book a strategy call, or engage our digital systems services.
             </p>
           </section>
 
           <section>
-            <h2 className="text-lg font-bold font-space text-white mb-3">2. Telephony & Speech Data Usage</h2>
+            <h2 className="text-lg font-bold text-slate-900 mb-2">2. How We Use Your Information</h2>
             <p>
-              Voice call recordings, transcripts, and telephone metadata processed through our Indian telephony partners (Exotel, Plivo, Vobiz) are strictly used to execute real-time AI speech interaction, train client-specific custom conversational state machines, and sync lead records to your CRM (LeadSquared, Zoho CRM, Practo, Google Calendar).
+              We process information strictly to evaluate project scope, configure approved workflow automations, configure CRM integrations, manage paid acquisition campaigns, and provide client communication. We do not sell, rent, or trade client data to third parties.
             </p>
           </section>
 
           <section>
-            <h2 className="text-lg font-bold font-space text-white mb-3">3. TRAI & DND Compliance</h2>
+            <h2 className="text-lg font-bold text-slate-900 mb-2">3. WhatsApp Business Messaging Compliance</h2>
             <p>
-              We comply with the Telecom Regulatory Authority of India (TRAI) guidelines and National Do Not Call (NDNC) registry regulations. Outbound voice calls and WhatsApp messages are executed strictly for qualified inbound lead form requests and existing business relationships.
+              We build WhatsApp automations strictly over the official Meta WhatsApp Business Platform (Cloud API) in compliance with Meta&apos;s Business Messaging Policies. Automated messages are triggered exclusively upon opt-in or customer-initiated inquiries.
             </p>
           </section>
 
           <section>
-            <h2 className="text-lg font-bold font-space text-white mb-3">4. Third-Party Integrations</h2>
+            <h2 className="text-lg font-bold text-slate-900 mb-2">4. Third-Party Tools & API Services</h2>
             <p>
-              We process data through secure APIs including OpenAI Realtime API, Anthropic Claude API, Google Cloud Gemini, Exotel, Plivo, LeadSquared, Zoho CRM, Practo, and Meta WhatsApp Business API. We do not sell or monetize client or caller data.
+              Depending on your engagement scope, systems may integrate with verified third-party platforms including Meta Cloud API, Google Ads, Google Analytics 4, Google Tag Manager, HubSpot, Zoho CRM, LeadSquared, and n8n. All integrations are configured within client-owned or authorized accounts.
             </p>
           </section>
 
           <section>
-            <h2 className="text-lg font-bold font-space text-white mb-3">5. Contact Us</h2>
+            <h2 className="text-lg font-bold text-slate-900 mb-2">5. Data Retention & Client Ownership</h2>
             <p>
-              For privacy inquiries or data removal requests, contact our privacy team at <a href="mailto:hello@boldflowlabs.com" className="text-[#0047FF] hover:underline">hello@boldflowlabs.com</a> or via WhatsApp at <a href="https://wa.me/919447178166" className="text-[#25D366] hover:underline">+91 9447178166</a>.
+              Clients retain full ownership of their contact records, automation blueprints, CRM data, and codebases. Upon project completion, full administration credentials remain with the client.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-lg font-bold text-slate-900 mb-2">6. Contact Us</h2>
+            <p>
+              For privacy inquiries or data requests, contact us at{" "}
+              <a href="mailto:hello@boldflowlabs.com" className="text-[#2563FF] hover:underline font-medium">
+                hello@boldflowlabs.com
+              </a>{" "}
+              or via WhatsApp at{" "}
+              <a href="https://wa.me/919447178166" className="text-[#2563FF] hover:underline font-medium">
+                +91 9447178166
+              </a>.
             </p>
           </section>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-[#1C1C24]">
-          <Link href="/" className="text-xs font-mono text-[#0047FF] uppercase font-bold hover:underline">
+        <div className="mt-10 pt-4">
+          <Link href="/" className="text-xs font-mono text-[#2563FF] uppercase font-bold hover:underline">
             ← Return to Home
           </Link>
         </div>

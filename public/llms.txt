@@ -1,79 +1,72 @@
 # BoldFlow Labs
-> 24/7 TRAI-Compliant Multilingual AI Phone Assistants & Voice Agents for Indian Businesses
+> AI Automation, Business Systems & Digital Growth Services
 
-BoldFlow Labs (https://www.boldflowlabs.com) is an AI telephony automation agency based in Kerala, India, specializing in low-latency (<180ms) multilingual conversational AI voice receptionists and outbound callback systems. We eliminate missed revenue leaks for Indian high-growth enterprises by responding to inquiries in seconds in native Indian languages.
+BoldFlow Labs (https://www.boldflowlabs.com) is a modern digital systems and business automation agency based in Kerala, India, serving clients globally. We build official Meta WhatsApp Business automations, configure CRM and lead-routing pipelines, manage performance advertising campaigns, engineer high-performance Jamstack websites, and provide technical SEO and Google Business Profile optimization.
 
-## Core Services & Solutions
+## Core Initial Services
 
-### 1. 24/7 AI Phone Receptionists
-- Answers inbound calls in under 10 seconds 24/7/365.
-- Native fluency in Hindi, Tamil, Kannada, Telugu, Marathi, Gujarati, Bengali, Hinglish, and Indian English.
-- Pre-qualifies caller intent, collects key requirements, answers FAQs, and books meetings directly into calendars or CRMs.
+### 1. WhatsApp Automation
+- Official Meta WhatsApp Business Platform (Cloud API) integration.
+- Instant (<5s) automated lead qualification, interactive multi-branch menus, and friction-free inquiry triage.
+- Scheduled appointment reminders to reduce consultation no-shows.
+- Bidirectional CRM webhooks, multi-agent shared inboxes, and compliant pre-approved message templates.
+- URL: https://www.boldflowlabs.com/services/whatsapp-automation
 
-### 2. Instant Outbound Lead Callbacks (Speed-to-Lead)
-- Triggers automated phone callbacks within 60 seconds of a portal lead submission (99acres, MagicBricks, Meta Ads, Google Ads, website forms).
-- Delivers up to 7x higher lead conversion compared to delayed manual callbacks.
+### 2. Business Automation & CRM
+- Custom CRM setup and pipeline architecture (HubSpot, Zoho CRM, LeadSquared, Airtable).
+- Multi-source lead ingestion from websites, social ads, and inbound communications into unified records.
+- Automated round-robin lead routing, instant Slack/WhatsApp team alerts, and multi-step follow-up nurture sequences.
+- Error-tolerant webhook automations built with n8n and Make.
+- URL: https://www.boldflowlabs.com/services/business-automation-crm
 
-### 3. E-Commerce COD Confirmation & RTO Reduction
-- Calls shoppers within minutes of Cash-on-Delivery (COD) checkout to confirm shipping address and intent to pay.
-- Reduces Return-to-Origin (RTO) courier losses by up to 35% for Indian D2C brands.
+### 3. Performance Marketing
+- High-intent Google Search, Performance Max, and Meta Ads (Facebook & Instagram) campaign management.
+- Closed-loop attribution via Meta Conversions API (CAPI), Google Enhanced Conversions, and server-side Google Tag Manager.
+- Search term hygiene, daily negative keyword scrubbing, and conversion-rate-optimized landing page direction.
+- Transparent reporting dashboards tracking verified lead acquisition costs.
+- URL: https://www.boldflowlabs.com/services/performance-marketing
 
-### 4. Policy Renewal & Lapse Prevention Voice Agents
-- Conducts automated reminder calls to policyholders 30 days and 7 days prior to policy lapse.
-- Books advisor callbacks for policy modifications, protecting annual renewal commissions.
+### 4. SEO Services
+- Comprehensive technical SEO audits (crawlability, indexation coverage, canonical alignment, schema validation).
+- Core Web Vitals optimization (LCP < 2.5s, CLS < 0.1, INP < 200ms).
+- High-intent commercial keyword mapping and semantic on-page optimization (H1-H3 hierarchy, internal link architecture).
+- Schema.org JSON-LD structured data implementation (Organization, Service, FAQPage, BreadcrumbList).
+- URL: https://www.boldflowlabs.com/services/seo-services
 
-## Indian Telephony & Regulatory Compliance
-- Telephony Infrastructure: Voice Link, Vobiz, Exotel, and Plivo SIP trunks with native +91 virtual numbers.
-- Regulatory Adherence: Fully compliant with Telecom Regulatory Authority of India (TRAI) directives and National Do Not Call (NDNC/DND) registry filtering.
-- Latency Benchmark: Sub-180ms audio roundtrip with streaming speech synthesis for natural conversational interruption and human pacing.
+### 5. Website Development
+- Custom Jamstack websites engineered with Next.js (App Router), React, and TypeScript.
+- Sub-100ms global TTFB, zero layout shift (CLS), and Lighthouse 95+ performance benchmarks.
+- Frictionless lead-capture forms with honeypot spam protection and instant webhook triggers.
+- 100% client asset and code ownership (GitHub repository, domain, and hosting accounts).
+- URL: https://www.boldflowlabs.com/services/website-development
 
-## Software & CRM Integrations
-- CRMs: LeadSquared, Zoho CRM, Salesforce, HubSpot, Google Calendar, Excel / Google Sheets.
-- Messaging: WhatsApp Business API (instant dispatch of brochures, address pins, booking confirmations).
-- E-Commerce: Shopify, WooCommerce, Shiprocket, ClickPost.
+### 6. Google Business Profile & Local SEO
+- Complete Google Business Profile (GBP) audit, primary/secondary category alignment, and service radius configuration.
+- Local citation consistency (NAP) and LocalBusiness Schema.org structured data.
+- Friction-free post-service WhatsApp review collection workflows to build genuine, policy-compliant Google reviews.
+- URL: https://www.boldflowlabs.com/services/local-seo
 
-## Transparent Pricing Tiers
-
-1. Starter Plan — ₹9,999 / month
-   - 1,000 call minutes included (~33 mins/day)
-   - Inbound call reception
-   - 1 regional Indian language or English
-   - Standard CRM webhook sync
-   - 99.5% uptime SLA
-
-2. Growth Plan — ₹19,999 / month (Most Popular)
-   - 3,000 call minutes included (~100 mins/day)
-   - Inbound reception + outbound lead callbacks
-   - English + 1 regional Indian language
-   - Instant WhatsApp confirmation automation
-   - LeadSquared / Zoho 2-way CRM sync
-   - Priority SLA support
-
-3. Enterprise Plan — Custom Pricing
-   - High-volume scalable minutes
-   - All 8+ supported regional Indian languages
-   - Custom SIP trunking & dedicated telephony carrier routes
-   - Custom on-premise or ERP integrations
-   - Dedicated voice solutions architect
+## Technology & Tool Ecosystem
+- Messaging: Official Meta WhatsApp Business Cloud API
+- CRMs: HubSpot, Zoho CRM, LeadSquared, Pipedrive, Airtable
+- Automation: n8n, Make.com, Serverless Webhooks
+- Acquisition: Google Ads, Meta Ads Manager, Meta Conversions API (CAPI), Google Tag Manager, GA4
+- Web Stack: Next.js (App Router), React, TypeScript, Tailwind CSS, Vercel
 
 ## Key Pages & Documentation
 - Homepage: https://www.boldflowlabs.com/
-- Services & Telephony: https://www.boldflowlabs.com/services
-- Vertical Use Cases: https://www.boldflowlabs.com/use-cases
-- Real Estate Voice Agent: https://www.boldflowlabs.com/real-estate-ai-agent
-- D2C E-Commerce Voice Agent: https://www.boldflowlabs.com/d2c-ai-agent
-- Insurance Voice Agent: https://www.boldflowlabs.com/insurance-ai-agent
-- Pricing Plans: https://www.boldflowlabs.com/pricing
-- Technical Case Studies: https://www.boldflowlabs.com/work
-- 4-Step Deployment Roadmap: https://www.boldflowlabs.com/what-to-expect
-- Engineering Blog: https://www.boldflowlabs.com/blog
-- About & Team: https://www.boldflowlabs.com/about
-- Book a Strategy Call / Free Pilot: https://www.boldflowlabs.com/contact
+- All Services: https://www.boldflowlabs.com/services
+- System Demonstrations & Blueprints: https://www.boldflowlabs.com/work
+- Engineering & Growth Blog: https://www.boldflowlabs.com/blog
+- About Us: https://www.boldflowlabs.com/about
+- Contact & Project Inquiry: https://www.boldflowlabs.com/contact
+- Privacy Policy: https://www.boldflowlabs.com/privacy
+- Terms of Service: https://www.boldflowlabs.com/terms
 
 ## Founder & Entity Information
-- Founder & Principal AI Architect: Godson Saji
+- Founder & Systems Architect: Godson Saji
 - LinkedIn: https://www.linkedin.com/in/godson-saji
 - Company LinkedIn: https://www.linkedin.com/company/boldflowlabs
 - Email: hello@boldflowlabs.com
-- Phone: +91 94471 78166
-- Headquarters: Kerala, India
+- WhatsApp: +91 94471 78166
+- Headquarters: Kerala, India (Serving clients globally)

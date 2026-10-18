@@ -1,231 +1,267 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Cpu, Network, Code2, Layers, Linkedin, ExternalLink } from "lucide-react";
+import { 
+  ShieldCheck, 
+  Linkedin, 
+  ExternalLink, 
+  Sparkles,
+  Calendar
+} from "lucide-react";
 import founderImg from "@/img/founder_img.png";
 
-const traits = [
-    {
-        title: "Technical Depth",
-        desc: "We write production telephony code over Exotel and Plivo. We are not slide-deck consultants padding hours with theory."
-    },
-    {
-        title: "Intentional Scale",
-        desc: "We maintain a deliberately focused client roster. You get direct access to the engineer architecting your voice agents."
-    },
-    {
-        title: "Outcome Focus",
-        desc: "KPIs are defined explicitly upfront: call answer speed under 10s, after-hours lead capture, and zero missed admission/site-visit calls."
-    },
-    {
-        title: "Engineering Honesty",
-        desc: "If a simpler WhatsApp workflow works better than complex voice AI logic, we will tell you. We refuse to over-engineer."
-    }
-];
-
-const philosophy = [
-    { title: "Total Transparency", desc: "No vague status updates. Full visibility on build, cost, and Exotel/Plivo logs." },
-    { title: "Engineering Integrity", desc: "No trendy tools for their own sake. Native Indian language support and TRAI compliance." },
-    { title: "Outcome-First Thinking", desc: "Every line of voice automation starts backwards from capturing missed revenue." },
-    { title: "Built for Partnership", desc: "Direct developer access equals faster script updates and deeper operational context." },
-];
-
-const stackTools = [
-    { name: "Gemini / Claude Reasoning Core", desc: "Core language reasoning models trained on Indian real estate, D2C order confirmation, and insurance renewal logic.", icon: <Cpu className="w-5 h-5 text-[#0047FF]" /> },
-    { name: "Voice Link & Vobiz Telephony", desc: "TRAI-compliant Indian telephony infrastructure handling native +91 phone numbers and SIP trunks.", icon: <Network className="w-5 h-5 text-[#FF5A1F]" /> },
-    { name: "Native Indian Text-to-Speech", desc: "Sub-200ms real-time verbal interactions in Hindi, Tamil, Kannada, Telugu, Marathi, Bengali & Hinglish.", icon: <Code2 className="w-5 h-5 text-[#FFB020]" /> },
-    { name: "LeadSquared, Shopify & Zoho API", desc: "Backend pipeline automation syncing call data into your CRM and triggering instant WhatsApp confirmations.", icon: <Layers className="w-5 h-5 text-[#0047FF]" /> }
-];
-
 export default function AboutPage() {
-    return (
-        <div className="bg-[#0A0A0F] min-h-screen">
-            <div className="absolute inset-0 grid-overlay opacity-5 pointer-events-none z-0" />
+  return (
+    <div className="bg-[#F8FAFC] min-h-screen pt-28 pb-20 text-slate-900">
+      
+      {/* ── HERO ────────────────────────────────────────── */}
+      <section className="relative py-16 md:py-24 border-b border-slate-200 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#F8FAFC]">
+        <div className="absolute inset-0 bg-grid-subtle opacity-50 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#2563FF] text-xs font-mono font-semibold uppercase tracking-wider mb-6">
+              About BoldFlow Labs
+            </div>
             
-            {/* ── HERO ─────────────────────────────────── */}
-            <section className="relative pt-40 pb-24 border-b border-[#1C1C24] overflow-hidden">
-                <div className="max-w-[1280px] w-full mx-auto px-6 relative z-10 flex flex-col justify-center">
-                    <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-label text-[#0047FF] mb-6 uppercase tracking-wider font-mono"
-                    >
-                        {"//"} About BoldFlow Labs
-                    </motion.div>
-                    
-                    <motion.h1 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-h1 text-[#F5F6FA] mb-8 max-w-4xl tracking-tight"
-                    >
-                        We Build AI Voice Agents That Capture Missed Revenue.
-                    </motion.h1>
-
-                    <motion.p 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-body-lg max-w-2xl"
-                    >
-                        BoldFlow Labs is an independent AI automation agency focused on building 24/7 multilingual AI phone receptionists for Indian real estate brokers, D2C e-commerce brands, and insurance agencies.
-                    </motion.p>
-                </div>
-            </section>
-
-             {/* ── ORIGIN STORY ─────────────────────────── */}
-             <section className="py-24 bg-[#111116] border-b border-[#1C1C24] relative">
-                  <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16">
-                      <div className="lg:col-span-5">
-                          <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block mb-3">{"//"} THE ORIGIN</span>
-                          <h2 className="text-h2 text-white tracking-tight leading-tight">
-                              Why We Built BoldFlow Labs.
-                          </h2>
-                      </div>
-                      <div className="lg:col-span-7 flex flex-col gap-6 text-[#A3A3B3] text-sm leading-relaxed">
-                          <p>
-                              It started with a simple observation in Indian business: real estate brokers lose 58% of portal leads calling after 7 PM, D2C brands bleed margin on unconfirmed COD returns, and insurance agencies let lapsed policies slip through without timely reminders.
-                          </p>
-                          <p>
-                              The reality of Indian operations is brutal: if a prospective buyer or customer calls and gets a busy line or unanswered call, they don't wait. They buy from the next brand or broker down the road.
-                          </p>
-                          <p>
-                              I founded BoldFlow Labs to solve this operational revenue leak once and for all. By building custom AI voice receptionists fluent in Hindi, Tamil, Kannada, Telugu, and English integrated with Exotel, LeadSquared, Zoho, Shopify, and WhatsApp, we ensure that every single call or order is verified in minutes.
-                          </p>
-                          <p className="border-l border-[#0047FF] pl-6 py-2 mt-4 text-[#F5F6FA] font-medium font-sans">
-                              We don't sell generic "AI consulting." We deploy reliable, engineered voice phone agents that confirm orders, lock in site visits, and book policy renewals before your competitors even see the notification.
-                          </p>
-                      </div>
-                  </div>
-             </section>
-
-            {/* ── FOUNDER & LEADERSHIP ─────────────────── */}
-            <section className="py-24 bg-[#0A0A0F] border-b border-[#1C1C24] relative">
-                <div className="max-w-[1280px] mx-auto px-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                        <div className="lg:col-span-4 flex justify-center">
-                            <div className="relative group">
-                                <div className="absolute -inset-1 bg-gradient-to-r from-[#0047FF] to-[#00D2FF] rounded-[12px] blur-md opacity-25 group-hover:opacity-40 transition duration-300" />
-                                <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-[10px] overflow-hidden border border-[#1C1C24] bg-[#111116]">
-                                    <Image
-                                        src={founderImg}
-                                        alt="Godson Saji — Founder & AI Systems Architect at BoldFlow Labs"
-                                        fill
-                                        sizes="(max-width: 768px) 256px, 288px"
-                                        className="object-cover object-center"
-                                        priority
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="lg:col-span-8 flex flex-col gap-5">
-                            <span className="text-[11px] font-mono text-[#0047FF] uppercase tracking-wider block font-bold">// FOUNDER &amp; ARCHITECT</span>
-                            <h2 className="text-h2 text-white tracking-tight leading-tight">
-                                Built &amp; Architected by Godson Saji.
-                            </h2>
-                            <p className="text-body text-[#A3A3B3] leading-relaxed">
-                                Godson Saji is the founder and principal AI systems architect at BoldFlow Labs, based in Kerala, India. With deep background in conversational voice AI, latency optimization (&lt;180ms roundtrips), and regional Indian telephony protocols (TRAI compliance, Exotel/Vobiz SIP integration), he designs custom voice agents that feel indistinguishable from human operators.
-                            </p>
-                            <p className="text-sm text-[#A3A3B3] leading-relaxed">
-                                Unlike traditional marketing agencies that outsource development, every client deployment at BoldFlow Labs is architected directly by Godson from dialogue flow design and CRM webhooks to telephony carrier routing.
-                            </p>
-                            <div className="flex flex-wrap items-center gap-4 pt-2">
-                                <a
-                                    href="https://www.linkedin.com/in/godson-saji"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#111116] border border-[#1C1C24] hover:border-[#0047FF] text-[#F5F6FA] hover:text-white rounded-[4px] font-mono text-xs uppercase tracking-wider transition-colors"
-                                >
-                                    <Linkedin className="w-4 h-4 text-[#0047FF]" />
-                                    <span>Connect on LinkedIn</span>
-                                    <ExternalLink className="w-3 h-3 text-[#A3A3B3]" />
-                                </a>
-                                <span className="text-xs font-mono text-[#10B981] flex items-center gap-1.5">
-                                    <span className="w-2 h-2 rounded-full bg-[#10B981]" /> Verified Founder Entity
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ── TRAITS & PHILOSOPHY ──────────────────── */}
-            <section className="py-32 bg-[#0A0A0F] border-b border-[#1C1C24]">
-                <div className="max-w-[1280px] mx-auto px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-32">
-                        {traits.map((trait, i) => (
-                            <div key={i} className="bg-[#111116] p-8 border border-[#1C1C24] flex flex-col relative justify-between hover:border-[#0047FF]/20 transition-all rounded-[6px]">
-                                 <div>
-                                     <div className="text-[10px] font-mono text-[#626272] mb-8">SYS_TRAIT_0{i+1}</div>
-                                     <h3 className="text-lg font-bold font-space text-[#F5F6FA] mb-4">{trait.title}</h3>
-                                     <p className="text-sm text-[#A3A3B3] leading-relaxed mb-4">{trait.desc}</p>
-                                 </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-                        <div className="lg:col-span-6 flex flex-col justify-center">
-                            <span className="text-[11px] font-mono text-[#FF5A1F] uppercase tracking-wider block mb-3">{"//"} HOW WE WORK</span>
-                            <h2 className="text-h2 text-[#F5F6FA] tracking-tight mb-8">
-                                How We Calculate Voice ROI.
-                            </h2>
-                            <ul className="space-y-8 flex flex-col items-start pt-4">
-                                 {philosophy.map((item, i) => (
-                                     <li key={i} className="flex gap-4 items-start">
-                                         <span className="text-[#0047FF] font-mono font-bold mt-0.5 text-[14px]">0{i+1}.</span>
-                                         <div>
-                                             <div className="text-[#F5F6FA] font-bold font-space text-[16px] mb-1">{item.title}</div>
-                                             <span className="text-sm text-[#A3A3B3] leading-relaxed">{item.desc}</span>
-                                         </div>
-                                     </li>
-                                 ))}
-                            </ul>
-                        </div>
-                        
-                        {/* Stack Architecture Section */}
-                        <div className="lg:col-span-6 bg-[#111116] border border-[#1C1C24] p-8 md:p-12 relative overflow-hidden flex flex-col justify-center rounded-[8px]">
-                             <div className="relative z-10">
-                                 <div className="text-[10px] font-mono uppercase tracking-wider text-[#0047FF] mb-6">{"//"} INDIAN TELEPHONY STACK</div>
-                                 <h3 className="text-[28px] font-bold font-space text-white tracking-tight leading-tight mb-8">Core Telephony & AI Pipeline</h3>
-                                 <div className="flex flex-col gap-6">
-                                     {stackTools.map((tool, idx) => (
-                                         <div key={idx} className="flex gap-4 items-start pb-4 border-b border-[#1C1C24] last:border-b-0 last:pb-0">
-                                             <div className="p-2 bg-[#0A0A0F] border border-[#1C1C24] rounded-sm shrink-0">
-                                                 {tool.icon}
-                                             </div>
-                                             <div>
-                                                 <h4 className="text-xs font-bold text-white font-space leading-tight mb-1">{tool.name}</h4>
-                                                 <p className="text-[11px] text-[#A3A3B3] leading-relaxed">{tool.desc}</p>
-                                             </div>
-                                         </div>
-                                     ))}
-                                 </div>
-                             </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ── CTA ─────────────────────────────── */}
-            <section className="py-32 flex justify-center px-6 bg-[#0A0A0F]">
-                <div className="w-full max-w-[800px] text-center">
-                    <h2 className="text-[32px] md:text-[40px] font-bold font-space text-white mb-6 tracking-tight leading-tight">
-                        Want to see if we're a good fit?
-                    </h2>
-                    <p className="text-body-lg text-[#A3A3B3] mb-10 max-w-lg mx-auto leading-relaxed">
-                        Let's have a quick, honest chat about your operations or test a free 48-hour pilot on your phone line. No sales pressure.
-                    </p>
-                    <div className="flex flex-col items-center gap-6">
-                        <Link href="/contact" className="px-6 sm:px-10 py-5 btn-primary font-mono text-xs font-bold uppercase tracking-wider text-center w-full sm:w-auto sm:min-w-[280px] min-w-0 max-w-full rounded-[4px]">
-                            Book a Free Strategy Call
-                        </Link>
-                    </div>
-                </div>
-            </section>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B1020] tracking-tight leading-tight">
+              Building Pragmatic Digital Systems for Growing Businesses
+            </h1>
+            
+            <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed">
+              BoldFlow Labs is an independent digital growth and business automation agency based in Kerala, India. We help businesses transition from chaotic manual tasks to reliable automated systems, fast websites, and disciplined marketing funnels.
+            </p>
+          </div>
         </div>
-    );
+      </section>
+
+      {/* ── OUR STORY & WHY WE EXIST ─────────────────────── */}
+      <section className="py-20 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <div className="lg:col-span-5">
+              <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-2">
+                WHY WE EXIST
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#0B1020] tracking-tight">
+                Eliminating the Manual Friction That Slows Companies Down
+              </h2>
+            </div>
+
+            <div className="lg:col-span-7 space-y-4 text-sm text-slate-600 leading-relaxed">
+              <p>
+                Most growing businesses do not suffer from a lack of ambition—they suffer from operational fragmentation. Customer enquiries sit unanswered in email inboxes for hours, sales reps spend hours copying contacts into spreadsheets, and paid ad traffic lands on sluggish, outdated websites that fail to convert.
+              </p>
+              <p>
+                Traditional agencies often respond by selling expensive, generic retainers filled with vanity metrics and junior account management layers. Meanwhile, the actual technical bottlenecks—slow speed-to-lead, zero CRM hygiene, and missing attribution—remain completely unresolved.
+              </p>
+              <p>
+                BoldFlow Labs was founded to solve this gap. We focus on what actually moves the needle: connecting your tools, building friction-free WhatsApp automations, optimizing technical SEO, and building high-performance modern websites that turn visitors into qualified enquiries.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── FOUNDER & LEADERSHIP ─────────────────────────── */}
+      <section className="py-20 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div className="lg:col-span-4 flex justify-center">
+              <div className="relative group">
+                <div className="w-60 h-60 sm:w-72 sm:h-72 rounded-2xl overflow-hidden border border-slate-200 bg-white relative shadow-lg">
+                  <Image
+                    src={founderImg}
+                    alt="Godson Saji — Founder & Systems Architect at BoldFlow Labs"
+                    fill
+                    sizes="(max-width: 768px) 240px, 288px"
+                    className="object-cover object-center"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-8 space-y-4">
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0891B2] uppercase tracking-wider font-semibold">
+                Founder & Systems Architect
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#0B1020] tracking-tight">
+                Architected by Godson Saji
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Godson Saji is the founder and principal systems architect at BoldFlow Labs, based in Kerala, India. With a technical background in full-stack web engineering, API automation, and digital conversion systems, Godson personally oversees project strategy and architectural design for every client engagement.
+              </p>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Rather than delegating your initial consultation to non-technical sales representatives, you collaborate directly with an engineer who understands data flows, webhook latencies, API rate limits, and conversion optimization firsthand.
+              </p>
+
+              <div className="pt-2 flex flex-wrap items-center gap-4">
+                <a
+                  href="https://www.linkedin.com/in/godson-saji"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary px-4 py-2 text-xs font-semibold flex items-center gap-2 text-slate-800"
+                >
+                  <Linkedin className="w-4 h-4 text-[#2563FF]" />
+                  <span>Connect on LinkedIn</span>
+                  <ExternalLink className="w-3 h-3 text-slate-500" />
+                </a>
+                <span className="text-xs font-mono text-emerald-700 flex items-center gap-1.5 font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" /> Verified Founder Entity
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── THE SPECIALIST-PARTNER DELIVERY MODEL ────────── */}
+      <section className="py-20 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-14">
+            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-2">
+              DELIVERY MODEL
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0B1020] tracking-tight">
+              How We Deliver: The Specialist-Partner Model
+            </h2>
+            <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed">
+              We are completely transparent about our agency structure. We do not claim to employ a hundred in-house staff members because we believe massive agency overheads only penalize clients with inflated retainers.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 shadow-xs">
+              <div className="w-8 h-8 rounded-lg bg-blue-100 border border-blue-200 flex items-center justify-center text-[#2563FF] font-bold text-xs mb-4">
+                01
+              </div>
+              <h3 className="text-base font-bold text-slate-900 mb-2">
+                Strategic & Architectural Oversight
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Founder Godson Saji leads project discovery, maps your data schemas, writes technical specifications, and manages quality assurance across every milestone.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 shadow-xs">
+              <div className="w-8 h-8 rounded-lg bg-cyan-100 border border-cyan-200 flex items-center justify-center text-[#0891B2] font-bold text-xs mb-4">
+                02
+              </div>
+              <h3 className="text-base font-bold text-slate-900 mb-2">
+                Vetted Specialist Delivery Partners
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                For deep execution (such as specialized media buying, custom software development, or niche CRM setups), we collaborate with battle-tested specialist freelancers and technical partners.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 shadow-xs">
+              <div className="w-8 h-8 rounded-lg bg-blue-100 border border-blue-200 flex items-center justify-center text-[#2563FF] font-bold text-xs mb-4">
+                03
+              </div>
+              <h3 className="text-base font-bold text-slate-900 mb-2">
+                Direct Value, Zero Agency Bloat
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                You get senior-level systems engineering and dedicated project governance without paying for lavish agency offices or layers of middle management.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CORE PRINCIPLES ──────────────────────────────── */}
+      <section className="py-20 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-14">
+            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-2">
+              OPERATING PRINCIPLES
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0B1020] tracking-tight">
+              Truthful, Defensible Agency Standards
+            </h2>
+            <p className="mt-2 text-slate-600 text-sm">
+              Our core commitments to clients who trust us with their critical business infrastructure.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-xs">
+              <div className="text-xs font-mono text-[#0891B2] font-bold uppercase mb-2">
+                01 / INTEGRITY
+              </div>
+              <h4 className="text-base font-bold text-slate-900 mb-2">No Fake Guarantees</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                We never make unprovable promises about guaranteed ROAS or #1 Google rankings. We focus on verifiable engineering, clean tracking, and proven best practices.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-xs">
+              <div className="text-xs font-mono text-[#2563FF] font-bold uppercase mb-2">
+                02 / OWNERSHIP
+              </div>
+              <h4 className="text-base font-bold text-slate-900 mb-2">100% Client Ownership</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                All accounts, domains, CRM properties, automation blueprints, and GitHub repositories belong exclusively to you. We never lock clients into proprietary software.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-xs">
+              <div className="text-xs font-mono text-[#0891B2] font-bold uppercase mb-2">
+                03 / COMPLIANCE
+              </div>
+              <h4 className="text-base font-bold text-slate-900 mb-2">Official APIs Only</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                We deploy strictly over approved developer APIs (Meta WhatsApp Cloud API, Google Ads API). We never use scraped or unofficial tools that risk account bans.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-xs">
+              <div className="text-xs font-mono text-[#2563FF] font-bold uppercase mb-2">
+                04 / SPEED
+              </div>
+              <h4 className="text-base font-bold text-slate-900 mb-2">Fast Feedback Loops</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Direct communication, transparent sprint updates, and rapid iteration. When you have a question, you talk to the person architecting your system.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FINAL CTA ────────────────────────────────────── */}
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-br from-blue-50/80 via-white to-sky-50/60 border border-blue-200/80 shadow-xl shadow-blue-500/5 text-center max-w-4xl mx-auto relative overflow-hidden">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-[#2563FF] text-xs font-mono font-bold uppercase tracking-wider mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-[#2563FF]" />
+            <span>Direct Partnership</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0B1020] tracking-tight">
+            Ready to Build Better Systems?
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base mt-3 max-w-xl mx-auto leading-relaxed">
+            Let&apos;s schedule a 30-minute discovery conversation. We will review your current systems and share actionable recommendations for your business.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/contact" className="btn-primary px-8 py-3.5 text-sm font-semibold w-full sm:w-auto">
+              Discuss Your Project
+            </Link>
+            <a
+              href="https://cal.com/boldflow-labs/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary px-7 py-3.5 text-sm font-medium w-full sm:w-auto text-slate-800 hover:text-[#2563FF] border border-slate-300 rounded-lg flex items-center justify-center gap-2"
+            >
+              <Calendar className="w-4 h-4 text-[#2563FF]" />
+              <span>Book Strategy Session ↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
 }

@@ -6,7 +6,7 @@ import { db } from "@/firebase/config";
 import { staticBlogPosts, BlogPost } from "@/data/blogData";
 import BlogCard from "@/components/BlogCard";
 import { motion } from "framer-motion";
-import { CheckCircle2, Search, Filter } from "lucide-react";
+import { CheckCircle2, Search } from "lucide-react";
 
 export default function BlogPage() {
     const [posts, setPosts] = useState<BlogPost[]>(staticBlogPosts);
