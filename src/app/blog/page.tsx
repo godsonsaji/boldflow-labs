@@ -37,8 +37,8 @@ export default function BlogPage() {
                             coverImage: data.coverImage || "",
                             createdAt: data.createdAt || { toDate: () => new Date() },
                             readTime: data.readTime || "5M_READ",
-                            authorName: data.authorName || "Godson Saji",
-                            authorImage: data.authorImage || "",
+                            authorName: data.authorName || "BoldFlow Engineering",
+                            authorImage: data.authorImage || "/brand/icon/png/app-icon-brand-blue-512.png",
                             tags: data.tags || [],
                             status: data.status || "published"
                         });
@@ -107,52 +107,97 @@ const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
         return matchesTag && matchesSearch;
     });
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                    {
+                        "@type": "ListItem",
+                        position: 1,
+                        name: "Home",
+                        item: "https://www.boldflowlabs.com",
+                    },
+                    {
+                        "@type": "ListItem",
+                        position: 2,
+                        name: "Blog",
+                        item: "https://www.boldflowlabs.com/blog",
+                    },
+                ],
+            },
+            {
+                "@type": "Blog",
+                "@id": "https://www.boldflowlabs.com/blog/#blog",
+                name: "BoldFlow Labs Engineering & Digital Growth Blog",
+                url: "https://www.boldflowlabs.com/blog",
+                description:
+                    "Read technical guides, speed-to-lead benchmarks, WhatsApp workflows, and operational blueprints for modern business automation.",
+                publisher: {
+                    "@type": "Organization",
+                    name: "BoldFlow Labs",
+                    url: "https://www.boldflowlabs.com",
+                    logo: "https://www.boldflowlabs.com/logo.png",
+                },
+            },
+        ],
+    };
+
     return (
-        <div className="min-h-screen bg-[#0A0A0F] pt-40 pb-32">
-            <div className="absolute inset-0 grid-overlay opacity-5 pointer-events-none z-0" />
-            
-            <div className="max-w-[1280px] w-full mx-auto px-6 relative z-10">
-                {/* Header */}
-                <header className="mb-20 max-w-4xl">
+        <div className="bg-[#F8FAFC] min-h-screen pt-20 text-slate-900">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            {/* Hero Section */}
+            <section className="relative py-14 md:py-20 border-b border-slate-200 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#F8FAFC]">
+                <div className="absolute inset-0 bg-grid-subtle opacity-50 pointer-events-none" />
+                
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-[11px] tracking-wider text-[#0047FF] font-mono font-bold mb-6 uppercase"
+                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#2563FF] text-xs font-mono font-semibold uppercase tracking-wider mb-5"
                     >
-                        {"//"} System Logs & Documentation
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#2563FF]" />
+                        <span>Architecture Guides &amp; Technical Analysis</span>
                     </motion.div>
                     
                     <motion.h1 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-h1 text-[#F5F6FA] mb-8 tracking-tight"
+                        className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-5 max-w-4xl"
                     >
-                        Engineering & Growth Blueprints: Automation, Technical SEO & Systems Architecture
+                        Engineering &amp; Growth Blueprints: Automation, Technical SEO &amp; Systems Architecture
                     </motion.h1>
 
                     <motion.p 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-body-lg"
+                        className="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed"
                     >
                         In-depth architectural breakdowns, speed-to-lead benchmarks, official WhatsApp Cloud API workflows, and technical SEO guides for modern businesses.
                     </motion.p>
-                </header>
+                </div>
+            </section>
 
+            {/* Content Container */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
                 {/* Filters and Search Bar */}
-                <div className="flex flex-col md:flex-row gap-6 justify-between items-start md:items-center border-b border-[#1C1C24] pb-8 mb-16">
+                <div className="flex flex-col md:flex-row gap-6 justify-between items-start md:items-center border-b border-slate-200 pb-8 mb-12">
                     {/* Tags List */}
                     <div className="flex flex-wrap gap-2">
                         {allTags.map(tag => (
                             <button
                                 key={tag}
                                 onClick={() => setSelectedTag(tag)}
-                                className={`px-4 py-2 font-mono text-[10px] uppercase tracking-wider font-bold transition-all duration-150 border rounded-sm ${
+                                className={`px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-150 border rounded-lg ${
                                     selectedTag === tag 
-                                        ? "bg-[#0047FF] border-[#0047FF] text-white" 
-                                        : "border-[#1C1C24] text-[#A3A3B3] hover:border-[#2E2E3E] hover:text-white"
+                                        ? "bg-[#2563FF] border-[#2563FF] text-white shadow-xs" 
+                                        : "bg-white border-slate-200 text-slate-600 hover:text-slate-900 hover:border-slate-300"
                                 }`}
                             >
                                 {tag}
@@ -164,24 +209,24 @@ const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
                     <div className="w-full md:w-80 relative">
                         <input
                             type="text"
-                            placeholder="SEARCH LOGS..."
+                            placeholder="Search articles &amp; guides..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-10 pr-4 py-3 bg-[#111116] border border-[#1C1C24] text-white text-[12px] font-mono rounded-sm focus:outline-none focus:border-[#0047FF]"
+                            className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2563FF] focus:border-transparent shadow-xs"
                         />
-                        <Search className="w-4 h-4 text-[#626272] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                        <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     </div>
                 </div>
 
                 {/* Loading State */}
                 {loading ? (
-                    <div className="flex flex-col justify-center items-center py-32">
-                        <span className="text-[#0047FF] font-mono text-lg animate-pulse">█</span>
-                        <p className="text-[11px] font-mono text-[#626272] uppercase tracking-widest mt-4">PULLING_BLUEPRINTS...</p>
+                    <div className="flex flex-col justify-center items-center py-28">
+                        <div className="w-8 h-8 border-2 border-blue-200 border-t-[#2563FF] rounded-full animate-spin mb-4" />
+                        <p className="text-xs font-mono text-slate-500 uppercase tracking-widest">Loading articles...</p>
                     </div>
                 ) : filteredPosts.length > 0 ? (
                     /* Articles Grid */
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filteredPosts.map((post) => (
                             <div key={post.id} className="h-full">
                                 <BlogCard post={post} />
@@ -190,8 +235,14 @@ const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
                     </div>
                 ) : (
                     /* Empty state */
-                    <div className="text-center py-24 border border-[#1C1C24] bg-[#111116] rounded-[6px]">
-                        <p className="text-sm font-mono text-[#626272] uppercase">NO_RECORDS_MATCHING_QUERY</p>
+                    <div className="text-center py-20 border border-slate-200 bg-white rounded-2xl shadow-xs">
+                        <p className="text-sm font-medium text-slate-600">No articles found matching your query.</p>
+                        <button 
+                            onClick={() => { setSelectedTag("ALL"); setSearchQuery(""); }}
+                            className="mt-4 text-xs font-semibold text-[#2563FF] hover:underline"
+                        >
+                            Reset filters
+                        </button>
                     </div>
                 )}
 
@@ -200,38 +251,42 @@ const WEBHOOK_URL = "https://n8n.srv1336580.hstgr.cloud/webhook/boldflow-data";
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="max-w-xl mx-auto relative bg-[#111116] border border-[#1C1C24] p-8 md:p-12 mt-32 text-center rounded-[6px]"
+                    className="max-w-2xl mx-auto relative bg-gradient-to-br from-blue-50/70 via-white to-sky-50/50 border border-blue-200/80 p-8 sm:p-12 mt-24 text-center rounded-2xl shadow-sm"
                 >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,71,255,0.03),transparent_70%)] pointer-events-none" />
                     {!isSubmitted ? (
                         <>
-                            <h3 className="text-lg font-bold font-space text-[#F5F6FA] mb-2 uppercase">Subscribe to the Logbook</h3>
-                            <p className="text-xs text-[#A3A3B3] mb-8 leading-relaxed max-w-sm mx-auto">
-                                Get technical analysis updates and conversion diagnostics strategies sent directly to your inbox.
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100/70 text-[#2563FF] text-[11px] font-mono font-semibold uppercase mb-4">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#2563FF]" />
+                                <span>Weekly Architecture Digest</span>
+                            </div>
+                            <h3 className="text-2xl font-bold text-slate-900 mb-2">Subscribe to Engineering Updates</h3>
+                            <p className="text-sm text-slate-600 mb-8 leading-relaxed max-w-md mx-auto">
+                                Get technical analysis teardowns, speed-to-lead benchmarks, and conversion architecture guides sent directly to your inbox.
                             </p>
-                            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+                            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                                 <input 
                                     type="email" 
                                     required
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="your@email.com" 
-                                    className="px-4 py-3 bg-[#0A0A0F] border border-[#1C1C24] text-white text-[12px] font-mono focus:outline-none focus:border-[#0047FF] flex-1 rounded-sm"
+                                    placeholder="Enter your work email..." 
+                                    className="px-4 py-3 bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563FF] flex-1 rounded-lg shadow-xs"
                                 />
                                 <button 
                                     type="submit" 
                                     disabled={isSubmitting}
-                                    className="px-6 py-3 bg-[#0047FF] hover:bg-[#1E5CFF] text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors min-w-[120px] rounded-sm"
+                                    className="btn-primary px-6 py-3 text-sm font-semibold text-white whitespace-nowrap rounded-lg shadow-sm"
                                 >
-                                    {isSubmitting ? "SYNCING..." : "SUBSCRIBE"}
+                                    {isSubmitting ? "Subscribing..." : "Subscribe"}
                                 </button>
                             </form>
+                            <p className="text-[11px] text-slate-400 mt-3 font-mono">Zero spam. Actionable engineering insights only.</p>
                         </>
                     ) : (
-                        <div className="flex flex-col items-center justify-center py-4">
-                            <CheckCircle2 className="w-10 h-10 text-[#0047FF] mb-4" />
-                            <p className="text-sm font-bold font-space text-[#F5F6FA] uppercase">TRANSMISSION_ESTABLISHED</p>
-                            <p className="text-xs text-[#A3A3B3] mt-2">You will receive an alert when the next teardown drops.</p>
+                        <div className="flex flex-col items-center justify-center py-6">
+                            <CheckCircle2 className="w-12 h-12 text-[#2563FF] mb-3" />
+                            <p className="text-lg font-bold text-slate-900">Subscription Confirmed</p>
+                            <p className="text-sm text-slate-600 mt-2">You will receive an email whenever our next technical guide is published.</p>
                         </div>
                     )}
                 </motion.div>

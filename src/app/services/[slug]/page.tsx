@@ -13,7 +13,9 @@ import {
   Code2, 
   MapPin, 
   Cpu,
-  Sparkles
+  Sparkles,
+  BookOpen,
+  ArrowRight
 } from "lucide-react";
 import { servicesData, getServiceBySlug } from "@/data/servicesData";
 
@@ -39,13 +41,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const url = `https://www.boldflowlabs.com/services/${service.slug}`;
 
-  const pageTitle = service.title.toLowerCase().endsWith("services")
+  const pageTitle = service.id === "seo-services"
+    ? "Technical SEO Services"
+    : service.id === "business-automation-crm"
+    ? "Business Automation & CRM Systems"
+    : service.title.toLowerCase().endsWith("services")
     ? service.title
     : `${service.title} Services`;
   const fullTitle = `${pageTitle} | BoldFlow Labs`;
 
   return {
-    title: fullTitle,
+    title: {
+      absolute: fullTitle,
+    },
     description: service.shortDescription,
     alternates: {
       canonical: url,
@@ -125,15 +133,32 @@ export default async function IndividualServicePage({ params }: PageProps) {
         serviceType: service.category,
         description: service.longDescription,
         provider: {
-          "@type": "Organization",
+          "@type": ["Organization", "ProfessionalService"],
           name: "BoldFlow Labs",
           url: "https://www.boldflowlabs.com",
           logo: "https://www.boldflowlabs.com/logo.png",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Kochi",
+            addressRegion: "Kerala",
+            postalCode: "682001",
+            addressCountry: "IN",
+          },
         },
-        areaServed: {
-          "@type": "Country",
-          name: "Global",
-        },
+        areaServed: [
+          {
+            "@type": "Country",
+            name: "India",
+          },
+          {
+            "@type": "AdministrativeArea",
+            name: "Kerala",
+          },
+          {
+            "@type": "GeoCircle",
+            geoRadius: "Global Remote Services",
+          },
+        ],
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: `${service.title} Deliverables`,
@@ -230,13 +255,33 @@ export default async function IndividualServicePage({ params }: PageProps) {
                   </div>
                   <div className="flex justify-between py-1 border-b border-slate-100">
                     <span className="text-slate-500">Management:</span>
-                    <span className="text-slate-900 font-semibold">Direct Founder Oversight</span>
+                    <span className="text-slate-900 font-semibold">Lead Architect Oversight</span>
                   </div>
                   <div className="flex justify-between py-1">
                     <span className="text-slate-500">Asset Ownership:</span>
                     <span className="text-[#2563FF] font-semibold">100% Client Owned</span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── DEFINITION CALLOUT (AEO PATTERN) ─────────────── */}
+          <div className="mt-12 p-6 sm:p-7 rounded-2xl bg-white border border-blue-200/90 shadow-xs relative overflow-hidden">
+            <div className="flex items-start gap-4">
+              <div className="p-2.5 rounded-xl bg-blue-50 border border-blue-100 text-[#2563FF] shrink-0 mt-0.5">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-1">
+                  Core Definition (Answer-First)
+                </span>
+                <h2 className="text-base sm:text-lg font-bold text-[#0B1020] mb-2">
+                  What is {service.title}?
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  {service.definition}
+                </p>
               </div>
             </div>
           </div>
@@ -277,14 +322,14 @@ export default async function IndividualServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ── DELIVERABLES GRID ───────────────────────────── */}
+      {/* ── DELIVERABLES GRID (QUESTION-LED H2) ───────────── */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-2">
             DETAILED SCOPE OF WORK
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0B1020] tracking-tight">
-            Specific Deliverables Included in This Service
+            What Deliverables Are Included in This Service?
           </h2>
           <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed">
             Every component is specified with clear criteria so you know exactly what is built and delivered.
@@ -311,24 +356,71 @@ export default async function IndividualServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ── HOW IT WORKS: 5-STAGE PROCESS ───────────────── */}
-      <section className="py-16 bg-white border-y border-slate-200">
+      {/* ── COMPARISON TABLE SECTION (AEO REQUIREMENT) ───── */}
+      {service.comparison && (
+        <section className="py-16 bg-white border-y border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mb-12">
+              <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-2">
+                OPERATIONAL COMPARISON
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0B1020] tracking-tight">
+                {service.comparison.title}
+              </h2>
+              <p className="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
+                {service.comparison.subtitle}
+              </p>
+            </div>
+
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm bg-white">
+              <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                <thead>
+                  <tr className="bg-slate-50 border-b border-slate-200 text-slate-900 font-mono text-xs uppercase tracking-wider">
+                    <th className="py-4 px-6 font-semibold w-1/4">Evaluation Dimension</th>
+                    <th className="py-4 px-6 font-semibold text-slate-600 w-3/8">{service.comparison.traditionalHeader}</th>
+                    <th className="py-4 px-6 font-semibold text-[#2563FF] bg-blue-50/50 w-3/8">{service.comparison.boldflowHeader}</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {service.comparison.rows.map((row, rIdx) => (
+                    <tr key={rIdx} className="hover:bg-slate-50/60 transition-colors">
+                      <td className="py-4 px-6 font-semibold text-slate-900 align-top">
+                        {row.feature}
+                      </td>
+                      <td className="py-4 px-6 text-slate-600 leading-relaxed align-top">
+                        {row.traditional}
+                      </td>
+                      <td className="py-4 px-6 text-slate-900 leading-relaxed bg-blue-50/20 font-medium align-top">
+                        <span className="text-emerald-700 mr-1.5 font-bold">✓</span>
+                        {row.boldflow}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── HOW IT WORKS: 5-STAGE PROCESS (QUESTION-LED H2) ── */}
+      <section className="py-16 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-14">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-2">
               THE IMPLEMENTATION PROCESS
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0B1020] tracking-tight">
-              How We Execute: From Audit to Production
+              How We Execute: From Architecture to Production
             </h2>
             <p className="mt-2 text-slate-600 text-sm leading-relaxed">
-              Our structured step-by-step rollout minimizes your operational disruption while guaranteeing edge-case testing.
+              {service.howItWorksIntro || "Our structured step-by-step rollout minimizes operational disruption while guaranteeing rigorous edge-case testing."}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {service.howItWorks.map((step) => (
-              <div key={step.step} className="p-6 rounded-xl bg-slate-50 border border-slate-200 shadow-xs flex flex-col justify-between">
+              <div key={step.step} className="p-6 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
                 <div>
                   <div className="text-2xl font-black font-mono text-[#2563FF] mb-3">
                     {step.step}
@@ -346,14 +438,14 @@ export default async function IndividualServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ── SUITABLE CUSTOMERS ───────────────────────────── */}
+      {/* ── SUITABLE CUSTOMERS (QUESTION-LED H2) ─────────── */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-12">
           <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#0891B2] block mb-2">
             TARGET FIT
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0B1020] tracking-tight">
-            Who This Service Is Built For
+            Who is This Service Engineered For?
           </h2>
           <p className="mt-2 text-slate-600 text-sm">
             {service.suitableForIntro || "We focus exclusively on businesses where this architecture creates demonstrable operational leverage."}
@@ -377,7 +469,7 @@ export default async function IndividualServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ── DEMONSTRATION / SAMPLE BLUEPRINT ────────────── */}
+      {/* ── DEMONSTRATION / SAMPLE BLUEPRINT (QUESTION-LED H2) ── */}
       <section id="demonstration" className="py-16 bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -387,7 +479,7 @@ export default async function IndividualServicePage({ params }: PageProps) {
                 <span>{service.demonstration.badge}</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-[#0B1020] tracking-tight">
-                {service.demonstration.title}
+                How Does the System Architecture Work in Practice?
               </h2>
               <p className="text-slate-600 text-xs sm:text-sm mt-1">
                 {service.demonstration.subtitle}
@@ -437,14 +529,14 @@ export default async function IndividualServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ── FREQUENTLY ASKED QUESTIONS ──────────────────── */}
+      {/* ── FREQUENTLY ASKED QUESTIONS (QUESTION-LED H2) ─── */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-12">
           <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2563FF] block mb-2">
             QUESTIONS & CLARIFICATIONS
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0B1020] tracking-tight">
-            Frequently Asked Questions
+            Frequently Asked Questions About {service.title}
           </h2>
           <p className="text-slate-600 text-sm mt-1">
             Common questions regarding our {service.title} scope, tools, and expectations.

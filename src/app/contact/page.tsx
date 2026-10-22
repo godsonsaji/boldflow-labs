@@ -52,7 +52,7 @@ export default function ContactPage() {
                 Book a 30-Minute Systems Strategy Call
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                Schedule a focused 1-on-1 strategy session directly with founder Godson Saji to discuss your workflows, conversion bottlenecks, and project timeline.
+                Schedule a focused 1-on-1 strategy session directly with our lead systems architecture team to discuss your workflows, conversion bottlenecks, and project timeline.
               </p>
               <a
                 href="https://cal.com/boldflow-labs/30min"

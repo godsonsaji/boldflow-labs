@@ -24,11 +24,11 @@ const BASE_URL = "https://www.boldflowlabs.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "BoldFlow Labs | AI Automation, Business Systems & Digital Growth",
+    default: "BoldFlow Labs | AI Automation & Business Systems",
     template: "%s | BoldFlow Labs",
   },
   description:
-    "BoldFlow Labs builds official WhatsApp automations, CRM pipelines, performance marketing, and high-performance websites. Schedule your project consultation.",
+    "BoldFlow Labs builds official WhatsApp automations, CRM pipelines, and fast Next.js websites for Indian businesses. Book your strategy consultation.",
   authors: [{ name: "BoldFlow Labs", url: BASE_URL }],
   creator: "BoldFlow Labs",
   publisher: "BoldFlow Labs",
@@ -41,9 +41,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: BASE_URL,
     siteName: "BoldFlow Labs",
-    title: "BoldFlow Labs | AI Automation, Business Systems & Digital Growth",
+    title: "BoldFlow Labs | AI Automation & Business Systems",
     description:
-      "BoldFlow Labs builds official WhatsApp automations, CRM pipelines, performance marketing, and high-performance websites. Schedule your project consultation.",
+      "BoldFlow Labs builds official WhatsApp automations, CRM pipelines, and fast Next.js websites for Indian businesses. Book your strategy consultation.",
     images: [
       {
         url: "/og-image.png",
@@ -55,9 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BoldFlow Labs | AI Automation, Business Systems & Digital Growth",
+    title: "BoldFlow Labs | AI Automation & Business Systems",
     description:
-      "BoldFlow Labs builds official WhatsApp automations, CRM pipelines, performance marketing, and high-performance websites. Schedule your project consultation.",
+      "BoldFlow Labs builds official WhatsApp automations, CRM pipelines, and fast Next.js websites for Indian businesses. Book your strategy consultation.",
     creator: "@boldflowlabs",
   },
   robots: {
@@ -136,15 +136,13 @@ export default function RootLayout({
                   priceRange: "$$",
                   description:
                     "BoldFlow Labs is a digital growth and business systems engineering agency specializing in official WhatsApp automations, CRM pipelines, and technical web development.",
-                  founder: {
-                    "@type": "Person",
-                    "@id": `${BASE_URL}/#founder`,
-                    name: "Godson Saji",
-                    jobTitle: "Founder & Systems Architect",
-                    image: `${BASE_URL}/founder.png`,
-                    url: `${BASE_URL}/about`,
-                    sameAs: "https://www.linkedin.com/in/godson-saji",
-                  },
+                  knowsAbout: [
+                    "WhatsApp Business API",
+                    "Next.js & React",
+                    "CRM Systems & Webhooks",
+                    "Technical SEO",
+                    "Meta Conversions API (CAPI)"
+                  ],
                   address: {
                     "@type": "PostalAddress",
                     addressLocality: "Kochi",
@@ -266,60 +264,6 @@ export default function RootLayout({
                   publisher: {
                     "@id": `${BASE_URL}/#organization`,
                   },
-                },
-                {
-                  "@type": "FAQPage",
-                  "@id": `${BASE_URL}/#faq`,
-                  mainEntity: [
-                    {
-                      "@type": "Question",
-                      name: "How does BoldFlow Labs deliver projects?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "We operate a focused boutique agency model. Founder Godson Saji leads client strategy, requirements scoping, and technical architecture directly. For specialized execution, we collaborate with vetted technical delivery specialists.",
-                      },
-                    },
-                    {
-                      "@type": "Question",
-                      name: "Do you guarantee return on ad spend (ROAS) or #1 Google rankings?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "No, and we never will. Guarantees of #1 rankings or fixed ROAS are deceptive marketing tactics. What we guarantee is rigorous technical execution, clean tracking foundations, transparent reporting, and systems built according to official platform standards.",
-                      },
-                    },
-                    {
-                      "@type": "Question",
-                      name: "Who owns the accounts, code, and automations after the project?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "You do—100%. We believe in zero vendor lock-in. All ad accounts, CRM environments, code repositories, domains, and automation accounts belong to your business.",
-                      },
-                    },
-                    {
-                      "@type": "Question",
-                      name: "How long does a typical system implementation take?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Most single-system implementations take 2 to 4 weeks from kickoff to production testing. Multi-system transformations are planned in structured, sequential milestones.",
-                      },
-                    },
-                    {
-                      "@type": "Question",
-                      name: "What tools and platforms do you support?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "We work with modern, industry-standard tools including Next.js, React, TypeScript, the official Meta WhatsApp Cloud API, Google Ads, Meta Ads, Google Tag Manager, GA4, HubSpot, Zoho CRM, LeadSquared, n8n, Make.com, and Zapier.",
-                      },
-                    },
-                    {
-                      "@type": "Question",
-                      name: "How do we get started?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "You can submit an enquiry through our contact form or book an introductory 30-minute discovery session with founder Godson Saji to assess project feasibility.",
-                      },
-                    },
-                  ],
                 },
               ],
             }),

@@ -8,9 +8,13 @@ export interface BlogPost {
   createdAt: {
     toDate: () => Date;
   };
+  updatedAt?: {
+    toDate: () => Date;
+  };
   readTime: string;
   authorName: string;
   authorImage?: string;
+  authorRole?: string;
   tags: string[];
   status: "published" | "draft";
 }
@@ -26,8 +30,8 @@ export const staticBlogPosts: BlogPost[] = [
       toDate: () => new Date("2026-09-15T09:00:00Z")
     },
     readTime: "8M_READ",
-    authorName: "Godson Saji",
-    authorImage: "/founder.png",
+    authorName: "BoldFlow Engineering",
+    authorImage: "/brand/icon/png/app-icon-brand-blue-512.png",
     tags: ["WHATSAPP AUTOMATION", "SPEED TO LEAD", "CRM SYSTEMS", "SALES WORKFLOWS"],
     status: "published",
     content: `
@@ -147,7 +151,7 @@ export const staticBlogPosts: BlogPost[] = [
       <ul>
         <li>Learn more about our <a href="/services/whatsapp-automation">Official WhatsApp Automation Services</a></li>
         <li>Inspect how we integrate pipelines on our <a href="/services/business-automation-crm">Business Automation &amp; CRM Services Page</a></li>
-        <li>Or <a href="/contact">Book a 30-Minute Architecture Diagnostic with Godson Saji</a></li>
+        <li>Or <a href="/contact">Book a 30-Minute Systems Architecture Diagnostic with BoldFlow Labs</a></li>
       </ul>
 
       <hr/>
@@ -170,8 +174,8 @@ export const staticBlogPosts: BlogPost[] = [
       toDate: () => new Date("2026-09-20T11:00:00Z")
     },
     readTime: "7M_READ",
-    authorName: "Godson Saji",
-    authorImage: "/founder.png",
+    authorName: "BoldFlow Engineering",
+    authorImage: "/brand/icon/png/app-icon-brand-blue-512.png",
     tags: ["D2C E-COMMERCE", "RTO REDUCTION", "WHATSAPP AUTOMATION", "LOGISTICS"],
     status: "published",
     content: `
@@ -306,8 +310,8 @@ export const staticBlogPosts: BlogPost[] = [
       toDate: () => new Date("2026-09-28T14:30:00Z")
     },
     readTime: "8M_READ",
-    authorName: "Godson Saji",
-    authorImage: "/founder.png",
+    authorName: "BoldFlow Engineering",
+    authorImage: "/brand/icon/png/app-icon-brand-blue-512.png",
     tags: ["TECHNICAL SEO", "CORE WEB VITALS", "NEXT.JS", "JAMSTACK", "PERFORMANCE"],
     status: "published",
     content: `
@@ -394,7 +398,7 @@ export const staticBlogPosts: BlogPost[] = [
       <h2>Structured data: helping search engines understand your entity</h2>
       <p>Speed gets search engine bots through your digital door; structured data ensures they understand exactly what your business offers. Modern technical SEO requires clean, valid Schema.org JSON-LD:</p>
       <ul>
-        <li><strong>Organization &amp; LocalBusiness Schema:</strong> Declaring official business name, founder identity, physical address coordinates, telephone, and social entity profiles (<code>sameAs</code> links for LinkedIn, X, and Crunchbase).</li>
+        <li><strong>Organization &amp; LocalBusiness Schema:</strong> Declaring official business name, brand identity, physical address coordinates, telephone, and social entity profiles (<code>sameAs</code> links for LinkedIn, X, and Crunchbase).</li>
         <li><strong>Service &amp; Offer Catalog Schema:</strong> Explicitly structuring every service item, target customer fit, and delivery area so Google Knowledge Graph algorithms can index your commercial offerings.</li>
         <li><strong>Article / BlogPosting Schema:</strong> Marking author bylines (with verifiable <code>Person</code> schemas), publish dates, and modification timestamps for E-E-A-T verification.</li>
       </ul>
@@ -429,8 +433,8 @@ export const staticBlogPosts: BlogPost[] = [
       toDate: () => new Date("2026-10-05T10:00:00Z")
     },
     readTime: "9M_READ",
-    authorName: "Godson Saji",
-    authorImage: "/founder.png",
+    authorName: "BoldFlow Engineering",
+    authorImage: "/brand/icon/png/app-icon-brand-blue-512.png",
     tags: ["PERFORMANCE MARKETING", "ATTRIBUTION", "GOOGLE ADS", "META CAPI", "CRM"],
     status: "published",
     content: `
@@ -565,7 +569,7 @@ export const staticBlogPosts: BlogPost[] = [
       <ul>
         <li>Learn about our <a href="/services/performance-marketing">Data-Driven Performance Marketing Services</a></li>
         <li>Review our CRM pipeline engineering on our <a href="/services/business-automation-crm">Business Automation &amp; CRM Page</a></li>
-        <li>Or <a href="/contact">Book an Attribution Strategy Session with Godson Saji</a></li>
+        <li>Or <a href="/contact">Book an Attribution Strategy Session with BoldFlow Labs</a></li>
       </ul>
 
       <hr/>

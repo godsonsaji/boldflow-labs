@@ -30,12 +30,27 @@ export interface ServiceDemonstration {
   keySpecs: { label: string; value: string }[];
 }
 
+export interface ComparisonRow {
+  feature: string;
+  traditional: string;
+  boldflow: string;
+}
+
+export interface ServiceComparison {
+  title: string;
+  subtitle: string;
+  traditionalHeader: string;
+  boldflowHeader: string;
+  rows: ComparisonRow[];
+}
+
 export interface ServiceItem {
   id: string;
   slug: string;
   title: string;
   tagline: string;
   heroHeadline: string;
+  definition: string;
   shortDescription: string;
   longDescription: string;
   customerProblem: {
@@ -45,8 +60,10 @@ export interface ServiceItem {
   };
   deliverables: Deliverable[];
   howItWorks: ProcessStep[];
+  howItWorksIntro?: string;
   suitableForIntro: string;
   suitableFor: SuitableCustomer[];
+  comparison: ServiceComparison;
   demonstration: ServiceDemonstration;
   faqs: ServiceFAQ[];
   disclaimer: string;
@@ -63,12 +80,13 @@ export const servicesData: ServiceItem[] = [
     title: "Performance Marketing",
     tagline: "High-Intent Google & Meta Ad Campaigns",
     heroHeadline: "Data-Driven Google & Meta Ads Built for Measurable Lead Generation",
-    shortDescription: "Scale high-intent customer acquisition with data-backed Google Ads & Meta campaigns wired directly to CRM revenue. Book your growth strategy consultation.",
+    definition: "Performance marketing is an advertising discipline where media spend across Google Search, Performance Max, and Meta Ads is tied directly to verified conversion actions, negative keyword hygiene, and closed-loop CRM revenue rather than superficial vanity clicks.",
+    shortDescription: "Scale high-intent customer acquisition with disciplined Google & Meta ad campaigns connected directly to CRM revenue. Schedule your growth consultation.",
     longDescription: "We structure, manage, and optimize paid acquisition campaigns across Google Search, Performance Max, and Meta Ads. Every campaign is wired directly to verified conversion events, transparent analytics, and daily budget oversight to eliminate wasted ad spend.",
     customerProblem: {
       headline: "Why most businesses burn money on paid advertising",
       points: [
-        "Running campaigns without server-side tracking (Meta CAPI / Google Enhanced Conversions) leaves ad algorithms guessing who actually converted.",
+        "Running campaigns without server-side tracking (Meta CAPI / Google Enhanced Conversions) leaves ad algorithms guessing who actually converted, obscuring up to 30% of conversion signals (Gartner Marketing Analytics).",
         "Targeting broad, low-intent keywords and unsegmented audiences drains daily budgets on unqualified clicks.",
         "Sending paid traffic to generic homepages rather than dedicated, conversion-optimized landing pages drops conversion rates below 2%.",
         "No weekly negative keyword scrubbing allows irrelevant search queries to consume significant budget."
@@ -107,6 +125,7 @@ export const servicesData: ServiceItem[] = [
         tag: "Reporting"
       }
     ],
+    howItWorksIntro: "Our performance marketing execution follows a rigorous 5-stage framework designed to validate tracking before scaling ad spend:",
     howItWorks: [
       {
         step: "01",
@@ -149,6 +168,39 @@ export const servicesData: ServiceItem[] = [
         reason: "Requiring rigorous tracking, retargeting funnels, and clean catalog sales campaigns."
       }
     ],
+    comparison: {
+      title: "How BoldFlow Labs Performance Marketing Compares",
+      subtitle: "The operational difference between generic retainers and engineering-backed ad management",
+      traditionalHeader: "Traditional Agency Retainers",
+      boldflowHeader: "BoldFlow Labs Performance Marketing",
+      rows: [
+        {
+          feature: "Conversion Tracking",
+          traditional: "Basic browser pixel prone to 30% signal loss from ad-blockers and iOS ATT",
+          boldflow: "Dual-dispatch Meta CAPI & Google Enhanced Conversions with server deduplication"
+        },
+        {
+          feature: "Keyword Strategy",
+          traditional: "Broad match vanity terms that inflate click counts without buyer intent",
+          boldflow: "High-intent exact and phrase match clusters with daily negative keyword pruning"
+        },
+        {
+          feature: "Destination Experience",
+          traditional: "Traffic routed to generic, slow homepages with sub-2% conversion rates",
+          boldflow: "Dedicated Next.js landing pages pre-wired with dynamic UTM capture"
+        },
+        {
+          feature: "Revenue Attribution",
+          traditional: "Optimizes for raw lead form volume regardless of lead quality",
+          boldflow: "Closed-loop CRM sync passing verified pipeline deal stages back to ad algorithms"
+        },
+        {
+          feature: "Account Ownership",
+          traditional: "Proprietary agency ad accounts that lock you in if you leave",
+          boldflow: "100% client account ownership; you own all campaigns, pixels, and creative assets"
+        }
+      ]
+    },
     demonstration: {
       type: "Sample Ad Funnel Architecture",
       title: "Closed-Loop Attribution Pipeline",
@@ -198,15 +250,16 @@ export const servicesData: ServiceItem[] = [
     title: "WhatsApp Automation",
     tagline: "Official WhatsApp Business Platform Systems",
     heroHeadline: "Convert Inquiries Instantly With Compliant WhatsApp Workflows",
-    shortDescription: "Capture, qualify, and book leads in under 60 seconds using official WhatsApp Business API workflows and CRM sync. Explore our architecture and request a demo.",
+    definition: "WhatsApp automation is the technical deployment of the official Meta WhatsApp Cloud API to automatically engage, qualify, and triage inbound prospective customers in under 60 seconds of submitting an inquiry.",
+    shortDescription: "Capture and qualify commercial leads in under 60 seconds using official Meta WhatsApp Cloud API workflows. Schedule your live automation demonstration.",
     longDescription: "Engage prospective clients on their preferred messaging channel without manual chaos. We build official WhatsApp Business Platform automations that greet new leads within seconds, qualify their needs, route hot leads to your team, and send transactional updates.",
     customerProblem: {
       headline: "The cost of slow, manual customer communication",
       points: [
-        "Over 65% of customer inquiries convert with the first business that responds, but human teams take hours to reply to website forms.",
+        "Between 65% and 78% of commercial inquiries award their business to the company that responds first (Harvard Business Review & Velocify studies), yet human sales teams routinely take 2 to 4 hours to reply.",
+        "Attempting contact within 5 minutes results in a 21x increase in lead qualification probability compared to waiting 30 minutes (Oldroyd MIT / InsideSales Study).",
         "Manual messaging from personal WhatsApp numbers leads to lost chat histories, untracked leads, and non-compliance with privacy laws.",
-        "Using unofficial 'scraped' WhatsApp tools puts your primary business phone number at severe risk of permanent ban.",
-        "Manual appointment reminders result in high no-show rates for booked consultations."
+        "Using unofficial 'scraped' automation tools puts your primary business phone number at severe risk of permanent ban by Meta."
       ],
       consequence: "High drop-off rates between initial enquiry and scheduled consultation."
     },
@@ -242,6 +295,7 @@ export const servicesData: ServiceItem[] = [
         tag: "Operations"
       }
     ],
+    howItWorksIntro: "We configure your official Meta WhatsApp Business Cloud API in 5 structured engineering steps:",
     howItWorks: [
       {
         step: "01",
@@ -250,78 +304,111 @@ export const servicesData: ServiceItem[] = [
       },
       {
         step: "02",
-        title: "Conversation Architecture",
-        description: "We map out conversational branches: FAQ answers, lead qualification parameters, service selector menus, and escalation rules."
+        title: "Conversational Architecture & Scripts",
+        description: "We design decision-tree flows, qualification questions, and interactive reply buttons aligned with your customer journey."
       },
       {
         step: "03",
-        title: "Template Drafting & Approval",
-        description: "We write compliant message templates according to Meta's Business Messaging Policy and submit them for fast approval."
+        title: "Webhook & CRM Pipeline Integration",
+        description: "We connect form endpoints (Next.js, Meta Lead Ads, WordPress) to n8n/Make automation runners and sync data to your CRM."
       },
       {
         step: "04",
-        title: "CRM & Webhook Connection",
-        description: "We connect the automation engine (via n8n, Make, or custom webhooks) to your website forms, ad lead forms, and CRM."
+        title: "Template Drafting & Meta Submission",
+        description: "We craft compliant utility and transactional message templates and submit them to Meta for official approval."
       },
       {
         step: "05",
-        title: "Testing & Live Deployment",
+        title: "Stress Testing & Live Deployment",
         description: "We simulate incoming leads, verify mobile formatting, test fallback triggers, and launch the workflow live."
       }
     ],
-    suitableForIntro: "We tailor conversational WhatsApp workflows for high-inquiry businesses, clinics, and D2C brands where answering leads under 60 seconds directly prevents drop-off.",
+    suitableForIntro: "We build automated messaging workflows for clinics, consultancies, high-ticket services, and e-commerce brands where immediate response timing directly determines closing rates.",
     suitableFor: [
       {
-        title: "High-Volume Service Companies",
-        reason: "Needing to triage dozens of daily quote requests without keeping prospective clients waiting."
+        title: "Healthcare Clinics & Wellness Centers",
+        reason: "Patients require instant appointment slot verification, location directions, and preparation instructions."
       },
       {
-        title: "Appointment-Driven Businesses",
-        reason: "Clinics, consultancies, agencies, and real estate professionals aiming to eliminate consultation no-shows."
+        title: "Professional Services & Consultancies",
+        reason: "Capturing high-intent quote requests and qualifying project budgets before sales calls."
       },
       {
-        title: "D2C & E-Commerce Brands",
-        reason: "Looking to automate order tracking updates, address verification, and customer support queries."
+        title: "D2C E-Commerce & Retail Brands",
+        reason: "Automating Cash-on-Delivery (COD) address verification to cut Return-to-Origin (RTO) shipment losses."
       }
     ],
+    comparison: {
+      title: "Official Meta WhatsApp Cloud API vs Unofficial Automation Tools",
+      subtitle: "Why deploying over official Meta infrastructure is non-negotiable for serious businesses",
+      traditionalHeader: "Unofficial QR / Scraped Tools",
+      boldflowHeader: "Official Meta Cloud API (BoldFlow Labs)",
+      rows: [
+        {
+          feature: "Account Ban Risk",
+          traditional: "Extreme. High risk of permanent phone number suspension by Meta algorithms",
+          boldflow: "Zero ban risk. 100% compliant with Meta Business Messaging Terms of Service"
+        },
+        {
+          feature: "Interactive Elements",
+          traditional: "Plain text only; user must manually type numbers or letters to respond",
+          boldflow: "Interactive UI: Quick-reply buttons, list pickers, and direct Cal.com booking buttons"
+        },
+        {
+          feature: "Delivery Latency",
+          traditional: "Dependent on keeping a physical phone or browser tab awake; frequent disconnects",
+          boldflow: "Sub-second webhook trigger delivered directly via Meta cloud data centers"
+        },
+        {
+          feature: "Multi-Agent Access",
+          traditional: "Clunky single-device web sessions prone to session logout",
+          boldflow: "True shared team inbox with role permissions, ticket assignments, and collision detection"
+        },
+        {
+          feature: "CRM Data Sync",
+          traditional: "Requires fragile browser scrapers with frequent data drop-offs",
+          boldflow: "Direct REST webhooks into HubSpot, Zoho CRM, LeadSquared, and Postgres databases"
+        }
+      ]
+    },
     demonstration: {
-      type: "Sample Conversation Flow",
-      title: "Interactive Lead Qualification & Booking Flow",
-      subtitle: "Demonstration of an automated conversational sequence for service inquiries",
+      type: "Sample WhatsApp Workflow Architecture",
+      title: "Interactive Lead Qualification & Booking Engine",
+      subtitle: "Demonstration of speed-to-lead automation using official Meta Cloud API",
       badge: "Sample Architecture (Demonstration)",
-      description: "This sample shows the sequence of automated interactions triggered immediately when a prospect clicks a WhatsApp CTA or submits a web form.",
+      description: "This sample showcases an automated conversational triage workflow that greets an inbound prospect within 5 seconds, filters project budget, and offers a Cal.com calendar slot.",
       flowSteps: [
-        { label: "Trigger: Inbound Web Form", detail: "Customer requests a project quotation on website", status: "Trigger" },
-        { label: "Step 1: Welcome & Service Selection", detail: "Instant message (<5s): 'Thanks for reaching out! Which service are you exploring?' [Interactive Buttons]", status: "Automated" },
-        { label: "Step 2: Budget & Timing Filter", detail: "User taps selection. Automated follow-up asks for project start timeframe and rough budget tier.", status: "Qualification" },
-        { label: "Step 3: Calendar Link & CRM Sync", detail: "System generates dedicated Cal.com booking link + pushes lead record to CRM with full transcript.", status: "Completion" }
+        { label: "1. Webhook Trigger", detail: "Form submitted on website or ad; webhook payload ingested in <500ms", status: "Triggered" },
+        { label: "2. Official WhatsApp Greeting", detail: "Personalized template message dispatched via Meta Cloud API", status: "Delivered" },
+        { label: "3. Interactive Triage", detail: "Prospect taps quick-reply buttons to specify service and timeline", status: "Interactive" },
+        { label: "4. CRM & Calendar Booking", detail: "Qualified lead receives Cal.com link; full transcript synced to CRM", status: "Synced" }
       ],
       keySpecs: [
-        { label: "API Standard", value: "Official WhatsApp Cloud API (Meta)" },
-        { label: "Response Latency", value: "< 5 seconds automated trigger" },
-        { label: "Integration Points", value: "HubSpot, Zoho, LeadSquared, Google Sheets, Slack, Webhooks" },
-        { label: "Compliance", value: "100% Meta Business Messaging Policy compliant (Opt-in required)" }
+        { label: "API Provider", value: "Official Meta WhatsApp Business Cloud API (Direct)" },
+        { label: "Response Latency", value: "< 5 seconds from form submit to WhatsApp greeting" },
+        { label: "Automation Engine", value: "n8n (Self-hosted or Cloud), Make.com, or Custom Node.js" },
+        { label: "CRM Compatibility", value: "HubSpot, Zoho CRM, LeadSquared, Google Sheets, Custom Webhooks" }
       ]
     },
     faqs: [
       {
-        question: "Do you use unofficial WhatsApp tools or web scrapers?",
-        answer: "Never. Unofficial tools risk having your business number permanently banned by Meta. BoldFlow Labs exclusively builds on the official WhatsApp Business Platform (Cloud API), ensuring reliable delivery, verified business branding, and complete compliance."
+        question: "How much does the official WhatsApp Business API cost in India?",
+        answer: "Meta charges based on 24-hour conversation categories. In India, utility template messages cost approximately ₹0.30 to ₹0.40 per conversation, while user-initiated customer care sessions within a 24-hour window are free or cost a minimal fraction (approx ₹0.35–₹0.85). There are zero recurring per-user software licensing surcharges when built directly on the Meta Cloud API with self-hosted runners like n8n."
       },
       {
-        question: "How does Meta charge for the WhatsApp Business API?",
-        answer: "Meta operates on an official per-message pricing model for business-initiated template messages, categorized by intent: Marketing, Utility, and Authentication. Each delivered template has a transparent per-message regional rate. Crucially, customer-initiated service messages within the 24-hour customer care window incur zero conversation session charges from Meta. We engineer lean, event-driven workflows that eliminate redundant messages and keep your monthly platform spend minimal."
+        question: "Can WhatsApp automation be customized for clinics, hospitals, or businesses in Kerala?",
+        answer: "Yes. We frequently build localized workflows tailored for Kerala businesses, supporting bilingual English and Malayalam messaging options, specialized clinic consultation scheduling, doctor profile menus, and COD delivery confirmation for local e-commerce."
       },
       {
-        question: "Can multiple team members reply to WhatsApp chats?",
-        answer: "Yes. We configure multi-agent shared inboxes so your team can assign conversations, view notes, and collaborate from desktop and mobile without sharing a single phone."
+        question: "Can we use our existing business phone number?",
+        answer: "Yes. You can migrate an existing landline or mobile number to the official WhatsApp Business API. Note that once registered on the API, the number operates through API tools and software dashboards rather than standard consumer WhatsApp smartphone apps."
       },
       {
-        question: "Can we connect WhatsApp directly to our website forms?",
-        answer: "Yes. Whenever a prospect submits an enquiry form on your website, our system can immediately trigger an automated WhatsApp confirmation message to their phone within seconds."
+        question: "How do you prevent spam complaints?",
+        answer: "We mandate strict opt-in checkboxes on all lead forms. Messages are only sent to prospects who requested contact, and initial templates include a 1-tap opt-out option to respect user privacy and protect phone quality scores."
       }
     ],
-    disclaimer: "All WhatsApp automations require an active WhatsApp Business API account subject to Meta's Business Messaging Policies, template approvals, and conversation fees. We do not provide cold unsolicited mass-messaging tools.",
+    disclaimer: "Meta message template approvals and per-conversation fees are determined by Meta Platforms, Inc. BoldFlow Labs deploys strictly within Meta's Business Messaging Terms of Service.",
     category: "Automation",
     accentColor: "#06B6D4",
     relatedArticleSlug: "speed-to-lead-whatsapp-automation-guide",
@@ -330,15 +417,16 @@ export const servicesData: ServiceItem[] = [
   {
     id: "seo-services",
     slug: "seo-services",
-    title: "SEO Services",
-    tagline: "Technical, On-Page & Content Optimization",
+    title: "Technical SEO",
+    tagline: "Technical Core Web Vitals, Schema & Site Architecture",
     heroHeadline: "Build Organic Search Visibility Through Clean Technical Foundations",
-    shortDescription: "Dominate search rankings with technical Core Web Vitals optimization, Schema.org markup, and high-intent keyword strategy. Request your technical SEO audit.",
+    definition: "Technical SEO is the structural optimization of a website's underlying codebase, server response times (TTFB), Core Web Vitals, crawl architecture, and Schema.org structured data to ensure search engines efficiently index and rank commercial pages without friction.",
+    shortDescription: "Dominate search rankings with technical Core Web Vitals optimization, semantic Schema.org markup, and commercial keyword clusters. Request an audit.",
     longDescription: "Earn durable organic search visibility from prospective buyers looking for your exact services. We audit and rebuild technical site foundations, optimize semantic on-page elements, fix crawlability roadblocks, and structure content clusters designed to rank over time.",
     customerProblem: {
       headline: "Why commercial websites fail to rank on search engines",
       points: [
-        "Hidden technical errors (slow Core Web Vitals, duplicate canonicals, render-blocking scripts) block search engine crawlers from indexing pages.",
+        "Hidden technical errors (slow Core Web Vitals, duplicate canonicals, render-blocking scripts) block search engine crawlers from indexing pages; over 70% of CMS sites fail Core Web Vitals on mobile (HTTP Archive Web Almanac).",
         "Targeting overly broad, vanity keywords instead of high-intent commercial search phrases that actually drive inquiries.",
         "Missing or broken Schema.org structured data prevents rich snippet visibility in search engine results pages (SERPs).",
         "Thin, unhelpful content generated without topical authority or search intent matching fails search quality benchmarks."
@@ -348,104 +436,138 @@ export const servicesData: ServiceItem[] = [
     deliverables: [
       {
         title: "Comprehensive Technical SEO Audit",
-        description: "Full crawl inspection checking indexing status, canonical tags, 404 errors, robots.txt, and XML sitemaps.",
-        tag: "Technical"
+        description: "Full crawl analysis uncovering indexation blocks, crawl budget waste, redirect chains, and broken status codes.",
+        tag: "Technical Audit"
       },
       {
-        title: "Core Web Vitals & Speed Optimization",
-        description: "Diagnostics and remedies for Largest Contentful Paint (LCP), Cumulative Layout Shift (CLS), and Interaction to Next Paint (INP).",
+        title: "Core Web Vitals Optimization",
+        description: "Resolving Largest Contentful Paint (LCP < 2.5s), Cumulative Layout Shift (CLS < 0.1), and Interaction to Next Paint (INP < 200ms).",
         tag: "Performance"
       },
       {
-        title: "High-Intent Keyword Research",
-        description: "Identification of commercial and transactional search queries with realistic competition difficulty and buyer intent.",
-        tag: "Research"
-      },
-      {
-        title: "On-Page Optimization & Meta Data",
-        description: "Refining title tags, meta descriptions, semantic H1-H3 structures, URL slugs, and internal linking hierarchy.",
-        tag: "On-Page"
-      },
-      {
-        title: "Schema.org Structured Data",
-        description: "Implementation of clean JSON-LD markup for Organizations, Local Businesses, Services, Breadcrumbs, and FAQs.",
+        title: "Schema.org Structured Data Architecture",
+        description: "Custom JSON-LD implementation: Organization, ProfessionalService, FAQPage, BreadcrumbList, and Service schemas.",
         tag: "Structured Data"
       },
       {
-        title: "Google Search Console Monitoring",
-        description: "Monthly reporting tracking indexation coverage, organic impressions, click-through rates, and query rankings.",
-        tag: "Analytics"
+        title: "Commercial Keyword & Intent Mapping",
+        description: "Targeting high-intent commercial keywords and mapping them to dedicated, optimized service pages.",
+        tag: "Strategy"
+      },
+      {
+        title: "On-Page Semantic Optimization",
+        description: "Structuring clean H1–H3 heading hierarchy, descriptive title tags, meta descriptions, and image alt text.",
+        tag: "On-Page"
+      },
+      {
+        title: "Internal Linking & Content Siloing",
+        description: "Building clear topical clusters that pass PageRank efficiently from authoritative pages to service offerings.",
+        tag: "Architecture"
       }
     ],
+    howItWorksIntro: "Our technical SEO execution addresses search barriers from server response to semantic rich markup:",
     howItWorks: [
       {
         step: "01",
-        title: "Technical Discovery & Crawl Audit",
-        description: "We crawl your entire website using professional diagnostic tools to identify all indexation blocks, broken links, and metadata gaps."
+        title: "Diagnostic Site & Crawl Audit",
+        description: "We perform a thorough crawl to identify status codes, canonical conflicts, robots.txt directives, and indexation bottlenecks."
       },
       {
         step: "02",
-        title: "Keyword & Intent Mapping",
-        description: "We map target keyword clusters to specific existing or planned URLs based on search intent and commercial value."
+        title: "Core Web Vitals Remediation",
+        description: "We optimize font rendering, compress imagery, remove render-blocking scripts, and eliminate layout shifts."
       },
       {
         step: "03",
-        title: "On-Page & Architecture Fixes",
-        description: "We rewrite metadata, optimize page headings, improve internal anchor links, and implement Schema.org markup."
+        title: "Schema.org JSON-LD Implementation",
+        description: "We author and validate rich structured data (Organization, LocalBusiness, FAQPage, Breadcrumbs) tested via Google Rich Results."
       },
       {
         step: "04",
-        title: "Technical Remediation",
-        description: "We work directly on your codebase or CMS to fix render-blocking assets, optimize image delivery, and resolve crawl errors."
+        title: "On-Page Keyword & Metadata Alignment",
+        description: "We rewrite titles, meta descriptions, and semantic headings targeting verified high-intent buyer searches."
       },
       {
         step: "05",
-        title: "Ongoing Performance Tracking",
-        description: "We monitor Google Search Console metrics, address new crawl errors, and iteratively refine underperforming pages."
+        title: "Search Console Monitoring & Reporting",
+        description: "We track index coverage, keyword impressions, CTR changes, and average position trends inside Google Search Console."
       }
     ],
-    suitableForIntro: "We design technical SEO architecture for B2B firms, specialized consultants, and local brands needing durable organic visibility without paying continuous ad toll fees.",
+    suitableForIntro: "We engineer technical SEO for companies whose commercial websites suffer from slow load times, poor crawl coverage, and zero organic search impressions.",
     suitableFor: [
       {
-        title: "Professional Service Agencies",
-        reason: "Aiming to generate consistent organic inbound enquiries for high-value client contracts."
+        title: "Companies with Slow or Outdated CMSs",
+        reason: "Struggling with slow Core Web Vitals on legacy WordPress, Wix, or Shopify builds."
       },
       {
-        title: "B2B Software & Tech Companies",
-        reason: "Needing clean technical SEO foundations and authoritative topic clusters."
+        title: "B2B & High-Ticket Service Firms",
+        reason: "Looking to capture high-value prospective clients searching for specialized industry solutions."
       },
       {
-        title: "Businesses Rebuilding Their Website",
-        reason: "Wanting to preserve existing search equity and prevent traffic drops during migration."
+        title: "Websites Preparing for Redesign or Migration",
+        reason: "Needing to preserve search equity and establish flawless technical foundations before launching."
       }
     ],
+    comparison: {
+      title: "How Technical SEO Differs From Generic SEO Retainers",
+      subtitle: "Why code-level technical engineering outranks superficial backlink packages",
+      traditionalHeader: "Generic Monthly SEO Agencies",
+      boldflowHeader: "BoldFlow Labs Technical SEO",
+      rows: [
+        {
+          feature: "Core Web Vitals",
+          traditional: "Ignored or delegated to junior staff who install a caching plugin that breaks CSS",
+          boldflow: "Engineered code-level fixes achieving <800ms TTFB and perfect 0.00 CLS scores"
+        },
+        {
+          feature: "Structured Data",
+          traditional: "Default automated outputs from generic WordPress plugins with missing properties",
+          boldflow: "Custom validated Schema.org JSON-LD (Organization, Service, FAQPage, BreadcrumbList)"
+        },
+        {
+          feature: "Backlink Approach",
+          traditional: "Spammy link networks and low-tier directory submissions that risk Google manual penalties",
+          boldflow: "Strict adherence to Google Search Essentials; focus on structural authority and rich assets"
+        },
+        {
+          feature: "Search Intent Focus",
+          traditional: "Chasing broad vanity keywords with zero commercial buying intent",
+          boldflow: "Focus on commercial, transactional queries with clear intent to hire or buy"
+        },
+        {
+          feature: "Transparency",
+          traditional: "60-page automated PDF reports filled with meaningless vanity impressions",
+          boldflow: "Direct Google Search Console telemetry, verified clicks, and indexation status"
+        }
+      ]
+    },
     demonstration: {
-      type: "Sample Technical SEO Blueprint",
-      title: "Full-Stack SEO Hygiene Architecture",
-      subtitle: "Demonstration of our on-page and technical SEO standard operating procedure",
+      type: "Sample Technical SEO Framework",
+      title: "Core Web Vitals & Structured Data Optimization",
+      subtitle: "Demonstration of technical audit parameters and Schema.org deployment",
       badge: "Sample Architecture (Demonstration)",
-      description: "This sample showcases the technical checklist applied to every client page before publication to ensure search crawlability and schema validation.",
+      description: "This sample showcases the technical criteria we optimize: sub-second server response, zero layout shifts, and comprehensive Schema.org JSON-LD.",
       flowSteps: [
-        { label: "Crawl & Semantic Validation", detail: "Check clean semantic hierarchy (single H1, structured H2-H4s, valid canonical)", status: "Validated" },
-        { label: "Core Web Vitals Benchmark", detail: "Ensure LCP under 2.5s, CLS under 0.1, INP under 200ms on real devices", status: "Benchmarked" },
-        { label: "JSON-LD Schema Injection", detail: "Inject structured Organization, Service, and FAQPage data verified with Schema validator", status: "Verified" },
-        { label: "Sitemap & Indexing Ping", detail: "Automated inclusion in XML sitemap and submission to Google Search Console API", status: "Indexed" }
+        { label: "1. Crawl Diagnosis", detail: "Audit robots.txt, canonical consistency, and server response codes", status: "Audited" },
+        { label: "2. CWV Remediation", detail: "Compress LCP to <1.5s, CLS to <0.05, and eliminate render blocks", status: "Optimized" },
+        { label: "3. Schema.org Injection", detail: "Deploy Organization, Service, and FAQPage JSON-LD markup", status: "Validated" },
+        { label: "4. Indexation Ping", detail: "Submit cleaned XML sitemap to Google Search Console for re-crawl", status: "Submitted" }
       ],
       keySpecs: [
-        { label: "Audit Tools", value: "Google Search Console, PageSpeed Insights, Screaming Frog" },
-        { label: "Schema Standards", value: "Schema.org JSON-LD compliant (Organization, Service, FAQ, Breadcrumb)" },
-        { label: "Approach", value: "100% White-Hat Technical & Editorial SEO" },
-        { label: "Timeline Expectation", value: "3 to 6 months for sustained organic indexation momentum" }
+        { label: "Audit Standards", value: "Google Search Essentials & Core Web Vitals Benchmarks" },
+        { label: "Structured Data", value: "Schema.org (JSON-LD format, validated via Rich Results Test)" },
+        { label: "Performance Targets", value: "LCP < 2.5s, CLS < 0.1, INP < 200ms" },
+        { label: "Tooling", value: "Google Search Console, Screaming Frog, PageSpeed Insights" }
       ]
     },
     faqs: [
       {
-        question: "Do you guarantee #1 ranking on Google?",
-        answer: "No. Anyone promising a guaranteed #1 position on Google is using deceptive tactics. Google's search algorithms use hundreds of proprietary signals that no third party controls. We focus on what is proven and defensible: rock-solid technical health, fast page speed, clean schema data, and high-intent keyword optimization."
+        question: "Do you guarantee #1 rankings on Google?",
+        answer: "No, and no honest agency ever can. Google's ranking algorithms evaluate hundreds of dynamic factors. What we guarantee is rigorous technical execution: eliminating crawl roadblocks, perfecting Core Web Vitals, implementing rich Schema.org markup, and adhering strictly to Google's Search Essentials."
       },
       {
         question: "How long does SEO take to produce measurable results?",
-        answer: "SEO is a medium-to-long-term channel. While technical fixes and indexing corrections often show crawl improvements within 3 to 6 weeks, noticeable increases in organic impressions and keyword rankings generally take 3 to 6 months depending on existing domain authority and competition."
+        answer: "Technical improvements (fixing crawl errors, accelerating Core Web Vitals, deploying schema) are recognized by search engine crawlers within 2 to 6 weeks. Significant organic keyword ranking improvements and impression growth typically compound over 3 to 6 months as domain authority builds."
       },
       {
         question: "Do you buy backlinks or use private blog networks (PBNs)?",
@@ -468,12 +590,13 @@ export const servicesData: ServiceItem[] = [
     title: "Website Development",
     tagline: "High-Performance Modern Web Engineering",
     heroHeadline: "Bespoke, Fast, Conversion-Focused Websites Engineered for Real Business",
-    shortDescription: "Build ultra-fast Next.js websites engineered for 95+ Lighthouse scores, zero layout shifts, and seamless lead conversion. Explore our builds and get a quote.",
+    definition: "Modern website development is the engineering of bespoke web applications utilizing modern Jamstack architecture (Next.js, React, TypeScript) and edge CDN hosting to achieve sub-100ms load speeds, 95+ Lighthouse scores, and seamless conversion flows.",
+    shortDescription: "Build ultra-fast Next.js Jamstack websites engineered for 95+ Lighthouse scores and frictionless lead conversion. Request your development proposal.",
     longDescription: "Your website is your primary business asset. We design and build modern websites using Next.js, TypeScript, and clean CSS that load instantly, display flawlessly on mobile devices, and guide qualified visitors directly into submitting enquiries.",
     customerProblem: {
       headline: "The hidden business cost of slow, outdated websites",
       points: [
-        "Bloated page builders loaded with dozens of plugins cause 4+ second load times, causing over 50% of mobile visitors to bounce before the page loads.",
+        "Bloated page builders loaded with dozens of plugins cause 4+ second load times; research by Think with Google indicates mobile bounce rates increase by 90% as load time goes from 1 to 5 seconds.",
         "Unresponsive mobile layouts where buttons overlap, text is illegible, and forms are painful to fill out on smartphones.",
         "Vague, generic messaging with weak calls-to-action that leaves visitors confused about what your business actually does.",
         "Missing technical foundations: broken meta tags, uncompressed images, missing accessibility features, and zero conversion tracking."
@@ -512,6 +635,7 @@ export const servicesData: ServiceItem[] = [
         tag: "Analytics"
       }
     ],
+    howItWorksIntro: "We build modern websites in 5 disciplined engineering sprints:",
     howItWorks: [
       {
         step: "01",
@@ -554,6 +678,39 @@ export const servicesData: ServiceItem[] = [
         reason: "Tired of broken WordPress plugins, slow hosting, and recurring maintenance vulnerabilities."
       }
     ],
+    comparison: {
+      title: "Modern Next.js Jamstack vs Legacy WordPress Sites",
+      subtitle: "Why modern engineering outperforms 15-year-old monolithic CMS architecture",
+      traditionalHeader: "Legacy WordPress (30+ Plugins)",
+      boldflowHeader: "Next.js Jamstack (BoldFlow Labs)",
+      rows: [
+        {
+          feature: "Mobile Page Load (LCP)",
+          traditional: "3.8 to 6.5 seconds on real mobile networks due to PHP database queries",
+          boldflow: "Sub-800ms Largest Contentful Paint served directly from edge CDN cache"
+        },
+        {
+          feature: "Visual Stability (CLS)",
+          traditional: "Late-loading plugin scripts cause elements to jump (CLS > 0.25)",
+          boldflow: "Zero layout shift (CLS = 0.00) using modern CSS aspect ratios and font swapping"
+        },
+        {
+          feature: "Security & Maintenance",
+          traditional: "Constant plugin update vulnerabilities, database exploits, and malware risks",
+          boldflow: "Read-only compiled static files; no exposed database to hack"
+        },
+        {
+          feature: "Conversion Forms",
+          traditional: "Heavy AJAX form plugins prone to spam bot abuse and slow response times",
+          boldflow: "Lightweight serverless endpoints with built-in honeypot spam protection"
+        },
+        {
+          feature: "Code Ownership",
+          traditional: "Tangled web of licensed third-party themes and proprietary page builders",
+          boldflow: "100% clean Git repository ownership with clean TypeScript and modern CSS"
+        }
+      ]
+    },
     demonstration: {
       type: "Sample Website Architecture",
       title: "High-Performance Modern Web Architecture",
@@ -603,7 +760,8 @@ export const servicesData: ServiceItem[] = [
     title: "Google Business Profile & Local SEO",
     tagline: "Local Search Visibility & Review Management",
     heroHeadline: "Dominate Local Search & Win Nearby Customers When They Need You Most",
-    shortDescription: "Rank in the Google Local 3-Pack with Google Business Profile optimization, localized Schema markup, and automated review systems. Claim your local audit.",
+    definition: "Local SEO is the targeted optimization of a company's Google Business Profile, geographic directory citations, NAP consistency (Name, Address, Phone), and localized Schema.org markup to capture high-intent customers searching for services in specific regional locations.",
+    shortDescription: "Dominate Google Maps and local search results with optimized Google Business Profiles, localized schema, and automated review systems. Get started today.",
     longDescription: "When local prospects search for services near them, your business needs to show up prominently with accurate information and compelling reviews. We optimize your Google Business Profile, align NAP citations across directories, and implement systematic review collection workflows.",
     customerProblem: {
       headline: "Why local businesses lose customers to competitors down the street",
@@ -647,6 +805,7 @@ export const servicesData: ServiceItem[] = [
         tag: "Reporting"
       }
     ],
+    howItWorksIntro: "We optimize your local business presence in 5 systematic phases:",
     howItWorks: [
       {
         step: "01",
@@ -689,6 +848,39 @@ export const servicesData: ServiceItem[] = [
         reason: "Businesses with one or more physical branches needing uniform local visibility."
       }
     ],
+    comparison: {
+      title: "How BoldFlow Labs Local SEO Compares to Generic Directory Submissions",
+      subtitle: "Why comprehensive profile optimization and automated review flows drive genuine foot traffic",
+      traditionalHeader: "Automated Directory Blasts",
+      boldflowHeader: "BoldFlow Labs Local Growth Framework",
+      rows: [
+        {
+          feature: "Google Business Profile Strategy",
+          traditional: "Basic profile claim with only one primary category and generic description",
+          boldflow: "Multi-category optimization, complete service catalogues, and geo-targeted attributes"
+        },
+        {
+          feature: "NAP Consistency",
+          traditional: "Submitted once to hundreds of spammy directories that create duplicate listings",
+          boldflow: "Careful manual cleanup across primary Tier-1 platforms (Google Maps, Apple Maps, Bing)"
+        },
+        {
+          feature: "Customer Review Generation",
+          traditional: "Manual email blasts or zero follow-up, resulting in low review velocity",
+          boldflow: "Automated post-service WhatsApp/SMS 1-click Google review invitation links"
+        },
+        {
+          feature: "On-Page Local Schema",
+          traditional: "Missing or generic Organization schema without geographic coordinates",
+          boldflow: "Valid Schema.org/LocalBusiness & ProfessionalService JSON-LD with exact geo-coordinates"
+        },
+        {
+          feature: "Policy Compliance",
+          traditional: "Risky review incentives that violate Google guidelines and risk suspension",
+          boldflow: "100% compliant with Google's review policies (no review gating or paid incentives)"
+        }
+      ]
+    },
     demonstration: {
       type: "Sample Local SEO Framework",
       title: "Local Search Optimization & Review Funnel",
@@ -738,7 +930,8 @@ export const servicesData: ServiceItem[] = [
     title: "Business Automation & CRM",
     tagline: "Streamline Lead Management & Repetitive Workflows",
     heroHeadline: "Connect Your Tools, Automate Follow-Ups, and Eliminate Manual Chaos",
-    shortDescription: "Eliminate manual data entry and disconnected tools with custom n8n webhook pipelines, CRM sync, and automated lead routing. Schedule an architecture review.",
+    definition: "Business automation and CRM integration is the engineering of custom webhook pipelines and data synchronizations (connecting HubSpot, Zoho CRM, LeadSquared, or n8n) that eliminate manual data entry and route leads to sales reps automatically.",
+    shortDescription: "Eliminate manual data entry and connect your sales tools with custom webhook pipelines in HubSpot, Zoho, and n8n. Schedule a systems review.",
     longDescription: "Stop losing leads in messy spreadsheets and manual email handoffs. We build connected business backends using modern CRM platforms and automation tools that instantly capture inquiries, route tasks to your team, trigger follow-ups, and keep pipelines clean.",
     customerProblem: {
       headline: "The operational drag of disconnected tools and manual work",
@@ -782,6 +975,7 @@ export const servicesData: ServiceItem[] = [
         tag: "Reporting"
       }
     ],
+    howItWorksIntro: "We connect your business operations through a structured 5-step integration process:",
     howItWorks: [
       {
         step: "01",
@@ -824,6 +1018,39 @@ export const servicesData: ServiceItem[] = [
         reason: "Ready for an institutional system that provides clear visibility into deal values and conversion rates."
       }
     ],
+    comparison: {
+      title: "How Automated CRM Systems Compare to Disconnected Spreadsheets",
+      subtitle: "Why automated webhook architecture transforms business follow-up velocity",
+      traditionalHeader: "Disconnected Spreadsheets & Inboxes",
+      boldflowHeader: "Automated CRM & Webhooks (BoldFlow Labs)",
+      rows: [
+        {
+          feature: "Lead Ingestion Speed",
+          traditional: "Manual copy-pasting from email notifications; leads sit uncontacted for hours",
+          boldflow: "Instant webhook capture (<500ms) directly into CRM with round-robin rep assignment"
+        },
+        {
+          feature: "Follow-Up Discipline",
+          traditional: "Subject to human memory; over 60% of leads receive only one manual follow-up",
+          boldflow: "Automated multi-touch follow-up sequences across WhatsApp and email"
+        },
+        {
+          feature: "Data Normalization",
+          traditional: "Duplicate records, missing phone numbers, and inconsistent contact notes",
+          boldflow: "Automated E.164 phone formatting, email validation, and deduplication"
+        },
+        {
+          feature: "Pipeline Visibility",
+          traditional: "Founders have zero real-time visibility into deal status or conversion rates",
+          boldflow: "Visual pipeline dashboard showing conversion velocity, lead value, and bottlenecks"
+        },
+        {
+          feature: "Tool Interoperability",
+          traditional: "Siloed tools requiring repetitive data re-entry between calendars, CRM, and accounting",
+          boldflow: "Bidirectional sync connecting web forms, WhatsApp API, Cal.com, and invoicing"
+        }
+      ]
+    },
     demonstration: {
       type: "Sample Automation Pipeline",
       title: "Closed-Loop Lead-to-CRM Routing Pipeline",

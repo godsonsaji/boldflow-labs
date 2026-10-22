@@ -13,81 +13,88 @@ interface BlogCardProps {
         readTime?: string;
         authorName?: string;
         authorImage?: string;
+        tags?: string[];
     };
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
     const date = post.createdAt?.toDate ? post.createdAt.toDate() : new Date();
+    const primaryTag = post.tags?.[0] || "TECHNICAL GUIDE";
+    const cleanReadTime = post.readTime
+        ? post.readTime.replace("_READ", " min read").replace("M_READ", " min read")
+        : "5 min read";
 
     return (
-        <Link href={`/blog/${post.slug}`} className="group h-full flex flex-col bg-[#050505] relative overflow-hidden active:scale-[0.99] transition-transform duration-150">
-            {/* Outer hover border */}
-            <div className="absolute inset-0 border border-transparent group-hover:border-[#333] z-20 pointer-events-none transition-colors duration-150" />
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-[#0066ff] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 z-20 pointer-events-none" />
-
-            <div className="target-hex target-hex-left-top z-30" />
-            <div className="target-hex target-hex-right-bottom z-30" />
-
-            {/* Top Bar (Terminal style) */}
-            <div className="bg-[#0A0A0A] border-b border-[#1A1A1A] px-4 py-2 flex items-center justify-between shrink-0">
-                <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 bg-[#525252] group-hover:bg-[#0066ff] transition-colors" />
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#525252] group-hover:text-[#A3A3A3] transition-colors">
-                        SYSTEM BLUEPRINT
+        <article className="group h-full flex flex-col bg-white border border-slate-200 hover:border-blue-300 transition-all duration-200 rounded-2xl overflow-hidden shadow-xs hover:shadow-md">
+            {/* Top Meta Bar */}
+            <div className="bg-slate-50/80 border-b border-slate-100 px-5 py-2.5 flex items-center justify-between shrink-0">
+                <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#2563FF]" />
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-[#2563FF] font-semibold">
+                        {primaryTag}
                     </span>
                 </div>
-                <div className="flex items-center text-[10px] font-mono text-[#525252]">
-                    <span>[ {post.readTime || "5M_READ"} ]</span>
+                <div className="text-xs font-mono text-slate-500">
+                    <span>{cleanReadTime}</span>
                 </div>
             </div>
 
-            {/* Image Container */}
-            <div className="aspect-[16/9] w-full relative overflow-hidden bg-[#0A0A0A] border-b border-[#1A1A1A] shrink-0">
+            {/* Image Container with Linked Anchor */}
+            <Link 
+                href={`/blog/${post.slug}`} 
+                className="aspect-[16/9] w-full relative overflow-hidden bg-slate-100 border-b border-slate-100 shrink-0 block group/img"
+                aria-label={`Read article: ${post.title}`}
+            >
                 <img
-                    src={post.coverImage || "/placeholder-blog.jpg"}
+                    src={post.coverImage || "/og-image.png"}
                     alt={post.title}
-                    className="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-105"
+                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 grid-overlay pointer-events-none opacity-50 z-10" />
-            </div>
+            </Link>
 
-            {/* Content */}
-            <div className="p-6 md:p-8 flex flex-col flex-grow relative bg-[#050505]">
-                <div className="flex items-center gap-3 text-caption text-[#71717A] mb-4">
-                    <span>{format(date, "MMM dd, yyyy")}</span>
-                    <span className="text-[#333]">|</span>
-                    <span className="font-mono">UID:{post.id.slice(0, 6)}</span>
+            {/* Content Body */}
+            <div className="p-6 flex flex-col flex-grow bg-white">
+                <div className="flex items-center gap-2 text-xs text-slate-500 mb-2.5 font-mono">
+                    <time dateTime={date.toISOString()}>{format(date, "MMMM dd, yyyy")}</time>
+                    <span className="text-slate-300">·</span>
+                    <span className="text-slate-600 font-medium">Analysis</span>
                 </div>
 
-                <h3 className="text-[20px] font-medium text-[#F5F5F5] uppercase mb-4 group-hover:text-[#0066ff] transition-colors leading-tight line-clamp-2">
-                    {post.title}
+                {/* Post Title */}
+                <h3 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-[#2563FF] transition-colors mb-2.5 leading-snug line-clamp-2">
+                    <Link 
+                        href={`/blog/${post.slug}`}
+                        className="hover:text-[#2563FF] transition-colors"
+                    >
+                        {post.title}
+                    </Link>
                 </h3>
 
-                <p className="text-body text-[#A3A3A3] leading-relaxed line-clamp-3 mb-8 flex-grow">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3 mb-6 flex-grow">
                     {post.excerpt}
                 </p>
 
-                <div className="flex items-center justify-between pt-6 border-t border-[#1A1A1A] mt-auto">
-                    {post.authorName ? (
-                        <div className="flex items-center gap-3">
-                            <div className="w-6 h-6 rounded-full border border-[#333] overflow-hidden shrink-0">
-                                <img
-                                    src={post.authorImage || "/founder.png"}
-                                    alt={post.authorName}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            <span className="text-caption text-[#F5F5F5] uppercase tracking-wider">{post.authorName}</span>
+                {/* Author and Read Action */}
+                <div className="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
+                    <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full border border-blue-200 bg-blue-50 flex items-center justify-center text-[9px] font-bold font-mono text-[#2563FF] shrink-0">
+                            BF
                         </div>
-                    ) : (
-                        <span className="text-caption text-[#525252] uppercase tracking-wider">SYS_CONFIG</span>
-                    )}
-
-                    <div className="flex items-center text-label text-[#525252] group-hover:text-[#F5F5F5] font-mono transition-colors">
-                        Read Guide →
+                        <span className="text-xs text-slate-700 font-medium">
+                            {post.authorName || "BoldFlow Engineering"}
+                        </span>
                     </div>
+
+                    <Link
+                        href={`/blog/${post.slug}`}
+                        className="text-xs font-mono font-semibold text-[#2563FF] hover:text-[#1D4ED8] flex items-center gap-1 transition-colors"
+                        aria-label={`Read complete guide: ${post.title}`}
+                    >
+                        <span>Read Guide</span>
+                        <span>→</span>
+                    </Link>
                 </div>
             </div>
-        </Link>
+        </article>
     );
 }

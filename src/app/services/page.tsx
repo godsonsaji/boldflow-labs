@@ -23,8 +23,43 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function ServicesPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://www.boldflowlabs.com",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Services",
+            item: "https://www.boldflowlabs.com/services",
+          },
+        ],
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://www.boldflowlabs.com/services/#collection",
+        name: "BoldFlow Labs Core Services",
+        url: "https://www.boldflowlabs.com/services",
+        description:
+          "Explore BoldFlow Labs core services: Performance Marketing, WhatsApp Automation, Technical SEO, High-Performance Web Development, Local SEO, and CRM Systems.",
+      },
+    ],
+  };
+
   return (
     <div className="bg-[#F8FAFC] min-h-screen pt-28 pb-20 text-slate-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       
       {/* ── HERO ────────────────────────────────────────── */}
       <section className="relative py-16 md:py-24 border-b border-slate-200 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#F8FAFC]">
@@ -209,7 +244,7 @@ export default function ServicesPage() {
               Transparent Project Management & Execution
             </h2>
             <p className="mt-4 text-slate-600 text-sm leading-relaxed">
-              We operate an agile agency model focused on client project governance. Founder Godson Saji leads systems architecture and strategic alignment, collaborating with vetted technical delivery specialists for specialized engineering.
+              We operate an agile agency model focused on client project governance. Our senior engineering leads direct systems architecture and strategic alignment, collaborating with vetted technical delivery specialists for specialized engineering.
             </p>
             <div className="mt-6 space-y-3 text-xs text-slate-700">
               <div className="flex items-center gap-2.5">

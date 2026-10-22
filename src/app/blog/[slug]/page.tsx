@@ -1,234 +1,399 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { cache } from "react";
+import { format } from "date-fns";
+import { ChevronLeft, Calendar, Clock } from "lucide-react";
+import { staticBlogPosts, BlogPost } from "@/data/blogData";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from "@/firebase/config";
-import { staticBlogPosts } from "@/data/blogData";
-import { format } from "date-fns";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { sanitizeBlogHtml } from "@/lib/sanitize";
 
-export default function BlogPostPage() {
-    const { slug } = useParams();
-    const staticInitial = typeof slug === "string" ? staticBlogPosts.find(p => p.slug === slug) : null;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [post, setPost] = useState<any>(staticInitial || null);
-    const [loading, setLoading] = useState(!staticInitial);
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
 
-    useEffect(() => {
-        const fetchPost = async () => {
-            try {
-                const q = query(
-                    collection(db, "blogs"),
-                    where("slug", "==", slug),
-                    where("status", "==", "published"),
-                    limit(1)
-                );
-                const querySnapshot = await getDocs(q);
-                if (!querySnapshot.empty) {
-                    setPost({ id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() });
-                } else {
-                    // Try static fallback
-                    const staticMatch = staticBlogPosts.find(p => p.slug === slug);
-                    if (staticMatch) {
-                        setPost(staticMatch);
-                    }
-                }
-            } catch (error) {
-                console.error("Error fetching blog post, trying static fallback:", error);
-                const staticMatch = staticBlogPosts.find(p => p.slug === slug);
-                if (staticMatch) {
-                    setPost(staticMatch);
-                }
-            } finally {
-                setLoading(false);
-            }
-        };
+export const dynamicParams = true;
 
-        if (slug) fetchPost();
-    }, [slug]);
+/**
+ * Validates that a slug is non-empty, safe, and conforms to standard URL format.
+ * Prevents inclusion of admin/api paths, malformed strings, or traversal sequences.
+ */
+function isValidSlug(slug: unknown): slug is string {
+  if (typeof slug !== "string") return false;
+  const trimmed = slug.trim().toLowerCase();
+  if (!trimmed) return false;
+  if (trimmed.startsWith("/") || trimmed.startsWith("admin") || trimmed.startsWith("api")) {
+    return false;
+  }
+  return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(trimmed);
+}
 
-    if (loading) {
-        return (
-            <div className="flex flex-col justify-center items-center min-h-screen bg-[#050505]">
-                <span className="text-[#0066ff] font-mono text-[14px] animate-pulse">█</span>
-                <p className="text-label font-mono text-[#525252] uppercase tracking-widest mt-4">FETCHING_PAYLOAD...</p>
-            </div>
-        );
+/**
+ * Normalizes Firestore Timestamps, JS Dates, and ISO strings safely into a valid Date object.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function parseDate(dateVal: any, fallback: Date = new Date()): Date {
+  if (!dateVal) return fallback;
+  if (typeof dateVal.toDate === "function") {
+    try {
+      const d = dateVal.toDate();
+      if (d instanceof Date && !isNaN(d.getTime())) return d;
+    } catch {
+      // Fall through on error
     }
+  }
+  if (dateVal instanceof Date && !isNaN(dateVal.getTime())) return dateVal;
+  const parsed = new Date(dateVal);
+  return isNaN(parsed.getTime()) ? fallback : parsed;
+}
 
-    if (!post) {
-        return (
-            <div className="flex flex-col items-center justify-center min-h-screen bg-[#050505] px-6 text-center">
-                <div className="target-hex target-hex-left-top" />
-                <div className="target-hex target-hex-right-bottom" />
-                <span className="text-[#333] font-mono text-[64px] mb-8 block leading-none">[ 404 ]</span>
-                <h1 className="text-h2 font-medium text-[#F5F5F5] uppercase mb-6 mt-4">RECORD NOT FOUND</h1>
-                <p className="text-[#A3A3A3] mb-12 max-w-md">The requested telemetry log could not be located in the current database architecture.</p>
-                <Link href="/blog" className="px-8 py-4 btn-ghost font-mono text-[13px] tracking-wider uppercase">
-                    ← Return to All Articles
-                </Link>
-            </div>
-        );
+/**
+ * Memoized post getter to avoid duplicate Firestore round-trips during a single request.
+ */
+const getPost = cache(async (slug: string): Promise<BlogPost | null> => {
+  if (!isValidSlug(slug)) return null;
+
+  // 1. Check static published articles first
+  const staticMatch = staticBlogPosts.find((p) => p.slug === slug);
+  if (staticMatch) {
+    if (staticMatch.status === "published") {
+      return staticMatch;
     }
+    return null;
+  }
 
-    const date = post.createdAt?.toDate ? post.createdAt.toDate() : new Date();
-
-    return (
-        <article className="pt-32 pb-32 px-6 bg-[#050505] min-h-screen relative overflow-hidden">
-            {/* Grid Array Background */}
-            <div className="absolute inset-0 grid-overlay pointer-events-none z-0" />
-
-            <div className="max-w-[800px] mx-auto relative z-10">
-                {/* Back Link */}
-                <Link href="/blog" className="inline-flex items-center text-label font-mono text-[#737373] hover:text-[#0066ff] mb-12 transition-colors">
-                    <ChevronLeft className="w-4 h-4 mr-1 relative -top-px" />
-                    ← Back to All Articles
-                </Link>
-
-                {/* Header */}
-                <header className="mb-16">
-                    <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-label text-[#0066ff] mb-6 uppercase"
-                    >
-                        {"//"} ARCHITECTURE LOG
-                    </motion.div>
-
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-h2 md:text-[64px] font-medium text-[#F5F5F5] uppercase leading-[0.9] mb-12 tracking-tighter"
-                    >
-                        {post.title}
-                    </motion.h1>
-
-                    <div className="flex flex-wrap items-center gap-y-4 gap-x-6 text-caption text-[#A3A3A3] font-mono border-y border-[#1A1A1A] py-6">
-                        {post.authorName && (
-                            <div className="flex items-center gap-3 pr-6 border-r border-[#1A1A1A]">
-                                <div className="w-7 h-7 rounded-full border border-[#333] bg-[#111] overflow-hidden shrink-0">
-                                    <img
-                                        src={post.authorImage || "/founder.png"}
-                                        alt={post.authorName}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                                <div>
-                                    <Link href="/about" className="uppercase tracking-wider text-[#F5F5F5] hover:text-[#0066ff] transition-colors block font-medium">
-                                        {post.authorName}
-                                    </Link>
-                                    <span className="text-[10px] text-[#71717A] tracking-wider block">Systems Architect</span>
-                                </div>
-                            </div>
-                        )}
-                        <div className="flex items-center gap-2 uppercase tracking-widest text-[#71717A]">
-                            {format(date, "MMM dd, yyyy")}
-                        </div>
-                        <div className="flex items-center gap-2 uppercase tracking-widest text-[#71717A] border-l border-[#1A1A1A] pl-6">
-                            {post.readTime || "5M_READ"}
-                        </div>
-                    </div>
-                </header>
-
-                {/* Featured Image */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="aspect-[21/9] w-full relative bg-[#0A0A0A] border border-[#1A1A1A] mb-16 overflow-hidden"
-                >
-                    <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.2)_50%)] bg-[length:100%_4px] pointer-events-none z-10" />
-                    <img
-                        src={post.coverImage || "/placeholder-blog.jpg"}
-                        alt={post.title}
-                        className="w-full h-full object-cover grayscale opacity-80"
-                    />
-                    <div className="target-hex target-hex-left-top z-20" />
-                    <div className="target-hex target-hex-right-bottom z-20" />
-                </motion.div>
-
-                {/* Content */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="overflow-x-auto max-w-full"
-                >
-                    <div
-                        className="prose prose-invert max-w-none 
-                            prose-p:text-[#A3A3A3] prose-p:text-base sm:prose-p:text-lg prose-p:leading-relaxed prose-p:font-light
-                            prose-headings:text-[#F5F5F5] prose-headings:uppercase prose-headings:tracking-tight prose-headings:font-medium
-                            prose-h2:text-[24px] sm:prose-h2:text-[32px] prose-h2:mt-12 sm:prose-h2:mt-16 prose-h2:mb-6 sm:prose-h2:mb-8
-                            prose-h3:text-[20px] sm:prose-h3:text-[24px] prose-h3:mt-8 sm:prose-h3:mt-12 prose-h3:mb-4 sm:prose-h3:mb-6
-                            prose-strong:text-[#F5F5F5] prose-strong:font-medium
-                            prose-a:text-[#0066ff] prose-a:no-underline hover:prose-a:underline
-                            prose-blockquote:border-l-2 prose-blockquote:border-[#0066ff] prose-blockquote:bg-[#0A0A0A] prose-blockquote:px-4 sm:prose-blockquote:px-8 prose-blockquote:py-4 prose-blockquote:not-italic prose-blockquote:text-[#F5F5F5] 
-                            prose-img:border prose-img:border-[#1A1A1A] prose-img:rounded-md
-                            prose-code:text-[#0066ff] prose-code:bg-[#0A0A0A] prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-[13px] prose-code:break-words
-                            prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-[#1A1A1A] prose-pre:rounded-none prose-pre:overflow-x-auto
-                            prose-table:w-full prose-table:block prose-table:overflow-x-auto
-                            prose-ul:text-[#A3A3A3] prose-li:marker:text-[#0066ff]"
-                        dangerouslySetInnerHTML={{ __html: post.content }}
-                    />
-                </motion.div>
-
-                {/* Footer / Tags & CTA */}
-                <div className="mt-32 pt-16 border-t border-[#1A1A1A]">
-                    {post.tags && post.tags.length > 0 && (
-                        <div className="flex flex-wrap items-center gap-3 mb-16">
-                            <span className="text-label text-[#525252] font-mono mr-4">{"//"} INDEX_TAGS</span>
-                            {post.tags.map((tag: string) => (
-                                <span key={tag} className="font-mono text-[11px] text-[#A3A3A3] border border-[#333333] bg-[#0A0A0A] px-3 py-1.5 uppercase tracking-wider hover:border-[#0066ff] hover:text-[#F5F5F5] transition-colors cursor-pointer">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    )}
-
-                    {/* Author Bio Box for E-E-A-T */}
-                    <div className="p-6 sm:p-8 bg-[#0A0A0A] border border-[#1A1A1A] rounded-xl mb-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                        <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#0066ff] shrink-0">
-                            <img
-                                src="/founder.png"
-                                alt="Godson Saji — Founder & Systems Architect"
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                        <div className="space-y-1.5 flex-1">
-                            <div className="flex items-center gap-2">
-                                <span className="text-sm font-bold text-[#F5F5F5] uppercase tracking-wide">Written by Godson Saji</span>
-                                <span className="text-[10px] font-mono text-[#0066ff] bg-[#0066ff]/10 px-2 py-0.5 rounded border border-[#0066ff]/20">FOUNDER</span>
-                            </div>
-                            <p className="text-xs text-[#A3A3A3] leading-relaxed">
-                                Principal Systems Architect at BoldFlow Labs. Specializing in official Meta WhatsApp Business Cloud API workflows, Jamstack performance engineering, and closed-loop CRM attribution.
-                            </p>
-                            <div className="pt-1 flex items-center gap-4 text-xs font-mono">
-                                <Link href="/about" className="text-[#0066ff] hover:underline flex items-center gap-1">
-                                    About the Founder →
-                                </Link>
-                                <a href="https://www.linkedin.com/in/godson-saji" target="_blank" rel="noopener noreferrer" className="text-[#71717A] hover:text-[#F5F5F5] transition-colors">
-                                    LinkedIn Profile ↗
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="bg-[#0A0A0A] border border-[#1A1A1A] p-10 sm:p-12 text-center relative group rounded-xl">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,102,255,0.05),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                        <div className="target-hex target-hex-left-top" />
-                        <div className="target-hex target-hex-right-bottom" />
-                        
-                        <h3 className="text-[22px] sm:text-[26px] font-medium text-[#F5F5F5] uppercase mb-4">Want to deploy systems like this?</h3>
-                        <p className="text-[#A3A3A3] mb-8 max-w-lg mx-auto text-sm sm:text-base leading-relaxed">We architect bespoke AI automation pipelines, official WhatsApp workflows, and high-performance websites that eliminate manual bottlenecks.</p>
-                        <Link href="/contact" className="px-8 py-4 btn-primary font-medium text-sm text-center tracking-wide inline-block">
-                            Request an Architecture Diagnostic →
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </article>
+  // 2. Query Firestore for published post
+  try {
+    const q = query(
+      collection(db, "blogs"),
+      where("slug", "==", slug),
+      where("status", "==", "published"),
+      limit(1)
     );
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const docSnap = querySnapshot.docs[0];
+      const data = docSnap.data();
+
+      if (data.status !== "published") {
+        return null;
+      }
+
+      const rawSlug = typeof data.slug === "string" ? data.slug.trim().toLowerCase() : "";
+      if (!isValidSlug(rawSlug)) {
+        return null;
+      }
+
+      const createdDate = parseDate(data.createdAt);
+      const updatedDate = data.updatedAt ? parseDate(data.updatedAt, createdDate) : createdDate;
+
+      return {
+        id: docSnap.id,
+        title: typeof data.title === "string" ? data.title.trim() : "Untitled",
+        slug: rawSlug,
+        excerpt: typeof data.excerpt === "string" ? data.excerpt.trim() : "",
+        content: typeof data.content === "string" ? sanitizeBlogHtml(data.content) : "",
+        coverImage: typeof data.coverImage === "string" && data.coverImage ? data.coverImage : "/og-image.png",
+        createdAt: { toDate: () => createdDate },
+        updatedAt: { toDate: () => updatedDate },
+        readTime: typeof data.readTime === "string" ? data.readTime : "5 min read",
+        authorName: typeof data.authorName === "string" ? data.authorName : "BoldFlow Engineering",
+        authorRole: typeof data.authorRole === "string" ? data.authorRole : "Systems Engineering",
+        authorImage: typeof data.authorImage === "string" && data.authorImage ? data.authorImage : "/brand/icon/png/app-icon-brand-blue-512.png",
+        tags: Array.isArray(data.tags) ? data.tags : [],
+        status: "published",
+      };
+    }
+  } catch (error) {
+    // Gracefully catch database/network error without exposing secrets
+    console.error(
+      "Failed to fetch blog post from Firestore:",
+      error instanceof Error ? error.message : "Network/Permission error"
+    );
+  }
+
+  return null;
+});
+
+export async function generateStaticParams() {
+  const params: { slug: string }[] = [];
+  const seenSlugs = new Set<string>();
+
+  // Add static published posts
+  for (const post of staticBlogPosts) {
+    if (post.status === "published" && isValidSlug(post.slug)) {
+      seenSlugs.add(post.slug);
+      params.push({ slug: post.slug });
+    }
+  }
+
+  // Pre-render published Firestore posts if available at build time
+  try {
+    const q = query(collection(db, "blogs"), where("status", "==", "published"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      const slug = typeof data.slug === "string" ? data.slug.trim().toLowerCase() : "";
+      if (isValidSlug(slug) && !seenSlugs.has(slug)) {
+        seenSlugs.add(slug);
+        params.push({ slug });
+      }
+    });
+  } catch {
+    // Fall back safely to static articles if Firestore is offline during build
+  }
+
+  return params;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  const url = `https://www.boldflowlabs.com/blog/${post.slug}`;
+  const fullTitle = `${post.title} | BoldFlow Labs`;
+  const postDescription = post.excerpt || `${post.title}. Read the complete guide from BoldFlow Labs.`;
+  const publishedDate = post.createdAt?.toDate ? post.createdAt.toDate() : new Date();
+  const modifiedDate = post.updatedAt?.toDate ? post.updatedAt.toDate() : publishedDate;
+
+  return {
+    title: {
+      absolute: fullTitle,
+    },
+    description: postDescription,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: fullTitle,
+      description: postDescription,
+      url,
+      type: "article",
+      publishedTime: publishedDate.toISOString(),
+      modifiedTime: modifiedDate.toISOString(),
+      authors: ["https://www.boldflowlabs.com/about"],
+      images: [
+        {
+          url: post.coverImage || "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description: postDescription,
+      images: [post.coverImage || "/og-image.png"],
+    },
+  };
+}
+
+export default async function BlogPostPage({ params }: PageProps) {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  const date = post.createdAt?.toDate ? post.createdAt.toDate() : new Date();
+  const modifiedDate = post.updatedAt?.toDate ? post.updatedAt.toDate() : date;
+  const pageUrl = `https://www.boldflowlabs.com/blog/${post.slug}`;
+  const cleanReadTime = post.readTime?.replace("_READ", " min read").replace("M_READ", " min read") || "7 min read";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://www.boldflowlabs.com",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: "https://www.boldflowlabs.com/blog",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: post.title,
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": `${pageUrl}/#article`,
+        isPartOf: {
+          "@type": "Blog",
+          "@id": "https://www.boldflowlabs.com/blog/#blog",
+          name: "BoldFlow Labs Engineering & Digital Growth Blog",
+        },
+        headline: post.title,
+        description: post.excerpt,
+        image: post.coverImage || "https://www.boldflowlabs.com/og-image.png",
+        datePublished: date.toISOString(),
+        dateModified: modifiedDate.toISOString(),
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": pageUrl,
+        },
+        author: {
+          "@type": "Organization",
+          "@id": "https://www.boldflowlabs.com/#organization",
+          name: "BoldFlow Labs Engineering Group",
+          url: "https://www.boldflowlabs.com/about",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "BoldFlow Labs",
+          url: "https://www.boldflowlabs.com",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://www.boldflowlabs.com/logo.png",
+          },
+        },
+      },
+    ],
+  };
+
+  return (
+    <article className="pt-28 pb-24 px-4 sm:px-6 bg-[#F8FAFC] min-h-screen text-slate-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <div className="max-w-[840px] mx-auto">
+        {/* Breadcrumb Back Link */}
+        <nav className="mb-8">
+          <Link
+            href="/blog"
+            className="inline-flex items-center text-xs font-mono text-slate-500 hover:text-[#2563FF] transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4 mr-1" />
+            <span>← Back to All Articles &amp; Guides</span>
+          </Link>
+        </nav>
+
+        {/* Article Header */}
+        <header className="mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#2563FF] text-xs font-mono font-semibold uppercase tracking-wider mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#2563FF]" />
+            <span>{post.tags?.[0] || "ENGINEERING GUIDE"} · TECHNICAL BLUEPRINT</span>
+          </div>
+
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+            {post.title}
+          </h1>
+
+          <div className="flex flex-wrap items-center gap-y-4 gap-x-6 text-xs text-slate-500 border-y border-slate-200 py-4 font-mono">
+            {/* Author */}
+            <div className="flex items-center gap-3 pr-6 border-r border-slate-200">
+              <div className="w-8 h-8 rounded-full border border-blue-200 bg-blue-50 flex items-center justify-center text-xs font-bold font-mono text-[#2563FF] shrink-0">
+                BF
+              </div>
+              <div>
+                <Link
+                  href="/about"
+                  className="text-slate-900 hover:text-[#2563FF] transition-colors font-semibold block"
+                >
+                  {post.authorName || "BoldFlow Engineering"}
+                </Link>
+                <span className="text-[11px] text-slate-500 block">Systems Architecture &amp; Research</span>
+              </div>
+            </div>
+
+            {/* Date */}
+            <div className="flex items-center gap-1.5 text-slate-500">
+              <Calendar className="w-3.5 h-3.5" />
+              <time dateTime={date.toISOString()}>{format(date, "MMMM dd, yyyy")}</time>
+            </div>
+
+            {/* Read Time */}
+            <div className="flex items-center gap-1.5 text-slate-500 border-l border-slate-200 pl-6">
+              <Clock className="w-3.5 h-3.5" />
+              <span>{cleanReadTime}</span>
+            </div>
+          </div>
+        </header>
+
+        {/* Featured Cover Image */}
+        <div className="aspect-[16/9] w-full rounded-2xl overflow-hidden border border-slate-200 shadow-sm mb-12 bg-slate-100">
+          <img
+            src={post.coverImage || "/og-image.png"}
+            alt={post.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* HTML Content Body */}
+        <div
+          className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3 prose-p:text-slate-700 prose-p:leading-relaxed prose-li:text-slate-700 prose-strong:text-slate-900 prose-blockquote:border-[#2563FF] prose-blockquote:bg-blue-50/70 prose-blockquote:py-3 prose-blockquote:px-5 prose-blockquote:rounded-r-xl prose-blockquote:text-slate-800 prose-a:text-[#2563FF] hover:prose-a:text-[#1D4ED8]"
+          dangerouslySetInnerHTML={{ __html: sanitizeBlogHtml(post.content) }}
+        />
+
+        {/* Engineering Research & Standards Callout */}
+        <div className="mt-16 p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row items-start gap-6">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl border border-blue-200 bg-blue-50 flex items-center justify-center text-[#2563FF] font-mono font-bold text-xl shrink-0">
+            BF
+          </div>
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h3 className="text-base font-bold text-slate-900">BoldFlow Labs Technical Research &amp; Architecture Group</h3>
+                <span className="text-xs font-mono text-[#2563FF]">Systems Engineering · Cloud Automation · Digital Growth</span>
+              </div>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Our engineering team specializes in architecting event-driven Meta WhatsApp Cloud API workflows, high-performance Next.js Jamstack applications, and closed-loop CRM pipelines. Every guide is benchmarked against real-world production deployments.
+            </p>
+            <div className="pt-2">
+              <Link href="/services" className="text-xs text-[#2563FF] hover:underline font-mono font-semibold">
+                Learn more about our agency &amp; delivery model →
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Service Internal Linking CTA */}
+        <div className="mt-12 p-8 sm:p-10 rounded-2xl bg-gradient-to-br from-blue-50/80 via-white to-sky-50/60 border border-blue-200/80 shadow-md text-center">
+          <h3 className="text-2xl font-bold text-slate-900 mb-2">
+            Ready to Implement These Systems in Your Business?
+          </h3>
+          <p className="text-sm text-slate-600 max-w-xl mx-auto leading-relaxed mb-6">
+            BoldFlow Labs designs and deploys official WhatsApp automations, CRM pipelines, and high-performance websites for growing businesses.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="btn-primary px-6 py-3 rounded-lg text-sm font-semibold text-white bg-[#2563FF] hover:bg-[#1D4ED8] transition-colors w-full sm:w-auto shadow-sm"
+            >
+              Schedule Strategy Call
+            </Link>
+            <Link
+              href="/services"
+              className="px-6 py-3 rounded-lg bg-white hover:bg-slate-50 text-slate-700 text-sm font-medium border border-slate-200 transition-colors w-full sm:w-auto shadow-xs"
+            >
+              Explore Our Services →
+            </Link>
+          </div>
+        </div>
+
+      </div>
+    </article>
+  );
 }

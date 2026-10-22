@@ -6,7 +6,11 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: "*",
                 allow: "/",
-                disallow: ["/admin/", "/api/"],
+                // /admin routes intentionally omitted from Disallow so search crawlers can
+                // fetch the pages, read the <meta name="robots" content="noindex, nofollow"> directive,
+                // and permanently exclude /admin from the search index. Disallowing in robots.txt
+                // would block crawlers from seeing the noindex tag, risking URL-only indexation.
+                disallow: ["/api/"],
             },
             {
                 userAgent: [
@@ -19,7 +23,7 @@ export default function robots(): MetadataRoute.Robots {
                     "CCBot",
                 ],
                 allow: "/",
-                disallow: ["/admin/", "/api/"],
+                disallow: ["/api/"],
             },
         ],
         sitemap: "https://www.boldflowlabs.com/sitemap.xml",

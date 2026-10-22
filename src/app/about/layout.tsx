@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about BoldFlow Labs, our approach to AI automation, CRM pipelines, and business systems, founded by Godson Saji.",
+    "Learn about BoldFlow Labs, our engineering approach to WhatsApp automation, CRM pipelines, and digital systems architecture based in Kerala, India.",
   alternates: {
     canonical: "https://www.boldflowlabs.com/about",
   },
   openGraph: {
     title: "About Us | BoldFlow Labs",
     description:
-      "Learn about BoldFlow Labs, our approach to AI automation, CRM pipelines, and business systems, founded by Godson Saji.",
+      "Learn about BoldFlow Labs, our engineering approach to WhatsApp automation, CRM pipelines, and digital systems architecture based in Kerala, India.",
     url: "https://www.boldflowlabs.com/about",
     type: "website",
     images: [

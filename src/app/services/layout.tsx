@@ -39,44 +39,5 @@ export default function ServicesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: "https://www.boldflowlabs.com",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Services",
-            item: "https://www.boldflowlabs.com/services",
-          },
-        ],
-      },
-      {
-        "@type": "CollectionPage",
-        "@id": "https://www.boldflowlabs.com/services/#collection",
-        name: "BoldFlow Labs Core Services",
-        url: "https://www.boldflowlabs.com/services",
-        description:
-          "Explore BoldFlow Labs core services: Performance Marketing, WhatsApp Automation, Technical SEO, High-Performance Web Development, Local SEO, and CRM Systems.",
-      },
-    ],
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }
